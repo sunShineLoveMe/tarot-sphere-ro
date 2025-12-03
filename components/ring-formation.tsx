@@ -442,10 +442,10 @@ export default function RingFormation({ onCardSelect }: RingFormationProps) {
             ease: "easeInOut",
           }}
         >
-          {dims.isMobile ? t("formation.touchHint") : t("formation.hoverHint")}
+          {dims.isMobile ? t.formation.touchHint : t.formation.hoverHint}
         </motion.p>
         <motion.p className="text-[10px] sm:text-xs mt-2 tracking-widest" style={{ color: "rgba(255,79,216,0.6)" }}>
-          ✧ {t("formation.wheelOfFate")} ✧
+          ✧ {t.formation.wheelOfFate} ✧
         </motion.p>
       </motion.div>
     </motion.div>

@@ -59,7 +59,7 @@ export default function StartButton({ onStart }: StartButtonProps) {
         />
 
         <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-[#FF4FD8] to-[#73F2FF]">
-          ✧ {t("shuffle.startButton")} ✧
+          ✧ {t.shuffle.startButton} ✧
         </span>
       </motion.button>
     </motion.div>
