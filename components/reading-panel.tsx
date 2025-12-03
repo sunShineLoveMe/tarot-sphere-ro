@@ -2,13 +2,29 @@
 
 import { motion } from "framer-motion"
 import { useResponsiveDimensions } from "@/hooks/use-responsive-dimensions"
+import { useI18n } from "@/lib/i18n/context"
+import type { TarotCard } from "@/lib/tarot/cards"
+
+interface CardReading {
+  card: TarotCard
+  reversed: boolean
+  name: string
+  keywords: string[]
+  position: string
+  situation: string
+  future: string
+  advice: string
+  quote: string
+}
 
 interface ReadingPanelProps {
   onReset: () => void
+  reading: CardReading
 }
 
-export default function ReadingPanel({ onReset }: ReadingPanelProps) {
+export default function ReadingPanel({ onReset, reading }: ReadingPanelProps) {
   const dims = useResponsiveDimensions()
+  const { t } = useI18n()
 
   const panelVariants = dims.isMobile
     ? {
@@ -82,17 +98,18 @@ export default function ReadingPanel({ onReset }: ReadingPanelProps) {
             transition={{ delay: 0.5 }}
           >
             <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#FF4FD8] to-[#73F2FF]">
-              The Lovers
+              {reading.name}
             </h2>
-            <p className="text-[#73F2FF]/70 text-base sm:text-lg mt-1">恋人</p>
             <div
               className="mt-2 sm:mt-3 inline-flex items-center gap-2 px-3 sm:px-4 py-1 rounded-full"
               style={{
-                background: "rgba(115,242,255,0.1)",
-                border: "1px solid rgba(115,242,255,0.3)",
+                background: reading.reversed ? "rgba(255,79,216,0.1)" : "rgba(115,242,255,0.1)",
+                border: `1px solid ${reading.reversed ? "rgba(255,79,216,0.3)" : "rgba(115,242,255,0.3)"}`,
               }}
             >
-              <span className="text-[#73F2FF] text-xs sm:text-sm">正位 · Upright</span>
+              <span className={reading.reversed ? "text-[#FF4FD8]" : "text-[#73F2FF]"} style={{ fontSize: "0.875rem" }}>
+                {reading.position}
+              </span>
             </div>
           </motion.div>
 
@@ -115,9 +132,11 @@ export default function ReadingPanel({ onReset }: ReadingPanelProps) {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.7 }}
           >
-            <h3 className="text-[#FF4FD8] text-xs sm:text-sm tracking-wider uppercase mb-2 sm:mb-3">Love Keywords</h3>
+            <h3 className="text-[#FF4FD8] text-xs sm:text-sm tracking-wider uppercase mb-2 sm:mb-3">
+              {t.tarot.loveKeywords}
+            </h3>
             <div className="flex flex-wrap gap-1.5 sm:gap-2">
-              {["Soul Connection", "Harmony", "Choice", "Deep Bond", "Union"].map((keyword, i) => (
+              {reading.keywords.map((keyword) => (
                 <span
                   key={keyword}
                   className="px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm text-[#73F2FF]"
@@ -140,13 +159,9 @@ export default function ReadingPanel({ onReset }: ReadingPanelProps) {
             transition={{ delay: 0.8 }}
           >
             <h3 className="text-[#FF4FD8] text-xs sm:text-sm tracking-wider uppercase mb-2 sm:mb-3">
-              ♡ Current Love Situation
+              {t.tarot.currentSituation}
             </h3>
-            <p className="text-foreground/80 leading-relaxed text-xs sm:text-sm md:text-base">
-              The Lovers card reveals a profound moment in your romantic journey. You stand at a crossroads where your
-              heart and mind seek alignment. A deep, meaningful connection is either present or approaching—one that
-              transcends the superficial and touches your soul.
-            </p>
+            <p className="text-foreground/80 leading-relaxed text-xs sm:text-sm md:text-base">{reading.situation}</p>
           </motion.div>
 
           {/* Divider */}
@@ -168,12 +183,10 @@ export default function ReadingPanel({ onReset }: ReadingPanelProps) {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 1 }}
           >
-            <h3 className="text-[#FF4FD8] text-xs sm:text-sm tracking-wider uppercase mb-2 sm:mb-3">✧ Future Trend</h3>
-            <p className="text-foreground/80 leading-relaxed text-xs sm:text-sm md:text-base">
-              The cosmic energies align to bring harmonious love into your path. Whether strengthening an existing bond
-              or welcoming new love, the universe supports your heart&apos;s desires. Trust in the natural flow of
-              attraction.
-            </p>
+            <h3 className="text-[#FF4FD8] text-xs sm:text-sm tracking-wider uppercase mb-2 sm:mb-3">
+              {t.tarot.futureTrend}
+            </h3>
+            <p className="text-foreground/80 leading-relaxed text-xs sm:text-sm md:text-base">{reading.future}</p>
           </motion.div>
 
           {/* Advice */}
@@ -183,14 +196,13 @@ export default function ReadingPanel({ onReset }: ReadingPanelProps) {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 1.1 }}
           >
-            <h3 className="text-[#FF4FD8] text-xs sm:text-sm tracking-wider uppercase mb-2 sm:mb-3">⟡ Guidance</h3>
-            <p className="text-foreground/80 leading-relaxed text-xs sm:text-sm md:text-base">
-              Honor both your heart and your values in matters of love. True partnership requires authentic
-              self-expression and mutual respect. Take time to reflect on what you truly seek in a relationship.
-            </p>
+            <h3 className="text-[#FF4FD8] text-xs sm:text-sm tracking-wider uppercase mb-2 sm:mb-3">
+              {t.tarot.guidance}
+            </h3>
+            <p className="text-foreground/80 leading-relaxed text-xs sm:text-sm md:text-base">{reading.advice}</p>
           </motion.div>
 
-          {/* Emotional Insight */}
+          {/* Quote */}
           <motion.div
             className="mb-6 sm:mb-8 p-3 sm:p-4 rounded-xl"
             initial={{ y: 20, opacity: 0 }}
@@ -201,9 +213,7 @@ export default function ReadingPanel({ onReset }: ReadingPanelProps) {
               border: "1px solid rgba(255,79,216,0.2)",
             }}
           >
-            <p className="text-center text-[#73F2FF] text-xs sm:text-sm italic">
-              &quot;Love is the bridge between two souls seeking to become one light.&quot;
-            </p>
+            <p className="text-center text-[#73F2FF] text-xs sm:text-sm italic">&quot;{reading.quote}&quot;</p>
           </motion.div>
 
           {/* Reset Button */}
@@ -224,7 +234,7 @@ export default function ReadingPanel({ onReset }: ReadingPanelProps) {
                 color: "#FF4FD8",
               }}
             >
-              ✧ New Reading ✧
+              {t.tarot.newReading}
             </motion.button>
           </motion.div>
         </div>

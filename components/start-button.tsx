@@ -1,12 +1,15 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { useI18n } from "@/lib/i18n/context"
 
 interface StartButtonProps {
   onStart: () => void
 }
 
 export default function StartButton({ onStart }: StartButtonProps) {
+  const { t } = useI18n()
+
   return (
     <motion.div
       className="absolute bottom-20 left-1/2 -translate-x-1/2 z-30"
@@ -55,9 +58,8 @@ export default function StartButton({ onStart }: StartButtonProps) {
           }}
         />
 
-        {/* Button text */}
         <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-[#FF4FD8] to-[#73F2FF]">
-          ✧ Start Shuffle ✧
+          ✧ {t("shuffle.startButton")} ✧
         </span>
       </motion.button>
     </motion.div>

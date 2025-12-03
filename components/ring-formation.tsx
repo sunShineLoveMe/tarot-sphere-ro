@@ -4,6 +4,7 @@ import type React from "react"
 import { motion } from "framer-motion"
 import { useState, useMemo, useRef } from "react"
 import { useResponsiveDimensions } from "@/hooks/use-responsive-dimensions"
+import { useI18n } from "@/lib/i18n/context"
 
 interface RingFormationProps {
   onCardSelect: (index: number) => void
@@ -17,6 +18,7 @@ export default function RingFormation({ onCardSelect }: RingFormationProps) {
   const lastTouchRef = useRef<number | null>(null)
 
   const dims = useResponsiveDimensions()
+  const { t } = useI18n()
 
   const cards = useMemo(() => {
     const numCards = 22
@@ -151,7 +153,6 @@ export default function RingFormation({ onCardSelect }: RingFormationProps) {
             </filter>
           </defs>
 
-          {/* Outer circle */}
           <circle
             cx="100"
             cy="100"
@@ -162,11 +163,9 @@ export default function RingFormation({ onCardSelect }: RingFormationProps) {
             filter="url(#glow)"
           />
 
-          {/* Inner circles */}
           <circle cx="100" cy="100" r="70" fill="none" stroke="#73F2FF" strokeWidth="0.3" opacity="0.5" />
           <circle cx="100" cy="100" r="45" fill="none" stroke="#FF4FD8" strokeWidth="0.3" opacity="0.4" />
 
-          {/* Hexagram */}
           <polygon
             points="100,20 130,60 170,60 140,90 150,140 100,110 50,140 60,90 30,60 70,60"
             fill="none"
@@ -176,7 +175,6 @@ export default function RingFormation({ onCardSelect }: RingFormationProps) {
             filter="url(#glow)"
           />
 
-          {/* Inner star */}
           <polygon
             points="100,40 112,75 150,75 120,95 130,130 100,110 70,130 80,95 50,75 88,75"
             fill="none"
@@ -203,9 +201,7 @@ export default function RingFormation({ onCardSelect }: RingFormationProps) {
         <svg viewBox="0 0 100 100" className="w-full h-full">
           <circle cx="50" cy="50" r="40" fill="none" stroke="#FF4FD8" strokeWidth="0.5" opacity="0.4" />
           <circle cx="50" cy="50" r="25" fill="none" stroke="#73F2FF" strokeWidth="0.5" opacity="0.5" />
-          {/* Triangle */}
           <polygon points="50,15 80,70 20,70" fill="none" stroke="#73F2FF" strokeWidth="0.5" opacity="0.5" />
-          {/* Inverted triangle */}
           <polygon points="50,85 80,30 20,30" fill="none" stroke="#FF4FD8" strokeWidth="0.5" opacity="0.4" />
         </svg>
       </motion.div>
@@ -217,7 +213,7 @@ export default function RingFormation({ onCardSelect }: RingFormationProps) {
           height: dims.ringRadius * 2.2,
         }}
         animate={{
-          scale: [1, 1.03, 1], // Breathing expansion
+          scale: [1, 1.03, 1],
         }}
         transition={{
           duration: 6,
@@ -234,7 +230,7 @@ export default function RingFormation({ onCardSelect }: RingFormationProps) {
             rotate: [dragRotation, dragRotation + 360],
           }}
           transition={{
-            duration: 180, // Very slow rotation - 3 minutes per revolution
+            duration: 180,
             repeat: Number.POSITIVE_INFINITY,
             ease: "linear",
           }}
@@ -291,7 +287,7 @@ export default function RingFormation({ onCardSelect }: RingFormationProps) {
                   z: { duration: 0.3 },
                 }}
                 whileHover={{
-                  y: pos.y - dims.cardHeight / 2 - 15, // Float up on hover
+                  y: pos.y - dims.cardHeight / 2 - 15,
                   transition: { duration: 0.2 },
                 }}
                 onHoverStart={() => setHoveredCard(i)}
@@ -329,7 +325,6 @@ export default function RingFormation({ onCardSelect }: RingFormationProps) {
                   }}
                   transition={{ duration: 0.3 }}
                 >
-                  {/* Card inner design */}
                   <div className="w-full h-full flex items-center justify-center p-2">
                     <div
                       className="w-full h-full rounded border flex items-center justify-center"
@@ -338,7 +333,6 @@ export default function RingFormation({ onCardSelect }: RingFormationProps) {
                         background: "radial-gradient(ellipse at center, rgba(115,242,255,0.08) 0%, transparent 60%)",
                       }}
                     >
-                      {/* Sacred symbol */}
                       <motion.div
                         className="flex flex-col items-center gap-1"
                         animate={{
@@ -354,7 +348,14 @@ export default function RingFormation({ onCardSelect }: RingFormationProps) {
                               <stop offset="100%" stopColor="#73F2FF" />
                             </linearGradient>
                           </defs>
-                          <circle cx="50" cy="50" r="45" fill="none" stroke={`url(#ringCardBackGradient-${i})`} strokeWidth="1" />
+                          <circle
+                            cx="50"
+                            cy="50"
+                            r="45"
+                            fill="none"
+                            stroke={`url(#ringCardBackGradient-${i})`}
+                            strokeWidth="1"
+                          />
                           <circle cx="50" cy="50" r="35" fill="none" stroke="#FF4FD8" strokeWidth="0.5" />
                           <polygon
                             points="50,10 61,40 95,40 68,58 79,90 50,70 21,90 32,58 5,40 39,40"
@@ -441,10 +442,10 @@ export default function RingFormation({ onCardSelect }: RingFormationProps) {
             ease: "easeInOut",
           }}
         >
-          {dims.isMobile ? "Touch your destined card" : "Choose the card that calls to your soul"}
+          {dims.isMobile ? t("formation.touchHint") : t("formation.hoverHint")}
         </motion.p>
         <motion.p className="text-[10px] sm:text-xs mt-2 tracking-widest" style={{ color: "rgba(255,79,216,0.6)" }}>
-          ✧ The Wheel of Fate awaits ✧
+          ✧ {t("formation.wheelOfFate")} ✧
         </motion.p>
       </motion.div>
     </motion.div>

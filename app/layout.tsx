@@ -1,5 +1,5 @@
 import type React from "react"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Cinzel, Geist } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
@@ -8,8 +8,28 @@ const _geist = Geist({ subsets: ["latin"] })
 const _cinzel = Cinzel({ subsets: ["latin"], weight: ["400", "600", "700"] })
 
 export const metadata: Metadata = {
-  title: "AI Tarot Sphere - Love Reading",
-  description: "An immersive AI-powered love tarot reading experience with mystical 3D animations",
+  title: "AI Love Tarot – Honest Guidance for Your Heart",
+  description:
+    "A modern, AI-powered tarot reading experience for love and relationships. Reflective, empowering, and designed with psychological insight.",
+  keywords: ["tarot", "love tarot", "AI tarot", "relationship guidance", "self-reflection", "塔罗牌", "爱情塔罗"],
+  authors: [{ name: "AI Love Tarot" }],
+  creator: "AI Love Tarot",
+  openGraph: {
+    title: "AI Love Tarot – Honest Guidance for Your Heart",
+    description: "Discover honest guidance for your heart with our AI-powered love tarot reading experience.",
+    type: "website",
+    locale: "en_US",
+    alternateLocale: "zh_CN",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AI Love Tarot",
+    description: "Modern, AI-powered love tarot for self-reflection and relationship insights.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
   generator: "v0.app",
   icons: {
     icon: [
@@ -30,6 +50,14 @@ export const metadata: Metadata = {
   },
 }
 
+export const viewport: Viewport = {
+  themeColor: "#0a0a1a",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -37,7 +65,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`font-sans antialiased`}>
+      <head>
+        <link rel="alternate" hrefLang="en" href="https://ailovetatot.com/en" />
+        <link rel="alternate" hrefLang="zh" href="https://ailovetatot.com/zh" />
+        <link rel="alternate" hrefLang="x-default" href="https://ailovetatot.com" />
+      </head>
+      <body className="font-sans antialiased">
         {children}
         <Analytics />
       </body>
