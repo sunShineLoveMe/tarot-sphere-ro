@@ -1,20 +1,40 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { useMemo } from "react"
+import { useResponsiveDimensions } from "@/hooks/use-responsive-dimensions"
 
 export default function MagicBackground() {
+  const dims = useResponsiveDimensions()
+
+  const starCount = dims.isMobile ? 60 : 100
+
+  const stars = useMemo(
+    () =>
+      Array.from({ length: starCount }).map((_, i) => ({
+        id: i,
+        width: Math.random() * 3 + 1,
+        height: Math.random() * 3 + 1,
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 100}%`,
+        duration: 2 + Math.random() * 3,
+        delay: Math.random() * 2,
+      })),
+    [starCount],
+  )
+
   return (
-    <div className="absolute inset-0 z-0">
+    <div className="absolute inset-0 z-0 overflow-hidden">
       {/* Base gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a1a] via-[#0f0a20] to-[#0a0a1a]" />
 
-      {/* Sacred geometry pattern overlay */}
       <div
         className="absolute inset-0 opacity-30"
         style={{
           backgroundImage: `url('/sacred-geometry-pattern-with-stars-and-cosmic-ener.jpg')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
         }}
       />
 
@@ -36,26 +56,26 @@ export default function MagicBackground() {
         }}
       />
 
-      {/* Stars */}
+      {/* Stars - responsive count */}
       <div className="absolute inset-0">
-        {Array.from({ length: 100 }).map((_, i) => (
+        {stars.map((star) => (
           <motion.div
-            key={i}
+            key={star.id}
             className="absolute rounded-full bg-white"
             style={{
-              width: Math.random() * 3 + 1,
-              height: Math.random() * 3 + 1,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              width: star.width,
+              height: star.height,
+              left: star.left,
+              top: star.top,
             }}
             animate={{
               opacity: [0.3, 1, 0.3],
               scale: [1, 1.5, 1],
             }}
             transition={{
-              duration: 2 + Math.random() * 3,
+              duration: star.duration,
               repeat: Number.POSITIVE_INFINITY,
-              delay: Math.random() * 2,
+              delay: star.delay,
             }}
           />
         ))}
@@ -73,7 +93,7 @@ export default function MagicBackground() {
 
       {/* Vignette effect */}
       <div
-        className="absolute inset-0 bg-radial-gradient pointer-events-none"
+        className="absolute inset-0 pointer-events-none"
         style={{
           background: "radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.6) 100%)",
         }}

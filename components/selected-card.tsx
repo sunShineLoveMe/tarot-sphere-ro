@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { useResponsiveDimensions } from "@/hooks/use-responsive-dimensions"
 
 interface SelectedCardProps {
   cardIndex: number
@@ -34,24 +35,34 @@ const tarotCards = [
 
 export default function SelectedCard({ cardIndex, isFlipped }: SelectedCardProps) {
   const card = tarotCards[cardIndex % tarotCards.length]
+  const dims = useResponsiveDimensions()
+
+  const selectedCardWidth = dims.cardWidth * 1.8
+  const selectedCardHeight = dims.cardHeight * 1.8
+
+  const offsetX = dims.isMobile ? 0 : isFlipped ? -dims.width * 0.15 : 0
 
   return (
     <motion.div
       className="absolute inset-0 flex items-center justify-center z-30 pointer-events-none"
-      style={{ perspective: "1500px" }}
+      style={{ perspective: dims.isMobile ? "1000px" : "1500px" }}
     >
       <motion.div
-        className="relative w-[180px] h-[300px] md:w-[220px] md:h-[367px]"
+        className="relative"
+        style={{
+          width: selectedCardWidth,
+          height: selectedCardHeight,
+        }}
         initial={{
           scale: 0.5,
-          x: (Math.random() - 0.5) * 400,
-          y: (Math.random() - 0.5) * 300,
+          x: (Math.random() - 0.5) * dims.width * 0.4,
+          y: (Math.random() - 0.5) * dims.height * 0.3,
           opacity: 0,
         }}
         animate={{
           scale: 1,
-          x: 0,
-          y: 0,
+          x: offsetX,
+          y: dims.isMobile && isFlipped ? -dims.height * 0.15 : 0,
           opacity: 1,
           rotateY: isFlipped ? 180 : 0,
         }}
@@ -61,7 +72,11 @@ export default function SelectedCard({ cardIndex, isFlipped }: SelectedCardProps
           damping: 15,
           rotateY: { duration: 0.8, ease: "easeInOut" },
         }}
-        style={{ transformStyle: "preserve-3d" }}
+        style={{
+          width: selectedCardWidth,
+          height: selectedCardHeight,
+          transformStyle: "preserve-3d",
+        }}
       >
         {/* Card Back */}
         <motion.div
@@ -89,14 +104,14 @@ export default function SelectedCard({ cardIndex, isFlipped }: SelectedCardProps
               `,
             }}
           >
-            <div className="w-full h-full flex items-center justify-center p-4">
+            <div className="w-full h-full flex items-center justify-center p-3 sm:p-4">
               <div
                 className="w-full h-full rounded-lg border border-[#73F2FF]/30 flex items-center justify-center"
                 style={{
                   background: "radial-gradient(circle, rgba(115,242,255,0.1) 0%, transparent 70%)",
                 }}
               >
-                <svg viewBox="0 0 100 100" className="w-24 h-24 opacity-70">
+                <svg viewBox="0 0 100 100" className="w-16 h-16 sm:w-24 sm:h-24 opacity-70">
                   <defs>
                     <linearGradient id="selectedCardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                       <stop offset="0%" stopColor="#FF4FD8" />
@@ -145,11 +160,11 @@ export default function SelectedCard({ cardIndex, isFlipped }: SelectedCardProps
             }}
           >
             {/* Card illustration placeholder */}
-            <div className="w-full h-full flex flex-col items-center justify-center p-4">
+            <div className="w-full h-full flex flex-col items-center justify-center p-3 sm:p-4">
               <div
-                className="w-full flex-1 rounded-lg mb-3 flex items-center justify-center"
+                className="w-full flex-1 rounded-lg mb-2 sm:mb-3 flex items-center justify-center"
                 style={{
-                  background: `url('/--card-name--tarot-card-mystical-illustration.jpg') center/cover`,
+                  background: `url('/--card-name--tarot-card-mystical.jpg') center/cover`,
                   boxShadow: "inset 0 0 20px rgba(115,242,255,0.2)",
                 }}
               >
@@ -159,12 +174,12 @@ export default function SelectedCard({ cardIndex, isFlipped }: SelectedCardProps
                     background: "radial-gradient(circle, transparent 30%, rgba(15,10,32,0.3) 100%)",
                   }}
                 >
-                  <span className="text-6xl opacity-80">♡</span>
+                  <span className="text-4xl sm:text-6xl opacity-80">♡</span>
                 </div>
               </div>
               <div className="text-center">
-                <p className="text-[#73F2FF] text-lg font-semibold tracking-wider">{card.name}</p>
-                <p className="text-[#FF4FD8] text-sm mt-1">{card.nameZh}</p>
+                <p className="text-[#73F2FF] text-sm sm:text-lg font-semibold tracking-wider">{card.name}</p>
+                <p className="text-[#FF4FD8] text-xs sm:text-sm mt-0.5 sm:mt-1">{card.nameZh}</p>
               </div>
             </div>
           </div>
@@ -188,20 +203,21 @@ export default function SelectedCard({ cardIndex, isFlipped }: SelectedCardProps
         />
       </motion.div>
 
-      {/* Energy trail particles */}
-      {[...Array(8)].map((_, i) => (
+      {/* Energy trail particles - responsive count and size */}
+      {[...Array(dims.isMobile ? 5 : 8)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute w-2 h-2 rounded-full"
+          className="absolute rounded-full"
+          style={{ width: dims.isMobile ? 6 : 8, height: dims.isMobile ? 6 : 8 }}
           initial={{
-            x: (Math.random() - 0.5) * 300,
-            y: (Math.random() - 0.5) * 200,
+            x: (Math.random() - 0.5) * dims.width * 0.3,
+            y: (Math.random() - 0.5) * dims.height * 0.2,
             opacity: 0,
             scale: 0,
           }}
           animate={{
-            x: 0,
-            y: 0,
+            x: offsetX,
+            y: dims.isMobile && isFlipped ? -dims.height * 0.15 : 0,
             opacity: [0, 1, 0],
             scale: [0, 1.5, 0],
           }}
@@ -211,6 +227,8 @@ export default function SelectedCard({ cardIndex, isFlipped }: SelectedCardProps
             ease: "easeOut",
           }}
           style={{
+            width: dims.isMobile ? 6 : 8,
+            height: dims.isMobile ? 6 : 8,
             background: i % 2 === 0 ? "#FF4FD8" : "#73F2FF",
             boxShadow: i % 2 === 0 ? "0 0 20px #FF4FD8" : "0 0 20px #73F2FF",
           }}

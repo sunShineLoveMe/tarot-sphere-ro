@@ -2,8 +2,11 @@
 
 import { motion } from "framer-motion"
 import { useMemo } from "react"
+import { useResponsiveDimensions } from "@/hooks/use-responsive-dimensions"
 
 export default function ShufflePhase() {
+  const dims = useResponsiveDimensions()
+
   const cards = useMemo(
     () =>
       Array.from({ length: 22 }).map((_, i) => ({
@@ -15,6 +18,8 @@ export default function ShufflePhase() {
     [],
   )
 
+  const energyBurstSize = dims.minDimension * 0.5
+
   return (
     <motion.div
       className="absolute inset-0 flex items-center justify-center z-20"
@@ -24,12 +29,13 @@ export default function ShufflePhase() {
       transition={{ duration: 0.5 }}
     >
       {cards.map((card) => (
-        <ShuffleCard key={card.id} {...card} />
+        <ShuffleCard key={card.id} {...card} dims={dims} />
       ))}
 
-      {/* Energy burst effect */}
+      {/* Energy burst effect - responsive size */}
       <motion.div
-        className="absolute w-[500px] h-[500px] rounded-full pointer-events-none"
+        className="absolute rounded-full pointer-events-none"
+        style={{ width: energyBurstSize, height: energyBurstSize }}
         initial={{ scale: 0, opacity: 0.8 }}
         animate={{
           scale: [0, 2, 0],
@@ -41,6 +47,8 @@ export default function ShufflePhase() {
           ease: "easeOut",
         }}
         style={{
+          width: energyBurstSize,
+          height: energyBurstSize,
           background: "radial-gradient(circle, rgba(255,79,216,0.4) 0%, rgba(115,242,255,0.2) 50%, transparent 70%)",
         }}
       />
@@ -53,17 +61,20 @@ interface ShuffleCardProps {
   initialAngle: number
   delay: number
   duration: number
+  dims: ReturnType<typeof useResponsiveDimensions>
 }
 
-function ShuffleCard({ id, initialAngle, delay, duration }: ShuffleCardProps) {
-  const randomX = (Math.random() - 0.5) * 600
-  const randomY = (Math.random() - 0.5) * 400
+function ShuffleCard({ id, initialAngle, delay, duration, dims }: ShuffleCardProps) {
+  const randomX = (Math.random() - 0.5) * dims.width * 0.6
+  const randomY = (Math.random() - 0.5) * dims.height * 0.5
   const randomRotate = (Math.random() - 0.5) * 720
 
   return (
     <motion.div
-      className="absolute w-[100px] h-[167px] md:w-[120px] md:h-[200px] rounded-lg overflow-hidden"
+      className="absolute rounded-lg overflow-hidden"
       style={{
+        width: dims.cardWidth,
+        height: dims.cardHeight,
         transformStyle: "preserve-3d",
         transformOrigin: "center center",
       }}
@@ -101,14 +112,14 @@ function ShuffleCard({ id, initialAngle, delay, duration }: ShuffleCardProps) {
           `,
         }}
       >
-        <div className="w-full h-full flex items-center justify-center p-2">
+        <div className="w-full h-full flex items-center justify-center p-1 sm:p-2">
           <div
             className="w-full h-full rounded border border-[#73F2FF]/20 flex items-center justify-center"
             style={{
               background: "radial-gradient(circle, rgba(115,242,255,0.05) 0%, transparent 70%)",
             }}
           >
-            <span className="text-[#FF4FD8] text-xl opacity-50">✧</span>
+            <span className="text-[#FF4FD8] text-lg sm:text-xl opacity-50">✧</span>
           </div>
         </div>
       </div>

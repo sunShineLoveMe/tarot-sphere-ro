@@ -1,9 +1,14 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { useResponsiveDimensions } from "@/hooks/use-responsive-dimensions"
 
 export default function CardStack() {
   const cards = Array.from({ length: 5 })
+  const dims = useResponsiveDimensions()
+
+  const stackWidth = dims.cardWidth * 1.5
+  const stackHeight = dims.cardHeight * 1.5
 
   return (
     <motion.div
@@ -13,7 +18,7 @@ export default function CardStack() {
       exit={{ opacity: 0, scale: 0.8 }}
       transition={{ duration: 0.8 }}
     >
-      <div className="relative w-[150px] h-[250px] md:w-[180px] md:h-[300px]">
+      <div className="relative" style={{ width: stackWidth, height: stackHeight }}>
         {cards.map((_, i) => (
           <motion.div
             key={i}
@@ -51,14 +56,14 @@ export default function CardStack() {
               }}
             >
               {/* Card back pattern */}
-              <div className="w-full h-full flex items-center justify-center p-4">
+              <div className="w-full h-full flex items-center justify-center p-3 sm:p-4">
                 <div
                   className="w-full h-full rounded-lg border border-[#73F2FF]/30 flex items-center justify-center"
                   style={{
                     background: "radial-gradient(circle, rgba(115,242,255,0.1) 0%, transparent 70%)",
                   }}
                 >
-                  <svg viewBox="0 0 100 100" className="w-20 h-20 opacity-60">
+                  <svg viewBox="0 0 100 100" className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 opacity-60">
                     <defs>
                       <linearGradient id="cardBackGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                         <stop offset="0%" stopColor="#FF4FD8" />

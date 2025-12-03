@@ -1,7 +1,10 @@
 "use client"
 
+import type React from "react"
+
 import { motion } from "framer-motion"
-import { useState, useMemo } from "react"
+import { useState, useMemo, useRef } from "react"
+import { useResponsiveDimensions } from "@/hooks/use-responsive-dimensions"
 
 interface SphereFormationProps {
   onCardSelect: (index: number) => void
@@ -10,12 +13,15 @@ interface SphereFormationProps {
 export default function SphereFormation({ onCardSelect }: SphereFormationProps) {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null)
   const [rotation, setRotation] = useState({ x: 0, y: 0 })
+  const [isDragging, setIsDragging] = useState(false)
+  const [dragRotation, setDragRotation] = useState({ x: 0, y: 0 })
+  const lastTouchRef = useRef<{ x: number; y: number } | null>(null)
+
+  const dims = useResponsiveDimensions()
 
   const cards = useMemo(() => {
     const numCards = 22
     const positions: { x: number; y: number; z: number; rotateX: number; rotateY: number }[] = []
-
-    // Fibonacci sphere distribution
     const phi = Math.PI * (3 - Math.sqrt(5))
 
     for (let i = 0; i < numCards; i++) {
@@ -27,16 +33,48 @@ export default function SphereFormation({ onCardSelect }: SphereFormationProps) 
       const z = Math.sin(theta) * radius
 
       positions.push({
-        x: x * 250,
-        y: y * 250,
-        z: z * 250,
+        x: x * dims.sphereRadius,
+        y: y * dims.sphereRadius,
+        z: z * dims.sphereRadius,
         rotateX: -Math.asin(y) * (180 / Math.PI),
         rotateY: Math.atan2(x, z) * (180 / Math.PI),
       })
     }
 
     return positions
-  }, [])
+  }, [dims.sphereRadius])
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (e.touches.length === 1) {
+      setIsDragging(true)
+      lastTouchRef.current = {
+        x: e.touches[0].clientX,
+        y: e.touches[0].clientY,
+      }
+    }
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (isDragging && lastTouchRef.current && e.touches.length === 1) {
+      const deltaX = e.touches[0].clientX - lastTouchRef.current.x
+      const deltaY = e.touches[0].clientY - lastTouchRef.current.y
+
+      setDragRotation((prev) => ({
+        x: prev.x + deltaY * 0.3,
+        y: prev.y + deltaX * 0.3,
+      }))
+
+      lastTouchRef.current = {
+        x: e.touches[0].clientX,
+        y: e.touches[0].clientY,
+      }
+    }
+  }
+
+  const handleTouchEnd = () => {
+    setIsDragging(false)
+    lastTouchRef.current = null
+  }
 
   return (
     <motion.div
@@ -44,16 +82,18 @@ export default function SphereFormation({ onCardSelect }: SphereFormationProps) 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      style={{ perspective: "1500px" }}
+      style={{ perspective: dims.isMobile ? "1000px" : "1500px" }}
     >
       <motion.div
-        className="relative w-[600px] h-[600px]"
+        className="relative"
         style={{
+          width: dims.formationSize,
+          height: dims.formationSize,
           transformStyle: "preserve-3d",
-          transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
+          transform: `rotateX(${rotation.x + dragRotation.x}deg) rotateY(${rotation.y + dragRotation.y}deg)`,
         }}
         animate={{
-          rotateY: [0, 360],
+          rotateY: [dragRotation.y, dragRotation.y + 360],
         }}
         transition={{
           duration: 60,
@@ -61,18 +101,24 @@ export default function SphereFormation({ onCardSelect }: SphereFormationProps) 
           ease: "linear",
         }}
         onMouseMove={(e) => {
+          if (dims.isMobile) return
           const rect = e.currentTarget.getBoundingClientRect()
           const x = ((e.clientY - rect.top) / rect.height - 0.5) * 20
           const y = ((e.clientX - rect.left) / rect.width - 0.5) * 20
           setRotation({ x, y })
         }}
         onMouseLeave={() => setRotation({ x: 0, y: 0 })}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
         {cards.map((pos, i) => (
           <motion.div
             key={i}
-            className="absolute left-1/2 top-1/2 w-[80px] h-[133px] md:w-[100px] md:h-[167px] cursor-pointer"
+            className="absolute left-1/2 top-1/2 cursor-pointer"
             style={{
+              width: dims.cardWidth,
+              height: dims.cardHeight,
               transformStyle: "preserve-3d",
               transform: `translate(-50%, -50%) translate3d(${pos.x}px, ${pos.y}px, ${pos.z}px) rotateY(${pos.rotateY}deg) rotateX(${pos.rotateX}deg)`,
             }}
@@ -88,6 +134,7 @@ export default function SphereFormation({ onCardSelect }: SphereFormationProps) 
             }}
             onHoverStart={() => setHoveredCard(i)}
             onHoverEnd={() => setHoveredCard(null)}
+            onTouchStart={() => setHoveredCard(i)}
             onClick={() => onCardSelect(i)}
           >
             <div
@@ -130,12 +177,15 @@ export default function SphereFormation({ onCardSelect }: SphereFormationProps) 
 
       {/* Floating instruction */}
       <motion.div
-        className="absolute bottom-24 left-1/2 -translate-x-1/2 text-center"
+        className="absolute left-1/2 -translate-x-1/2 text-center px-4"
+        style={{ bottom: dims.isMobile ? dims.spacing.lg : dims.spacing.lg * 2 }}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1 }}
       >
-        <p className="text-[#73F2FF]/70 text-sm tracking-wider">✧ Choose a card that calls to your heart ✧</p>
+        <p className="text-[#73F2FF]/70 text-xs sm:text-sm tracking-wider">
+          {dims.isMobile ? "✧ Tap a card ✧" : "✧ Choose a card that calls to your heart ✧"}
+        </p>
       </motion.div>
     </motion.div>
   )
