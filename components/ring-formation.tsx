@@ -347,24 +347,22 @@ export default function RingFormation({ onCardSelect }: RingFormationProps) {
                         }}
                         transition={{ duration: 0.3 }}
                       >
-                        <span
-                          className="text-lg"
-                          style={{
-                            color: isHovered ? "#73F2FF" : "#FF4FD8",
-                            textShadow: isHovered ? "0 0 15px #73F2FF, 0 0 30px #73F2FF" : "0 0 8px #FF4FD8",
-                            filter: isHovered ? "brightness(1.3)" : "none",
-                          }}
-                        >
-                          ✦
-                        </span>
-                        <span
-                          className="text-[10px] tracking-widest"
-                          style={{
-                            color: isHovered ? "#73F2FF" : "rgba(255,79,216,0.7)",
-                          }}
-                        >
-                          {String(i + 1).padStart(2, "0")}
-                        </span>
+                        <svg viewBox="0 0 100 100" className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 opacity-60">
+                          <defs>
+                            <linearGradient id={`ringCardBackGradient-${i}`} x1="0%" y1="0%" x2="100%" y2="100%">
+                              <stop offset="0%" stopColor="#FF4FD8" />
+                              <stop offset="100%" stopColor="#73F2FF" />
+                            </linearGradient>
+                          </defs>
+                          <circle cx="50" cy="50" r="45" fill="none" stroke={`url(#ringCardBackGradient-${i})`} strokeWidth="1" />
+                          <circle cx="50" cy="50" r="35" fill="none" stroke="#FF4FD8" strokeWidth="0.5" />
+                          <polygon
+                            points="50,10 61,40 95,40 68,58 79,90 50,70 21,90 32,58 5,40 39,40"
+                            fill="none"
+                            stroke={`url(#ringCardBackGradient-${i})`}
+                            strokeWidth="0.5"
+                          />
+                        </svg>
                       </motion.div>
                     </div>
                   </div>

@@ -35,17 +35,6 @@ export default function ShufflePhase() {
       {/* Energy burst effect - responsive size */}
       <motion.div
         className="absolute rounded-full pointer-events-none"
-        style={{ width: energyBurstSize, height: energyBurstSize }}
-        initial={{ scale: 0, opacity: 0.8 }}
-        animate={{
-          scale: [0, 2, 0],
-          opacity: [0.6, 0, 0],
-        }}
-        transition={{
-          duration: 2,
-          repeat: 2,
-          ease: "easeOut",
-        }}
         style={{
           width: energyBurstSize,
           height: energyBurstSize,
@@ -119,7 +108,22 @@ function ShuffleCard({ id, initialAngle, delay, duration, dims }: ShuffleCardPro
               background: "radial-gradient(circle, rgba(115,242,255,0.05) 0%, transparent 70%)",
             }}
           >
-            <span className="text-[#FF4FD8] text-lg sm:text-xl opacity-50">✧</span>
+            <svg viewBox="0 0 100 100" className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 opacity-60">
+              <defs>
+                <linearGradient id="shuffleCardBackGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#FF4FD8" />
+                  <stop offset="100%" stopColor="#73F2FF" />
+                </linearGradient>
+              </defs>
+              <circle cx="50" cy="50" r="45" fill="none" stroke="url(#shuffleCardBackGradient)" strokeWidth="1" />
+              <circle cx="50" cy="50" r="35" fill="none" stroke="#FF4FD8" strokeWidth="0.5" />
+              <polygon
+                points="50,10 61,40 95,40 68,58 79,90 50,70 21,90 32,58 5,40 39,40"
+                fill="none"
+                stroke="url(#shuffleCardBackGradient)"
+                strokeWidth="0.5"
+              />
+            </svg>
           </div>
         </div>
       </div>

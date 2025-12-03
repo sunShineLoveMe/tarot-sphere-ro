@@ -52,29 +52,6 @@ export default function SelectedCard({ cardIndex, isFlipped }: SelectedCardProps
         style={{
           width: selectedCardWidth,
           height: selectedCardHeight,
-        }}
-        initial={{
-          scale: 0.5,
-          x: (Math.random() - 0.5) * dims.width * 0.4,
-          y: (Math.random() - 0.5) * dims.height * 0.3,
-          opacity: 0,
-        }}
-        animate={{
-          scale: 1,
-          x: offsetX,
-          y: dims.isMobile && isFlipped ? -dims.height * 0.15 : 0,
-          opacity: 1,
-          rotateY: isFlipped ? 180 : 0,
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 100,
-          damping: 15,
-          rotateY: { duration: 0.8, ease: "easeInOut" },
-        }}
-        style={{
-          width: selectedCardWidth,
-          height: selectedCardHeight,
           transformStyle: "preserve-3d",
         }}
       >
@@ -208,24 +185,6 @@ export default function SelectedCard({ cardIndex, isFlipped }: SelectedCardProps
         <motion.div
           key={i}
           className="absolute rounded-full"
-          style={{ width: dims.isMobile ? 6 : 8, height: dims.isMobile ? 6 : 8 }}
-          initial={{
-            x: (Math.random() - 0.5) * dims.width * 0.3,
-            y: (Math.random() - 0.5) * dims.height * 0.2,
-            opacity: 0,
-            scale: 0,
-          }}
-          animate={{
-            x: offsetX,
-            y: dims.isMobile && isFlipped ? -dims.height * 0.15 : 0,
-            opacity: [0, 1, 0],
-            scale: [0, 1.5, 0],
-          }}
-          transition={{
-            duration: 1,
-            delay: i * 0.1,
-            ease: "easeOut",
-          }}
           style={{
             width: dims.isMobile ? 6 : 8,
             height: dims.isMobile ? 6 : 8,

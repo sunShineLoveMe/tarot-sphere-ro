@@ -6,6 +6,20 @@ An immersive, ritual-style AI Love Tarot divination web application that combine
 
 ---
 
+## 版本更新记录 | Version History
+
+### v1.2.0 - 2025-12-03
+- **开始按钮自适应**: 再次优化了 "Start Shuffle" 按钮，强制不换行 (`whitespace-nowrap`)，并调整了移动端的内边距和字体大小，确保在所有设备上单行显示。
+- **卡牌堆尺寸调整**: 将待机状态下的卡牌堆尺寸缩放系数再次从 1.5 调整为 1.2，以符合 UI 设计审美。
+- **统一卡背图案**: 再次修复了洗牌和 Ring Aura Deck 阵列阶段卡背图案不一致的问题，确保全程统一使用带有五角星的魔法阵图案。
+- **悬浮星盘环阵**: 更新了阵列展示为 "Ring Aura Deck"，包含呼吸流动、极慢旋转和多层光晕效果。
+- **魔法阵响应式优化**: 再次重构了 `MagicCircle` 组件，使用 `vw` 单位和 `max-w` 约束，确保在不同尺寸屏幕上都能完整显示且比例协调。
+
+### v1.1.0 - 2025-12-03
+- **修复 Hydration Error**: 重构了 `MagicBackground`, `ParticleField`, `ShufflePhase`, `SelectedCard` 等组件，将随机数生成移至 `useEffect`，解决了服务端与客户端渲染不一致的问题。
+- **魔法阵响应式优化**: 重构了 `MagicCircle` 组件，使用 `vw` 单位和 `max-w` 约束，确保在不同尺寸屏幕上都能完整显示且比例协调。
+- **卡牌堆尺寸调整**: 将待机状态下的卡牌堆尺寸缩放系数从 1.5 调整为 1.2，使其视觉比例更加协调。
+
 ## 核心特性 | Core Features
 
 ### 1. 视觉设计系统 | Visual Design System
