@@ -24,7 +24,7 @@ export default function MagicCircle({ isActive, intensity }: MagicCircleProps) {
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
       {/* Outer ring */}
       <motion.div
-        className="absolute w-[600px] h-[600px] md:w-[800px] md:h-[800px]"
+        className="absolute w-[90vw] h-[90vw] max-w-[800px] max-h-[800px]"
         animate={{
           rotate: 360,
           opacity: isActive ? glowIntensity[intensity] : 0.1,
@@ -110,7 +110,7 @@ export default function MagicCircle({ isActive, intensity }: MagicCircleProps) {
 
       {/* Middle ring - counter rotation */}
       <motion.div
-        className="absolute w-[400px] h-[400px] md:w-[550px] md:h-[550px]"
+        className="absolute w-[60vw] h-[60vw] max-w-[550px] max-h-[550px]"
         animate={{
           rotate: -360,
           opacity: isActive ? glowIntensity[intensity] * 0.8 : 0.05,
@@ -149,7 +149,7 @@ export default function MagicCircle({ isActive, intensity }: MagicCircleProps) {
 
       {/* Breathing pulse effect */}
       <motion.div
-        className="absolute w-[300px] h-[300px] md:w-[400px] md:h-[400px] rounded-full"
+        className="absolute w-[45vw] h-[45vw] max-w-[400px] max-h-[400px] rounded-full"
         animate={{
           scale: [1, 1.05, 1],
           opacity: isActive ? [0.1, 0.2, 0.1] : 0,

@@ -276,7 +276,7 @@ function MagicCircle({ isActive, intensity }) {
         className: "absolute inset-0 flex items-center justify-center pointer-events-none z-10",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
-                className: "absolute w-[600px] h-[600px] md:w-[800px] md:h-[800px]",
+                className: "absolute w-[90vw] h-[90vw] max-w-[800px] max-h-[800px]",
                 animate: {
                     rotate: 360,
                     opacity: isActive ? glowIntensity[intensity] : 0.1
@@ -473,7 +473,7 @@ function MagicCircle({ isActive, intensity }) {
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
-                className: "absolute w-[400px] h-[400px] md:w-[550px] md:h-[550px]",
+                className: "absolute w-[60vw] h-[60vw] max-w-[550px] max-h-[550px]",
                 animate: {
                     rotate: -360,
                     opacity: isActive ? glowIntensity[intensity] * 0.8 : 0.05
@@ -529,7 +529,7 @@ function MagicCircle({ isActive, intensity }) {
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
-                className: "absolute w-[300px] h-[300px] md:w-[400px] md:h-[400px] rounded-full",
+                className: "absolute w-[45vw] h-[45vw] max-w-[400px] max-h-[400px] rounded-full",
                 animate: {
                     scale: [
                         1,
