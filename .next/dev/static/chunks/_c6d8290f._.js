@@ -621,8 +621,8 @@ function CardStack() {
         length: 5
     });
     const dims = (0, __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$use$2d$responsive$2d$dimensions$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useResponsiveDimensions"])();
-    const stackWidth = dims.cardWidth * 1.5;
-    const stackHeight = dims.cardHeight * 1.5;
+    const stackWidth = dims.cardWidth * 1.2;
+    const stackHeight = dims.cardHeight * 1.2;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
         className: "absolute inset-0 flex items-center justify-center z-20",
         initial: {
