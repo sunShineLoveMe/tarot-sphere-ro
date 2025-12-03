@@ -35,8 +35,8 @@ export interface ResponsiveDimensions {
 
 export function useResponsiveDimensions(): ResponsiveDimensions {
   const [dimensions, setDimensions] = useState({
-    width: 1024,
-    height: 768,
+    width: typeof window !== "undefined" ? window.innerWidth : 1024,
+    height: typeof window !== "undefined" ? window.innerHeight : 768,
   })
 
   useEffect(() => {

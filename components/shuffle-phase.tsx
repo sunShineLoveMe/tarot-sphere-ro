@@ -1,27 +1,22 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useMemo, useState, useEffect } from "react"
+import { useMemo } from "react"
 import { useResponsiveDimensions } from "@/hooks/use-responsive-dimensions"
 
 export default function ShufflePhase() {
   const dims = useResponsiveDimensions()
 
-  const [cards, setCards] = useState<any[]>([])
-
-  useEffect(() => {
-    setCards(
+  const cards = useMemo(
+    () =>
       Array.from({ length: 22 }).map((_, i) => ({
         id: i,
         initialAngle: Math.random() * 360,
         delay: Math.random() * 0.5,
         duration: 0.8 + Math.random() * 0.4,
-        randomX: (Math.random() - 0.5) * dims.width * 0.6,
-        randomY: (Math.random() - 0.5) * dims.height * 0.5,
-        randomRotate: (Math.random() - 0.5) * 720,
       })),
-    )
-  }, [dims.width, dims.height])
+    [],
+  )
 
   const energyBurstSize = dims.minDimension * 0.5
 
@@ -40,6 +35,7 @@ export default function ShufflePhase() {
       {/* Energy burst effect - responsive size */}
       <motion.div
         className="absolute rounded-full pointer-events-none"
+        style={{ width: energyBurstSize, height: energyBurstSize }}
         initial={{ scale: 0, opacity: 0.8 }}
         animate={{
           scale: [0, 2, 0],
@@ -65,22 +61,14 @@ interface ShuffleCardProps {
   initialAngle: number
   delay: number
   duration: number
-  randomX: number
-  randomY: number
-  randomRotate: number
   dims: ReturnType<typeof useResponsiveDimensions>
 }
 
-function ShuffleCard({
-  id,
-  initialAngle,
-  delay,
-  duration,
-  randomX,
-  randomY,
-  randomRotate,
-  dims,
-}: ShuffleCardProps) {
+function ShuffleCard({ id, initialAngle, delay, duration, dims }: ShuffleCardProps) {
+  const randomX = (Math.random() - 0.5) * dims.width * 0.6
+  const randomY = (Math.random() - 0.5) * dims.height * 0.5
+  const randomRotate = (Math.random() - 0.5) * 720
+
   return (
     <motion.div
       className="absolute rounded-lg overflow-hidden"

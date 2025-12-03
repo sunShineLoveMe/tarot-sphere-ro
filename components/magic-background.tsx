@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useMemo, useState, useEffect } from "react"
+import { useMemo } from "react"
 import { useResponsiveDimensions } from "@/hooks/use-responsive-dimensions"
 
 export default function MagicBackground() {
@@ -9,10 +9,8 @@ export default function MagicBackground() {
 
   const starCount = dims.isMobile ? 60 : 100
 
-  const [stars, setStars] = useState<any[]>([])
-
-  useEffect(() => {
-    setStars(
+  const stars = useMemo(
+    () =>
       Array.from({ length: starCount }).map((_, i) => ({
         id: i,
         width: Math.random() * 3 + 1,
@@ -22,8 +20,8 @@ export default function MagicBackground() {
         duration: 2 + Math.random() * 3,
         delay: Math.random() * 2,
       })),
-    )
-  }, [starCount])
+    [starCount],
+  )
 
   return (
     <div className="absolute inset-0 z-0 overflow-hidden">

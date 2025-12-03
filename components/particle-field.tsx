@@ -1,17 +1,15 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useMemo, useState, useEffect } from "react"
+import { useMemo } from "react"
 
 interface ParticleFieldProps {
   intensity: number
 }
 
 export default function ParticleField({ intensity }: ParticleFieldProps) {
-  const [particles, setParticles] = useState<any[]>([])
-
-  useEffect(() => {
-    setParticles(
+  const particles = useMemo(
+    () =>
       Array.from({ length: 50 * intensity }).map((_, i) => ({
         id: i,
         x: Math.random() * 100,
@@ -21,8 +19,8 @@ export default function ParticleField({ intensity }: ParticleFieldProps) {
         delay: Math.random() * 2,
         color: Math.random() > 0.5 ? "#FF4FD8" : "#73F2FF",
       })),
-    )
-  }, [intensity])
+    [intensity],
+  )
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-5">

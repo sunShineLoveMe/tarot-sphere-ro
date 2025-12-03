@@ -6,19 +6,6 @@ An immersive, ritual-style AI Love Tarot divination web application that combine
 
 ---
 
-## 版本更新记录 | Version History
-
-### v1.1.0 - 2025-12-03
-- **修复 Hydration Error**: 重构了 `MagicBackground`, `ParticleField`, `ShufflePhase`, `SelectedCard` 等组件，将随机数生成移至 `useEffect`，解决了服务端与客户端渲染不一致的问题。
-- **开始按钮自适应**: 优化了 "Start Shuffle" 按钮，增加了 `whitespace-nowrap` 属性，并调整了移动端的内边距和字体大小，防止文字换行。
-- **魔法阵响应式优化**: 重构了 `MagicCircle` 组件，使用 `vw` 单位和 `max-w` 约束，确保在不同尺寸屏幕上都能完整显示且比例协调。
-- **卡牌堆尺寸调整**: 将待机状态下的卡牌堆尺寸缩放系数从 1.5 调整为 1.2，使其视觉比例更加协调。
-
-- **Fixed Hydration Error**: Refactored components (`MagicBackground`, `ParticleField`, `ShufflePhase`, `SelectedCard`) to move random number generation to `useEffect`, resolving SSR/CSR mismatches.
-- **Start Button Responsiveness**: Optimized the "Start Shuffle" button with `whitespace-nowrap` and adjusted padding/font size for mobile devices to prevent text wrapping.
-- **Magic Circle Responsiveness**: Refactored `MagicCircle` using `vw` units and `max-w` constraints to ensure perfect scaling and visibility across all screen sizes.
-- **Card Stack Resizing**: Adjusted the idle card stack scaling factor from 1.5 to 1.2 for better visual proportion.
-
 ## 核心特性 | Core Features
 
 ### 1. 视觉设计系统 | Visual Design System
@@ -116,32 +103,172 @@ transition={{
 
 #### Phase C: 阵法展示 (Formation Phase)
 
-**两种布局模式 | Two Formation Modes:**
+**悬浮星盘式 · 360° 呼吸流动环阵 (Ring Aura Deck)**
 
-1. **球体阵列 (Sphere Formation)**
-   - 22 张塔罗牌均匀分布在 3D 球体表面
-   - 使用斐波那契球体分布算法
-   - 球体缓慢自转 (60秒一周)
-   - 支持鼠标悬停和触摸拖拽旋转
+设计理念：让用户感觉整个圆环是"命运之轮"，卡牌在等待被选中，操作直觉且神秘。
 
-2. **环形阵列 (Ring Formation)**
-   - 卡牌组成 360° 圆环
-   - 中心悬浮魔法阵
-   - 环整体带微小上下震动
-   - 支持触摸拖拽旋转
+Design Concept: The ring creates a "Wheel of Fate" experience where cards orbit like celestial bodies around an energy core, waiting to be chosen.
 
-**斐波那契球体分布算法 | Fibonacci Sphere Algorithm:**
+**视觉呈现 | Visual Presentation:**
+- 22张卡牌沿完美圆环 360° 均匀分布
+- 卡牌轻微倾向圆心（15°倾斜），像星辰围绕能量中心
+- 环阵带"呼吸式膨胀"动效 (scale: 1 → 1.03，6秒周期)
+- 整个圆环极慢旋转 (180秒一周，用户有充足时间选择)
+- 多层光晕脉动效果 (外层4秒周期，内层3秒周期)
+- 中央神圣几何魔法阵旋转 + 反向旋转内圈
+- 8个能量粒子环绕圆环轨道运行
+
+**卡牌交互效果 | Card Interaction:**
+- 悬停/触摸时：卡牌浮起15px、放大1.15倍
+- 发光增强：边框变为霓虹青，光晕扩大
+- 点击后：卡牌脱离圆阵，飞向中央
+
+**圆环分布算法 | Ring Distribution Algorithm:**
 \`\`\`tsx
-const phi = Math.PI * (3 - Math.sqrt(5))
-for (let i = 0; i < numCards; i++) {
-  const y = 1 - (i / (numCards - 1)) * 2
-  const radius = Math.sqrt(1 - y * y)
-  const theta = phi * i
+// 卡牌在完美圆环上均匀分布，倾向圆心
+const positions = []
+for (let i = 0; i < 22; i++) {
+  const angle = (i / 22) * Math.PI * 2 - Math.PI / 2 // 从顶部开始
+  const tiltAngle = 15 // 向圆心倾斜15度
+  
   positions.push({
-    x: Math.cos(theta) * radius * dims.sphereRadius,
-    y: y * dims.sphereRadius,
-    z: Math.sin(theta) * radius * dims.sphereRadius,
+    x: Math.cos(angle) * ringRadius,
+    y: Math.sin(angle) * ringRadius,
+    angle: (angle * 180) / Math.PI + 90, // 卡牌朝向
+    tiltX: Math.sin(angle) * tiltAngle,  // X轴倾斜
+    tiltY: -Math.cos(angle) * tiltAngle, // Y轴倾斜
   })
+}
+\`\`\`
+
+**呼吸式膨胀动效 | Breathing Expansion Animation:**
+\`\`\`tsx
+// 主环容器呼吸效果
+<motion.div
+  animate={{
+    scale: [1, 1.03, 1], // 微妙的呼吸膨胀
+  }}
+  transition={{
+    duration: 6,
+    repeat: Infinity,
+    ease: "easeInOut",
+  }}
+>
+  {/* 圆环内容 */}
+</motion.div>
+\`\`\`
+
+**极慢旋转 | Ultra-Slow Rotation:**
+\`\`\`tsx
+// 圆环极慢旋转 - 3分钟一周
+<motion.div
+  animate={{ 
+    rotate: [0, 360] 
+  }}
+  transition={{
+    duration: 180, // 180秒 = 3分钟
+    repeat: Infinity,
+    ease: "linear",
+  }}
+>
+  {cards}
+</motion.div>
+\`\`\`
+
+**多层光晕脉动 | Multi-Layer Glow Pulse:**
+\`\`\`tsx
+// 外层呼吸光环
+<motion.div
+  style={{
+    background: "radial-gradient(circle, transparent 40%, rgba(255,79,216,0.1) 60%, rgba(115,242,255,0.15) 80%, transparent 100%)",
+    boxShadow: "0 0 80px 20px rgba(255,79,216,0.15), 0 0 120px 40px rgba(115,242,255,0.1)",
+  }}
+  animate={{
+    scale: [1, 1.08, 1],
+    opacity: [0.6, 1, 0.6],
+  }}
+  transition={{
+    duration: 4,
+    repeat: Infinity,
+    ease: "easeInOut",
+  }}
+/>
+
+// 内层能量环 - 反向旋转
+<motion.div
+  style={{
+    border: "1px solid rgba(115,242,255,0.3)",
+    boxShadow: "inset 0 0 60px rgba(255,79,216,0.2)",
+  }}
+  animate={{
+    scale: [1, 1.05, 1],
+    opacity: [0.4, 0.8, 0.4],
+    rotate: [0, -360], // 反向旋转
+  }}
+  transition={{
+    scale: { duration: 3, repeat: Infinity },
+    rotate: { duration: 120, repeat: Infinity, ease: "linear" },
+  }}
+/>
+\`\`\`
+
+**卡牌悬停效果 | Card Hover Effects:**
+\`\`\`tsx
+// 卡牌悬停时浮起并发光
+<motion.div
+  animate={{
+    scale: isHovered ? 1.15 : 1,
+    z: isHovered ? 30 : 0,
+  }}
+  whileHover={{ 
+    y: baseY - 15, // 浮起15px
+  }}
+  style={{
+    boxShadow: isHovered 
+      ? "0 0 25px rgba(115,242,255,0.7), 0 0 50px rgba(255,79,216,0.5), 0 0 80px rgba(115,242,255,0.3)"
+      : "0 0 15px rgba(255,79,216,0.3), 0 0 30px rgba(115,242,255,0.15)",
+    borderColor: isHovered ? "#73F2FF" : "rgba(255,79,216,0.5)",
+  }}
+/>
+\`\`\`
+
+**神圣几何中央区域 | Sacred Geometry Center:**
+\`\`\`tsx
+// 中央旋转六芒星
+<motion.div
+  animate={{
+    rotate: [0, 360],
+    scale: [0.95, 1.05, 0.95],
+  }}
+  transition={{
+    rotate: { duration: 60, repeat: Infinity, ease: "linear" },
+    scale: { duration: 5, repeat: Infinity, ease: "easeInOut" },
+  }}
+>
+  <svg>
+    <polygon points="100,20 130,60 170,60 140,90 150,140 100,110 50,140 60,90 30,60 70,60" />
+  </svg>
+</motion.div>
+
+// 反向旋转内圈三角
+<motion.div
+  animate={{ rotate: [0, -360] }}
+  transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+>
+  <polygon points="50,15 80,70 20,70" /> {/* 正三角 */}
+  <polygon points="50,85 80,30 20,30" /> {/* 倒三角 */}
+</motion.div>
+\`\`\`
+
+**移动端触控旋转 | Mobile Touch Rotation:**
+\`\`\`tsx
+// 触摸拖拽旋转功能
+const handleTouchMove = (e: TouchEvent) => {
+  if (isDragging && lastTouchRef.current !== null) {
+    const deltaX = e.touches[0].clientX - lastTouchRef.current
+    setDragRotation(prev => prev + deltaX * 0.5)
+    lastTouchRef.current = e.touches[0].clientX
+  }
 }
 \`\`\`
 
@@ -193,8 +320,8 @@ const tarotCards = [
 \`\`\`
 
 #### 抽卡流程 | Drawing Flow
-1. **用户选择**: 用户在 Sphere/Ring 阵列中点击任意卡牌
-2. **索引记录**: 系统记录被选中卡牌的索引 `selectedCard: number`
+1. **用户选择**: 用户在 Ring Aura Deck 中点击任意卡牌
+2. **索引记录**: 系统记录被选中卡牌的索引 `selectedCardIndex: number`
 3. **状态转换**: 阶段从 `formation` 变为 `selected`
 4. **卡牌映射**: 使用 `cardIndex % tarotCards.length` 映射到具体卡牌
 5. **翻牌延迟**: 卡牌飞到中央后延迟 1 秒开始翻面
@@ -202,128 +329,12 @@ const tarotCards = [
 \`\`\`tsx
 // TarotSphere 主组件中的抽卡处理
 const handleCardSelect = (index: number) => {
-  setSelectedCard(index)
+  setSelectedCardIndex(index)
   setPhase("selected")
   // 延迟翻牌
   setTimeout(() => setIsFlipped(true), 1000)
   // 延迟显示解读面板
   setTimeout(() => setPhase("reading"), 2000)
-}
-\`\`\`
-
----
-
-### 4. 解读逻辑 | Reading Interpretation Logic
-
-#### 解读面板结构 | Reading Panel Structure
-\`\`\`
-┌─────────────────────────────────┐
-│  卡牌名称 (中英文)              │
-│  The Lovers / 恋人              │
-├─────────────────────────────────┤
-│  正位/逆位状态                  │
-│  正位 · Upright                 │
-├─────────────────────────────────┤
-│  爱情关键词 (3-5个)             │
-│  Soul Connection, Harmony...    │
-├─────────────────────────────────┤
-│  ♡ 爱情现状分析                 │
-│  (短段落描述)                   │
-├─────────────────────────────────┤
-│  ✧ 未来趋势                     │
-│  (短段落描述)                   │
-├─────────────────────────────────┤
-│  ⟡ 指导建议                     │
-│  (短段落描述)                   │
-├─────────────────────────────────┤
-│  "情感箴言"                     │
-├─────────────────────────────────┤
-│  [✧ New Reading ✧]              │
-└─────────────────────────────────┘
-\`\`\`
-
-#### 解读内容生成 | Reading Content Generation
-当前原型使用静态示例文案，未来可接入 AI 生成：
-
-\`\`\`tsx
-// 未来 AI 解读接口示例
-async function generateReading(cardName: string) {
-  const response = await fetch('/api/tarot-reading', {
-    method: 'POST',
-    body: JSON.stringify({ card: cardName, type: 'love' })
-  })
-  return response.json()
-}
-\`\`\`
-
----
-
-### 5. 响应式自适应系统 | Responsive Adaptation System
-
-#### 断点定义 | Breakpoints
-| 设备类型 | 宽度范围 | 变量 |
-|---------|---------|------|
-| 手机 Mobile | < 768px | `isMobile: true` |
-| 平板 Tablet | 768px - 1279px | `isTablet: true` |
-| 桌面 Desktop | >= 1280px | `isDesktop: true` |
-
-#### 卡牌尺寸自适应 | Card Size Adaptation
-卡牌使用视口高度百分比计算，保持 3:5 比例：
-
-| 设备 | 卡牌高度占比 | 实际效果 |
-|-----|------------|---------|
-| 桌面 | 20% vh | 标准大小 |
-| 平板 | 22% vh | 稍大 |
-| 手机 | 28% vh | 更大更沉浸 |
-
-\`\`\`tsx
-// hooks/use-responsive-dimensions.ts
-let cardHeightPercent: number
-if (isMobile) {
-  cardHeightPercent = 0.28
-} else if (isTablet) {
-  cardHeightPercent = 0.22
-} else {
-  cardHeightPercent = 0.20
-}
-const cardHeight = Math.min(height * cardHeightPercent, 300)
-const cardWidth = cardHeight * 0.6 // 3:5 比例
-\`\`\`
-
-#### 球体/环形半径自适应 | Sphere/Ring Radius Adaptation
-| 设备 | 半径占比 | 说明 |
-|-----|---------|------|
-| 桌面 | 38% minDimension | 标准比例 |
-| 平板 | 34% minDimension | 适中 |
-| 手机 | 44% minDimension | 更大更沉浸 |
-
-#### 解读面板自适应 | Reading Panel Adaptation
-- **桌面端**: 右侧浮出面板，宽度 max-w-xl
-- **移动端**: 底部滑入 (Bottom Sheet)，高度 70vh，可滚动
-
-\`\`\`tsx
-// 面板动画变体
-const panelVariants = dims.isMobile
-  ? { initial: { y: "100%" }, animate: { y: 0 } }  // 底部滑入
-  : { initial: { x: 100 }, animate: { x: 0 } }     // 右侧滑入
-\`\`\`
-
-#### 触摸交互支持 | Touch Interaction Support
-- **单指拖拽**: 旋转 Sphere/Ring 阵列
-- **单指点击**: 选择卡牌
-- **惯性旋转**: 拖拽后保持旋转动量
-
-\`\`\`tsx
-// 触摸事件处理
-const handleTouchMove = (e: React.TouchEvent) => {
-  if (isDragging && lastTouchRef.current) {
-    const deltaX = e.touches[0].clientX - lastTouchRef.current.x
-    const deltaY = e.touches[0].clientY - lastTouchRef.current.y
-    setDragRotation(prev => ({
-      x: prev.x + deltaY * 0.3,
-      y: prev.y + deltaX * 0.3,
-    }))
-  }
 }
 \`\`\`
 
@@ -346,28 +357,34 @@ const handleTouchMove = (e: React.TouchEvent) => {
 
 ---
 
-### 7. 状态管理 | State Management
+### 7. 核心动效总结 | Core Animations Summary
 
-\`\`\`tsx
-// 主状态定义
-type Phase = "idle" | "shuffling" | "formation" | "selected" | "reading"
-type FormationType = "sphere" | "ring"
-
-const [phase, setPhase] = useState<Phase>("idle")
-const [formationType, setFormationType] = useState<FormationType>("sphere")
-const [selectedCard, setSelectedCard] = useState<number | null>(null)
-const [isFlipped, setIsFlipped] = useState(false)
-\`\`\`
+| 动效 | 描述 | 关键技术 |
+|------|------|---------|
+| **卡牌漂浮** | 待机时的轻微浮动 | translateY + rotateZ |
+| **洗牌爆炸** | 混乱的飞散效果 | 随机位置 + 3D旋转 + 响应式缩放 |
+| **环形分布** | 360°均匀分布 + 倾向圆心 | cos/sin + tiltX/tiltY |
+| **呼吸膨胀** | 圆环周期性缩放 | scale [1, 1.03, 1] + 6s周期 |
+| **光晕脉动** | 多层光环呼吸效果 | 径向渐变 + opacity动画 |
+| **极慢旋转** | 命运之轮缓慢转动 | rotate 360° + 180s周期 |
+| **悬停浮起** | 卡牌悬停时上浮发光 | translateY -15px + boxShadow增强 |
+| **3D翻牌** | 卡牌正反面切换 | rotateY 180deg + backface-visibility |
+| **能量尾迹** | 运动时的拖尾效果 | 渐变 + blur + opacity动画 |
+| **环绕粒子** | 8个能量粒子轨道运行 | cos/sin 轨迹 + 不同速度 |
+| **触摸拖拽** | 移动端旋转控制 | TouchEvent + deltaX |
 
 ---
 
-## 技术栈 | Tech Stack
+### 8. 状态管理 | State Management
 
-- **框架 | Framework:** Next.js 15 (App Router)
-- **动画库 | Animation:** Framer Motion
-- **样式 | Styling:** Tailwind CSS v4
-- **类型 | Types:** TypeScript
-- **响应式 | Responsive:** Custom useResponsiveDimensions Hook
+\`\`\`tsx
+// 主状态定义 - 简化为单一环形阵列
+type Phase = "idle" | "shuffling" | "formation" | "selected" | "reading"
+
+const [phase, setPhase] = useState<Phase>("idle")
+const [selectedCardIndex, setSelectedCardIndex] = useState<number | null>(null)
+const [isFlipped, setIsFlipped] = useState(false)
+\`\`\`
 
 ---
 
@@ -383,34 +400,18 @@ tarot-sphere-prototype/
 │   ├── tarot-sphere.tsx       # 主控制器组件
 │   ├── card-stack.tsx         # 待机卡牌堆
 │   ├── shuffle-phase.tsx      # 洗牌阶段
-│   ├── sphere-formation.tsx   # 球体阵列
-│   ├── ring-formation.tsx     # 环形阵列
+│   ├── ring-formation.tsx     # 悬浮星盘环阵 (Ring Aura Deck)
 │   ├── selected-card.tsx      # 选中卡牌
 │   ├── reading-panel.tsx      # 解读面板
 │   ├── magic-background.tsx   # 魔法背景
 │   ├── magic-circle.tsx       # 魔法阵
 │   ├── particle-field.tsx     # 粒子场
-│   ├── formation-toggle.tsx   # 阵型切换
 │   └── start-button.tsx       # 开始按钮
 ├── hooks/
 │   └── use-responsive-dimensions.ts  # 响应式尺寸Hook
 └── public/
     └── sacred-geometry-*.jpg  # 背景图片
 \`\`\`
-
----
-
-## 核心动效总结 | Core Animations Summary
-
-| 动效 | 描述 | 关键技术 |
-|------|------|---------|
-| **卡牌漂浮** | 待机时的轻微浮动 | translateY + rotateZ |
-| **洗牌爆炸** | 混乱的飞散效果 | 随机位置 + 3D旋转 + 响应式缩放 |
-| **球体分布** | 斐波那契球体算法 | translate3d + 响应式半径 |
-| **环形分布** | 360°均匀分布 | rotateX + rotateZ |
-| **3D翻牌** | 卡牌正反面切换 | rotateY 180deg + backface-visibility |
-| **能量尾迹** | 运动时的拖尾效果 | 渐变 + blur + opacity动画 |
-| **触摸拖拽** | 移动端旋转控制 | TouchEvent + deltaX/Y |
 
 ---
 

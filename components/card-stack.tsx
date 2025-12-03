@@ -7,8 +7,8 @@ export default function CardStack() {
   const cards = Array.from({ length: 5 })
   const dims = useResponsiveDimensions()
 
-  const stackWidth = dims.cardWidth * 1.2
-  const stackHeight = dims.cardHeight * 1.2
+  const stackWidth = dims.cardWidth * 1.5
+  const stackHeight = dims.cardHeight * 1.5
 
   return (
     <motion.div
