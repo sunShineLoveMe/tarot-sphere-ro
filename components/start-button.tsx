@@ -17,7 +17,7 @@ export default function StartButton({ onStart }: StartButtonProps) {
     >
       <motion.button
         onClick={onStart}
-        className="relative px-10 py-4 rounded-full font-semibold text-lg tracking-wider overflow-hidden group"
+        className="relative px-6 sm:px-10 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg tracking-wider overflow-hidden group whitespace-nowrap"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         style={{

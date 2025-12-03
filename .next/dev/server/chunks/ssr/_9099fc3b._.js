@@ -11,8 +11,8 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 ;
 function useResponsiveDimensions() {
     const [dimensions, setDimensions] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])({
-        width: ("TURBOPACK compile-time falsy", 0) ? "TURBOPACK unreachable" : 1024,
-        height: ("TURBOPACK compile-time falsy", 0) ? "TURBOPACK unreachable" : 768
+        width: 1024,
+        height: 768
     });
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         const handleResize = ()=>{
@@ -107,7 +107,9 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$use$2d$responsive$2
 function MagicBackground() {
     const dims = (0, __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$use$2d$responsive$2d$dimensions$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useResponsiveDimensions"])();
     const starCount = dims.isMobile ? 60 : 100;
-    const stars = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMemo"])(()=>Array.from({
+    const [stars, setStars] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        setStars(Array.from({
             length: starCount
         }).map((_, i)=>({
                 id: i,
@@ -117,7 +119,8 @@ function MagicBackground() {
                 top: `${Math.random() * 100}%`,
                 duration: 2 + Math.random() * 3,
                 delay: Math.random() * 2
-            })), [
+            })));
+    }, [
         starCount
     ]);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -127,7 +130,7 @@ function MagicBackground() {
                 className: "absolute inset-0 bg-gradient-to-b from-[#0a0a1a] via-[#0f0a20] to-[#0a0a1a]"
             }, void 0, false, {
                 fileName: "[project]/components/magic-background.tsx",
-                lineNumber: 29,
+                lineNumber: 31,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -140,7 +143,7 @@ function MagicBackground() {
                 }
             }, void 0, false, {
                 fileName: "[project]/components/magic-background.tsx",
-                lineNumber: 31,
+                lineNumber: 33,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -167,7 +170,7 @@ function MagicBackground() {
                 }
             }, void 0, false, {
                 fileName: "[project]/components/magic-background.tsx",
-                lineNumber: 42,
+                lineNumber: 44,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -199,12 +202,12 @@ function MagicBackground() {
                         }
                     }, star.id, false, {
                         fileName: "[project]/components/magic-background.tsx",
-                        lineNumber: 62,
+                        lineNumber: 64,
                         columnNumber: 11
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/components/magic-background.tsx",
-                lineNumber: 60,
+                lineNumber: 62,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -225,7 +228,7 @@ function MagicBackground() {
                 }
             }, void 0, false, {
                 fileName: "[project]/components/magic-background.tsx",
-                lineNumber: 85,
+                lineNumber: 87,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -235,13 +238,13 @@ function MagicBackground() {
                 }
             }, void 0, false, {
                 fileName: "[project]/components/magic-background.tsx",
-                lineNumber: 95,
+                lineNumber: 97,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/magic-background.tsx",
-        lineNumber: 27,
+        lineNumber: 29,
         columnNumber: 5
     }, this);
 }
@@ -779,14 +782,23 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$use$2d$responsive$2
 ;
 function ShufflePhase() {
     const dims = (0, __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$use$2d$responsive$2d$dimensions$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useResponsiveDimensions"])();
-    const cards = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMemo"])(()=>Array.from({
+    const [cards, setCards] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        setCards(Array.from({
             length: 22
         }).map((_, i)=>({
                 id: i,
                 initialAngle: Math.random() * 360,
                 delay: Math.random() * 0.5,
-                duration: 0.8 + Math.random() * 0.4
-            })), []);
+                duration: 0.8 + Math.random() * 0.4,
+                randomX: (Math.random() - 0.5) * dims.width * 0.6,
+                randomY: (Math.random() - 0.5) * dims.height * 0.5,
+                randomRotate: (Math.random() - 0.5) * 720
+            })));
+    }, [
+        dims.width,
+        dims.height
+    ]);
     const energyBurstSize = dims.minDimension * 0.5;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
         className: "absolute inset-0 flex items-center justify-center z-20",
@@ -808,15 +820,11 @@ function ShufflePhase() {
                     dims: dims
                 }, card.id, false, {
                     fileName: "[project]/components/shuffle-phase.tsx",
-                    lineNumber: 32,
+                    lineNumber: 37,
                     columnNumber: 9
                 }, this)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
                 className: "absolute rounded-full pointer-events-none",
-                style: {
-                    width: energyBurstSize,
-                    height: energyBurstSize
-                },
                 initial: {
                     scale: 0,
                     opacity: 0.8
@@ -845,20 +853,17 @@ function ShufflePhase() {
                 }
             }, void 0, false, {
                 fileName: "[project]/components/shuffle-phase.tsx",
-                lineNumber: 36,
+                lineNumber: 41,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/shuffle-phase.tsx",
-        lineNumber: 24,
+        lineNumber: 29,
         columnNumber: 5
     }, this);
 }
-function ShuffleCard({ id, initialAngle, delay, duration, dims }) {
-    const randomX = (Math.random() - 0.5) * dims.width * 0.6;
-    const randomY = (Math.random() - 0.5) * dims.height * 0.5;
-    const randomRotate = (Math.random() - 0.5) * 720;
+function ShuffleCard({ id, initialAngle, delay, duration, randomX, randomY, randomRotate, dims }) {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
         className: "absolute rounded-lg overflow-hidden",
         style: {
@@ -944,22 +949,22 @@ function ShuffleCard({ id, initialAngle, delay, duration, dims }) {
                             children: "✧"
                         }, void 0, false, {
                             fileName: "[project]/components/shuffle-phase.tsx",
-                            lineNumber: 122,
+                            lineNumber: 134,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/shuffle-phase.tsx",
-                        lineNumber: 116,
+                        lineNumber: 128,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/components/shuffle-phase.tsx",
-                    lineNumber: 115,
+                    lineNumber: 127,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/shuffle-phase.tsx",
-                lineNumber: 105,
+                lineNumber: 117,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -981,13 +986,13 @@ function ShuffleCard({ id, initialAngle, delay, duration, dims }) {
                 }
             }, void 0, false, {
                 fileName: "[project]/components/shuffle-phase.tsx",
-                lineNumber: 128,
+                lineNumber: 140,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/shuffle-phase.tsx",
-        lineNumber: 73,
+        lineNumber: 85,
         columnNumber: 5
     }, this);
 }
@@ -1607,8 +1612,10 @@ __turbopack_context__.s([
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$use$2d$responsive$2d$dimensions$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/hooks/use-responsive-dimensions.ts [app-ssr] (ecmascript)");
 "use client";
+;
 ;
 ;
 ;
@@ -1708,6 +1715,22 @@ function SelectedCard({ cardIndex, isFlipped }) {
     const selectedCardWidth = dims.cardWidth * 1.8;
     const selectedCardHeight = dims.cardHeight * 1.8;
     const offsetX = dims.isMobile ? 0 : isFlipped ? -dims.width * 0.15 : 0;
+    const [mounted, setMounted] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [randomPos, setRandomPos] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])({
+        x: 0,
+        y: 0
+    });
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        setRandomPos({
+            x: (Math.random() - 0.5) * dims.width * 0.4,
+            y: (Math.random() - 0.5) * dims.height * 0.3
+        });
+        setMounted(true);
+    }, [
+        dims.width,
+        dims.height
+    ]);
+    if (!mounted) return null;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
         className: "absolute inset-0 flex items-center justify-center z-30 pointer-events-none",
         style: {
@@ -1718,12 +1741,13 @@ function SelectedCard({ cardIndex, isFlipped }) {
                 className: "relative",
                 style: {
                     width: selectedCardWidth,
-                    height: selectedCardHeight
+                    height: selectedCardHeight,
+                    transformStyle: "preserve-3d"
                 },
                 initial: {
                     scale: 0.5,
-                    x: (Math.random() - 0.5) * dims.width * 0.4,
-                    y: (Math.random() - 0.5) * dims.height * 0.3,
+                    x: randomPos.x,
+                    y: randomPos.y,
                     opacity: 0
                 },
                 animate: {
@@ -1741,11 +1765,6 @@ function SelectedCard({ cardIndex, isFlipped }) {
                         duration: 0.8,
                         ease: "easeInOut"
                     }
-                },
-                style: {
-                    width: selectedCardWidth,
-                    height: selectedCardHeight,
-                    transformStyle: "preserve-3d"
                 },
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -1799,7 +1818,7 @@ function SelectedCard({ cardIndex, isFlipped }) {
                                                             stopColor: "#FF4FD8"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/selected-card.tsx",
-                                                            lineNumber: 117,
+                                                            lineNumber: 127,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
@@ -1807,18 +1826,18 @@ function SelectedCard({ cardIndex, isFlipped }) {
                                                             stopColor: "#73F2FF"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/selected-card.tsx",
-                                                            lineNumber: 118,
+                                                            lineNumber: 128,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/selected-card.tsx",
-                                                    lineNumber: 116,
+                                                    lineNumber: 126,
                                                     columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/selected-card.tsx",
-                                                lineNumber: 115,
+                                                lineNumber: 125,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -1830,7 +1849,7 @@ function SelectedCard({ cardIndex, isFlipped }) {
                                                 strokeWidth: "1.5"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/selected-card.tsx",
-                                                lineNumber: 121,
+                                                lineNumber: 131,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -1842,7 +1861,7 @@ function SelectedCard({ cardIndex, isFlipped }) {
                                                 strokeWidth: "0.5"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/selected-card.tsx",
-                                                lineNumber: 122,
+                                                lineNumber: 132,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("polygon", {
@@ -1852,33 +1871,33 @@ function SelectedCard({ cardIndex, isFlipped }) {
                                                 strokeWidth: "1"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/selected-card.tsx",
-                                                lineNumber: 123,
+                                                lineNumber: 133,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/selected-card.tsx",
-                                        lineNumber: 114,
+                                        lineNumber: 124,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/selected-card.tsx",
-                                    lineNumber: 108,
+                                    lineNumber: 118,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/selected-card.tsx",
-                                lineNumber: 107,
+                                lineNumber: 117,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/selected-card.tsx",
-                            lineNumber: 96,
+                            lineNumber: 106,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/selected-card.tsx",
-                        lineNumber: 82,
+                        lineNumber: 92,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -1928,17 +1947,17 @@ function SelectedCard({ cardIndex, isFlipped }) {
                                                 children: "♡"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/selected-card.tsx",
-                                                lineNumber: 177,
+                                                lineNumber: 187,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/selected-card.tsx",
-                                            lineNumber: 171,
+                                            lineNumber: 181,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/selected-card.tsx",
-                                        lineNumber: 164,
+                                        lineNumber: 174,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1949,7 +1968,7 @@ function SelectedCard({ cardIndex, isFlipped }) {
                                                 children: card.name
                                             }, void 0, false, {
                                                 fileName: "[project]/components/selected-card.tsx",
-                                                lineNumber: 181,
+                                                lineNumber: 191,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1957,29 +1976,29 @@ function SelectedCard({ cardIndex, isFlipped }) {
                                                 children: card.nameZh
                                             }, void 0, false, {
                                                 fileName: "[project]/components/selected-card.tsx",
-                                                lineNumber: 182,
+                                                lineNumber: 192,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/selected-card.tsx",
-                                        lineNumber: 180,
+                                        lineNumber: 190,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/selected-card.tsx",
-                                lineNumber: 163,
+                                lineNumber: 173,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/selected-card.tsx",
-                            lineNumber: 151,
+                            lineNumber: 161,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/selected-card.tsx",
-                        lineNumber: 136,
+                        lineNumber: 146,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -1998,13 +2017,13 @@ function SelectedCard({ cardIndex, isFlipped }) {
                         }
                     }, void 0, false, {
                         fileName: "[project]/components/selected-card.tsx",
-                        lineNumber: 189,
+                        lineNumber: 199,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/selected-card.tsx",
-                lineNumber: 50,
+                lineNumber: 64,
                 columnNumber: 7
             }, this),
             [
@@ -2013,7 +2032,9 @@ function SelectedCard({ cardIndex, isFlipped }) {
                     className: "absolute rounded-full",
                     style: {
                         width: dims.isMobile ? 6 : 8,
-                        height: dims.isMobile ? 6 : 8
+                        height: dims.isMobile ? 6 : 8,
+                        background: i % 2 === 0 ? "#FF4FD8" : "#73F2FF",
+                        boxShadow: i % 2 === 0 ? "0 0 20px #FF4FD8" : "0 0 20px #73F2FF"
                     },
                     initial: {
                         x: (Math.random() - 0.5) * dims.width * 0.3,
@@ -2039,22 +2060,16 @@ function SelectedCard({ cardIndex, isFlipped }) {
                         duration: 1,
                         delay: i * 0.1,
                         ease: "easeOut"
-                    },
-                    style: {
-                        width: dims.isMobile ? 6 : 8,
-                        height: dims.isMobile ? 6 : 8,
-                        background: i % 2 === 0 ? "#FF4FD8" : "#73F2FF",
-                        boxShadow: i % 2 === 0 ? "0 0 20px #FF4FD8" : "0 0 20px #73F2FF"
                     }
                 }, i, false, {
                     fileName: "[project]/components/selected-card.tsx",
-                    lineNumber: 208,
+                    lineNumber: 218,
                     columnNumber: 9
                 }, this))
         ]
     }, void 0, true, {
         fileName: "[project]/components/selected-card.tsx",
-        lineNumber: 46,
+        lineNumber: 60,
         columnNumber: 5
     }, this);
 }
@@ -2537,7 +2552,7 @@ function StartButton({ onStart }) {
         },
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].button, {
             onClick: onStart,
-            className: "relative px-10 py-4 rounded-full font-semibold text-lg tracking-wider overflow-hidden group",
+            className: "relative px-6 sm:px-10 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg tracking-wider overflow-hidden group whitespace-nowrap",
             whileHover: {
                 scale: 1.05
             },
@@ -2622,7 +2637,9 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 ;
 ;
 function ParticleField({ intensity }) {
-    const particles = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMemo"])(()=>Array.from({
+    const [particles, setParticles] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        setParticles(Array.from({
             length: 50 * intensity
         }).map((_, i)=>({
                 id: i,
@@ -2632,7 +2649,8 @@ function ParticleField({ intensity }) {
                 duration: 3 + Math.random() * 4,
                 delay: Math.random() * 2,
                 color: Math.random() > 0.5 ? "#FF4FD8" : "#73F2FF"
-            })), [
+            })));
+    }, [
         intensity
     ]);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2677,12 +2695,12 @@ function ParticleField({ intensity }) {
                 }
             }, particle.id, false, {
                 fileName: "[project]/components/particle-field.tsx",
-                lineNumber: 28,
+                lineNumber: 30,
                 columnNumber: 9
             }, this))
     }, void 0, false, {
         fileName: "[project]/components/particle-field.tsx",
-        lineNumber: 26,
+        lineNumber: 28,
         columnNumber: 5
     }, this);
 }

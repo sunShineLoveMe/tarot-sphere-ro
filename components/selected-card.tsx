@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { useState, useEffect } from "react"
 import { useResponsiveDimensions } from "@/hooks/use-responsive-dimensions"
 
 interface SelectedCardProps {
@@ -39,8 +40,21 @@ export default function SelectedCard({ cardIndex, isFlipped }: SelectedCardProps
 
   const selectedCardWidth = dims.cardWidth * 1.8
   const selectedCardHeight = dims.cardHeight * 1.8
-
+  
   const offsetX = dims.isMobile ? 0 : isFlipped ? -dims.width * 0.15 : 0
+
+  const [mounted, setMounted] = useState(false)
+  const [randomPos, setRandomPos] = useState({ x: 0, y: 0 })
+
+  useEffect(() => {
+    setRandomPos({
+      x: (Math.random() - 0.5) * dims.width * 0.4,
+      y: (Math.random() - 0.5) * dims.height * 0.3,
+    })
+    setMounted(true)
+  }, [dims.width, dims.height])
+
+  if (!mounted) return null
 
   return (
     <motion.div
@@ -52,11 +66,12 @@ export default function SelectedCard({ cardIndex, isFlipped }: SelectedCardProps
         style={{
           width: selectedCardWidth,
           height: selectedCardHeight,
+          transformStyle: "preserve-3d",
         }}
         initial={{
           scale: 0.5,
-          x: (Math.random() - 0.5) * dims.width * 0.4,
-          y: (Math.random() - 0.5) * dims.height * 0.3,
+          x: randomPos.x,
+          y: randomPos.y,
           opacity: 0,
         }}
         animate={{
@@ -71,11 +86,6 @@ export default function SelectedCard({ cardIndex, isFlipped }: SelectedCardProps
           stiffness: 100,
           damping: 15,
           rotateY: { duration: 0.8, ease: "easeInOut" },
-        }}
-        style={{
-          width: selectedCardWidth,
-          height: selectedCardHeight,
-          transformStyle: "preserve-3d",
         }}
       >
         {/* Card Back */}
@@ -208,7 +218,12 @@ export default function SelectedCard({ cardIndex, isFlipped }: SelectedCardProps
         <motion.div
           key={i}
           className="absolute rounded-full"
-          style={{ width: dims.isMobile ? 6 : 8, height: dims.isMobile ? 6 : 8 }}
+          style={{
+            width: dims.isMobile ? 6 : 8,
+            height: dims.isMobile ? 6 : 8,
+            background: i % 2 === 0 ? "#FF4FD8" : "#73F2FF",
+            boxShadow: i % 2 === 0 ? "0 0 20px #FF4FD8" : "0 0 20px #73F2FF",
+          }}
           initial={{
             x: (Math.random() - 0.5) * dims.width * 0.3,
             y: (Math.random() - 0.5) * dims.height * 0.2,
@@ -225,12 +240,6 @@ export default function SelectedCard({ cardIndex, isFlipped }: SelectedCardProps
             duration: 1,
             delay: i * 0.1,
             ease: "easeOut",
-          }}
-          style={{
-            width: dims.isMobile ? 6 : 8,
-            height: dims.isMobile ? 6 : 8,
-            background: i % 2 === 0 ? "#FF4FD8" : "#73F2FF",
-            boxShadow: i % 2 === 0 ? "0 0 20px #FF4FD8" : "0 0 20px #73F2FF",
           }}
         />
       ))}
