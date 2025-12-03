@@ -404,7 +404,7 @@ const [isFlipped, setIsFlipped] = useState(false)
 
 ## 项目结构 | Project Structure
 
-\`\`\`
+```
 tarot-sphere-prototype/
 ├── app/
 │   ├── layout.tsx       # 根布局
@@ -425,8 +425,8 @@ tarot-sphere-prototype/
 │   └── use-responsive-dimensions.ts  # 响应式尺寸Hook
 └── public/
     └── sacred-geometry-*.jpg  # 背景图片
-\`\`\`
 
+```
 ---
 
 ## License
