@@ -390,7 +390,7 @@ export function useResponsiveDimensions() {
 
 ## 项目结构 | Project Structure
 
-```
+\`\`\`
 tarot-sphere-prototype/
 ├── app/
 │   ├── layout.tsx          # 根布局 + SEO 元数据
@@ -421,7 +421,7 @@ tarot-sphere-prototype/
 │   └── use-responsive-dimensions.ts
 └── public/
     └── *.jpg               # 背景图片
-```
+\`\`\`
 
 ---
 

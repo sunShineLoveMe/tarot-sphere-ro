@@ -1,7 +1,6 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
 import { Cinzel, Geist } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 
 const _geist = Geist({ subsets: ["latin"] })
@@ -70,10 +69,7 @@ export default function RootLayout({
         <link rel="alternate" hrefLang="zh" href="https://ailovetatot.com/zh" />
         <link rel="alternate" hrefLang="x-default" href="https://ailovetatot.com" />
       </head>
-      <body className="font-sans antialiased">
-        {children}
-        <Analytics />
-      </body>
+      <body className="font-sans antialiased">{children}</body>
     </html>
   )
 }
