@@ -6,6 +6,19 @@ An immersive, ritual-style AI Love Tarot divination web application that combine
 
 ---
 
+## 版本更新记录 | Version History
+
+### v1.1.0 - 2025-12-03
+- **修复 Hydration Error**: 重构了 `MagicBackground`, `ParticleField`, `ShufflePhase`, `SelectedCard` 等组件，将随机数生成移至 `useEffect`，解决了服务端与客户端渲染不一致的问题。
+- **开始按钮自适应**: 优化了 "Start Shuffle" 按钮，增加了 `whitespace-nowrap` 属性，并调整了移动端的内边距和字体大小，防止文字换行。
+- **魔法阵响应式优化**: 重构了 `MagicCircle` 组件，使用 `vw` 单位和 `max-w` 约束，确保在不同尺寸屏幕上都能完整显示且比例协调。
+- **卡牌堆尺寸调整**: 将待机状态下的卡牌堆尺寸缩放系数从 1.5 调整为 1.2，使其视觉比例更加协调。
+
+- **Fixed Hydration Error**: Refactored components (`MagicBackground`, `ParticleField`, `ShufflePhase`, `SelectedCard`) to move random number generation to `useEffect`, resolving SSR/CSR mismatches.
+- **Start Button Responsiveness**: Optimized the "Start Shuffle" button with `whitespace-nowrap` and adjusted padding/font size for mobile devices to prevent text wrapping.
+- **Magic Circle Responsiveness**: Refactored `MagicCircle` using `vw` units and `max-w` constraints to ensure perfect scaling and visibility across all screen sizes.
+- **Card Stack Resizing**: Adjusted the idle card stack scaling factor from 1.5 to 1.2 for better visual proportion.
+
 ## 核心特性 | Core Features
 
 ### 1. 视觉设计系统 | Visual Design System
