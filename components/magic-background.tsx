@@ -4,6 +4,8 @@ import { motion } from "framer-motion"
 import { useMemo } from "react"
 import { useResponsiveDimensions } from "@/hooks/use-responsive-dimensions"
 
+export { MagicBackground }
+
 export default function MagicBackground() {
   const dims = useResponsiveDimensions()
 

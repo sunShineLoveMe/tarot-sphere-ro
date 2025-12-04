@@ -6,6 +6,8 @@ import { useI18n } from "@/lib/i18n/context"
 import { locales, localeNames, localeFlags } from "@/lib/i18n/locales"
 import { Globe } from "lucide-react"
 
+export { LanguageSwitcher }
+
 export default function LanguageSwitcher() {
   const { locale, setLocale } = useI18n()
   const [isOpen, setIsOpen] = useState(false)

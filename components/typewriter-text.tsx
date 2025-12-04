@@ -11,6 +11,8 @@ interface TypewriterTextProps {
   onComplete?: () => void
 }
 
+export { TypewriterText }
+
 export default function TypewriterText({
   text,
   speed = 30,

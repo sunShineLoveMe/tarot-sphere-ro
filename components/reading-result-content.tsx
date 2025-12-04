@@ -28,7 +28,7 @@ interface ReadingData {
   advice: string
 }
 
-export function ReadingResultContent() {
+function ReadingResultContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const { t, locale } = useI18n()
@@ -493,3 +493,6 @@ function AdviceItem({
     </motion.div>
   )
 }
+
+export { ReadingResultContent }
+export default ReadingResultContent

@@ -1116,7 +1116,7 @@ export const loveDeck: TarotCard[] = [
       },
       ro: {
         situation: "S-ar putea să simți că ceva este incomplet sau lipsește în dragoste.",
-        future: "Închiderea vine, dar este nevoie de răbdare.",
+        future: "Închiderea vine,, dar este nevoie de răbdare.",
         advice: "Identifică ce lipsește pentru sentimentul tău de întregime. Piesa finală este la îndemână.",
       },
     },
@@ -1127,6 +1127,8 @@ export const loveDeck: TarotCard[] = [
     },
   },
 ]
+
+export const majorArcana = loveDeck
 
 // Helper function to get a random subset of cards
 export function getRandomCards(count: number): TarotCard[] {

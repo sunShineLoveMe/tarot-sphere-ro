@@ -4,6 +4,8 @@ import { motion } from "framer-motion"
 import { Volume2, VolumeX } from "lucide-react"
 import { useSound } from "@/lib/sound/sound-manager"
 
+export { SoundToggle }
+
 export default function SoundToggle() {
   const { isMuted, toggleMute } = useSound()
 
