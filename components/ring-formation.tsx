@@ -1,18 +1,20 @@
 "use client"
 
 import type React from "react"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { useState, useMemo, useRef } from "react"
 import { useResponsiveDimensions } from "@/hooks/use-responsive-dimensions"
 import { useI18n } from "@/lib/i18n/context"
 
 interface RingFormationProps {
   onCardSelect: (index: number) => void
+  selectedCards: number[]
+  maxCards: number
+  selectPrompt: string
 }
 
-export default function RingFormation({ onCardSelect }: RingFormationProps) {
+export default function RingFormation({ onCardSelect, selectedCards, maxCards, selectPrompt }: RingFormationProps) {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null)
-  const [selectedCard, setSelectedCard] = useState<number | null>(null)
   const [dragRotation, setDragRotation] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
   const lastTouchRef = useRef<number | null>(null)
@@ -31,15 +33,15 @@ export default function RingFormation({ onCardSelect }: RingFormationProps) {
     }[] = []
 
     for (let i = 0; i < numCards; i++) {
-      const angle = (i / numCards) * Math.PI * 2 - Math.PI / 2 // Start from top
-      const tiltAngle = 15 // Degrees to tilt toward center
+      const angle = (i / numCards) * Math.PI * 2 - Math.PI / 2
+      const tiltAngle = 15
 
       positions.push({
         x: Math.cos(angle) * dims.ringRadius,
         y: Math.sin(angle) * dims.ringRadius,
-        angle: (angle * 180) / Math.PI + 90, // Card rotation to face outward
-        tiltX: Math.sin(angle) * tiltAngle, // Tilt toward center X
-        tiltY: -Math.cos(angle) * tiltAngle, // Tilt toward center Y
+        angle: (angle * 180) / Math.PI + 90,
+        tiltX: Math.sin(angle) * tiltAngle,
+        tiltY: -Math.cos(angle) * tiltAngle,
       })
     }
 
@@ -67,12 +69,13 @@ export default function RingFormation({ onCardSelect }: RingFormationProps) {
   }
 
   const handleCardClick = (index: number) => {
-    if (selectedCard !== null) return
-    setSelectedCard(index)
+    if (selectedCards.includes(index) || selectedCards.length >= maxCards) return
     onCardSelect(index)
   }
 
   const auraSize = dims.isMobile ? dims.ringRadius * 1.2 : dims.ringRadius * 1.4
+
+  const remainingCards = maxCards - selectedCards.length
 
   return (
     <motion.div
@@ -82,6 +85,7 @@ export default function RingFormation({ onCardSelect }: RingFormationProps) {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.8 }}
     >
+      {/* Outer aura ring */}
       <motion.div
         className="absolute rounded-full pointer-events-none"
         style={{
@@ -102,6 +106,7 @@ export default function RingFormation({ onCardSelect }: RingFormationProps) {
         }}
       />
 
+      {/* Inner ring border */}
       <motion.div
         className="absolute rounded-full pointer-events-none"
         style={{
@@ -122,6 +127,7 @@ export default function RingFormation({ onCardSelect }: RingFormationProps) {
         }}
       />
 
+      {/* Sacred geometry outer */}
       <motion.div
         className="absolute pointer-events-none"
         style={{
@@ -152,7 +158,6 @@ export default function RingFormation({ onCardSelect }: RingFormationProps) {
               </feMerge>
             </filter>
           </defs>
-
           <circle
             cx="100"
             cy="100"
@@ -162,10 +167,8 @@ export default function RingFormation({ onCardSelect }: RingFormationProps) {
             strokeWidth="0.5"
             filter="url(#glow)"
           />
-
           <circle cx="100" cy="100" r="70" fill="none" stroke="#73F2FF" strokeWidth="0.3" opacity="0.5" />
           <circle cx="100" cy="100" r="45" fill="none" stroke="#FF4FD8" strokeWidth="0.3" opacity="0.4" />
-
           <polygon
             points="100,20 130,60 170,60 140,90 150,140 100,110 50,140 60,90 30,60 70,60"
             fill="none"
@@ -174,7 +177,6 @@ export default function RingFormation({ onCardSelect }: RingFormationProps) {
             opacity="0.6"
             filter="url(#glow)"
           />
-
           <polygon
             points="100,40 112,75 150,75 120,95 130,130 100,110 70,130 80,95 50,75 88,75"
             fill="none"
@@ -185,6 +187,7 @@ export default function RingFormation({ onCardSelect }: RingFormationProps) {
         </svg>
       </motion.div>
 
+      {/* Sacred geometry inner */}
       <motion.div
         className="absolute pointer-events-none"
         style={{
@@ -206,6 +209,7 @@ export default function RingFormation({ onCardSelect }: RingFormationProps) {
         </svg>
       </motion.div>
 
+      {/* Card ring container */}
       <motion.div
         className="relative"
         style={{
@@ -237,156 +241,146 @@ export default function RingFormation({ onCardSelect }: RingFormationProps) {
         >
           {cards.map((pos, i) => {
             const isHovered = hoveredCard === i
-            const isSelected = selectedCard === i
+            const isSelected = selectedCards.includes(i)
 
             return (
-              <motion.div
-                key={i}
-                className="absolute cursor-pointer"
-                style={{
-                  width: dims.cardWidth,
-                  height: dims.cardHeight,
-                  left: "50%",
-                  top: "50%",
-                  transformOrigin: "center center",
-                }}
-                initial={{
-                  opacity: 0,
-                  scale: 0,
-                  x: 0,
-                  y: 0,
-                }}
-                animate={
-                  isSelected
-                    ? {
-                        x: -dims.cardWidth / 2,
-                        y: -dims.cardHeight / 2,
-                        scale: 0,
-                        opacity: 0,
-                        rotate: 0,
-                        rotateX: 0,
-                        rotateY: 0,
-                      }
-                    : {
-                        opacity: 1,
-                        scale: isHovered ? 1.15 : 1,
-                        x: pos.x - dims.cardWidth / 2,
-                        y: pos.y - dims.cardHeight / 2,
-                        rotate: pos.angle,
-                        rotateX: pos.tiltX,
-                        rotateY: pos.tiltY,
-                        z: isHovered ? 30 : 0,
-                      }
-                }
-                transition={{
-                  opacity: { duration: 0.6, delay: i * 0.04 },
-                  scale: { duration: 0.4, type: "spring", stiffness: 300 },
-                  x: { duration: 0.6, delay: i * 0.04 },
-                  y: { duration: 0.6, delay: i * 0.04 },
-                  rotate: { duration: 0.6, delay: i * 0.04 },
-                  z: { duration: 0.3 },
-                }}
-                whileHover={{
-                  y: pos.y - dims.cardHeight / 2 - 15,
-                  transition: { duration: 0.2 },
-                }}
-                onHoverStart={() => setHoveredCard(i)}
-                onHoverEnd={() => setHoveredCard(null)}
-                onTouchStart={(e) => {
-                  e.stopPropagation()
-                  setHoveredCard(i)
-                }}
-                onClick={() => handleCardClick(i)}
-              >
-                <motion.div
-                  className="w-full h-full rounded-lg overflow-hidden"
-                  style={{
-                    background: "linear-gradient(145deg, #1a0a2e 0%, #0d0618 50%, #150a25 100%)",
-                    border: `1.5px solid ${isHovered ? "#73F2FF" : "rgba(255,79,216,0.5)"}`,
-                    boxShadow: isHovered
-                      ? `0 0 25px rgba(115,242,255,0.7), 
-                         0 0 50px rgba(255,79,216,0.5), 
-                         0 0 80px rgba(115,242,255,0.3),
-                         inset 0 0 30px rgba(255,79,216,0.15)`
-                      : `0 0 15px rgba(255,79,216,0.3), 
-                         0 0 30px rgba(115,242,255,0.15),
-                         inset 0 0 15px rgba(255,79,216,0.1)`,
-                    transformStyle: "preserve-3d",
-                  }}
-                  animate={{
-                    boxShadow: isHovered
-                      ? `0 0 25px rgba(115,242,255,0.7), 
-                         0 0 50px rgba(255,79,216,0.5), 
-                         0 0 80px rgba(115,242,255,0.3),
-                         inset 0 0 30px rgba(255,79,216,0.15)`
-                      : `0 0 15px rgba(255,79,216,0.3), 
-                         0 0 30px rgba(115,242,255,0.15),
-                         inset 0 0 15px rgba(255,79,216,0.1)`,
-                  }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="w-full h-full flex items-center justify-center p-2">
-                    <div
-                      className="w-full h-full rounded border flex items-center justify-center"
-                      style={{
-                        borderColor: isHovered ? "rgba(115,242,255,0.5)" : "rgba(255,79,216,0.3)",
-                        background: "radial-gradient(ellipse at center, rgba(115,242,255,0.08) 0%, transparent 60%)",
-                      }}
-                    >
-                      <motion.div
-                        className="flex flex-col items-center gap-1"
-                        animate={{
-                          opacity: isHovered ? 1 : 0.6,
-                          scale: isHovered ? 1.1 : 1,
-                        }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <svg viewBox="0 0 100 100" className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 opacity-60">
-                          <defs>
-                            <linearGradient id={`ringCardBackGradient-${i}`} x1="0%" y1="0%" x2="100%" y2="100%">
-                              <stop offset="0%" stopColor="#FF4FD8" />
-                              <stop offset="100%" stopColor="#73F2FF" />
-                            </linearGradient>
-                          </defs>
-                          <circle
-                            cx="50"
-                            cy="50"
-                            r="45"
-                            fill="none"
-                            stroke={`url(#ringCardBackGradient-${i})`}
-                            strokeWidth="1"
-                          />
-                          <circle cx="50" cy="50" r="35" fill="none" stroke="#FF4FD8" strokeWidth="0.5" />
-                          <polygon
-                            points="50,10 61,40 95,40 68,58 79,90 50,70 21,90 32,58 5,40 39,40"
-                            fill="none"
-                            stroke={`url(#ringCardBackGradient-${i})`}
-                            strokeWidth="0.5"
-                          />
-                        </svg>
-                      </motion.div>
-                    </div>
-                  </div>
-                </motion.div>
-
-                {isHovered && (
+              <AnimatePresence key={i}>
+                {!isSelected && (
                   <motion.div
-                    className="absolute inset-0 rounded-lg pointer-events-none"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
+                    className="absolute cursor-pointer"
                     style={{
-                      background: "radial-gradient(ellipse at center, rgba(115,242,255,0.2) 0%, transparent 70%)",
-                      filter: "blur(10px)",
-                      transform: "scale(1.3)",
+                      width: dims.cardWidth,
+                      height: dims.cardHeight,
+                      left: "50%",
+                      top: "50%",
+                      transformOrigin: "center center",
                     }}
-                  />
+                    initial={{
+                      opacity: 0,
+                      scale: 0,
+                      x: 0,
+                      y: 0,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      scale: isHovered ? 1.15 : 1,
+                      x: pos.x - dims.cardWidth / 2,
+                      y: pos.y - dims.cardHeight / 2,
+                      rotate: pos.angle,
+                      rotateX: pos.tiltX,
+                      rotateY: pos.tiltY,
+                      z: isHovered ? 30 : 0,
+                    }}
+                    exit={{
+                      opacity: 0,
+                      scale: 0,
+                      x: 0,
+                      y: 0,
+                      transition: { duration: 0.5 },
+                    }}
+                    transition={{
+                      opacity: { duration: 0.6, delay: i * 0.04 },
+                      scale: { duration: 0.4, type: "spring", stiffness: 300 },
+                      x: { duration: 0.6, delay: i * 0.04 },
+                      y: { duration: 0.6, delay: i * 0.04 },
+                      rotate: { duration: 0.6, delay: i * 0.04 },
+                      z: { duration: 0.3 },
+                    }}
+                    whileHover={{
+                      y: pos.y - dims.cardHeight / 2 - 15,
+                      transition: { duration: 0.2 },
+                    }}
+                    onHoverStart={() => setHoveredCard(i)}
+                    onHoverEnd={() => setHoveredCard(null)}
+                    onTouchStart={(e) => {
+                      e.stopPropagation()
+                      setHoveredCard(i)
+                    }}
+                    onClick={() => handleCardClick(i)}
+                  >
+                    <motion.div
+                      className="w-full h-full rounded-lg overflow-hidden"
+                      style={{
+                        background: "linear-gradient(145deg, #1a0a2e 0%, #0d0618 50%, #150a25 100%)",
+                        border: `1.5px solid ${isHovered ? "#73F2FF" : "rgba(255,79,216,0.5)"}`,
+                        boxShadow: isHovered
+                          ? `0 0 25px rgba(115,242,255,0.7), 0 0 50px rgba(255,79,216,0.5), 0 0 80px rgba(115,242,255,0.3), inset 0 0 30px rgba(255,79,216,0.15)`
+                          : `0 0 15px rgba(255,79,216,0.3), 0 0 30px rgba(115,242,255,0.15), inset 0 0 15px rgba(255,79,216,0.1)`,
+                        transformStyle: "preserve-3d",
+                      }}
+                      animate={{
+                        boxShadow: isHovered
+                          ? `0 0 25px rgba(115,242,255,0.7), 0 0 50px rgba(255,79,216,0.5), 0 0 80px rgba(115,242,255,0.3), inset 0 0 30px rgba(255,79,216,0.15)`
+                          : `0 0 15px rgba(255,79,216,0.3), 0 0 30px rgba(115,242,255,0.15), inset 0 0 15px rgba(255,79,216,0.1)`,
+                      }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <div className="w-full h-full flex items-center justify-center p-2">
+                        <div
+                          className="w-full h-full rounded border flex items-center justify-center"
+                          style={{
+                            borderColor: isHovered ? "rgba(115,242,255,0.5)" : "rgba(255,79,216,0.3)",
+                            background:
+                              "radial-gradient(ellipse at center, rgba(115,242,255,0.08) 0%, transparent 60%)",
+                          }}
+                        >
+                          <motion.div
+                            className="flex flex-col items-center gap-1"
+                            animate={{
+                              opacity: isHovered ? 1 : 0.6,
+                              scale: isHovered ? 1.1 : 1,
+                            }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <svg viewBox="0 0 100 100" className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 opacity-60">
+                              <defs>
+                                <linearGradient id={`ringCardBackGradient-${i}`} x1="0%" y1="0%" x2="100%" y2="100%">
+                                  <stop offset="0%" stopColor="#FF4FD8" />
+                                  <stop offset="100%" stopColor="#73F2FF" />
+                                </linearGradient>
+                              </defs>
+                              <circle
+                                cx="50"
+                                cy="50"
+                                r="45"
+                                fill="none"
+                                stroke={`url(#ringCardBackGradient-${i})`}
+                                strokeWidth="1"
+                              />
+                              <circle cx="50" cy="50" r="35" fill="none" stroke="#FF4FD8" strokeWidth="0.5" />
+                              <polygon
+                                points="50,10 61,40 95,40 68,58 79,90 50,70 21,90 32,58 5,40 39,40"
+                                fill="none"
+                                stroke={`url(#ringCardBackGradient-${i})`}
+                                strokeWidth="0.5"
+                              />
+                            </svg>
+                          </motion.div>
+                        </div>
+                      </div>
+                    </motion.div>
+
+                    {isHovered && (
+                      <motion.div
+                        className="absolute inset-0 rounded-lg pointer-events-none"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        style={{
+                          background: "radial-gradient(ellipse at center, rgba(115,242,255,0.2) 0%, transparent 70%)",
+                          filter: "blur(10px)",
+                          transform: "scale(1.3)",
+                        }}
+                      />
+                    )}
+                  </motion.div>
                 )}
-              </motion.div>
+              </AnimatePresence>
             )
           })}
         </motion.div>
       </motion.div>
 
+      {/* Floating particles */}
       {[...Array(8)].map((_, i) => (
         <motion.div
           key={`particle-${i}`}
@@ -430,11 +424,11 @@ export default function RingFormation({ onCardSelect }: RingFormationProps) {
         <motion.p
           className="text-xs sm:text-sm tracking-[0.2em] uppercase"
           style={{
-            color: "rgba(115,242,255,0.8)",
+            color: "rgba(115,242,255,0.9)",
             textShadow: "0 0 20px rgba(115,242,255,0.5)",
           }}
           animate={{
-            opacity: [0.6, 1, 0.6],
+            opacity: [0.7, 1, 0.7],
           }}
           transition={{
             duration: 3,
@@ -442,7 +436,13 @@ export default function RingFormation({ onCardSelect }: RingFormationProps) {
             ease: "easeInOut",
           }}
         >
-          {dims.isMobile ? t.formation.touchHint : t.formation.hoverHint}
+          {remainingCards === 3
+            ? selectPrompt
+            : remainingCards === 2
+              ? t.threeCardSpread.cardsRemaining.two
+              : remainingCards === 1
+                ? t.threeCardSpread.cardsRemaining.one
+                : ""}
         </motion.p>
         <motion.p className="text-[10px] sm:text-xs mt-2 tracking-widest" style={{ color: "rgba(255,79,216,0.6)" }}>
           ✧ {t.formation.wheelOfFate} ✧

@@ -95,6 +95,21 @@ export interface Translations {
   language: {
     select: string
   }
+  // 3-card selection translations
+  threeCardSpread: {
+    selectPrompt: string
+    cardsRemaining: {
+      two: string
+      one: string
+    }
+    positions: {
+      past: string
+      present: string
+      future: string
+    }
+    summary: string
+    summaryPlaceholder: string
+  }
 }
 
 export const translations: Record<Locale, Translations> = {
@@ -229,6 +244,169 @@ export const translations: Record<Locale, Translations> = {
     language: {
       select: "Language",
     },
+    threeCardSpread: {
+      selectPrompt: "Choose 3 cards: Past, Present, Future",
+      cardsRemaining: {
+        two: "2 cards remaining",
+        one: "1 card remaining",
+      },
+      positions: {
+        past: "Past",
+        present: "Present",
+        future: "Future",
+      },
+      summary: "Summary & Advice",
+      summaryPlaceholder:
+        "The three cards together reveal a journey through your love life. Your past experiences have shaped who you are today, influencing your current romantic situation. As you move forward, trust your intuition and remain open to the possibilities that await. The energy of these cards suggests a period of growth and transformation in matters of the heart.",
+    },
+  },
+  ro: {
+    meta: {
+      title: "AI Love Tarot – Ghidare Sinceră pentru Inima Ta",
+      description:
+        "O experiență modernă de citire a tarotului cu AI pentru dragoste și relații. Reflectivă, împuternicitoare și concepută pentru utilizatorii europeni.",
+      ogTitle: "Citire Tarot AI pentru Dragoste Online",
+      ogDescription:
+        "Descoperă ghidare sinceră pentru inima ta cu tarotul nostru AI. Abordare modernă, psihologică a relațiilor.",
+    },
+    nav: {
+      home: "Acasă",
+      startReading: "Începe Citirea",
+      howItWorks: "Cum Funcționează",
+      about: "Despre",
+      faq: "Întrebări Frecvente",
+    },
+    hero: {
+      title: "AI Love Tarot",
+      subtitle: "Ghidare Sinceră pentru Inima Ta",
+      ctaStart: "Începe Citirea de Dragoste",
+      ctaHowItWorks: "Cum Funcționează",
+      deckNote: "Pachet de 20 cărți pentru dragoste • Se extinde la 78 cărți complete",
+    },
+    howItWorks: {
+      title: "Cum Funcționează",
+      subtitle: "O abordare modernă a tarotului pentru auto-reflecție",
+      steps: [
+        {
+          title: "Amestecă Cărțile",
+          description:
+            "Concentrează-te pe întrebarea ta de dragoste în timp ce cărțile se amestecă într-un ritual mistic 3D.",
+        },
+        {
+          title: "Alege Cartea Ta",
+          description: "Ai încredere în intuiția ta. Selectează cartea care te cheamă din inelul cosmic.",
+        },
+        {
+          title: "Primește Interpretarea AI",
+          description: "Obține o interpretare personalizată, fundamentată psihologic, a cărții tale.",
+        },
+        {
+          title: "Reflectează și Acționează",
+          description: "Folosește ghidarea ca o oglindă pentru auto-reflecție, nu ca predicție a destinului.",
+        },
+      ],
+    },
+    forEurope: {
+      title: "Conceput pentru Utilizatorii Europeni",
+      subtitle: "Cu atenție specială pentru contextul cultural românesc",
+      points: [
+        "Abordare modernă, psihologică a tarotului — fără superstiție",
+        "Focus pe auto-reflecție, comunicare și creștere emoțională",
+        "Suport localizat pentru utilizatorii români",
+        "Axat pe confidențialitate, fără pretenții de ghicit",
+      ],
+    },
+    sampleReading: {
+      title: "Exemplu de Citire de Dragoste",
+      subtitle: "Vezi ce perspective te așteaptă",
+      cardName: "Îndrăgostiții",
+      position: "Drept",
+      keywords: ["Conexiune Sufletească", "Armonie", "Alegere", "Legătură Profundă", "Uniune"],
+      meaning:
+        "Cartea Îndrăgostiților relevă un moment profund în călătoria ta romantică. Te afli la o răscruce unde inima și mintea ta caută aliniere.",
+      advice:
+        "Onorează atât inima cât și valorile tale în chestiunile de dragoste. Parteneriatul adevărat necesită exprimare autentică și respect reciproc.",
+    },
+    faq: {
+      title: "Întrebări Frecvente",
+      subtitle: "Întrebări comune despre AI Love Tarot",
+      items: [
+        {
+          question: "Este aceasta ghicit?",
+          answer:
+            "Nu. Folosim tarotul ca un instrument pentru auto-reflecție și insight psihologic, nu ca o modalitate de a prezice viitorul.",
+        },
+        {
+          question: "Cum funcționează interpretarea AI?",
+          answer:
+            "AI-ul nostru analizează semnificațiile tradiționale ale cărților de tarot printr-o lentilă modernă, psihologică.",
+        },
+        {
+          question: "De ce doar 20 de cărți?",
+          answer:
+            "Am curatoriat un pachet focusat de 20 de cărți pentru MVP. Extindem la pachetul complet de 78 de cărți în actualizările viitoare.",
+        },
+        {
+          question: "Este citirea mea privată?",
+          answer: "Da, complet. Nu stocăm citirile tale sau datele personale. Fiecare sesiune este privată și anonimă.",
+        },
+        {
+          question: "Este potrivit pentru utilizatorii religioși?",
+          answer:
+            "Abordăm tarotul ca un instrument psihologic pentru reflecție, nu ca o practică spirituală sau ocultă.",
+        },
+      ],
+    },
+    footer: {
+      tagline: "Tarot modern pentru inima modernă",
+      disclaimer: "Doar pentru divertisment și auto-reflecție. Nu înlocuiește sfatul profesional.",
+      links: {
+        privacy: "Politica de Confidențialitate",
+        terms: "Termeni și Condiții",
+        contact: "Contact",
+      },
+    },
+    tarot: {
+      title: "AI Love Tarot",
+      subtitle: "Descoperă Calea Inimii Tale",
+      startShuffle: "Începe Amestecarea",
+      selectCard: "Selectează o carte din inelul cosmic",
+      newReading: "Citire Nouă",
+      upright: "Drept",
+      reversed: "Inversat",
+      loveKeywords: "Cuvinte Cheie Dragoste",
+      currentSituation: "Situația Actuală de Dragoste",
+      futureTrend: "Tendința Viitoare",
+      guidance: "Ghidare",
+      quote: "Dragostea este podul dintre două suflete care caută să devină o singură lumină.",
+    },
+    shuffle: {
+      startButton: "Începe Amestecarea",
+    },
+    formation: {
+      hoverHint: "Alege cartea care îți cheamă sufletul",
+      touchHint: "Atinge cartea ta destinată",
+      wheelOfFate: "Roata Destinului așteaptă",
+    },
+    language: {
+      select: "Limbă",
+    },
+    // Romanian 3-card spread translations
+    threeCardSpread: {
+      selectPrompt: "Alege 3 cărți: Trecut, Prezent, Viitor",
+      cardsRemaining: {
+        two: "Mai sunt 2 cărți",
+        one: "Mai e 1 carte",
+      },
+      positions: {
+        past: "Trecut",
+        present: "Prezent",
+        future: "Viitor",
+      },
+      summary: "Rezumat și Sfaturi",
+      summaryPlaceholder:
+        "Cele trei cărți împreună relevă o călătorie prin viața ta de dragoste. Experiențele tale trecute au modelat cine ești astăzi, influențând situația ta romantică actuală. Pe măsură ce avansezi, ai încredere în intuiția ta și rămâi deschis la posibilitățile care te așteaptă.",
+    },
   },
   zh: {
     meta: {
@@ -351,6 +529,22 @@ export const translations: Record<Locale, Translations> = {
     },
     language: {
       select: "语言",
+    },
+    // Chinese 3-card spread translations
+    threeCardSpread: {
+      selectPrompt: "请选择三张卡：过去、现在、未来",
+      cardsRemaining: {
+        two: "还剩 2 张卡",
+        one: "还剩 1 张卡",
+      },
+      positions: {
+        past: "过去",
+        present: "现在",
+        future: "未来",
+      },
+      summary: "总结与建议",
+      summaryPlaceholder:
+        "这三张牌共同揭示了你爱情生活的旅程。你过去的经历塑造了今天的你，影响着你当前的浪漫状况。当你向前迈进时，相信你的直觉，对等待着你的可能性保持开放。这些牌的能量暗示着在心灵事务上的成长和转变时期。",
     },
   },
 }

@@ -3,43 +3,34 @@
 import { useState, useCallback } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import { useI18n } from "@/lib/i18n/context"
-import { getCardByIndex, isReversed, getCardReading, type TarotCard } from "@/lib/tarot/cards"
+import { getCardByIndex, isReversed } from "@/lib/tarot/cards"
 import MagicBackground from "./magic-background"
 import MagicCircle from "./magic-circle"
 import CardStack from "./card-stack"
 import ShufflePhase from "./shuffle-phase"
 import RingFormation from "./ring-formation"
-import SelectedCard from "./selected-card"
-import ReadingPanel from "./reading-panel"
+import ThreeCardSpread, { type SelectedCardData } from "./three-card-spread"
+import ThreeCardReadingPanel from "./three-card-reading-panel"
 import StartButton from "./start-button"
 import ParticleField from "./particle-field"
 import LanguageSwitcher from "./language-switcher"
 import { ArrowLeft } from "lucide-react"
 
-export type Phase = "idle" | "shuffling" | "formation" | "selected" | "reading"
-
-interface CardReading {
-  card: TarotCard
-  reversed: boolean
-  name: string
-  keywords: string[]
-  position: string
-  situation: string
-  future: string
-  advice: string
-  quote: string
-}
+export type Phase = "idle" | "shuffling" | "formation" | "selecting" | "reading"
 
 interface TarotSphereProps {
   onBack?: () => void
 }
 
+const MAX_CARDS = 3
+const POSITION_ORDER: ("past" | "present" | "future")[] = ["past", "present", "future"]
+
 export default function TarotSphere({ onBack }: TarotSphereProps) {
-  const { t, locale } = useI18n()
+  const { t } = useI18n()
   const [phase, setPhase] = useState<Phase>("idle")
-  const [selectedCardIndex, setSelectedCardIndex] = useState<number | null>(null)
-  const [isFlipped, setIsFlipped] = useState(false)
-  const [currentReading, setCurrentReading] = useState<CardReading | null>(null)
+  const [selectedCards, setSelectedCards] = useState<SelectedCardData[]>([])
+  const [selectedCardIndices, setSelectedCardIndices] = useState<number[]>([])
+  const [flippedCards, setFlippedCards] = useState<Set<number>>(new Set())
 
   const handleStartShuffle = useCallback(() => {
     setPhase("shuffling")
@@ -50,36 +41,52 @@ export default function TarotSphere({ onBack }: TarotSphereProps) {
 
   const handleCardSelect = useCallback(
     (index: number) => {
-      if (phase !== "formation") return
+      if (phase !== "formation" && phase !== "selecting") return
+      if (selectedCardIndices.includes(index)) return
+      if (selectedCards.length >= MAX_CARDS) return
 
       const card = getCardByIndex(index)
       const reversed = isReversed()
-      const reading = getCardReading(card, reversed, locale)
+      const position = POSITION_ORDER[selectedCards.length]
 
-      setSelectedCardIndex(index)
-      setCurrentReading({
+      const newCardData: SelectedCardData = {
         card,
         reversed,
-        ...reading,
-      })
-      setPhase("selected")
+        cardIndex: index,
+        position,
+      }
 
+      const newSelectedCards = [...selectedCards, newCardData]
+      const newSelectedIndices = [...selectedCardIndices, index]
+
+      setSelectedCards(newSelectedCards)
+      setSelectedCardIndices(newSelectedIndices)
+      setPhase("selecting")
+
+      // Flip card after fly-in animation
       setTimeout(() => {
-        setIsFlipped(true)
-        setTimeout(() => {
-          setPhase("reading")
-        }, 1500)
-      }, 1500)
+        setFlippedCards((prev) => new Set([...prev, index]))
+
+        // Check if all 3 cards are selected
+        if (newSelectedCards.length >= MAX_CARDS) {
+          setTimeout(() => {
+            setPhase("reading")
+          }, 1000)
+        }
+      }, 800)
     },
-    [phase, locale],
+    [phase, selectedCards, selectedCardIndices],
   )
 
   const handleReset = useCallback(() => {
     setPhase("idle")
-    setSelectedCardIndex(null)
-    setIsFlipped(false)
-    setCurrentReading(null)
+    setSelectedCards([])
+    setSelectedCardIndices([])
+    setFlippedCards(new Set())
   }, [])
+
+  const showRing = phase === "formation" || phase === "selecting"
+  const showSpread = phase === "selecting" || phase === "reading"
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
@@ -132,21 +139,29 @@ export default function TarotSphere({ onBack }: TarotSphereProps) {
       {/* Phase: Shuffling */}
       <AnimatePresence>{phase === "shuffling" && <ShufflePhase />}</AnimatePresence>
 
-      {/* Phase: Formation */}
+      {/* Phase: Formation & Selecting - Ring with cards disappearing as selected */}
       <AnimatePresence>
-        {phase === "formation" && <RingFormation onCardSelect={handleCardSelect} selectHint={t.tarot.selectCard} />}
+        {showRing && (
+          <RingFormation
+            onCardSelect={handleCardSelect}
+            selectedCards={selectedCardIndices}
+            maxCards={MAX_CARDS}
+            selectPrompt={t.threeCardSpread.selectPrompt}
+          />
+        )}
       </AnimatePresence>
 
-      {/* Phase: Selected Card */}
       <AnimatePresence>
-        {(phase === "selected" || phase === "reading") && selectedCardIndex !== null && (
-          <SelectedCard cardIndex={selectedCardIndex} isFlipped={isFlipped} />
+        {showSpread && selectedCards.length > 0 && (
+          <ThreeCardSpread selectedCards={selectedCards} flippedCards={flippedCards} />
         )}
       </AnimatePresence>
 
       {/* Phase: Reading Panel */}
       <AnimatePresence>
-        {phase === "reading" && currentReading && <ReadingPanel onReset={handleReset} reading={currentReading} />}
+        {phase === "reading" && selectedCards.length === MAX_CARDS && (
+          <ThreeCardReadingPanel selectedCards={selectedCards} onReset={handleReset} />
+        )}
       </AnimatePresence>
 
       {/* Title */}
