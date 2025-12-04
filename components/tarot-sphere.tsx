@@ -57,6 +57,7 @@ export default function TarotSphere({ onBack }: TarotSphereProps) {
       playSound("exit")
 
       const card = getCardByIndex(index)
+      if (!card) return
       const reversed = isReversed()
       const position = POSITION_ORDER[selectedCards.length]
 
@@ -149,10 +150,10 @@ export default function TarotSphere({ onBack }: TarotSphereProps) {
         {phase === "idle" && (
           <>
             <CardStack />
-            <div className="absolute bottom-32 sm:bottom-36 left-0 right-0 z-30">
+            <div className="absolute bottom-48 sm:bottom-56 left-0 right-0 z-30">
               <QuestionInput value={userQuestion} onChange={setUserQuestion} />
             </div>
-            <StartButton onStart={handleStartShuffle} label={t.tarot.startShuffle} />
+            <StartButton onStart={handleStartShuffle} />
           </>
         )}
       </AnimatePresence>
@@ -169,7 +170,7 @@ export default function TarotSphere({ onBack }: TarotSphereProps) {
               paddingBottom: dims.isMobile ? "40%" : dims.isTablet ? "38%" : "35%",
             }}
             animate={{
-              opacity: phase === "reading" ? 0.3 : 1,
+              opacity: 1,
             }}
             transition={{ duration: 0.8 }}
           >
