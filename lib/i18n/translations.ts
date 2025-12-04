@@ -127,6 +127,48 @@ export interface Translations {
     futureTitle: string
     advice: string
   }
+  readingResult: {
+    pageTitle: string
+    yourQuestion: string
+    overallEnergy: string
+    pastInsight: {
+      title: string
+      summary: string
+      deepDive: string
+    }
+    presentInsight: {
+      title: string
+      summary: string
+      dimensions: {
+        nurturing: string
+        conflict: string
+        growth: string
+      }
+    }
+    futureInsight: {
+      title: string
+      summary: string
+      opportunities: string
+      warnings: string
+    }
+    actionableAdvice: {
+      title: string
+      today: string
+      longTerm: string
+      healing: string
+    }
+    affirmation: {
+      title: string
+      message: string
+    }
+    share: {
+      title: string
+      saveReading: string
+      generateCard: string
+      shareToSocial: string
+    }
+    viewFullReading: string
+  }
 }
 
 export const translations: Record<Locale, Translations> = {
@@ -293,6 +335,48 @@ export const translations: Record<Locale, Translations> = {
       futureTitle: "Future Path",
       advice: "Guidance & Advice",
     },
+    readingResult: {
+      pageTitle: "Your Love Reading",
+      yourQuestion: "Your Question",
+      overallEnergy: "Overall Energy",
+      pastInsight: {
+        title: "Past Influences",
+        summary: "Summary",
+        deepDive: "Deep Dive",
+      },
+      presentInsight: {
+        title: "Present Situation",
+        summary: "Summary",
+        dimensions: {
+          nurturing: "Nurturing",
+          conflict: "Conflict",
+          growth: "Growth",
+        },
+      },
+      futureInsight: {
+        title: "Future Path",
+        summary: "Summary",
+        opportunities: "Opportunities",
+        warnings: "Gentle Warnings",
+      },
+      actionableAdvice: {
+        title: "What You Should Do Next",
+        today: "Today's Action",
+        longTerm: "Long-term Relationship",
+        healing: "Self-Healing",
+      },
+      affirmation: {
+        title: "Affirmation for You",
+        message: "You are worthy of deep and lasting love.",
+      },
+      share: {
+        title: "Share Your Reading",
+        saveReading: "Save Reading",
+        generateCard: "Generate Share Card",
+        shareToSocial: "Share to Social",
+      },
+      viewFullReading: "View Full Reading",
+    },
   },
   ro: {
     meta: {
@@ -457,6 +541,48 @@ export const translations: Record<Locale, Translations> = {
       futureTitle: "Calea Viitorului",
       advice: "Ghidare și Sfaturi",
     },
+    readingResult: {
+      pageTitle: "Citirea Ta de Dragoste",
+      yourQuestion: "Întrebarea Ta",
+      overallEnergy: "Energia Generală",
+      pastInsight: {
+        title: "Influențe din Trecut",
+        summary: "Rezumat",
+        deepDive: "Analiză Profundă",
+      },
+      presentInsight: {
+        title: "Situația Prezentă",
+        summary: "Rezumat",
+        dimensions: {
+          nurturing: "Hrănire",
+          conflict: "Conflict",
+          growth: "Creștere",
+        },
+      },
+      futureInsight: {
+        title: "Calea Viitorului",
+        summary: "Rezumat",
+        opportunities: "Oportunități",
+        warnings: "Avertismente Blânde",
+      },
+      actionableAdvice: {
+        title: "Ce Ar Trebui Să Faci În Continuare",
+        today: "Acțiunea de Azi",
+        longTerm: "Relație pe Termen Lung",
+        healing: "Auto-Vindecare",
+      },
+      affirmation: {
+        title: "Afirmație pentru Tine",
+        message: "Meriți o dragoste profundă și durabilă.",
+      },
+      share: {
+        title: "Împărtășește Citirea Ta",
+        saveReading: "Salvează Citirea",
+        generateCard: "Generează Card de Partajare",
+        shareToSocial: "Partajează pe Rețele Sociale",
+      },
+      viewFullReading: "Vezi Citirea Completă",
+    },
   },
   zh: {
     meta: {
@@ -611,6 +737,48 @@ export const translations: Record<Locale, Translations> = {
       presentTitle: "现在的状况",
       futureTitle: "未来的道路",
       advice: "指引与建议",
+    },
+    readingResult: {
+      pageTitle: "你的爱情解读",
+      yourQuestion: "你的提问",
+      overallEnergy: "整体能量",
+      pastInsight: {
+        title: "过去的影响",
+        summary: "概述",
+        deepDive: "深度解析",
+      },
+      presentInsight: {
+        title: "现在的状况",
+        summary: "概述",
+        dimensions: {
+          nurturing: "滋养",
+          conflict: "冲突",
+          growth: "成长",
+        },
+      },
+      futureInsight: {
+        title: "未来的道路",
+        summary: "概述",
+        opportunities: "机遇",
+        warnings: "温馨提醒",
+      },
+      actionableAdvice: {
+        title: "接下来你可以采取的行动",
+        today: "今日行动",
+        longTerm: "长期关系建议",
+        healing: "自我疗愈",
+      },
+      affirmation: {
+        title: "给你的肯定",
+        message: "你值得拥有深厚而持久的爱。",
+      },
+      share: {
+        title: "分享你的解读",
+        saveReading: "保存解读",
+        generateCard: "生成分享卡片",
+        shareToSocial: "分享到社交平台",
+      },
+      viewFullReading: "查看完整解读",
     },
   },
 }

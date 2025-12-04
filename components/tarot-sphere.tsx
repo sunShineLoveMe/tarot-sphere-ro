@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react"
 import { AnimatePresence, motion } from "framer-motion"
+import { useRouter } from "next/navigation"
 import { useI18n } from "@/lib/i18n/context"
 import { getCardByIndex, isReversed } from "@/lib/tarot/cards"
 import { useResponsiveDimensions } from "@/hooks/use-responsive-dimensions"
@@ -12,7 +13,6 @@ import CardStack from "./card-stack"
 import ShufflePhase from "./shuffle-phase"
 import RingFormation from "./ring-formation"
 import CardSlots, { type SelectedCardData } from "./card-slots"
-import ThreeCardReadingPanel from "./three-card-reading-panel"
 import StartButton from "./start-button"
 import ParticleField from "./particle-field"
 import LanguageSwitcher from "./language-switcher"
@@ -32,6 +32,7 @@ const POSITION_ORDER: ("past" | "present" | "future")[] = ["past", "present", "f
 
 export default function TarotSphere({ onBack }: TarotSphereProps) {
   const { t } = useI18n()
+  const router = useRouter()
   const dims = useResponsiveDimensions()
   const { playSound } = useSound()
   const [phase, setPhase] = useState<Phase>("idle")
@@ -83,15 +84,21 @@ export default function TarotSphere({ onBack }: TarotSphereProps) {
         if (newSelectedCards.length >= MAX_CARDS) {
           setTimeout(() => {
             setPhase("loading")
-            // Simulate AI processing time
             setTimeout(() => {
-              setPhase("reading")
-            }, 3000)
+              const cardsData = newSelectedCards.map((c) => ({
+                index: c.cardIndex,
+                reversed: c.reversed,
+                position: c.position,
+              }))
+              const cardsParam = encodeURIComponent(JSON.stringify(cardsData))
+              const questionParam = userQuestion ? `&question=${encodeURIComponent(userQuestion)}` : ""
+              router.push(`/reading-result?cards=${cardsParam}${questionParam}`)
+            }, 2000)
           }, 1200)
         }
       }, 1000)
     },
-    [phase, selectedCards, selectedCardIndices, playSound],
+    [phase, selectedCards, selectedCardIndices, playSound, router, userQuestion],
   )
 
   const handleReset = useCallback(() => {
@@ -103,7 +110,7 @@ export default function TarotSphere({ onBack }: TarotSphereProps) {
   }, [])
 
   const showRing = phase === "formation" || phase === "selecting"
-  const showSlots = phase === "formation" || phase === "selecting" || phase === "reading"
+  const showSlots = phase === "formation" || phase === "selecting"
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
@@ -114,10 +121,7 @@ export default function TarotSphere({ onBack }: TarotSphereProps) {
       <ParticleField intensity={phase === "shuffling" ? 2 : 1} />
 
       {/* Central Magic Circle */}
-      <MagicCircle
-        isActive={phase !== "idle"}
-        intensity={phase === "shuffling" ? "high" : phase === "reading" ? "elevated" : "normal"}
-      />
+      <MagicCircle isActive={phase !== "idle"} intensity={phase === "shuffling" ? "high" : "normal"} />
 
       <AnimatePresence>{phase === "loading" && <MysticalLoading isVisible={true} />}</AnimatePresence>
 
@@ -186,13 +190,6 @@ export default function TarotSphere({ onBack }: TarotSphereProps) {
 
       <AnimatePresence>
         {showSlots && <CardSlots selectedCards={selectedCards} flippedCards={flippedCards} />}
-      </AnimatePresence>
-
-      {/* Phase: Reading Panel */}
-      <AnimatePresence>
-        {phase === "reading" && selectedCards.length === MAX_CARDS && (
-          <ThreeCardReadingPanel selectedCards={selectedCards} onReset={handleReset} userQuestion={userQuestion} />
-        )}
       </AnimatePresence>
 
       {/* Title - positioned higher on mobile */}
