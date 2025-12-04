@@ -11,10 +11,10 @@ interface SoundManagerContextType {
 export type SoundType = "shuffle" | "flip" | "exit" | "loading"
 
 const SOUND_URLS: Record<SoundType, string> = {
-  shuffle: "https://assets.mixkit.co/sfx/preview/mixkit-shuffling-cards-2909.wav",
-  flip: "https://soundeffect-lab.info/sound/anime/mp3/bound-wood1.mp3",
-  exit: "https://soundeffect-lab.info/sound/anime/mp3/attention1.mp3",
-  loading: "https://assets.mixkit.co/sfx/preview/mixkit-mystic-choir-pad-2896.wav",
+  shuffle: "https://assets.mixkit.co/active_storage/sfx/2177/2177-preview.mp3",
+  flip: "https://assets.mixkit.co/active_storage/sfx/2073/2073-preview.mp3",
+  exit: "https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3",
+  loading: "https://assets.mixkit.co/active_storage/sfx/212/212-preview.mp3",
 }
 
 const SoundManagerContext = createContext<SoundManagerContextType | null>(null)
