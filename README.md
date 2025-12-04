@@ -222,7 +222,7 @@ interface Translations {
 
 #### 卡牌数据结构 | Card Data Structure
 
-\`\`\`tsx
+```tsx
 // lib/tarot/cards.ts
 export interface TarotCard {
   id: number
@@ -257,11 +257,11 @@ export const tarotCards: TarotCard[] = [
   },
   // 共20张精选爱情牌
 ]
-\`\`\`
+```
 
 #### 抽卡流程 | Drawing Flow
 
-\`\`\`tsx
+```tsx
 // TarotSphere 主组件
 const handleCardSelect = (index: number) => {
   // 1. 记录选中的卡牌索引
@@ -282,11 +282,11 @@ const handleCardSelect = (index: number) => {
 
 // 卡牌映射
 const selectedCard = tarotCards[selectedCardIndex % tarotCards.length]
-\`\`\`
+```
 
 #### 解读面板内容 | Reading Panel Content
 
-\`\`\`tsx
+```tsx
 // ReadingPanel 组件
 const { t, locale } = useI18n()
 const card = tarotCards[cardIndex]
@@ -314,7 +314,7 @@ return (
     <p>{card.advice[locale]}</p>
   </div>
 )
-\`\`\`
+```
 
 ---
 
@@ -322,7 +322,7 @@ return (
 
 #### 响应式尺寸 Hook | Responsive Dimensions Hook
 
-\`\`\`tsx
+```tsx
 // hooks/use-responsive-dimensions.ts
 export function useResponsiveDimensions() {
   const [dims, setDims] = useState({
@@ -359,7 +359,7 @@ export function useResponsiveDimensions() {
   
   return dims
 }
-\`\`\`
+```
 
 #### 断点设计 | Breakpoints
 
