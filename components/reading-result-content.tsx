@@ -38,15 +38,25 @@ function ReadingResultContent() {
   const [typewriterStep, setTypewriterStep] = useState(0)
 
   const cards = useMemo(() => {
-    const cardIds = searchParams.get("cards")?.split(",").map(Number) || [6, 10, 21]
-    const reversedStr = searchParams.get("reversed")?.split(",") || ["false", "false", "false"]
-    const positions: ("past" | "present" | "future")[] = ["past", "present", "future"]
-
-    return cardIds.map((id, index) => ({
-      card: majorArcana.find((c) => c.id === id) || majorArcana[0],
-      reversed: reversedStr[index] === "true",
-      position: positions[index],
-    }))
+    try {
+      const cardsParam = searchParams.get("cards")
+      if (cardsParam) {
+        const parsed = JSON.parse(cardsParam) as { index: number; reversed: boolean; position: "past" | "present" | "future" }[]
+        return parsed.map((item) => ({
+          card: majorArcana.find((c) => c.id === item.index) || majorArcana[0],
+          reversed: item.reversed,
+          position: item.position,
+        }))
+      }
+    } catch {
+      // Fallback for old URL format or parse errors
+    }
+    // Default fallback
+    return [
+      { card: majorArcana[6], reversed: false, position: "past" as const },
+      { card: majorArcana[10], reversed: false, position: "present" as const },
+      { card: majorArcana[21], reversed: false, position: "future" as const },
+    ]
   }, [searchParams])
 
   const question = searchParams.get("question") || ""
@@ -99,7 +109,8 @@ function ReadingResultContent() {
   })
 
   useEffect(() => {
-    playSoundRef.current("reveal")
+    // Sound effect on page load - using flip sound instead of reveal
+    playSoundRef.current("flip")
   }, [])
 
   const getCardName = (card: (typeof majorArcana)[0]) => {
@@ -181,10 +192,10 @@ function ReadingResultContent() {
               <div key={cardData.card.id} className="text-center">
                 <p className="text-xs uppercase tracking-wider text-[#73F2FF] mb-2">
                   {cardData.position === "past"
-                    ? t.threeCard.positions.past
+                    ? t.threeCardSpread.positions.past
                     : cardData.position === "present"
-                      ? t.threeCard.positions.present
-                      : t.threeCard.positions.future}
+                      ? t.threeCardSpread.positions.present
+                      : t.threeCardSpread.positions.future}
                 </p>
                 <motion.div
                   className="w-20 h-32 md:w-28 md:h-44 rounded-lg overflow-hidden relative"
@@ -325,7 +336,6 @@ function ReadingResultContent() {
                     title={t.readingResult.actionableAdvice.healing}
                     text="Practice self-compassion and release any past hurts that no longer serve you."
                     color="#A855F7"
-                    onComplete={handleStep5Complete}
                   />
                 </div>
               </motion.section>
