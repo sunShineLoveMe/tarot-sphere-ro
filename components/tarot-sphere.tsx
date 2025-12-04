@@ -4,12 +4,13 @@ import { useState, useCallback } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import { useI18n } from "@/lib/i18n/context"
 import { getCardByIndex, isReversed } from "@/lib/tarot/cards"
+import { useResponsiveDimensions } from "@/hooks/use-responsive-dimensions"
 import MagicBackground from "./magic-background"
 import MagicCircle from "./magic-circle"
 import CardStack from "./card-stack"
 import ShufflePhase from "./shuffle-phase"
 import RingFormation from "./ring-formation"
-import ThreeCardSpread, { type SelectedCardData } from "./three-card-spread"
+import CardSlots, { type SelectedCardData } from "./card-slots"
 import ThreeCardReadingPanel from "./three-card-reading-panel"
 import StartButton from "./start-button"
 import ParticleField from "./particle-field"
@@ -27,6 +28,7 @@ const POSITION_ORDER: ("past" | "present" | "future")[] = ["past", "present", "f
 
 export default function TarotSphere({ onBack }: TarotSphereProps) {
   const { t } = useI18n()
+  const dims = useResponsiveDimensions()
   const [phase, setPhase] = useState<Phase>("idle")
   const [selectedCards, setSelectedCards] = useState<SelectedCardData[]>([])
   const [selectedCardIndices, setSelectedCardIndices] = useState<number[]>([])
@@ -63,7 +65,6 @@ export default function TarotSphere({ onBack }: TarotSphereProps) {
       setSelectedCardIndices(newSelectedIndices)
       setPhase("selecting")
 
-      // Flip card after fly-in animation
       setTimeout(() => {
         setFlippedCards((prev) => new Set([...prev, index]))
 
@@ -71,9 +72,9 @@ export default function TarotSphere({ onBack }: TarotSphereProps) {
         if (newSelectedCards.length >= MAX_CARDS) {
           setTimeout(() => {
             setPhase("reading")
-          }, 1000)
+          }, 1200)
         }
-      }, 800)
+      }, 1000)
     },
     [phase, selectedCards, selectedCardIndices],
   )
@@ -86,7 +87,7 @@ export default function TarotSphere({ onBack }: TarotSphereProps) {
   }, [])
 
   const showRing = phase === "formation" || phase === "selecting"
-  const showSpread = phase === "selecting" || phase === "reading"
+  const showSlots = phase === "formation" || phase === "selecting" || phase === "reading"
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
@@ -139,22 +140,31 @@ export default function TarotSphere({ onBack }: TarotSphereProps) {
       {/* Phase: Shuffling */}
       <AnimatePresence>{phase === "shuffling" && <ShufflePhase />}</AnimatePresence>
 
-      {/* Phase: Formation & Selecting - Ring with cards disappearing as selected */}
+      {/* Phase: Formation & Selecting - Ring positioned higher on mobile */}
       <AnimatePresence>
         {showRing && (
-          <RingFormation
-            onCardSelect={handleCardSelect}
-            selectedCards={selectedCardIndices}
-            maxCards={MAX_CARDS}
-            selectPrompt={t.threeCardSpread.selectPrompt}
-          />
+          <motion.div
+            className="absolute inset-0"
+            style={{
+              paddingBottom: dims.isMobile ? "40%" : dims.isTablet ? "38%" : "35%",
+            }}
+            animate={{
+              opacity: phase === "reading" ? 0.3 : 1,
+            }}
+            transition={{ duration: 0.8 }}
+          >
+            <RingFormation
+              onCardSelect={handleCardSelect}
+              selectedCards={selectedCardIndices}
+              maxCards={MAX_CARDS}
+              selectPrompt={t.threeCardSpread.selectPrompt}
+            />
+          </motion.div>
         )}
       </AnimatePresence>
 
       <AnimatePresence>
-        {showSpread && selectedCards.length > 0 && (
-          <ThreeCardSpread selectedCards={selectedCards} flippedCards={flippedCards} />
-        )}
+        {showSlots && <CardSlots selectedCards={selectedCards} flippedCards={flippedCards} />}
       </AnimatePresence>
 
       {/* Phase: Reading Panel */}
@@ -164,12 +174,17 @@ export default function TarotSphere({ onBack }: TarotSphereProps) {
         )}
       </AnimatePresence>
 
-      {/* Title */}
-      <div className="absolute top-8 left-1/2 -translate-x-1/2 z-40 text-center pointer-events-none">
-        <h1 className="text-3xl md:text-4xl font-semibold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-[#FF4FD8] via-[#73F2FF] to-[#FF4FD8] drop-shadow-[0_0_30px_rgba(255,79,216,0.5)]">
+      {/* Title - positioned higher on mobile */}
+      <div
+        className="absolute left-1/2 -translate-x-1/2 z-40 text-center pointer-events-none"
+        style={{
+          top: dims.isMobile ? 60 : dims.isTablet ? 32 : 32,
+        }}
+      >
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-[#FF4FD8] via-[#73F2FF] to-[#FF4FD8] drop-shadow-[0_0_30px_rgba(255,79,216,0.5)]">
           {t.tarot.title}
         </h1>
-        <p className="text-sm text-[#73F2FF]/70 mt-2 tracking-widest uppercase">{t.tarot.subtitle}</p>
+        <p className="text-xs sm:text-sm text-[#73F2FF]/70 mt-1 tracking-widest uppercase">{t.tarot.subtitle}</p>
       </div>
     </div>
   )

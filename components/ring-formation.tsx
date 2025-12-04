@@ -22,6 +22,15 @@ export default function RingFormation({ onCardSelect, selectedCards, maxCards, s
   const dims = useResponsiveDimensions()
   const { t } = useI18n()
 
+  const ringRadius = dims.isMobile
+    ? Math.min(dims.width, dims.height * 0.55) * 0.38
+    : dims.isTablet
+      ? dims.ringRadius * 0.85
+      : dims.ringRadius
+
+  const cardWidth = dims.isMobile ? dims.cardWidth * 0.7 : dims.cardWidth * 0.85
+  const cardHeight = dims.isMobile ? dims.cardHeight * 0.7 : dims.cardHeight * 0.85
+
   const cards = useMemo(() => {
     const numCards = 22
     const positions: {
@@ -37,8 +46,8 @@ export default function RingFormation({ onCardSelect, selectedCards, maxCards, s
       const tiltAngle = 15
 
       positions.push({
-        x: Math.cos(angle) * dims.ringRadius,
-        y: Math.sin(angle) * dims.ringRadius,
+        x: Math.cos(angle) * ringRadius,
+        y: Math.sin(angle) * ringRadius,
         angle: (angle * 180) / Math.PI + 90,
         tiltX: Math.sin(angle) * tiltAngle,
         tiltY: -Math.cos(angle) * tiltAngle,
@@ -46,7 +55,7 @@ export default function RingFormation({ onCardSelect, selectedCards, maxCards, s
     }
 
     return positions
-  }, [dims.ringRadius])
+  }, [ringRadius])
 
   const handleTouchStart = (e: React.TouchEvent) => {
     if (e.touches.length === 1) {
@@ -73,7 +82,7 @@ export default function RingFormation({ onCardSelect, selectedCards, maxCards, s
     onCardSelect(index)
   }
 
-  const auraSize = dims.isMobile ? dims.ringRadius * 1.2 : dims.ringRadius * 1.4
+  const auraSize = dims.isMobile ? ringRadius * 1.1 : ringRadius * 1.4
 
   const remainingCards = maxCards - selectedCards.length
 
@@ -89,8 +98,8 @@ export default function RingFormation({ onCardSelect, selectedCards, maxCards, s
       <motion.div
         className="absolute rounded-full pointer-events-none"
         style={{
-          width: dims.ringRadius * 2.4,
-          height: dims.ringRadius * 2.4,
+          width: ringRadius * 2.4,
+          height: ringRadius * 2.4,
           background:
             "radial-gradient(circle, transparent 40%, rgba(255,79,216,0.1) 60%, rgba(115,242,255,0.15) 80%, transparent 100%)",
           boxShadow: "0 0 80px 20px rgba(255,79,216,0.15), 0 0 120px 40px rgba(115,242,255,0.1)",
@@ -110,8 +119,8 @@ export default function RingFormation({ onCardSelect, selectedCards, maxCards, s
       <motion.div
         className="absolute rounded-full pointer-events-none"
         style={{
-          width: dims.ringRadius * 2,
-          height: dims.ringRadius * 2,
+          width: ringRadius * 2,
+          height: ringRadius * 2,
           border: "1px solid rgba(115,242,255,0.3)",
           boxShadow: "inset 0 0 60px rgba(255,79,216,0.2), 0 0 40px rgba(115,242,255,0.15)",
         }}
@@ -177,13 +186,6 @@ export default function RingFormation({ onCardSelect, selectedCards, maxCards, s
             opacity="0.6"
             filter="url(#glow)"
           />
-          <polygon
-            points="100,40 112,75 150,75 120,95 130,130 100,110 70,130 80,95 50,75 88,75"
-            fill="none"
-            stroke="#73F2FF"
-            strokeWidth="0.3"
-            opacity="0.4"
-          />
         </svg>
       </motion.div>
 
@@ -213,8 +215,8 @@ export default function RingFormation({ onCardSelect, selectedCards, maxCards, s
       <motion.div
         className="relative"
         style={{
-          width: dims.ringRadius * 2.2,
-          height: dims.ringRadius * 2.2,
+          width: ringRadius * 2.2,
+          height: ringRadius * 2.2,
         }}
         animate={{
           scale: [1, 1.03, 1],
@@ -249,8 +251,8 @@ export default function RingFormation({ onCardSelect, selectedCards, maxCards, s
                   <motion.div
                     className="absolute cursor-pointer"
                     style={{
-                      width: dims.cardWidth,
-                      height: dims.cardHeight,
+                      width: cardWidth,
+                      height: cardHeight,
                       left: "50%",
                       top: "50%",
                       transformOrigin: "center center",
@@ -264,8 +266,8 @@ export default function RingFormation({ onCardSelect, selectedCards, maxCards, s
                     animate={{
                       opacity: 1,
                       scale: isHovered ? 1.15 : 1,
-                      x: pos.x - dims.cardWidth / 2,
-                      y: pos.y - dims.cardHeight / 2,
+                      x: pos.x - cardWidth / 2,
+                      y: pos.y - cardHeight / 2,
                       rotate: pos.angle,
                       rotateX: pos.tiltX,
                       rotateY: pos.tiltY,
@@ -273,10 +275,8 @@ export default function RingFormation({ onCardSelect, selectedCards, maxCards, s
                     }}
                     exit={{
                       opacity: 0,
-                      scale: 0,
-                      x: 0,
-                      y: 0,
-                      transition: { duration: 0.5 },
+                      scale: 0.5,
+                      transition: { duration: 0.4 },
                     }}
                     transition={{
                       opacity: { duration: 0.6, delay: i * 0.04 },
@@ -287,7 +287,7 @@ export default function RingFormation({ onCardSelect, selectedCards, maxCards, s
                       z: { duration: 0.3 },
                     }}
                     whileHover={{
-                      y: pos.y - dims.cardHeight / 2 - 15,
+                      y: pos.y - cardHeight / 2 - 10,
                       transition: { duration: 0.2 },
                     }}
                     onHoverStart={() => setHoveredCard(i)}
@@ -315,7 +315,7 @@ export default function RingFormation({ onCardSelect, selectedCards, maxCards, s
                       }}
                       transition={{ duration: 0.3 }}
                     >
-                      <div className="w-full h-full flex items-center justify-center p-2">
+                      <div className="w-full h-full flex items-center justify-center p-1.5 sm:p-2">
                         <div
                           className="w-full h-full rounded border flex items-center justify-center"
                           style={{
@@ -332,7 +332,7 @@ export default function RingFormation({ onCardSelect, selectedCards, maxCards, s
                             }}
                             transition={{ duration: 0.3 }}
                           >
-                            <svg viewBox="0 0 100 100" className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 opacity-60">
+                            <svg viewBox="0 0 100 100" className="w-8 h-8 sm:w-12 sm:h-12 md:w-14 md:h-14 opacity-60">
                               <defs>
                                 <linearGradient id={`ringCardBackGradient-${i}`} x1="0%" y1="0%" x2="100%" y2="100%">
                                   <stop offset="0%" stopColor="#FF4FD8" />
@@ -381,26 +381,26 @@ export default function RingFormation({ onCardSelect, selectedCards, maxCards, s
       </motion.div>
 
       {/* Floating particles */}
-      {[...Array(8)].map((_, i) => (
+      {[...Array(6)].map((_, i) => (
         <motion.div
           key={`particle-${i}`}
           className="absolute rounded-full pointer-events-none"
           style={{
-            width: 4,
-            height: 4,
+            width: 3,
+            height: 3,
             background: i % 2 === 0 ? "#FF4FD8" : "#73F2FF",
-            boxShadow: `0 0 10px ${i % 2 === 0 ? "#FF4FD8" : "#73F2FF"}`,
+            boxShadow: `0 0 8px ${i % 2 === 0 ? "#FF4FD8" : "#73F2FF"}`,
             left: "50%",
             top: "50%",
           }}
           animate={{
             x: [
-              Math.cos((i / 8) * Math.PI * 2) * (dims.ringRadius * 1.3),
-              Math.cos((i / 8) * Math.PI * 2 + Math.PI * 2) * (dims.ringRadius * 1.3),
+              Math.cos((i / 6) * Math.PI * 2) * (ringRadius * 1.2),
+              Math.cos((i / 6) * Math.PI * 2 + Math.PI * 2) * (ringRadius * 1.2),
             ],
             y: [
-              Math.sin((i / 8) * Math.PI * 2) * (dims.ringRadius * 1.3),
-              Math.sin((i / 8) * Math.PI * 2 + Math.PI * 2) * (dims.ringRadius * 1.3),
+              Math.sin((i / 6) * Math.PI * 2) * (ringRadius * 1.2),
+              Math.sin((i / 6) * Math.PI * 2 + Math.PI * 2) * (ringRadius * 1.2),
             ],
             opacity: [0.3, 0.8, 0.3],
             scale: [0.8, 1.2, 0.8],
@@ -416,13 +416,13 @@ export default function RingFormation({ onCardSelect, selectedCards, maxCards, s
 
       <motion.div
         className="absolute left-1/2 -translate-x-1/2 text-center px-4"
-        style={{ bottom: dims.isMobile ? dims.spacing.lg : dims.spacing.lg * 1.5 }}
+        style={{ top: dims.isMobile ? "8%" : "12%" }}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.5, duration: 0.8 }}
       >
         <motion.p
-          className="text-xs sm:text-sm tracking-[0.2em] uppercase"
+          className="text-[11px] sm:text-sm tracking-[0.15em] uppercase"
           style={{
             color: "rgba(115,242,255,0.9)",
             textShadow: "0 0 20px rgba(115,242,255,0.5)",
@@ -444,7 +444,7 @@ export default function RingFormation({ onCardSelect, selectedCards, maxCards, s
                 ? t.threeCardSpread.cardsRemaining.one
                 : ""}
         </motion.p>
-        <motion.p className="text-[10px] sm:text-xs mt-2 tracking-widest" style={{ color: "rgba(255,79,216,0.6)" }}>
+        <motion.p className="text-[9px] sm:text-xs mt-1 tracking-widest" style={{ color: "rgba(255,79,216,0.6)" }}>
           ✧ {t.formation.wheelOfFate} ✧
         </motion.p>
       </motion.div>

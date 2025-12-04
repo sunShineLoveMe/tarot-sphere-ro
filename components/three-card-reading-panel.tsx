@@ -30,68 +30,52 @@ export default function ThreeCardReadingPanel({ selectedCards, onReset }: ThreeC
 
   const positionOrder: ("past" | "present" | "future")[] = ["past", "present", "future"]
 
-  const panelVariants = dims.isMobile
-    ? {
-        initial: { y: "100%", opacity: 0 },
-        animate: { y: 0, opacity: 1 },
-        exit: { y: "100%", opacity: 0 },
-      }
-    : {
-        initial: { y: 100, opacity: 0 },
-        animate: { y: 0, opacity: 1 },
-        exit: { y: 100, opacity: 0 },
-      }
+  const bottomOffset = dims.isMobile ? "42%" : dims.isTablet ? "40%" : "38%"
 
   return (
     <motion.div
-      className={`absolute z-40 ${
-        dims.isMobile ? "inset-x-0 bottom-0" : "inset-x-4 md:inset-x-8 bottom-4 md:bottom-8"
-      }`}
+      className="absolute z-35 left-0 right-0"
+      style={{
+        bottom: bottomOffset,
+        top: dims.isMobile ? 80 : 100,
+      }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
       <motion.div
-        className={`overflow-hidden ${
-          dims.isMobile ? "w-full rounded-t-2xl max-h-[60vh]" : "w-full max-w-5xl mx-auto rounded-2xl max-h-[50vh]"
-        }`}
-        {...panelVariants}
-        transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.5 }}
+        className="h-full mx-2 sm:mx-4 md:mx-8 rounded-2xl overflow-hidden"
+        initial={{ y: 50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: 50, opacity: 0 }}
+        transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.3 }}
         style={{
-          background: "linear-gradient(135deg, rgba(26,10,46,0.95) 0%, rgba(15,10,32,0.98) 100%)",
+          background: "linear-gradient(135deg, rgba(26,10,46,0.92) 0%, rgba(15,10,32,0.95) 100%)",
           border: "1px solid rgba(255,79,216,0.3)",
           boxShadow: `
-            0 0 40px rgba(255,79,216,0.2),
-            0 0 80px rgba(115,242,255,0.1),
+            0 0 40px rgba(255,79,216,0.15),
+            0 0 80px rgba(115,242,255,0.08),
             inset 0 1px 0 rgba(255,255,255,0.1)
           `,
-          backdropFilter: "blur(20px)",
+          backdropFilter: "blur(16px)",
         }}
       >
         {/* Decorative top glow */}
         <div
-          className="absolute top-0 left-0 right-0 h-1"
+          className="absolute top-0 left-0 right-0 h-[2px]"
           style={{
-            background: "linear-gradient(90deg, #FF4FD8, #73F2FF, #FF4FD8)",
+            background: "linear-gradient(90deg, transparent, #FF4FD8, #73F2FF, #FF4FD8, transparent)",
           }}
         />
-
-        {dims.isMobile && (
-          <div className="flex justify-center pt-3">
-            <div className="w-12 h-1 rounded-full bg-[#73F2FF]/30" />
-          </div>
-        )}
 
         <div
           className="h-full overflow-y-auto"
           style={{
-            padding: dims.isMobile
-              ? `${dims.spacing.md}px ${dims.spacing.md}px ${dims.spacing.lg}px`
-              : `${dims.spacing.lg}px`,
+            padding: dims.isMobile ? "12px" : dims.isTablet ? "16px" : "20px",
           }}
         >
-          {/* Three Card Readings */}
-          <div className={`grid gap-4 mb-6 ${dims.isMobile ? "grid-cols-1" : "grid-cols-3"}`}>
+          {/* Three Card Readings - horizontal on larger screens */}
+          <div className={`grid gap-3 mb-4 ${dims.isMobile ? "grid-cols-1" : "grid-cols-3"}`}>
             {positionOrder.map((position, index) => {
               const cardData = selectedCards.find((c) => c.position === position)
               if (!cardData) return null
@@ -101,21 +85,21 @@ export default function ThreeCardReadingPanel({ selectedCards, onReset }: ThreeC
               return (
                 <motion.div
                   key={position}
-                  className="rounded-xl p-3 sm:p-4"
+                  className="rounded-xl p-2.5 sm:p-3"
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.6 + index * 0.15 }}
+                  transition={{ delay: 0.4 + index * 0.12 }}
                   style={{
-                    background: "rgba(115,242,255,0.05)",
-                    border: "1px solid rgba(115,242,255,0.2)",
+                    background: "rgba(115,242,255,0.04)",
+                    border: "1px solid rgba(115,242,255,0.15)",
                   }}
                 >
                   {/* Position Title */}
-                  <div className="flex items-center gap-2 mb-3">
+                  <div className="flex items-center gap-2 mb-2">
                     <span
-                      className="px-2 py-0.5 rounded text-xs font-medium tracking-wider uppercase"
+                      className="px-2 py-0.5 rounded text-[10px] sm:text-xs font-medium tracking-wider uppercase"
                       style={{
-                        background: "rgba(255,79,216,0.2)",
+                        background: "rgba(255,79,216,0.15)",
                         color: "#FF4FD8",
                       }}
                     >
@@ -124,22 +108,22 @@ export default function ThreeCardReadingPanel({ selectedCards, onReset }: ThreeC
                   </div>
 
                   {/* Card Name */}
-                  <h3 className="text-base sm:text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#FF4FD8] to-[#73F2FF] mb-2">
+                  <h3 className="text-sm sm:text-base font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#FF4FD8] to-[#73F2FF] mb-1.5">
                     {reading.name}
-                    <span className="ml-2 text-xs font-normal text-[#73F2FF]/70">
+                    <span className="ml-2 text-[10px] sm:text-xs font-normal text-[#73F2FF]/60">
                       ({cardData.reversed ? t.tarot.reversed : t.tarot.upright})
                     </span>
                   </h3>
 
                   {/* Keywords */}
-                  <div className="flex flex-wrap gap-1 mb-3">
+                  <div className="flex flex-wrap gap-1 mb-2">
                     {reading.keywords.slice(0, 3).map((keyword) => (
                       <span
                         key={keyword}
-                        className="px-2 py-0.5 rounded-full text-[10px] sm:text-xs text-[#73F2FF]"
+                        className="px-1.5 py-0.5 rounded-full text-[9px] sm:text-[10px] text-[#73F2FF]"
                         style={{
-                          background: "rgba(115,242,255,0.1)",
-                          border: "1px solid rgba(115,242,255,0.2)",
+                          background: "rgba(115,242,255,0.08)",
+                          border: "1px solid rgba(115,242,255,0.15)",
                         }}
                       >
                         {keyword}
@@ -148,7 +132,9 @@ export default function ThreeCardReadingPanel({ selectedCards, onReset }: ThreeC
                   </div>
 
                   {/* Interpretation */}
-                  <p className="text-foreground/70 text-xs sm:text-sm leading-relaxed">{reading.situation}</p>
+                  <p className="text-foreground/65 text-[11px] sm:text-xs leading-relaxed line-clamp-3">
+                    {reading.situation}
+                  </p>
                 </motion.div>
               )
             })}
@@ -156,50 +142,50 @@ export default function ThreeCardReadingPanel({ selectedCards, onReset }: ThreeC
 
           {/* Divider */}
           <motion.div
-            className="w-full h-px my-4"
+            className="w-full h-px my-3"
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
-            transition={{ delay: 1.1 }}
+            transition={{ delay: 0.8 }}
             style={{
               background:
-                "linear-gradient(90deg, transparent, rgba(255,79,216,0.5), rgba(115,242,255,0.5), transparent)",
+                "linear-gradient(90deg, transparent, rgba(255,79,216,0.4), rgba(115,242,255,0.4), transparent)",
             }}
           />
 
           {/* Summary Section */}
           <motion.div
-            className="mb-4 p-3 sm:p-4 rounded-xl"
+            className="mb-3 p-2.5 sm:p-3 rounded-xl"
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 1.2 }}
+            transition={{ delay: 0.9 }}
             style={{
-              background: "linear-gradient(135deg, rgba(255,79,216,0.1) 0%, rgba(115,242,255,0.1) 100%)",
-              border: "1px solid rgba(255,79,216,0.2)",
+              background: "linear-gradient(135deg, rgba(255,79,216,0.08) 0%, rgba(115,242,255,0.08) 100%)",
+              border: "1px solid rgba(255,79,216,0.15)",
             }}
           >
-            <h3 className="text-[#FF4FD8] text-xs sm:text-sm tracking-wider uppercase mb-2">
+            <h3 className="text-[#FF4FD8] text-[10px] sm:text-xs tracking-wider uppercase mb-1.5">
               {t.threeCardSpread.summary}
             </h3>
-            <p className="text-foreground/80 text-xs sm:text-sm leading-relaxed">
+            <p className="text-foreground/70 text-[11px] sm:text-xs leading-relaxed">
               {t.threeCardSpread.summaryPlaceholder}
             </p>
           </motion.div>
 
           {/* Reset Button */}
           <motion.div
-            className="text-center pb-4"
+            className="text-center"
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 1.4 }}
+            transition={{ delay: 1.1 }}
           >
             <motion.button
               onClick={onReset}
-              className="px-6 sm:px-8 py-2 sm:py-3 rounded-full font-medium tracking-wider text-sm sm:text-base"
+              className="px-5 sm:px-6 py-2 rounded-full font-medium tracking-wider text-xs sm:text-sm"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               style={{
-                background: "linear-gradient(135deg, rgba(255,79,216,0.2) 0%, rgba(115,242,255,0.2) 100%)",
-                border: "1px solid rgba(255,79,216,0.4)",
+                background: "linear-gradient(135deg, rgba(255,79,216,0.15) 0%, rgba(115,242,255,0.15) 100%)",
+                border: "1px solid rgba(255,79,216,0.3)",
                 color: "#FF4FD8",
               }}
             >
