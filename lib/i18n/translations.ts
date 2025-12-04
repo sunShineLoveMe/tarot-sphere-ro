@@ -163,9 +163,16 @@ export interface Translations {
     }
     share: {
       title: string
-      saveReading: string
-      generateCard: string
-      shareToSocial: string
+      whatsapp: string
+      facebook: string
+      tiktok: string
+      downloadCard: string
+      tiktokModal: {
+        title: string
+        description: string
+        copyButton: string
+        copied: string
+      }
     }
     viewFullReading: string
   }
@@ -371,9 +378,16 @@ export const translations: Record<Locale, Translations> = {
       },
       share: {
         title: "Share Your Reading",
-        saveReading: "Save Reading",
-        generateCard: "Generate Share Card",
-        shareToSocial: "Share to Social",
+        whatsapp: "Share to WhatsApp",
+        facebook: "Share to Facebook",
+        tiktok: "Share to TikTok",
+        downloadCard: "Download Share Card",
+        tiktokModal: {
+          title: "Share to TikTok",
+          description: "Copy your reading summary and paste it into TikTok along with your video or post.",
+          copyButton: "Copy Summary",
+          copied: "Copied!",
+        },
       },
       viewFullReading: "View Full Reading",
     },
@@ -577,9 +591,16 @@ export const translations: Record<Locale, Translations> = {
       },
       share: {
         title: "Împărtășește Citirea Ta",
-        saveReading: "Salvează Citirea",
-        generateCard: "Generează Card de Partajare",
-        shareToSocial: "Partajează pe Rețele Sociale",
+        whatsapp: "Trimite pe WhatsApp",
+        facebook: "Distribuie pe Facebook",
+        tiktok: "Partajează pe TikTok",
+        downloadCard: "Descarcă Cardul",
+        tiktokModal: {
+          title: "Partajează pe TikTok",
+          description: "Copiază rezumatul citirii și lipește-l în TikTok împreună cu videoclipul sau postarea ta.",
+          copyButton: "Copiază Rezumatul",
+          copied: "Copiat!",
+        },
       },
       viewFullReading: "Vezi Citirea Completă",
     },
@@ -774,9 +795,16 @@ export const translations: Record<Locale, Translations> = {
       },
       share: {
         title: "分享你的解读",
-        saveReading: "保存解读",
-        generateCard: "生成分享卡片",
-        shareToSocial: "分享到社交平台",
+        whatsapp: "分享到 WhatsApp",
+        facebook: "分享到 Facebook",
+        tiktok: "分享到 TikTok",
+        downloadCard: "下载分享卡片",
+        tiktokModal: {
+          title: "分享到 TikTok",
+          description: "复制你的解读摘要，粘贴到 TikTok 视频或帖子中。",
+          copyButton: "复制摘要",
+          copied: "已复制！",
+        },
       },
       viewFullReading: "查看完整解读",
     },
