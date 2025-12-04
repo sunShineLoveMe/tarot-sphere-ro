@@ -10,12 +10,10 @@ An immersive, ritual-style AI Love Tarot divination web application that combine
 
 ### v1.4.0 - 2025-12-04
 - **阅读结果页面路由**: 选完3张牌后跳转至独立的 `/reading-result` 页面，通过 URL 参数传递卡牌数据和用户问题
-- **卡牌数据解析修复**: 修复 URL 参数中 JSON 格式卡牌数据的解析逻辑，解决页面显示5张重复卡片的问题
-- **社交分享按钮**: 修复分享按钮不显示问题，支持 WhatsApp、Facebook、TikTok 分享及下载分享卡片
-- **i18n 修复**: 修复 `StartButton`、`RingFormation` 和 `ReadingResultContent` 组件中翻译函数的错误用法
+- **i18n 修复**: 修复 `StartButton` 和 `RingFormation` 组件中翻译函数 `t` 的错误用法
 - **布局优化**: 调整首页卡牌堆、问题输入框、开始按钮的垂直间距，避免元素重叠
-- **音效系统修复**: 替换被屏蔽的音效 URL，使用 Mixkit CDN 提供的免费音效资源；修复无效音效类型
-- **代码质量**: 修复 TypeScript 类型错误，移除无效代码检查；安装缺失的 `html-to-image` 依赖
+- **音效系统修复**: 替换被屏蔽的音效 URL，使用 Mixkit CDN 提供的免费音效资源
+- **代码质量**: 修复 TypeScript 类型错误，移除无效代码检查
 
 ### v1.3.0 - 2025-12-03
 - **国际化系统 (i18n)**: 添加完整的中英文双语支持，使用 React Context 实现语言切换

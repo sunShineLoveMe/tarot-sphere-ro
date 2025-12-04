@@ -5,6 +5,7 @@ import { useI18n } from "@/lib/i18n/context"
 import LanguageSwitcher from "./language-switcher"
 import MagicBackground from "./magic-background"
 import { Sparkles, ArrowRight, Shield, Heart, Brain, Globe } from "lucide-react"
+import Link from "next/link"
 
 interface LandingPageProps {
   onStartReading: () => void
@@ -273,15 +274,15 @@ export default function LandingPage({ onStartReading }: LandingPageProps) {
             </div>
 
             <div className="flex gap-6 text-sm text-foreground/50">
-              <a href="#" className="hover:text-[#73F2FF] transition-colors">
+              <Link href="/privacy" className="hover:text-[#73F2FF] transition-colors">
                 {t.footer.links.privacy}
-              </a>
-              <a href="#" className="hover:text-[#73F2FF] transition-colors">
+              </Link>
+              <Link href="/terms" className="hover:text-[#73F2FF] transition-colors">
                 {t.footer.links.terms}
-              </a>
-              <a href="#" className="hover:text-[#73F2FF] transition-colors">
+              </Link>
+              <Link href="/contact" className="hover:text-[#73F2FF] transition-colors">
                 {t.footer.links.contact}
-              </a>
+              </Link>
             </div>
           </div>
 

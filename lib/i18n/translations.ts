@@ -176,6 +176,56 @@ export interface Translations {
     }
     viewFullReading: string
   }
+  legal: {
+    privacy: {
+      title: string
+      lastUpdated: string
+      sections: {
+        intro: { title: string; content: string }
+        dataCollect: { title: string; content: string; items: string[] }
+        dataUse: { title: string; content: string; items: string[] }
+        legalBasis: { title: string; content: string; items: string[] }
+        dataSharing: { title: string; content: string }
+        dataRetention: { title: string; content: string }
+        userRights: { title: string; content: string; items: string[] }
+        internationalTransfers: { title: string; content: string }
+        childrenPrivacy: { title: string; content: string }
+        contact: { title: string; content: string }
+      }
+    }
+    terms: {
+      title: string
+      lastUpdated: string
+      sections: {
+        acceptance: { title: string; content: string }
+        description: { title: string; content: string }
+        noAdvice: { title: string; content: string }
+        eligibility: { title: string; content: string }
+        userResponsibilities: { title: string; content: string; items: string[] }
+        aiDisclaimer: { title: string; content: string }
+        limitation: { title: string; content: string }
+        intellectualProperty: { title: string; content: string }
+        termination: { title: string; content: string }
+        governingLaw: { title: string; content: string }
+        contact: { title: string; content: string }
+      }
+    }
+    contact: {
+      title: string
+      subtitle: string
+      email: string
+      form: {
+        name: string
+        namePlaceholder: string
+        email: string
+        emailPlaceholder: string
+        message: string
+        messagePlaceholder: string
+        submit: string
+        success: string
+      }
+    }
+  }
 }
 
 export const translations: Record<Locale, Translations> = {
@@ -391,6 +441,162 @@ export const translations: Record<Locale, Translations> = {
       },
       viewFullReading: "View Full Reading",
     },
+    legal: {
+      privacy: {
+        title: "Privacy Policy",
+        lastUpdated: "Last Updated: December 2024",
+        sections: {
+          intro: {
+            title: "Introduction",
+            content:
+              "Welcome to AI Love Tarot. This Privacy Policy explains how we collect, use, and protect your personal information when you use our tarot reading service. Our service is designed for entertainment and self-reflection purposes only. We are committed to protecting your privacy and ensuring compliance with the General Data Protection Regulation (GDPR) and the ePrivacy Directive.",
+          },
+          dataCollect: {
+            title: "Data We Collect",
+            content: "We collect the following types of information to provide and improve our services:",
+            items: [
+              "User Questions (Optional): The love-related questions you choose to input before your reading",
+              "Card Selection Data: The tarot cards you select and their positions (Past, Present, Future)",
+              "Usage Analytics: Anonymous data about how you interact with our service (page views, session duration)",
+              "Cookies: Essential cookies for functionality and optional cookies for analytics (with your consent)",
+            ],
+          },
+          dataUse: {
+            title: "How We Use Your Data",
+            content: "Your data is used exclusively for the following purposes:",
+            items: [
+              "Generating personalized tarot readings based on your card selections",
+              "Improving our AI interpretation models and user experience",
+              "Analyzing usage patterns to enhance service quality",
+              "We do NOT use your data for advertising profiling or sell your information to third parties",
+            ],
+          },
+          legalBasis: {
+            title: "Legal Basis under GDPR",
+            content: "We process your personal data based on the following legal grounds:",
+            items: [
+              "Consent: You provide explicit consent when using our service and accepting cookies",
+              "Legitimate Interest: We have a legitimate interest in improving our service and ensuring security",
+            ],
+          },
+          dataSharing: {
+            title: "Data Sharing",
+            content:
+              "We do not sell your personal information. We may share data only with essential third-party service providers (such as AI model providers like OpenAI/Gemini) who are contractually obligated to protect your data and use it solely for providing the service.",
+          },
+          dataRetention: {
+            title: "Data Retention",
+            content:
+              "Your reading history is optional and stored only if you choose to save it. Anonymous usage data is automatically deleted after 90 days. You can request deletion of your data at any time.",
+          },
+          userRights: {
+            title: "Your Rights under GDPR",
+            content: "As a user in the European Union, you have the following rights:",
+            items: [
+              "Right of Access: Request a copy of your personal data",
+              "Right to Erasure: Request deletion of your personal data",
+              "Right to Data Portability: Receive your data in a portable format",
+              "Right to Withdraw Consent: Withdraw your consent at any time",
+            ],
+          },
+          internationalTransfers: {
+            title: "International Data Transfers",
+            content:
+              "Our service may use AI providers (such as OpenAI or Google Gemini) whose servers may be located outside the EU. We ensure appropriate safeguards are in place, including Standard Contractual Clauses, to protect your data during any international transfers.",
+          },
+          childrenPrivacy: {
+            title: "Children's Privacy",
+            content:
+              "Our service is not intended for users under 16 years of age, in compliance with EU regulations. We do not knowingly collect personal information from children under 16.",
+          },
+          contact: {
+            title: "Contact Information",
+            content:
+              "For any privacy-related inquiries or to exercise your rights, please contact us at: chris@zhiyunllm.com",
+          },
+        },
+      },
+      terms: {
+        title: "Terms of Service",
+        lastUpdated: "Last Updated: December 2024",
+        sections: {
+          acceptance: {
+            title: "Acceptance of Terms",
+            content:
+              "By accessing or using AI Love Tarot, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our service.",
+          },
+          description: {
+            title: "Description of Services",
+            content:
+              "AI Love Tarot is an AI-powered tarot reading service designed for entertainment and personal reflection purposes. Our service provides love-themed tarot readings using artificial intelligence to interpret card meanings. The readings are meant to inspire self-reflection and are not intended to predict the future.",
+          },
+          noAdvice: {
+            title: "No Professional Advice Disclaimer",
+            content:
+              "AI Love Tarot does NOT provide professional advice of any kind. Our readings do not constitute and should not be considered as: psychological or mental health counseling, legal advice, financial or investment advice, medical or health advice, or relationship counseling from a licensed professional. Always seek qualified professionals for serious matters.",
+          },
+          eligibility: {
+            title: "User Eligibility",
+            content:
+              "You must be at least 16 years old to use this service, in compliance with EU regulations. By using our service, you confirm that you meet this age requirement.",
+          },
+          userResponsibilities: {
+            title: "User Responsibilities",
+            content: "When using our service, you agree to:",
+            items: [
+              "Use the service for personal entertainment only",
+              "Not rely on readings for important life decisions",
+              "Provide accurate information if you choose to input questions",
+              "Not attempt to misuse, hack, or disrupt the service",
+            ],
+          },
+          aiDisclaimer: {
+            title: "AI Content Disclaimer",
+            content:
+              "Our readings are generated by artificial intelligence. AI-generated content may be inaccurate, incomplete, or not applicable to your situation. Users should exercise their own judgment and not treat AI interpretations as absolute truth or professional guidance.",
+          },
+          limitation: {
+            title: "Limitation of Liability",
+            content:
+              "AI Love Tarot and its operators shall not be liable for any direct, indirect, incidental, or consequential damages arising from your use of the service. We provide the service 'as is' without warranties of any kind.",
+          },
+          intellectualProperty: {
+            title: "Intellectual Property",
+            content:
+              "All content, designs, trademarks, and intellectual property on AI Love Tarot are owned by us or our licensors. You may not copy, modify, distribute, or create derivative works without our permission.",
+          },
+          termination: {
+            title: "Termination",
+            content:
+              "We reserve the right to terminate or suspend your access to the service at any time, without notice, for any reason, including violation of these terms.",
+          },
+          governingLaw: {
+            title: "Governing Law",
+            content:
+              "These terms are governed by EU law principles and international internet product standards. Any disputes shall be resolved through good faith negotiation or, if necessary, through appropriate legal channels.",
+          },
+          contact: {
+            title: "Contact Information",
+            content: "For any questions about these Terms of Service, please contact us at: chris@zhiyunllm.com",
+          },
+        },
+      },
+      contact: {
+        title: "Contact Us",
+        subtitle: "For inquiries, feedback, or legal requests, you may contact us at:",
+        email: "chris@zhiyunllm.com",
+        form: {
+          name: "Your Name",
+          namePlaceholder: "Enter your name",
+          email: "Email Address",
+          emailPlaceholder: "your@email.com",
+          message: "Message",
+          messagePlaceholder: "How can we help you?",
+          submit: "Send Message",
+          success: "Message sent successfully! We'll get back to you soon.",
+        },
+      },
+    },
   },
   ro: {
     meta: {
@@ -444,7 +650,7 @@ export const translations: Record<Locale, Translations> = {
       points: [
         "Abordare modernă, psihologică a tarotului — fără superstiție",
         "Focus pe auto-reflecție, comunicare și creștere emoțională",
-        "Suport localizat pentru utilizatorii români",
+        "Suport localizat pentru utilizatorii români (Română available)",
         "Axat pe confidențialitate, fără pretenții de ghicit",
       ],
     },
@@ -603,6 +809,163 @@ export const translations: Record<Locale, Translations> = {
         },
       },
       viewFullReading: "Vezi Citirea Completă",
+    },
+    legal: {
+      privacy: {
+        title: "Politica de Confidențialitate",
+        lastUpdated: "Ultima actualizare: Decembrie 2024",
+        sections: {
+          intro: {
+            title: "Introducere",
+            content:
+              "Bine ați venit la AI Love Tarot. Această Politică de Confidențialitate explică modul în care colectăm, folosim și protejăm informațiile dvs. personale când utilizați serviciul nostru de citire tarot. Serviciul nostru este conceput exclusiv pentru divertisment și auto-reflecție. Ne angajăm să vă protejăm confidențialitatea și să asigurăm conformitatea cu Regulamentul General privind Protecția Datelor (GDPR) și Directiva ePrivacy.",
+          },
+          dataCollect: {
+            title: "Datele pe care le colectăm",
+            content: "Colectăm următoarele tipuri de informații pentru a furniza și îmbunătăți serviciile noastre:",
+            items: [
+              "Întrebări ale utilizatorilor (Opțional): Întrebările despre dragoste pe care alegeți să le introduceți înainte de citire",
+              "Date de selecție a cărților: Cărțile tarot selectate și pozițiile lor (Trecut, Prezent, Viitor)",
+              "Analize de utilizare: Date anonime despre modul în care interacționați cu serviciul nostru",
+              "Cookie-uri: Cookie-uri esențiale pentru funcționalitate și cookie-uri opționale pentru analiză (cu consimțământul dvs.)",
+            ],
+          },
+          dataUse: {
+            title: "Cum folosim datele dvs.",
+            content: "Datele dvs. sunt folosite exclusiv în următoarele scopuri:",
+            items: [
+              "Generarea de citiri tarot personalizate bazate pe selecțiile dvs. de cărți",
+              "Îmbunătățirea modelelor noastre de interpretare AI și a experienței utilizatorului",
+              "Analiza tiparelor de utilizare pentru îmbunătățirea calității serviciului",
+              "NU folosim datele dvs. pentru profilare publicitară și nu vindem informațiile dvs. terților",
+            ],
+          },
+          legalBasis: {
+            title: "Baza legală conform GDPR",
+            content: "Procesăm datele dvs. personale pe baza următoarelor temeiuri juridice:",
+            items: [
+              "Consimțământ: Oferiți consimțământul explicit când utilizați serviciul nostru și acceptați cookie-urile",
+              "Interes legitim: Avem un interes legitim în îmbunătățirea serviciului și asigurarea securității",
+            ],
+          },
+          dataSharing: {
+            title: "Partajarea datelor",
+            content:
+              "Nu vindem informațiile dvs. personale. Putem partaja date doar cu furnizori terți esențiali (precum furnizorii de modele AI ca OpenAI/Gemini) care sunt obligați contractual să vă protejeze datele și să le folosească exclusiv pentru furnizarea serviciului.",
+          },
+          dataRetention: {
+            title: "Păstrarea datelor",
+            content:
+              "Istoricul citirilor dvs. este opțional și stocat doar dacă alegeți să îl salvați. Datele anonime de utilizare sunt șterse automat după 90 de zile. Puteți solicita ștergerea datelor dvs. oricând.",
+          },
+          userRights: {
+            title: "Drepturile dvs. conform GDPR",
+            content: "Ca utilizator în Uniunea Europeană, aveți următoarele drepturi:",
+            items: [
+              "Dreptul de acces: Solicitați o copie a datelor dvs. personale",
+              "Dreptul la ștergere: Solicitați ștergerea datelor dvs. personale",
+              "Dreptul la portabilitatea datelor: Primiți datele într-un format portabil",
+              "Dreptul de a retrage consimțământul: Retrageți consimțământul oricând",
+            ],
+          },
+          internationalTransfers: {
+            title: "Transferuri internaționale de date",
+            content:
+              "Serviciul nostru poate folosi furnizori AI (precum OpenAI sau Google Gemini) ale căror servere pot fi situate în afara UE. Asigurăm măsuri de protecție adecvate, inclusiv Clauze Contractuale Standard, pentru a vă proteja datele în timpul transferurilor internaționale.",
+          },
+          childrenPrivacy: {
+            title: "Confidențialitatea copiilor",
+            content:
+              "Serviciul nostru nu este destinat utilizatorilor sub 16 ani, în conformitate cu reglementările UE. Nu colectăm cu bună știință informații personale de la copii sub 16 ani.",
+          },
+          contact: {
+            title: "Informații de contact",
+            content:
+              "Pentru orice întrebări legate de confidențialitate sau pentru a vă exercita drepturile, vă rugăm să ne contactați la: chris@zhiyunllm.com",
+          },
+        },
+      },
+      terms: {
+        title: "Termeni și Condiții",
+        lastUpdated: "Ultima actualizare: Decembrie 2024",
+        sections: {
+          acceptance: {
+            title: "Acceptarea termenilor",
+            content:
+              "Prin accesarea sau utilizarea AI Love Tarot, sunteți de acord să fiți obligat de acești Termeni și Condiții. Dacă nu sunteți de acord cu acești termeni, vă rugăm să nu utilizați serviciul nostru.",
+          },
+          description: {
+            title: "Descrierea serviciilor",
+            content:
+              "AI Love Tarot este un serviciu de citire tarot alimentat de AI, conceput pentru divertisment și reflecție personală. Serviciul nostru oferă citiri tarot cu tematică de dragoste folosind inteligența artificială pentru a interpreta semnificațiile cărților. Citirile sunt menite să inspire auto-reflecția și nu sunt destinate să prezică viitorul.",
+          },
+          noAdvice: {
+            title: "Disclaimer - Fără sfaturi profesionale",
+            content:
+              "AI Love Tarot NU oferă sfaturi profesionale de niciun fel. Citirile noastre nu constituie și nu trebuie considerate ca: consiliere psihologică sau de sănătate mintală, sfaturi juridice, sfaturi financiare sau de investiții, sfaturi medicale sau de sănătate, sau consiliere relațională de la un profesionist autorizat. Căutați întotdeauna profesioniști calificați pentru probleme serioase.",
+          },
+          eligibility: {
+            title: "Eligibilitatea utilizatorului",
+            content:
+              "Trebuie să aveți cel puțin 16 ani pentru a utiliza acest serviciu, în conformitate cu reglementările UE. Prin utilizarea serviciului nostru, confirmați că îndepliniți această cerință de vârstă.",
+          },
+          userResponsibilities: {
+            title: "Responsabilitățile utilizatorului",
+            content: "Când utilizați serviciul nostru, sunteți de acord să:",
+            items: [
+              "Utilizați serviciul doar pentru divertisment personal",
+              "Nu vă bazați pe citiri pentru decizii importante de viață",
+              "Furnizați informații exacte dacă alegeți să introduceți întrebări",
+              "Nu încercați să folosiți greșit, să hackuiți sau să perturbați serviciul",
+            ],
+          },
+          aiDisclaimer: {
+            title: "Disclaimer conținut AI",
+            content:
+              "Citirile noastre sunt generate de inteligența artificială. Conținutul generat de AI poate fi inexact, incomplet sau inaplicabil situației dvs. Utilizatorii trebuie să își exercite propria judecată și să nu trateze interpretările AI ca adevăr absolut sau îndrumare profesională.",
+          },
+          limitation: {
+            title: "Limitarea răspunderii",
+            content:
+              'AI Love Tarot și operatorii săi nu vor fi răspunzători pentru nicio daună directă, indirectă, incidentală sau consecventă care rezultă din utilizarea serviciului. Oferim serviciul "ca atare" fără garanții de niciun fel.',
+          },
+          intellectualProperty: {
+            title: "Proprietate intelectuală",
+            content:
+              "Tot conținutul, designurile, mărcile comerciale și proprietatea intelectuală de pe AI Love Tarot sunt deținute de noi sau de licențiatorii noștri. Nu puteți copia, modifica, distribui sau crea lucrări derivate fără permisiunea noastră.",
+          },
+          termination: {
+            title: "Încetare",
+            content:
+              "Ne rezervăm dreptul de a înceta sau suspenda accesul dvs. la serviciu în orice moment, fără notificare, din orice motiv, inclusiv încălcarea acestor termeni.",
+          },
+          governingLaw: {
+            title: "Legea aplicabilă",
+            content:
+              "Acești termeni sunt guvernați de principiile legii UE și standardele internaționale pentru produse de internet. Orice dispute vor fi rezolvate prin negociere de bună credință sau, dacă este necesar, prin canale legale adecvate.",
+          },
+          contact: {
+            title: "Informații de contact",
+            content:
+              "Pentru orice întrebări despre acești Termeni și Condiții, vă rugăm să ne contactați la: chris@zhiyunllm.com",
+          },
+        },
+      },
+      contact: {
+        title: "Contactați-ne",
+        subtitle: "Pentru întrebări, feedback sau solicitări legale, ne puteți contacta la:",
+        email: "chris@zhiyunllm.com",
+        form: {
+          name: "Numele dvs.",
+          namePlaceholder: "Introduceți numele dvs.",
+          email: "Adresa de email",
+          emailPlaceholder: "email@exemplu.com",
+          message: "Mesaj",
+          messagePlaceholder: "Cu ce vă putem ajuta?",
+          submit: "Trimite mesaj",
+          success: "Mesaj trimis cu succes! Vă vom răspunde în curând.",
+        },
+      },
     },
   },
   zh: {
@@ -807,6 +1170,158 @@ export const translations: Record<Locale, Translations> = {
         },
       },
       viewFullReading: "查看完整解读",
+    },
+    legal: {
+      privacy: {
+        title: "隐私政策",
+        lastUpdated: "最后更新：2024年12月",
+        sections: {
+          intro: {
+            title: "简介",
+            content:
+              "欢迎使用AI Love Tarot。本隐私政策说明我们在您使用塔罗牌占卜服务时如何收集、使用和保护您的个人信息。我们的服务仅供娱乐和自我反思之用。我们致力于保护您的隐私，并确保符合《通用数据保护条例》(GDPR)和《电子隐私指令》的要求。",
+          },
+          dataCollect: {
+            title: "我们收集的数据",
+            content: "我们收集以下类型的信息以提供和改进服务：",
+            items: [
+              "用户问题（可选）：您在占卜前选择输入的爱情相关问题",
+              "卡牌选择数据：您选择的塔罗牌及其位置（过去、现在、未来）",
+              "使用分析：关于您如何与我们服务互动的匿名数据（页面浏览、会话时长）",
+              "Cookie：功能所需的必要Cookie和分析用的可选Cookie（需您同意）",
+            ],
+          },
+          dataUse: {
+            title: "我们如何使用您的数据",
+            content: "您的数据仅用于以下目的：",
+            items: [
+              "根据您的卡牌选择生成个性化塔罗解读",
+              "改进我们的AI解读模型和用户体验",
+              "分析使用模式以提升服务质量",
+              "我们不会将您的数据用于广告画像，也不会将您的信息出售给第三方",
+            ],
+          },
+          legalBasis: {
+            title: "GDPR下的法律依据",
+            content: "我们基于以下法律依据处理您的个人数据：",
+            items: [
+              "同意：当您使用我们的服务并接受Cookie时，您提供了明确的同意",
+              "合法利益：我们在改进服务和确保安全方面有合法利益",
+            ],
+          },
+          dataSharing: {
+            title: "数据分享",
+            content:
+              "我们不会出售您的个人信息。我们仅可能与必要的第三方服务提供商（如AI模型提供商OpenAI/Gemini）分享数据，这些提供商有合同义务保护您的数据，并仅将其用于提供服务。",
+          },
+          dataRetention: {
+            title: "数据保留",
+            content:
+              "您的占卜历史是可选的，仅在您选择保存时才会存储。匿名使用数据会在90天后自动删除。您可以随时请求删除您的数据。",
+          },
+          userRights: {
+            title: "您在GDPR下的权利",
+            content: "作为欧盟用户，您享有以下权利：",
+            items: [
+              "访问权：请求获取您个人数据的副本",
+              "删除权：请求删除您的个人数据",
+              "数据可携权：以便携格式接收您的数据",
+              "撤回同意权：随时撤回您的同意",
+            ],
+          },
+          internationalTransfers: {
+            title: "国际数据传输",
+            content:
+              "我们的服务可能使用AI提供商（如OpenAI或Google Gemini），其服务器可能位于欧盟以外。我们确保采取适当的保护措施，包括标准合同条款，以在任何国际传输期间保护您的数据。",
+          },
+          childrenPrivacy: {
+            title: "儿童隐私",
+            content: "根据欧盟法规，我们的服务不面向16岁以下的用户。我们不会故意收集16岁以下儿童的个人信息。",
+          },
+          contact: {
+            title: "联系方式",
+            content: "如有任何隐私相关问题或需要行使您的权利，请通过以下邮箱联系我们：chris@zhiyunllm.com",
+          },
+        },
+      },
+      terms: {
+        title: "服务条款",
+        lastUpdated: "最后更新：2024年12月",
+        sections: {
+          acceptance: {
+            title: "条款接受",
+            content:
+              "访问或使用AI Love Tarot即表示您同意受这些服务条款的约束。如果您不同意这些条款，请勿使用我们的服务。",
+          },
+          description: {
+            title: "服务描述",
+            content:
+              "AI Love Tarot是一款AI驱动的塔罗占卜服务，专为娱乐和个人反思而设计。我们的服务使用人工智能解读卡牌含义，提供爱情主题的塔罗占卜。占卜旨在激发自我反思，而非预测未来。",
+          },
+          noAdvice: {
+            title: "非专业建议免责声明",
+            content:
+              "AI Love Tarot不提供任何形式的专业建议。我们的占卜不构成也不应被视为：心理或心理健康咨询、法律建议、财务或投资建议、医疗或健康建议、或来自持证专业人士的关系咨询。重要事项请务必寻求合格专业人士的帮助。",
+          },
+          eligibility: {
+            title: "用户资格",
+            content: "根据欧盟法规，您必须年满16岁才能使用本服务。使用我们的服务即表示您确认符合此年龄要求。",
+          },
+          userResponsibilities: {
+            title: "用户责任",
+            content: "使用我们的服务时，您同意：",
+            items: [
+              "仅将服务用于个人娱乐",
+              "不依赖占卜结果做出重要人生决定",
+              "如选择输入问题，请提供准确信息",
+              "不试图滥用、攻击或破坏服务",
+            ],
+          },
+          aiDisclaimer: {
+            title: "AI内容免责声明",
+            content:
+              "我们的占卜由人工智能生成。AI生成的内容可能不准确、不完整或不适用于您的情况。用户应自行判断，不应将AI解读视为绝对真理或专业指导。",
+          },
+          limitation: {
+            title: "责任限制",
+            content:
+              'AI Love Tarot及其运营商对因使用服务而产生的任何直接、间接、附带或后果性损害不承担责任。我们"按原样"提供服务，不作任何形式的保证。',
+          },
+          intellectualProperty: {
+            title: "知识产权",
+            content:
+              "AI Love Tarot上的所有内容、设计、商标和知识产权均归我们或我们的许可方所有。未经我们许可，您不得复制、修改、分发或创作衍生作品。",
+          },
+          termination: {
+            title: "终止",
+            content: "我们保留随时终止或暂停您对服务访问的权利，无需通知，出于任何原因，包括违反这些条款。",
+          },
+          governingLaw: {
+            title: "适用法律",
+            content:
+              "这些条款受欧盟法律原则和国际互联网产品标准管辖。任何争议应通过善意协商解决，必要时通过适当的法律途径解决。",
+          },
+          contact: {
+            title: "联系方式",
+            content: "如对这些服务条款有任何疑问，请通过以下邮箱联系我们：chris@zhiyunllm.com",
+          },
+        },
+      },
+      contact: {
+        title: "联系我们",
+        subtitle: "如有咨询、反馈或法律请求，请通过以下方式联系我们：",
+        email: "chris@zhiyunllm.com",
+        form: {
+          name: "您的姓名",
+          namePlaceholder: "请输入您的姓名",
+          email: "电子邮箱",
+          emailPlaceholder: "your@email.com",
+          message: "留言内容",
+          messagePlaceholder: "我们能为您做些什么？",
+          submit: "发送消息",
+          success: "消息发送成功！我们会尽快回复您。",
+        },
+      },
     },
   },
 }
