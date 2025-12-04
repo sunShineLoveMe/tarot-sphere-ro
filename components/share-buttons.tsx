@@ -76,7 +76,7 @@ function TikTokModal({
     try {
       await navigator.clipboard.writeText(summaryText)
       setCopied(true)
-      playSound("click")
+      playSound("flip")
       setTimeout(() => setCopied(false), 2000)
     } catch (err) {
       console.error("Failed to copy:", err)
@@ -179,7 +179,7 @@ function SocialShareButton({
   const [ripple, setRipple] = useState(false)
 
   const handleClick = () => {
-    playSound("click")
+    playSound("flip")
     setRipple(true)
     setTimeout(() => setRipple(false), 600)
     onClick()
@@ -291,7 +291,7 @@ ${readingUrl}
     if (!shareCardRef.current || isDownloading) return
 
     setIsDownloading(true)
-    playSound("click")
+    playSound("flip")
 
     try {
       const dataUrl = await toPng(shareCardRef.current, {

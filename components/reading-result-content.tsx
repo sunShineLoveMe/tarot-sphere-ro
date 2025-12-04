@@ -97,6 +97,10 @@ function ReadingResultContent() {
 
   const handleStep4Complete = useCallback(() => {
     setTypewriterStep((prev) => Math.max(prev, 4))
+    // Trigger step 5 after a delay to show share buttons
+    setTimeout(() => {
+      setTypewriterStep((prev) => Math.max(prev, 5))
+    }, 1500)
   }, [])
 
   const handleStep5Complete = useCallback(() => {
