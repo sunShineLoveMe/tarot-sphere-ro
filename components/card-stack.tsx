@@ -13,6 +13,7 @@ export default function CardStack() {
   return (
     <motion.div
       className="absolute inset-0 flex items-center justify-center z-20"
+      style={{ paddingBottom: "35%" }}
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.8 }}

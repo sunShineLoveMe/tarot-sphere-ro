@@ -150,7 +150,7 @@ export default function TarotSphere({ onBack }: TarotSphereProps) {
         {phase === "idle" && (
           <>
             <CardStack />
-            <div className="absolute bottom-48 sm:bottom-56 left-0 right-0 z-30">
+            <div className="absolute bottom-36 sm:bottom-44 left-0 right-0 z-30">
               <QuestionInput value={userQuestion} onChange={setUserQuestion} />
             </div>
             <StartButton onStart={handleStartShuffle} />
