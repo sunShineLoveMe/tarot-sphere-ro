@@ -110,6 +110,23 @@ export interface Translations {
     summary: string
     summaryPlaceholder: string
   }
+  questionInput: {
+    label: string
+    placeholder: string
+    optional: string
+    contextLabel: string
+  }
+  loading: {
+    connecting: string
+  }
+  reading: {
+    summaryVibe: string
+    keywords: string
+    pastTitle: string
+    presentTitle: string
+    futureTitle: string
+    advice: string
+  }
 }
 
 export const translations: Record<Locale, Translations> = {
@@ -134,7 +151,7 @@ export const translations: Record<Locale, Translations> = {
       subtitle: "Honest Guidance for Your Heart",
       ctaStart: "Start Love Reading",
       ctaHowItWorks: "How It Works",
-      deckNote: "Curated 20-card love deck • Expanding to full 78 cards",
+      deckNote: "22 Major Arcana cards • Full mystical deck",
     },
     howItWorks: {
       title: "How It Works",
@@ -194,9 +211,9 @@ export const translations: Record<Locale, Translations> = {
             "Our AI analyzes the traditional meanings of tarot cards through a modern, psychological lens, providing insights that encourage self-reflection rather than making deterministic predictions.",
         },
         {
-          question: "Why only 20 cards?",
+          question: "Why 22 Major Arcana cards?",
           answer:
-            "We've curated a focused love deck of 20 cards for the MVP, specifically chosen for relationship insights. We're expanding to the full 78-card deck in future updates.",
+            "The 22 Major Arcana represent the major life themes and spiritual lessons. They provide deep, meaningful insights for love readings.",
         },
         {
           question: "Is my reading private?",
@@ -259,6 +276,23 @@ export const translations: Record<Locale, Translations> = {
       summaryPlaceholder:
         "The three cards together reveal a journey through your love life. Your past experiences have shaped who you are today, influencing your current romantic situation. As you move forward, trust your intuition and remain open to the possibilities that await. The energy of these cards suggests a period of growth and transformation in matters of the heart.",
     },
+    questionInput: {
+      label: "What's on your heart?",
+      placeholder: "Ask a question about love...",
+      optional: "(optional)",
+      contextLabel: "Your Question",
+    },
+    loading: {
+      connecting: "Connecting with your energy...",
+    },
+    reading: {
+      summaryVibe: "Overall Energy",
+      keywords: "Love Keywords",
+      pastTitle: "Past Influences",
+      presentTitle: "Present Situation",
+      futureTitle: "Future Path",
+      advice: "Guidance & Advice",
+    },
   },
   ro: {
     meta: {
@@ -281,7 +315,7 @@ export const translations: Record<Locale, Translations> = {
       subtitle: "Ghidare Sinceră pentru Inima Ta",
       ctaStart: "Începe Citirea de Dragoste",
       ctaHowItWorks: "Cum Funcționează",
-      deckNote: "Pachet de 20 cărți pentru dragoste • Se extinde la 78 cărți complete",
+      deckNote: "22 cărți Major Arcana • Pachet mistic complet",
     },
     howItWorks: {
       title: "Cum Funcționează",
@@ -342,9 +376,9 @@ export const translations: Record<Locale, Translations> = {
             "AI-ul nostru analizează semnificațiile tradiționale ale cărților de tarot printr-o lentilă modernă, psihologică.",
         },
         {
-          question: "De ce doar 20 de cărți?",
+          question: "De ce 22 cărți Major Arcana?",
           answer:
-            "Am curatoriat un pachet focusat de 20 de cărți pentru MVP. Extindem la pachetul complet de 78 de cărți în actualizările viitoare.",
+            "Cele 22 de cărți Major Arcana reprezintă temele majore ale vieții și lecțiile spirituale. Oferă perspective profunde pentru citirile de dragoste.",
         },
         {
           question: "Este citirea mea privată?",
@@ -391,7 +425,6 @@ export const translations: Record<Locale, Translations> = {
     language: {
       select: "Limbă",
     },
-    // Romanian 3-card spread translations
     threeCardSpread: {
       selectPrompt: "Alege 3 cărți: Trecut, Prezent, Viitor",
       cardsRemaining: {
@@ -406,6 +439,23 @@ export const translations: Record<Locale, Translations> = {
       summary: "Rezumat și Sfaturi",
       summaryPlaceholder:
         "Cele trei cărți împreună relevă o călătorie prin viața ta de dragoste. Experiențele tale trecute au modelat cine ești astăzi, influențând situația ta romantică actuală. Pe măsură ce avansezi, ai încredere în intuiția ta și rămâi deschis la posibilitățile care te așteaptă.",
+    },
+    questionInput: {
+      label: "Ce este în inima ta?",
+      placeholder: "Pune o întrebare despre dragoste...",
+      optional: "(opțional)",
+      contextLabel: "Întrebarea Ta",
+    },
+    loading: {
+      connecting: "Mă conectez cu energia ta...",
+    },
+    reading: {
+      summaryVibe: "Energia Generală",
+      keywords: "Cuvinte Cheie Dragoste",
+      pastTitle: "Influențe din Trecut",
+      presentTitle: "Situația Prezentă",
+      futureTitle: "Calea Viitorului",
+      advice: "Ghidare și Sfaturi",
     },
   },
   zh: {
@@ -427,7 +477,7 @@ export const translations: Record<Locale, Translations> = {
       subtitle: "为你的心灵提供真诚指引",
       ctaStart: "开始爱情占卜",
       ctaHowItWorks: "了解详情",
-      deckNote: "精选20张爱情牌组 • 即将扩展至完整78张",
+      deckNote: "22张大阿卡纳 • 完整神秘牌组",
     },
     howItWorks: {
       title: "如何使用",
@@ -483,8 +533,8 @@ export const translations: Record<Locale, Translations> = {
           answer: "我们的AI通过现代心理学视角分析塔罗牌的传统含义，提供鼓励自我反思的洞见。",
         },
         {
-          question: "为什么只有20张牌？",
-          answer: "我们为MVP精选了20张爱情牌组。我们将在未来更新中扩展到完整的78张牌组。",
+          question: "为什么是22张大阿卡纳？",
+          answer: "22张大阿卡纳代表主要的人生主题和精神课程。它们为爱情占卜提供深刻而有意义的洞见。",
         },
         {
           question: "我的占卜是私密的吗？",
@@ -530,7 +580,6 @@ export const translations: Record<Locale, Translations> = {
     language: {
       select: "语言",
     },
-    // Chinese 3-card spread translations
     threeCardSpread: {
       selectPrompt: "请选择三张卡：过去、现在、未来",
       cardsRemaining: {
@@ -545,6 +594,23 @@ export const translations: Record<Locale, Translations> = {
       summary: "总结与建议",
       summaryPlaceholder:
         "这三张牌共同揭示了你爱情生活的旅程。你过去的经历塑造了今天的你，影响着你当前的浪漫状况。当你向前迈进时，相信你的直觉，对等待着你的可能性保持开放。这些牌的能量暗示着在心灵事务上的成长和转变时期。",
+    },
+    questionInput: {
+      label: "你心里有什么想问的？",
+      placeholder: "询问关于爱情的问题...",
+      optional: "（可选）",
+      contextLabel: "你的问题",
+    },
+    loading: {
+      connecting: "正在与您的能量链接...",
+    },
+    reading: {
+      summaryVibe: "整体能量",
+      keywords: "爱情关键词",
+      pastTitle: "过去的影响",
+      presentTitle: "现在的状况",
+      futureTitle: "未来的道路",
+      advice: "指引与建议",
     },
   },
 }

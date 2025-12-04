@@ -37,39 +37,39 @@ export default function CardSlots({ selectedCards, flippedCards }: CardSlotsProp
 
   const positionOrder: ("past" | "present" | "future")[] = ["past", "present", "future"]
 
-  // Romanian-style tarot card images with mystical symbols
-  const cardImages: Record<string, { symbol: string; gradient: string }> = {
-    lovers: { symbol: "♡", gradient: "from-rose-400 via-pink-300 to-rose-500" },
-    empress: { symbol: "♛", gradient: "from-emerald-400 via-teal-300 to-emerald-500" },
-    emperor: { symbol: "♔", gradient: "from-amber-400 via-yellow-300 to-amber-500" },
-    fool: { symbol: "✧", gradient: "from-sky-400 via-cyan-300 to-sky-500" },
-    magician: { symbol: "☆", gradient: "from-violet-400 via-purple-300 to-violet-500" },
-    high_priestess: { symbol: "☽", gradient: "from-indigo-400 via-blue-300 to-indigo-500" },
-    strength: { symbol: "♌", gradient: "from-orange-400 via-amber-300 to-orange-500" },
-    wheel: { symbol: "☸", gradient: "from-cyan-400 via-teal-300 to-cyan-500" },
-    star: { symbol: "★", gradient: "from-yellow-400 via-amber-200 to-yellow-500" },
-    moon: { symbol: "☾", gradient: "from-slate-400 via-blue-200 to-slate-500" },
-    sun: { symbol: "☀", gradient: "from-yellow-400 via-orange-300 to-yellow-500" },
-    world: { symbol: "⊕", gradient: "from-teal-400 via-emerald-300 to-teal-500" },
-    justice: { symbol: "⚖", gradient: "from-blue-400 via-indigo-300 to-blue-500" },
-    temperance: { symbol: "△", gradient: "from-pink-400 via-rose-300 to-pink-500" },
-    tower: { symbol: "⚡", gradient: "from-red-400 via-orange-300 to-red-500" },
-    death: { symbol: "♰", gradient: "from-gray-400 via-slate-300 to-gray-500" },
-    devil: { symbol: "⛧", gradient: "from-red-500 via-rose-400 to-red-600" },
-    hanged_man: { symbol: "⊙", gradient: "from-indigo-400 via-violet-300 to-indigo-500" },
-    hermit: { symbol: "✡", gradient: "from-amber-500 via-yellow-400 to-amber-600" },
-    chariot: { symbol: "♦", gradient: "from-blue-400 via-sky-300 to-blue-500" },
+  const cardStyles: Record<number, { symbol: string; gradient: string }> = {
+    0: { symbol: "✧", gradient: "from-sky-400 via-cyan-300 to-sky-500" }, // Fool
+    1: { symbol: "☆", gradient: "from-violet-400 via-purple-300 to-violet-500" }, // Magician
+    2: { symbol: "☽", gradient: "from-indigo-400 via-blue-300 to-indigo-500" }, // High Priestess
+    3: { symbol: "♛", gradient: "from-emerald-400 via-teal-300 to-emerald-500" }, // Empress
+    4: { symbol: "♔", gradient: "from-amber-400 via-yellow-300 to-amber-500" }, // Emperor
+    5: { symbol: "✝", gradient: "from-blue-400 via-indigo-300 to-blue-500" }, // Hierophant
+    6: { symbol: "♡", gradient: "from-rose-400 via-pink-300 to-rose-500" }, // Lovers
+    7: { symbol: "♦", gradient: "from-blue-400 via-sky-300 to-blue-500" }, // Chariot
+    8: { symbol: "♌", gradient: "from-orange-400 via-amber-300 to-orange-500" }, // Strength
+    9: { symbol: "✡", gradient: "from-amber-500 via-yellow-400 to-amber-600" }, // Hermit
+    10: { symbol: "☸", gradient: "from-cyan-400 via-teal-300 to-cyan-500" }, // Wheel of Fortune
+    11: { symbol: "⚖", gradient: "from-blue-400 via-indigo-300 to-blue-500" }, // Justice
+    12: { symbol: "⊙", gradient: "from-indigo-400 via-violet-300 to-indigo-500" }, // Hanged Man
+    13: { symbol: "♰", gradient: "from-gray-400 via-slate-300 to-gray-500" }, // Death
+    14: { symbol: "△", gradient: "from-pink-400 via-rose-300 to-pink-500" }, // Temperance
+    15: { symbol: "⛧", gradient: "from-red-500 via-rose-400 to-red-600" }, // Devil
+    16: { symbol: "⚡", gradient: "from-red-400 via-orange-300 to-red-500" }, // Tower
+    17: { symbol: "★", gradient: "from-yellow-400 via-amber-200 to-yellow-500" }, // Star
+    18: { symbol: "☾", gradient: "from-slate-400 via-blue-200 to-slate-500" }, // Moon
+    19: { symbol: "☀", gradient: "from-yellow-400 via-orange-300 to-yellow-500" }, // Sun
+    20: { symbol: "♆", gradient: "from-purple-400 via-violet-300 to-purple-500" }, // Judgement
+    21: { symbol: "⊕", gradient: "from-teal-400 via-emerald-300 to-teal-500" }, // World
   }
 
-  const getCardStyle = (cardId: string) => {
-    return cardImages[cardId] || { symbol: "✦", gradient: "from-purple-400 via-pink-300 to-purple-500" }
+  const getCardStyle = (cardId: number) => {
+    return cardStyles[cardId] || { symbol: "✦", gradient: "from-purple-400 via-pink-300 to-purple-500" }
   }
 
   return (
     <motion.div
       className="absolute bottom-0 left-0 right-0 z-30"
       style={{
-        // Bottom area takes ~32-38% of screen on mobile
         height: dims.isMobile ? "38%" : dims.isTablet ? "35%" : "32%",
         background: "linear-gradient(to top, rgba(10,5,20,0.95) 0%, rgba(10,5,20,0.7) 70%, transparent 100%)",
       }}
@@ -77,7 +77,6 @@ export default function CardSlots({ selectedCards, flippedCards }: CardSlotsProp
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
     >
-      {/* Slots container - centered horizontally */}
       <div
         className="absolute bottom-0 left-0 right-0 flex items-end justify-center"
         style={{
@@ -98,7 +97,6 @@ export default function CardSlots({ selectedCards, flippedCards }: CardSlotsProp
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: slotIndex * 0.1, duration: 0.5 }}
             >
-              {/* Position Label */}
               <motion.p
                 className="text-[10px] sm:text-xs tracking-[0.15em] uppercase mb-2"
                 style={{
@@ -109,7 +107,6 @@ export default function CardSlots({ selectedCards, flippedCards }: CardSlotsProp
                 {positionLabels[position]}
               </motion.p>
 
-              {/* Card Slot with neon border */}
               <div
                 className="relative rounded-xl overflow-visible"
                 style={{
@@ -118,7 +115,6 @@ export default function CardSlots({ selectedCards, flippedCards }: CardSlotsProp
                   perspective: "1000px",
                 }}
               >
-                {/* Empty slot - neon breathing border */}
                 {!cardData && (
                   <motion.div
                     className="absolute inset-0 rounded-xl"
@@ -138,12 +134,10 @@ export default function CardSlots({ selectedCards, flippedCards }: CardSlotsProp
                       ease: "easeInOut",
                     }}
                   >
-                    {/* Inner dashed border */}
                     <div
                       className="absolute inset-2 rounded-lg border-2 border-dashed"
                       style={{ borderColor: "rgba(115,242,255,0.2)" }}
                     />
-                    {/* Position indicator */}
                     <div className="absolute inset-0 flex items-center justify-center">
                       <span className="text-2xl sm:text-3xl opacity-20" style={{ color: "#73F2FF" }}>
                         {slotIndex + 1}
@@ -152,7 +146,6 @@ export default function CardSlots({ selectedCards, flippedCards }: CardSlotsProp
                   </motion.div>
                 )}
 
-                {/* Card with flip animation */}
                 {cardData && (
                   <motion.div
                     className="absolute inset-0"
@@ -233,7 +226,6 @@ export default function CardSlots({ selectedCards, flippedCards }: CardSlotsProp
                         transform: "rotateY(180deg)",
                       }}
                     >
-                      {/* Golden border frame */}
                       <div
                         className="absolute inset-0 rounded-xl"
                         style={{
@@ -248,7 +240,6 @@ export default function CardSlots({ selectedCards, flippedCards }: CardSlotsProp
                             background: "linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%)",
                           }}
                         >
-                          {/* Inner golden frame */}
                           <div
                             className="absolute inset-[6px] rounded-md pointer-events-none"
                             style={{
@@ -256,9 +247,7 @@ export default function CardSlots({ selectedCards, flippedCards }: CardSlotsProp
                             }}
                           />
 
-                          {/* Card content */}
                           <div className="relative w-full h-full flex flex-col items-center justify-between p-2 sm:p-3">
-                            {/* Top ornament */}
                             <div className="flex items-center justify-center w-full">
                               <div
                                 className="h-[1px] flex-1 opacity-50"
@@ -271,7 +260,6 @@ export default function CardSlots({ selectedCards, flippedCards }: CardSlotsProp
                               />
                             </div>
 
-                            {/* Main symbol area */}
                             <div
                               className="flex-1 w-full flex items-center justify-center my-1"
                               style={{
@@ -293,7 +281,6 @@ export default function CardSlots({ selectedCards, flippedCards }: CardSlotsProp
                               </motion.span>
                             </div>
 
-                            {/* Card name */}
                             <div className="text-center w-full">
                               <p
                                 className="text-[9px] sm:text-[11px] font-semibold tracking-wider truncate px-1"
@@ -302,7 +289,7 @@ export default function CardSlots({ selectedCards, flippedCards }: CardSlotsProp
                                   textShadow: "0 0 10px rgba(212,175,55,0.5)",
                                 }}
                               >
-                                {cardData.card.name[locale as keyof typeof cardData.card.name] || cardData.card.name.en}
+                                {cardData.card.name[locale as "en" | "zh" | "ro"] || cardData.card.name.en}
                               </p>
                               <p
                                 className="text-[7px] sm:text-[9px] mt-0.5"
@@ -314,7 +301,6 @@ export default function CardSlots({ selectedCards, flippedCards }: CardSlotsProp
                               </p>
                             </div>
 
-                            {/* Bottom ornament */}
                             <div className="flex items-center justify-center w-full">
                               <div
                                 className="h-[1px] flex-1 opacity-50"
@@ -330,7 +316,6 @@ export default function CardSlots({ selectedCards, flippedCards }: CardSlotsProp
                         </div>
                       </div>
 
-                      {/* Outer glow effect */}
                       <motion.div
                         className="absolute -inset-1 rounded-xl pointer-events-none -z-10"
                         animate={{
@@ -351,7 +336,6 @@ export default function CardSlots({ selectedCards, flippedCards }: CardSlotsProp
         })}
       </div>
 
-      {/* Decorative gradient line at top */}
       <div
         className="absolute top-0 left-0 right-0 h-[2px]"
         style={{

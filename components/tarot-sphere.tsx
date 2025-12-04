@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import { useI18n } from "@/lib/i18n/context"
 import { getCardByIndex, isReversed } from "@/lib/tarot/cards"
 import { useResponsiveDimensions } from "@/hooks/use-responsive-dimensions"
+import { useSound } from "@/lib/sound/sound-manager"
 import MagicBackground from "./magic-background"
 import MagicCircle from "./magic-circle"
 import CardStack from "./card-stack"
@@ -15,9 +16,12 @@ import ThreeCardReadingPanel from "./three-card-reading-panel"
 import StartButton from "./start-button"
 import ParticleField from "./particle-field"
 import LanguageSwitcher from "./language-switcher"
+import SoundToggle from "./sound-toggle"
+import QuestionInput from "./question-input"
+import MysticalLoading from "./mystical-loading"
 import { ArrowLeft } from "lucide-react"
 
-export type Phase = "idle" | "shuffling" | "formation" | "selecting" | "reading"
+export type Phase = "idle" | "shuffling" | "formation" | "selecting" | "loading" | "reading"
 
 interface TarotSphereProps {
   onBack?: () => void
@@ -29,23 +33,28 @@ const POSITION_ORDER: ("past" | "present" | "future")[] = ["past", "present", "f
 export default function TarotSphere({ onBack }: TarotSphereProps) {
   const { t } = useI18n()
   const dims = useResponsiveDimensions()
+  const { playSound } = useSound()
   const [phase, setPhase] = useState<Phase>("idle")
   const [selectedCards, setSelectedCards] = useState<SelectedCardData[]>([])
   const [selectedCardIndices, setSelectedCardIndices] = useState<number[]>([])
   const [flippedCards, setFlippedCards] = useState<Set<number>>(new Set())
+  const [userQuestion, setUserQuestion] = useState("")
 
   const handleStartShuffle = useCallback(() => {
+    playSound("shuffle")
     setPhase("shuffling")
     setTimeout(() => {
       setPhase("formation")
     }, 4000)
-  }, [])
+  }, [playSound])
 
   const handleCardSelect = useCallback(
     (index: number) => {
       if (phase !== "formation" && phase !== "selecting") return
       if (selectedCardIndices.includes(index)) return
       if (selectedCards.length >= MAX_CARDS) return
+
+      playSound("exit")
 
       const card = getCardByIndex(index)
       const reversed = isReversed()
@@ -66,17 +75,22 @@ export default function TarotSphere({ onBack }: TarotSphereProps) {
       setPhase("selecting")
 
       setTimeout(() => {
+        playSound("flip")
         setFlippedCards((prev) => new Set([...prev, index]))
 
         // Check if all 3 cards are selected
         if (newSelectedCards.length >= MAX_CARDS) {
           setTimeout(() => {
-            setPhase("reading")
+            setPhase("loading")
+            // Simulate AI processing time
+            setTimeout(() => {
+              setPhase("reading")
+            }, 3000)
           }, 1200)
         }
       }, 1000)
     },
-    [phase, selectedCards, selectedCardIndices],
+    [phase, selectedCards, selectedCardIndices, playSound],
   )
 
   const handleReset = useCallback(() => {
@@ -84,6 +98,7 @@ export default function TarotSphere({ onBack }: TarotSphereProps) {
     setSelectedCards([])
     setSelectedCardIndices([])
     setFlippedCards(new Set())
+    setUserQuestion("")
   }, [])
 
   const showRing = phase === "formation" || phase === "selecting"
@@ -102,6 +117,8 @@ export default function TarotSphere({ onBack }: TarotSphereProps) {
         isActive={phase !== "idle"}
         intensity={phase === "shuffling" ? "high" : phase === "reading" ? "elevated" : "normal"}
       />
+
+      <AnimatePresence>{phase === "loading" && <MysticalLoading isVisible={true} />}</AnimatePresence>
 
       {onBack && (
         <motion.button
@@ -122,16 +139,19 @@ export default function TarotSphere({ onBack }: TarotSphereProps) {
         </motion.button>
       )}
 
-      {/* Language Switcher */}
-      <div className="absolute top-4 right-4 z-50">
+      <div className="absolute top-4 right-4 z-50 flex items-center gap-2">
+        <SoundToggle />
         <LanguageSwitcher />
       </div>
 
-      {/* Phase: Idle - Card Stack */}
+      {/* Phase: Idle - Card Stack + Question Input */}
       <AnimatePresence>
         {phase === "idle" && (
           <>
             <CardStack />
+            <div className="absolute bottom-32 sm:bottom-36 left-0 right-0 z-30">
+              <QuestionInput value={userQuestion} onChange={setUserQuestion} />
+            </div>
             <StartButton onStart={handleStartShuffle} label={t.tarot.startShuffle} />
           </>
         )}
@@ -170,7 +190,7 @@ export default function TarotSphere({ onBack }: TarotSphereProps) {
       {/* Phase: Reading Panel */}
       <AnimatePresence>
         {phase === "reading" && selectedCards.length === MAX_CARDS && (
-          <ThreeCardReadingPanel selectedCards={selectedCards} onReset={handleReset} />
+          <ThreeCardReadingPanel selectedCards={selectedCards} onReset={handleReset} userQuestion={userQuestion} />
         )}
       </AnimatePresence>
 
