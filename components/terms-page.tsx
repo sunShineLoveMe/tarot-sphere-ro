@@ -7,6 +7,7 @@ import { useI18n } from "@/lib/i18n/context"
 import { I18nProvider } from "@/lib/i18n/context"
 import MagicBackground from "./magic-background"
 import LanguageSwitcher from "./language-switcher"
+import { LogoIcon } from "./logo-icon"
 import { ArrowLeft, ChevronDown, FileText } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
@@ -75,7 +76,12 @@ function TermsContent() {
               <span className="text-sm">Home</span>
             </motion.button>
           </Link>
-          <LanguageSwitcher />
+          <div className="flex items-center gap-3">
+            <Link href="/" className="hidden sm:block">
+              <LogoIcon size={32} className="logo-neon" />
+            </Link>
+            <LanguageSwitcher />
+          </div>
         </div>
       </header>
 

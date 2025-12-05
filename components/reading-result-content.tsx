@@ -13,6 +13,8 @@ import { MagicBackground } from "@/components/magic-background"
 import { TypewriterText } from "@/components/typewriter-text"
 import { majorArcana, getCardReading } from "@/lib/tarot/cards"
 import { ShareButtons } from "@/components/share-buttons"
+import { LogoIcon } from "@/components/logo-icon"
+import Link from "next/link"
 
 interface CardData {
   card: (typeof majorArcana)[0]
@@ -159,6 +161,9 @@ function ReadingResultContent() {
 
         {/* Title */}
         <motion.div className="text-center mb-10" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
+          <Link href="/" className="inline-block mb-4">
+            <LogoIcon size={56} className="logo-neon mx-auto" />
+          </Link>
           <h1
             className="text-4xl md:text-5xl font-bold italic mb-2"
             style={{

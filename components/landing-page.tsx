@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { useI18n } from "@/lib/i18n/context"
 import LanguageSwitcher from "./language-switcher"
 import MagicBackground from "./magic-background"
+import { LogoIcon } from "./logo-icon"
 import { Sparkles, ArrowRight, Shield, Heart, Brain, Globe } from "lucide-react"
 import Link from "next/link"
 
@@ -37,6 +38,10 @@ export default function LandingPage({ onStartReading }: LandingPageProps) {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
           >
+            <div className="flex justify-center mb-6">
+              <LogoIcon size={80} className="logo-neon" />
+            </div>
+
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FF4FD8]/10 border border-[#FF4FD8]/30 mb-6">
               <Sparkles className="w-4 h-4 text-[#FF4FD8]" />
               <span className="text-sm text-[#FF4FD8]">{t.hero.deckNote}</span>
@@ -275,9 +280,12 @@ export default function LandingPage({ onStartReading }: LandingPageProps) {
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
             <div className="text-center sm:text-left">
-              <h3 className="text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#FF4FD8] to-[#73F2FF]">
-                Love Tarot
-              </h3>
+              <Link href="/" className="inline-flex items-center gap-2 group">
+                <LogoIcon size={28} className="logo-neon" />
+                <h3 className="text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#FF4FD8] to-[#73F2FF]">
+                  Love Tarot
+                </h3>
+              </Link>
               {/* AI subtitle in footer */}
               <p className="text-xs text-[#73F2FF]/50 mt-0.5">{t.hero.aiSubtitle}</p>
               <p className="text-sm text-foreground/50 mt-1">{t.footer.tagline}</p>
