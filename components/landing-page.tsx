@@ -2,9 +2,9 @@
 
 import { motion } from "framer-motion"
 import { useI18n } from "@/lib/i18n/context"
-import LanguageSwitcher from "./language-switcher"
 import MagicBackground from "./magic-background"
 import { LogoIcon } from "./logo-icon"
+import Header from "./header"
 import { Sparkles, ArrowRight, Shield, Heart, Brain, Globe } from "lucide-react"
 import Link from "next/link"
 
@@ -25,23 +25,16 @@ export default function LandingPage({ onStartReading }: LandingPageProps) {
     <div className="relative min-h-screen overflow-x-hidden">
       <MagicBackground />
 
-      {/* Language Switcher - Fixed Position */}
-      <div className="fixed top-4 right-4 z-50">
-        <LanguageSwitcher />
-      </div>
+      <Header />
 
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-4 py-20">
+      {/* Hero Section - Added pt-20 for header offset, removed centered logo */}
+      <section className="relative min-h-screen flex items-center justify-center px-4 py-20 pt-24 md:pt-20">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="flex justify-center mb-6">
-              <LogoIcon size={80} className="logo-neon" />
-            </div>
-
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FF4FD8]/10 border border-[#FF4FD8]/30 mb-6">
               <Sparkles className="w-4 h-4 text-[#FF4FD8]" />
               <span className="text-sm text-[#FF4FD8]">{t.hero.deckNote}</span>
