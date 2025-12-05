@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { useI18n } from "@/lib/i18n/context"
 import { useEffect } from "react"
-import { useSound } from "@/lib/sound/sound-manager"
+
 
 interface MysticalLoadingProps {
   isVisible: boolean
@@ -11,13 +11,9 @@ interface MysticalLoadingProps {
 
 export default function MysticalLoading({ isVisible }: MysticalLoadingProps) {
   const { t } = useI18n()
-  const { playSound, isMuted } = useSound()
 
-  useEffect(() => {
-    if (isVisible && !isMuted) {
-      playSound("loading")
-    }
-  }, [isVisible, isMuted, playSound])
+
+
 
   if (!isVisible) return null
 

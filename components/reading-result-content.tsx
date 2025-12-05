@@ -6,9 +6,9 @@ import { motion, AnimatePresence } from "framer-motion"
 import { useRouter, useSearchParams } from "next/navigation"
 import { ArrowLeft, Sparkles, Heart, Star, Moon, Sun, RefreshCw } from "lucide-react"
 import { useI18n } from "@/lib/i18n/context"
-import { useSound } from "@/lib/sound/sound-manager"
+
 import { LanguageSwitcher } from "@/components/language-switcher"
-import { SoundToggle } from "@/components/sound-toggle"
+
 import { MagicBackground } from "@/components/magic-background"
 import { TypewriterText } from "@/components/typewriter-text"
 import { majorArcana, getCardReading } from "@/lib/tarot/cards"
@@ -34,7 +34,7 @@ function ReadingResultContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const { t, locale } = useI18n()
-  const { playSound } = useSound()
+
   const shareCardRef = useRef<HTMLDivElement>(null)
 
   const [typewriterStep, setTypewriterStep] = useState(0)
@@ -113,15 +113,9 @@ function ReadingResultContent() {
     setTypewriterStep((prev) => Math.max(prev, 5))
   }, [])
 
-  const playSoundRef = useRef(playSound)
-  useEffect(() => {
-    playSoundRef.current = playSound
-  })
 
-  useEffect(() => {
-    // Sound effect on page load - using flip sound instead of reveal
-    playSoundRef.current("flip")
-  }, [])
+
+
 
   const getCardName = (card: (typeof majorArcana)[0]) => {
     return card.name[locale as keyof typeof card.name] || card.name.en
@@ -154,7 +148,7 @@ function ReadingResultContent() {
           </motion.button>
 
           <div className="flex items-center gap-3">
-            <SoundToggle />
+
             <LanguageSwitcher />
           </div>
         </header>

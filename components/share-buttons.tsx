@@ -5,7 +5,7 @@ import { useState, useCallback, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { X, Check, Copy } from "lucide-react"
 import { useI18n } from "@/lib/i18n/context"
-import { useSound } from "@/lib/sound/sound-manager"
+
 
 interface CardData {
   card: {
@@ -90,7 +90,7 @@ function TikTokModal({
   locale: string
 }) {
   const [copied, setCopied] = useState(false)
-  const { playSound } = useSound()
+
 
   const getCardName = (card: CardData["card"]) => {
     return card.name[locale as keyof typeof card.name] || card.name.en
@@ -114,12 +114,12 @@ ${shortLink}`
     try {
       await navigator.clipboard.writeText(tiktokText)
       setCopied(true)
-      playSound("flip")
+
       setTimeout(() => setCopied(false), 2000)
     } catch (err) {
       console.error("Failed to copy:", err)
     }
-  }, [tiktokText, playSound])
+  }, [tiktokText])
 
   return (
     <AnimatePresence>
@@ -279,12 +279,12 @@ function SocialShareButton({
   onClick: () => void
   isLoading?: boolean
 }) {
-  const { playSound } = useSound()
+
   const [ripple, setRipple] = useState(false)
 
   const handleClick = () => {
     if (isLoading) return
-    playSound("flip")
+
     setRipple(true)
     setTimeout(() => setRipple(false), 600)
     onClick()

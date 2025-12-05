@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation"
 import { useI18n } from "@/lib/i18n/context"
 import { getCardByIndex, isReversed } from "@/lib/tarot/cards"
 import { useResponsiveDimensions } from "@/hooks/use-responsive-dimensions"
-import { useSound } from "@/lib/sound/sound-manager"
+
 import MagicBackground from "./magic-background"
 import MagicCircle from "./magic-circle"
 import CardStack from "./card-stack"
@@ -16,7 +16,7 @@ import CardSlots, { type SelectedCardData } from "./card-slots"
 import StartButton from "./start-button"
 import ParticleField from "./particle-field"
 import LanguageSwitcher from "./language-switcher"
-import SoundToggle from "./sound-toggle"
+
 import QuestionInput from "./question-input"
 import MysticalLoading from "./mystical-loading"
 import { ArrowLeft } from "lucide-react"
@@ -34,7 +34,7 @@ export default function TarotSphere({ onBack }: TarotSphereProps) {
   const { t } = useI18n()
   const router = useRouter()
   const dims = useResponsiveDimensions()
-  const { playSound } = useSound()
+
   const [phase, setPhase] = useState<Phase>("idle")
   const [selectedCards, setSelectedCards] = useState<SelectedCardData[]>([])
   const [selectedCardIndices, setSelectedCardIndices] = useState<number[]>([])
@@ -42,12 +42,12 @@ export default function TarotSphere({ onBack }: TarotSphereProps) {
   const [userQuestion, setUserQuestion] = useState("")
 
   const handleStartShuffle = useCallback(() => {
-    playSound("shuffle")
+
     setPhase("shuffling")
     setTimeout(() => {
       setPhase("formation")
     }, 4000)
-  }, [playSound])
+  }, [])
 
   const handleCardSelect = useCallback(
     (index: number) => {
@@ -55,7 +55,7 @@ export default function TarotSphere({ onBack }: TarotSphereProps) {
       if (selectedCardIndices.includes(index)) return
       if (selectedCards.length >= MAX_CARDS) return
 
-      playSound("exit")
+
 
       const card = getCardByIndex(index)
       if (!card) return
@@ -77,7 +77,7 @@ export default function TarotSphere({ onBack }: TarotSphereProps) {
       setPhase("selecting")
 
       setTimeout(() => {
-        playSound("flip")
+
         setFlippedCards((prev) => new Set([...prev, index]))
 
         // Check if all 3 cards are selected
@@ -98,7 +98,7 @@ export default function TarotSphere({ onBack }: TarotSphereProps) {
         }
       }, 1000)
     },
-    [phase, selectedCards, selectedCardIndices, playSound, router, userQuestion],
+    [phase, selectedCards, selectedCardIndices, router, userQuestion],
   )
 
   const handleReset = useCallback(() => {
@@ -145,7 +145,7 @@ export default function TarotSphere({ onBack }: TarotSphereProps) {
       )}
 
       <div className="absolute top-4 right-4 z-50 flex items-center gap-2">
-        <SoundToggle />
+
         <LanguageSwitcher />
       </div>
 

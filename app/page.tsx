@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { I18nProvider } from "@/lib/i18n/context"
-import { SoundManagerProvider } from "@/lib/sound/sound-manager"
+
 import LandingPage from "@/components/landing-page"
 import TarotSphere from "@/components/tarot-sphere"
 
@@ -11,7 +11,6 @@ export default function Home() {
 
   // Force fresh render
   return (
-    <SoundManagerProvider>
       <I18nProvider>
         <main className="min-h-screen overflow-hidden relative bg-background">
           {!showReading ? (
@@ -21,6 +20,5 @@ export default function Home() {
           )}
         </main>
       </I18nProvider>
-    </SoundManagerProvider>
   )
 }
