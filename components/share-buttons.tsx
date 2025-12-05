@@ -533,9 +533,9 @@ export function ShareButtons({ cards, question, overallEnergy, shareCardRef }: S
         shortLink={shortLink || (typeof window !== "undefined" ? window.location.href : "")}
         translations={{
           title: t.readingResult.share.tiktokModal.title,
-          past: t.threeCard.past,
-          present: t.threeCard.present,
-          future: t.threeCard.future,
+          past: t.threeCardSpread.positions.past,
+          present: t.threeCardSpread.positions.present,
+          future: t.threeCardSpread.positions.future,
           copyButton: t.readingResult.share.tiktokModal.copyButton,
           copied: t.readingResult.share.tiktokModal.copied,
         }}
