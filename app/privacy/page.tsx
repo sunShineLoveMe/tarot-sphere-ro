@@ -1,8 +1,9 @@
 import PrivacyPage from "@/components/privacy-page"
 
 export const metadata = {
-  title: "Privacy Policy | AI Love Tarot",
-  description: "Privacy Policy for AI Love Tarot - GDPR compliant privacy information",
+  title: "Privacy Policy | Love Tarot",
+  description:
+    "Privacy Policy for Love Tarot - GDPR compliant privacy information. A modern tarot experience enriched with AI insight.",
 }
 
 export default function Privacy() {

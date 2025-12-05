@@ -48,6 +48,14 @@ export default function LandingPage({ onStartReading }: LandingPageProps) {
               </span>
             </h1>
 
+            {/* AI subtitle below title */}
+            <p
+              className="text-sm sm:text-base text-[#73F2FF]/60 mb-4 tracking-wide"
+              style={{ textShadow: "0 0 10px rgba(115,242,255,0.3)" }}
+            >
+              {t.hero.aiSubtitle}
+            </p>
+
             <p className="text-xl sm:text-2xl md:text-3xl text-[#73F2FF]/80 mb-8">{t.hero.subtitle}</p>
 
             <p className="text-foreground/60 max-w-2xl mx-auto mb-10 text-base sm:text-lg">{t.meta.description}</p>
@@ -268,8 +276,10 @@ export default function LandingPage({ onStartReading }: LandingPageProps) {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
             <div className="text-center sm:text-left">
               <h3 className="text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#FF4FD8] to-[#73F2FF]">
-                AI Love Tarot
+                Love Tarot
               </h3>
+              {/* AI subtitle in footer */}
+              <p className="text-xs text-[#73F2FF]/50 mt-0.5">{t.hero.aiSubtitle}</p>
               <p className="text-sm text-foreground/50 mt-1">{t.footer.tagline}</p>
             </div>
 

@@ -1,8 +1,9 @@
 import ContactPage from "@/components/contact-page"
 
 export const metadata = {
-  title: "Contact Us | AI Love Tarot",
-  description: "Contact AI Love Tarot for inquiries, feedback, or legal requests",
+  title: "Contact Us | Love Tarot",
+  description:
+    "Contact Love Tarot for inquiries, feedback, or legal requests. A modern tarot experience enriched with AI insight.",
 }
 
 export default function Contact() {

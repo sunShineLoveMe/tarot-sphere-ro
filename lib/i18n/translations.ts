@@ -20,6 +20,7 @@ export interface Translations {
   hero: {
     title: string
     subtitle: string
+    aiSubtitle: string // Add AI subtitle field
     ctaStart: string
     ctaHowItWorks: string
     deckNote: string
@@ -60,6 +61,7 @@ export interface Translations {
   }
   // Footer
   footer: {
+    title: string // Rebrand footer title
     tagline: string
     disclaimer: string
     links: {
@@ -198,13 +200,13 @@ export interface Translations {
       lastUpdated: string
       sections: {
         acceptance: { title: string; content: string }
-        description: { title: string; content: string }
-        noAdvice: { title: string; content: string }
+        description: { title: string; content: string } // Rebrand service description
+        noAdvice: { title: string; content: string } // Rebrand no advice disclaimer
         eligibility: { title: string; content: string }
         userResponsibilities: { title: string; content: string; items: string[] }
         aiDisclaimer: { title: string; content: string }
-        limitation: { title: string; content: string }
-        intellectualProperty: { title: string; content: string }
+        limitation: { title: string; content: string } // Rebrand liability section
+        intellectualProperty: { title: string; content: string } // Rebrand IP section
         termination: { title: string; content: string }
         governingLaw: { title: string; content: string }
         contact: { title: string; content: string }
@@ -231,12 +233,12 @@ export interface Translations {
 export const translations: Record<Locale, Translations> = {
   en: {
     meta: {
-      title: "AI Love Tarot – Honest Guidance for Your Heart",
+      title: "Love Tarot – Honest Guidance for Your Heart",
       description:
-        "A modern, AI-powered tarot reading experience for love and relationships. Reflective, empowering, and designed for European users.",
-      ogTitle: "AI Love Tarot Reading Online",
+        "A modern tarot experience enriched with AI insight for love and relationships. Reflective, empowering, and designed for European users.",
+      ogTitle: "Love Tarot Reading Online",
       ogDescription:
-        "Discover honest guidance for your heart with our AI-powered love tarot. Modern, psychological approach to relationship insights.",
+        "Discover honest guidance for your heart with our modern love tarot. A tarot experience enriched with AI insight for relationship insights.",
     },
     nav: {
       home: "Home",
@@ -246,11 +248,12 @@ export const translations: Record<Locale, Translations> = {
       faq: "FAQ",
     },
     hero: {
-      title: "AI Love Tarot",
+      title: "Love Tarot",
       subtitle: "Honest Guidance for Your Heart",
+      aiSubtitle: "Powered by AI Guidance",
       ctaStart: "Start Love Reading",
       ctaHowItWorks: "How It Works",
-      deckNote: "22 Major Arcana cards • Full mystical deck",
+      deckNote: "22 Major Arcana Cards",
     },
     howItWorks: {
       title: "How It Works",
@@ -297,7 +300,7 @@ export const translations: Record<Locale, Translations> = {
     },
     faq: {
       title: "Frequently Asked Questions",
-      subtitle: "Common questions about AI Love Tarot",
+      subtitle: "Common questions about Love Tarot",
       items: [
         {
           question: "Is this fortune-telling?",
@@ -327,7 +330,8 @@ export const translations: Record<Locale, Translations> = {
       ],
     },
     footer: {
-      tagline: "Modern tarot for the modern heart",
+      title: "Love Tarot",
+      tagline: "A modern tarot experience enriched with AI insight",
       disclaimer: "For entertainment and self-reflection purposes only. Not a substitute for professional advice.",
       links: {
         privacy: "Privacy Policy",
@@ -336,7 +340,7 @@ export const translations: Record<Locale, Translations> = {
       },
     },
     tarot: {
-      title: "AI Love Tarot",
+      title: "Love Tarot",
       subtitle: "Divine Your Heart's Path",
       startShuffle: "Start Shuffle",
       selectCard: "Select a card from the cosmic ring",
@@ -449,7 +453,7 @@ export const translations: Record<Locale, Translations> = {
           intro: {
             title: "Introduction",
             content:
-              "Welcome to AI Love Tarot. This Privacy Policy explains how we collect, use, and protect your personal information when you use our tarot reading service. Our service is designed for entertainment and self-reflection purposes only. We are committed to protecting your privacy and ensuring compliance with the General Data Protection Regulation (GDPR) and the ePrivacy Directive.",
+              "Welcome to Love Tarot. This Privacy Policy explains how we collect, use, and protect your personal information when you use our tarot reading service. Our service is designed for entertainment and self-reflection purposes only. We are committed to protecting your privacy and ensuring compliance with the General Data Protection Regulation (GDPR) and the ePrivacy Directive.",
           },
           dataCollect: {
             title: "Data We Collect",
@@ -523,17 +527,17 @@ export const translations: Record<Locale, Translations> = {
           acceptance: {
             title: "Acceptance of Terms",
             content:
-              "By accessing or using AI Love Tarot, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our service.",
+              "By accessing or using Love Tarot, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our service.",
           },
           description: {
             title: "Description of Services",
             content:
-              "AI Love Tarot is an AI-powered tarot reading service designed for entertainment and personal reflection purposes. Our service provides love-themed tarot readings using artificial intelligence to interpret card meanings. The readings are meant to inspire self-reflection and are not intended to predict the future.",
+              "Love Tarot is a tarot reading service enriched with AI insight, designed for entertainment and personal reflection purposes. Our service provides love-themed tarot readings using artificial intelligence to interpret card meanings. The readings are meant to inspire self-reflection and are not intended to predict the future.",
           },
           noAdvice: {
             title: "No Professional Advice Disclaimer",
             content:
-              "AI Love Tarot does NOT provide professional advice of any kind. Our readings do not constitute and should not be considered as: psychological or mental health counseling, legal advice, financial or investment advice, medical or health advice, or relationship counseling from a licensed professional. Always seek qualified professionals for serious matters.",
+              "Love Tarot does NOT provide professional advice of any kind. Our readings do not constitute and should not be considered as: psychological or mental health counseling, legal advice, financial or investment advice, medical or health advice, or relationship counseling from a licensed professional. Always seek qualified professionals for serious matters.",
           },
           eligibility: {
             title: "User Eligibility",
@@ -558,12 +562,12 @@ export const translations: Record<Locale, Translations> = {
           limitation: {
             title: "Limitation of Liability",
             content:
-              "AI Love Tarot and its operators shall not be liable for any direct, indirect, incidental, or consequential damages arising from your use of the service. We provide the service 'as is' without warranties of any kind.",
+              "Love Tarot and its operators shall not be liable for any direct, indirect, incidental, or consequential damages arising from your use of the service. We provide the service 'as is' without warranties of any kind.",
           },
           intellectualProperty: {
             title: "Intellectual Property",
             content:
-              "All content, designs, trademarks, and intellectual property on AI Love Tarot are owned by us or our licensors. You may not copy, modify, distribute, or create derivative works without our permission.",
+              "All content, designs, trademarks, and intellectual property on Love Tarot are owned by us or our licensors. You may not copy, modify, distribute, or create derivative works without our permission.",
           },
           termination: {
             title: "Termination",
@@ -600,12 +604,12 @@ export const translations: Record<Locale, Translations> = {
   },
   ro: {
     meta: {
-      title: "AI Love Tarot – Ghidare Sinceră pentru Inima Ta",
+      title: "Love Tarot – Ghidare Sinceră pentru Inima Ta",
       description:
-        "O experiență modernă de citire a tarotului cu AI pentru dragoste și relații. Reflectivă, împuternicitoare și concepută pentru utilizatorii europeni.",
-      ogTitle: "Citire Tarot AI pentru Dragoste Online",
+        "O experiență modernă de tarot îmbogățită cu intuiție AI pentru dragoste și relații. Reflectivă, împuternicitoare și concepută pentru utilizatorii europeni.",
+      ogTitle: "Citire Love Tarot Online",
       ogDescription:
-        "Descoperă ghidare sinceră pentru inima ta cu tarotul nostru AI. Abordare modernă, psihologică a relațiilor.",
+        "Descoperă ghidare sinceră pentru inima ta cu tarotul nostru modern de dragoste. O experiență de tarot îmbogățită cu intuiție AI.",
     },
     nav: {
       home: "Acasă",
@@ -615,11 +619,12 @@ export const translations: Record<Locale, Translations> = {
       faq: "Întrebări Frecvente",
     },
     hero: {
-      title: "AI Love Tarot",
+      title: "Love Tarot",
       subtitle: "Ghidare Sinceră pentru Inima Ta",
+      aiSubtitle: "Ghidare oferită de inteligență artificială",
       ctaStart: "Începe Citirea de Dragoste",
       ctaHowItWorks: "Cum Funcționează",
-      deckNote: "22 cărți Major Arcana • Pachet mistic complet",
+      deckNote: "22 de Cărți Arcana Mare",
     },
     howItWorks: {
       title: "Cum Funcționează",
@@ -667,7 +672,7 @@ export const translations: Record<Locale, Translations> = {
     },
     faq: {
       title: "Întrebări Frecvente",
-      subtitle: "Întrebări comune despre AI Love Tarot",
+      subtitle: "Întrebări comune despre Love Tarot",
       items: [
         {
           question: "Este aceasta ghicit?",
@@ -696,7 +701,8 @@ export const translations: Record<Locale, Translations> = {
       ],
     },
     footer: {
-      tagline: "Tarot modern pentru inima modernă",
+      title: "Love Tarot",
+      tagline: "O experiență modernă de tarot îmbogățită cu intuiție AI",
       disclaimer: "Doar pentru divertisment și auto-reflecție. Nu înlocuiește sfatul profesional.",
       links: {
         privacy: "Politica de Confidențialitate",
@@ -705,7 +711,7 @@ export const translations: Record<Locale, Translations> = {
       },
     },
     tarot: {
-      title: "AI Love Tarot",
+      title: "Love Tarot",
       subtitle: "Descoperă Calea Inimii Tale",
       startShuffle: "Începe Amestecarea",
       selectCard: "Selectează o carte din inelul cosmic",
@@ -818,7 +824,7 @@ export const translations: Record<Locale, Translations> = {
           intro: {
             title: "Introducere",
             content:
-              "Bine ați venit la AI Love Tarot. Această Politică de Confidențialitate explică modul în care colectăm, folosim și protejăm informațiile dvs. personale când utilizați serviciul nostru de citire tarot. Serviciul nostru este conceput exclusiv pentru divertisment și auto-reflecție. Ne angajăm să vă protejăm confidențialitatea și să asigurăm conformitatea cu Regulamentul General privind Protecția Datelor (GDPR) și Directiva ePrivacy.",
+              "Bine ați venit la Love Tarot. Această Politică de Confidențialitate explică modul în care colectăm, folosim și protejăm informațiile dvs. personale când utilizați serviciul nostru de citire tarot. Serviciul nostru este conceput exclusiv pentru divertisment și auto-reflecție. Ne angajăm să vă protejăm confidențialitatea și să asigurăm conformitatea cu Regulamentul General privind Protecția Datelor (GDPR) și Directiva ePrivacy.",
           },
           dataCollect: {
             title: "Datele pe care le colectăm",
@@ -892,17 +898,17 @@ export const translations: Record<Locale, Translations> = {
           acceptance: {
             title: "Acceptarea termenilor",
             content:
-              "Prin accesarea sau utilizarea AI Love Tarot, sunteți de acord să fiți obligat de acești Termeni și Condiții. Dacă nu sunteți de acord cu acești termeni, vă rugăm să nu utilizați serviciul nostru.",
+              "Prin accesarea sau utilizarea Love Tarot, sunteți de acord să fiți obligat de acești Termeni și Condiții. Dacă nu sunteți de acord cu acești termeni, vă rugăm să nu utilizați serviciul nostru.",
           },
           description: {
             title: "Descrierea serviciilor",
             content:
-              "AI Love Tarot este un serviciu de citire tarot alimentat de AI, conceput pentru divertisment și reflecție personală. Serviciul nostru oferă citiri tarot cu tematică de dragoste folosind inteligența artificială pentru a interpreta semnificațiile cărților. Citirile sunt menite să inspire auto-reflecția și nu sunt destinate să prezică viitorul.",
+              "Love Tarot este un serviciu de citire tarot îmbogățit cu intuiție AI, conceput pentru divertisment și reflecție personală. Serviciul nostru oferă citiri tarot cu tematică de dragoste folosind inteligența artificială pentru a interpreta semnificațiile cărților. Citirile sunt menite să inspire auto-reflecția și nu sunt destinate să prezică viitorul.",
           },
           noAdvice: {
             title: "Disclaimer - Fără sfaturi profesionale",
             content:
-              "AI Love Tarot NU oferă sfaturi profesionale de niciun fel. Citirile noastre nu constituie și nu trebuie considerate ca: consiliere psihologică sau de sănătate mintală, sfaturi juridice, sfaturi financiare sau de investiții, sfaturi medicale sau de sănătate, sau consiliere relațională de la un profesionist autorizat. Căutați întotdeauna profesioniști calificați pentru probleme serioase.",
+              "Love Tarot NU oferă sfaturi profesionale de niciun fel. Citirile noastre nu constituie și nu trebuie considerate ca: consiliere psihologică sau de sănătate mintală, sfaturi juridice, sfaturi financiare sau de investiții, sfaturi medicale sau de sănătate, sau consiliere relațională de la un profesionist autorizat. Căutați întotdeauna profesioniști calificați pentru probleme serioase.",
           },
           eligibility: {
             title: "Eligibilitatea utilizatorului",
@@ -927,12 +933,12 @@ export const translations: Record<Locale, Translations> = {
           limitation: {
             title: "Limitarea răspunderii",
             content:
-              'AI Love Tarot și operatorii săi nu vor fi răspunzători pentru nicio daună directă, indirectă, incidentală sau consecventă care rezultă din utilizarea serviciului. Oferim serviciul "ca atare" fără garanții de niciun fel.',
+              'Love Tarot și operatorii săi nu vor fi răspunzători pentru nicio daună directă, indirectă, incidentală sau consecventă care rezultă din utilizarea serviciului. Oferim serviciul "ca atare" fără garanții de niciun fel.',
           },
           intellectualProperty: {
             title: "Proprietate intelectuală",
             content:
-              "Tot conținutul, designurile, mărcile comerciale și proprietatea intelectuală de pe AI Love Tarot sunt deținute de noi sau de licențiatorii noștri. Nu puteți copia, modifica, distribui sau crea lucrări derivate fără permisiunea noastră.",
+              "Tot conținutul, designurile, mărcile comerciale și proprietatea intelectuală de pe Love Tarot sunt deținute de noi sau de licențiatorii noștri. Nu puteți copia, modifica, distribui sau crea lucrări derivate fără permisiunea noastră.",
           },
           termination: {
             title: "Încetare",
@@ -959,7 +965,7 @@ export const translations: Record<Locale, Translations> = {
           name: "Numele dvs.",
           namePlaceholder: "Introduceți numele dvs.",
           email: "Adresa de email",
-          emailPlaceholder: "email@exemplu.com",
+          emailPlaceholder: "your@email.com",
           message: "Mesaj",
           messagePlaceholder: "Cu ce vă putem ajuta?",
           submit: "Trimite mesaj",
@@ -970,10 +976,10 @@ export const translations: Record<Locale, Translations> = {
   },
   zh: {
     meta: {
-      title: "AI爱情塔罗 - 为你的心灵提供真诚指引",
-      description: "现代化的AI塔罗牌阅读体验，专注于爱情和人际关系。反思性、赋能性，专为欧洲用户设计。",
-      ogTitle: "AI爱情塔罗在线占卜",
-      ogDescription: "通过我们的AI爱情塔罗，发现心灵的真诚指引。",
+      title: "Love Tarot – 真诚的心灵指引",
+      description: "融合AI洞察的现代塔罗体验，专为爱情与关系设计。反思性、赋能性，专为欧洲用户打造。",
+      ogTitle: "Love Tarot 在线占卜",
+      ogDescription: "通过我们融合AI洞察的现代爱情塔罗，发现真诚的心灵指引。",
     },
     nav: {
       home: "首页",
@@ -983,11 +989,12 @@ export const translations: Record<Locale, Translations> = {
       faq: "常见问题",
     },
     hero: {
-      title: "AI爱情塔罗",
-      subtitle: "为你的心灵提供真诚指引",
+      title: "Love Tarot",
+      subtitle: "真诚的心灵指引",
+      aiSubtitle: "由 AI 洞察驱动",
       ctaStart: "开始爱情占卜",
-      ctaHowItWorks: "了解详情",
-      deckNote: "22张大阿卡纳 • 完整神秘牌组",
+      ctaHowItWorks: "了解流程",
+      deckNote: "22张大阿尔卡纳牌",
     },
     howItWorks: {
       title: "如何使用",
@@ -1032,7 +1039,7 @@ export const translations: Record<Locale, Translations> = {
     },
     faq: {
       title: "常见问题",
-      subtitle: "关于AI爱情塔罗的常见问题",
+      subtitle: "关于Love Tarot的常见问题",
       items: [
         {
           question: "这是算命吗？",
@@ -1057,7 +1064,8 @@ export const translations: Record<Locale, Translations> = {
       ],
     },
     footer: {
-      tagline: "为现代心灵设计的现代塔罗",
+      title: "Love Tarot",
+      tagline: "融合AI洞察的现代塔罗体验",
       disclaimer: "仅供娱乐和自我反思。不能替代专业建议。",
       links: {
         privacy: "隐私政策",
@@ -1066,7 +1074,7 @@ export const translations: Record<Locale, Translations> = {
       },
     },
     tarot: {
-      title: "AI爱情塔罗",
+      title: "Love Tarot",
       subtitle: "探寻你心灵的道路",
       startShuffle: "开始洗牌",
       selectCard: "从宇宙之环中选择一张牌",
@@ -1179,7 +1187,7 @@ export const translations: Record<Locale, Translations> = {
           intro: {
             title: "简介",
             content:
-              "欢迎使用AI Love Tarot。本隐私政策说明我们在您使用塔罗牌占卜服务时如何收集、使用和保护您的个人信息。我们的服务仅供娱乐和自我反思之用。我们致力于保护您的隐私，并确保符合《通用数据保护条例》(GDPR)和《电子隐私指令》的要求。",
+              "欢迎使用Love Tarot。本隐私政策说明我们在您使用塔罗牌占卜服务时如何收集、使用和保护您的个人信息。我们的服务仅供娱乐和自我反思之用。我们致力于保护您的隐私，并确保符合《通用数据保护条例》(GDPR)和《电子隐私指令》的要求。",
           },
           dataCollect: {
             title: "我们收集的数据",
@@ -1250,18 +1258,17 @@ export const translations: Record<Locale, Translations> = {
         sections: {
           acceptance: {
             title: "条款接受",
-            content:
-              "访问或使用AI Love Tarot即表示您同意受这些服务条款的约束。如果您不同意这些条款，请勿使用我们的服务。",
+            content: "访问或使用Love Tarot即表示您同意受这些服务条款的约束。如果您不同意这些条款，请勿使用我们的服务。",
           },
           description: {
             title: "服务描述",
             content:
-              "AI Love Tarot是一款AI驱动的塔罗占卜服务，专为娱乐和个人反思而设计。我们的服务使用人工智能解读卡牌含义，提供爱情主题的塔罗占卜。占卜旨在激发自我反思，而非预测未来。",
+              "Love Tarot是一款融合AI洞察的塔罗占卜服务，专为娱乐和个人反思而设计。我们的服务使用人工智能解读卡牌含义，提供爱情主题的塔罗占卜。占卜旨在激发自我反思，而非预测未来。",
           },
           noAdvice: {
             title: "非专业建议免责声明",
             content:
-              "AI Love Tarot不提供任何形式的专业建议。我们的占卜不构成也不应被视为：心理或心理健康咨询、法律建议、财务或投资建议、医疗或健康建议、或来自持证专业人士的关系咨询。重要事项请务必寻求合格专业人士的帮助。",
+              "Love Tarot不提供任何形式的专业建议。我们的占卜不构成也不应被视为：心理或心理健康咨询、法律建议、财务或投资建议、医疗或健康建议、或来自持证专业人士的关系咨询。重要事项请务必寻求合格专业人士的帮助。",
           },
           eligibility: {
             title: "用户资格",
@@ -1285,12 +1292,12 @@ export const translations: Record<Locale, Translations> = {
           limitation: {
             title: "责任限制",
             content:
-              'AI Love Tarot及其运营商对因使用服务而产生的任何直接、间接、附带或后果性损害不承担责任。我们"按原样"提供服务，不作任何形式的保证。',
+              'Love Tarot及其运营商对因使用服务而产生的任何直接、间接、附带或后果性损害不承担责任。我们"按原样"提供服务，不作任何形式的保证。',
           },
           intellectualProperty: {
             title: "知识产权",
             content:
-              "AI Love Tarot上的所有内容、设计、商标和知识产权均归我们或我们的许可方所有。未经我们许可，您不得复制、修改、分发或创作衍生作品。",
+              "Love Tarot上的所有内容、设计、商标和知识产权均归我们或我们的许可方所有。未经我们许可，您不得复制、修改、分发或创作衍生作品。",
           },
           termination: {
             title: "终止",

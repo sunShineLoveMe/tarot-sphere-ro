@@ -41,7 +41,11 @@ function ReadingResultContent() {
     try {
       const cardsParam = searchParams.get("cards")
       if (cardsParam) {
-        const parsed = JSON.parse(cardsParam) as { index: number; reversed: boolean; position: "past" | "present" | "future" }[]
+        const parsed = JSON.parse(cardsParam) as {
+          index: number
+          reversed: boolean
+          position: "past" | "present" | "future"
+        }[]
         return parsed.map((item) => ({
           card: majorArcana.find((c) => c.id === item.index) || majorArcana[0],
           reversed: item.reversed,
@@ -163,8 +167,15 @@ function ReadingResultContent() {
               WebkitTextFillColor: "transparent",
             }}
           >
-            AI Love Tarot
+            Love Tarot
           </h1>
+          <p className="text-xs text-[#73F2FF]/50 mb-1" style={{ textShadow: "0 0 8px rgba(115,242,255,0.2)" }}>
+            {locale === "zh"
+              ? "由 AI 洞察驱动"
+              : locale === "ro"
+                ? "Ghidare oferită de inteligență artificială"
+                : "Powered by AI Guidance"}
+          </p>
           <p className="text-xs md:text-sm uppercase tracking-[0.3em] text-[#73F2FF]/60">{t.readingResult.pageTitle}</p>
         </motion.div>
 

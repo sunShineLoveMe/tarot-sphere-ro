@@ -264,7 +264,8 @@ ${overallEnergy}
 Full Reading:
 ${readingUrl}
 
-#AITarot #LoveTarot #TarotReading`
+— Love Tarot | AI Guided Reading
+#LoveTarot #TarotReading #AIGuidance`
   }, [cards, question, overallEnergy, locale])
 
   // WhatsApp share
@@ -301,7 +302,7 @@ ${readingUrl}
       })
 
       const link = document.createElement("a")
-      link.download = "ai-love-tarot-reading.png"
+      link.download = "love-tarot-reading.png"
       link.href = dataUrl
       link.click()
     } catch (err) {

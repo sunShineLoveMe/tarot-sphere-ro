@@ -7,23 +7,23 @@ const _geist = Geist({ subsets: ["latin"] })
 const _cinzel = Cinzel({ subsets: ["latin"], weight: ["400", "600", "700"] })
 
 export const metadata: Metadata = {
-  title: "AI Love Tarot – Honest Guidance for Your Heart",
+  title: "Love Tarot – Honest Guidance for Your Heart",
   description:
-    "A modern, AI-powered tarot reading experience for love and relationships. Reflective, empowering, and designed with psychological insight.",
+    "A modern tarot experience enriched with AI insight for love and relationships. Reflective, empowering, and designed with psychological insight.",
   keywords: ["tarot", "love tarot", "AI tarot", "relationship guidance", "self-reflection", "塔罗牌", "爱情塔罗"],
-  authors: [{ name: "AI Love Tarot" }],
-  creator: "AI Love Tarot",
+  authors: [{ name: "Love Tarot" }],
+  creator: "Love Tarot",
   openGraph: {
-    title: "AI Love Tarot – Honest Guidance for Your Heart",
-    description: "Discover honest guidance for your heart with our AI-powered love tarot reading experience.",
+    title: "Love Tarot – Honest Guidance for Your Heart",
+    description: "A modern tarot experience enriched with AI insight. Discover honest guidance for your heart.",
     type: "website",
     locale: "en_US",
     alternateLocale: "zh_CN",
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Love Tarot",
-    description: "Modern, AI-powered love tarot for self-reflection and relationship insights.",
+    title: "Love Tarot",
+    description: "A modern tarot experience enriched with AI insight for self-reflection and relationship insights.",
   },
   robots: {
     index: true,
