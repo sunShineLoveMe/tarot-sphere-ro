@@ -3,11 +3,9 @@
 import type React from "react"
 import { useState, useCallback, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Download, X, Check, Copy } from "lucide-react"
+import { X, Check, Copy } from "lucide-react"
 import { useI18n } from "@/lib/i18n/context"
 import { useSound } from "@/lib/sound/sound-manager"
-import { toPng } from "html-to-image"
-import QRCode from "qrcode"
 
 interface CardData {
   card: {
@@ -37,22 +35,6 @@ async function shortenUrl(url: string): Promise<string> {
   } catch (error) {
     console.error("Failed to shorten URL:", error)
     return url
-  }
-}
-
-async function generateQRCode(url: string): Promise<string> {
-  try {
-    return await QRCode.toDataURL(url, {
-      width: 120,
-      margin: 1,
-      color: {
-        dark: "#73F2FF",
-        light: "#0a0a1a",
-      },
-    })
-  } catch (error) {
-    console.error("Failed to generate QR code:", error)
-    return ""
   }
 }
 
@@ -354,16 +336,8 @@ function SocialShareButton({
 
 export function ShareButtons({ cards, question, overallEnergy, shareCardRef }: ShareButtonsProps) {
   const { t, locale } = useI18n()
-  const { playSound } = useSound()
   const [showTikTokModal, setShowTikTokModal] = useState(false)
-  const [isDownloading, setIsDownloading] = useState(false)
   const [shortLink, setShortLink] = useState("")
-  const [qrCodeUrl, setQrCodeUrl] = useState("")
-
-  // Get card names based on locale
-  const getCardName = (card: CardData["card"]) => {
-    return card.name[locale as keyof typeof card.name] || card.name.en
-  }
 
   useEffect(() => {
     const generateShortLink = async () => {
@@ -371,10 +345,6 @@ export function ShareButtons({ cards, question, overallEnergy, shareCardRef }: S
         const originalUrl = window.location.href
         const shortened = await shortenUrl(originalUrl)
         setShortLink(shortened)
-
-        // Generate QR code for the short link
-        const qr = await generateQRCode(shortened)
-        setQrCodeUrl(qr)
       }
     }
     generateShortLink()
@@ -405,65 +375,6 @@ export function ShareButtons({ cards, question, overallEnergy, shareCardRef }: S
     setShowTikTokModal(true)
   }, [])
 
-  const handleDownloadCard = useCallback(async () => {
-    if (!shareCardRef.current || isDownloading) return
-
-    setIsDownloading(true)
-    playSound("flip")
-
-    try {
-      // Clone the share card and add QR code
-      const originalCard = shareCardRef.current
-      const clone = originalCard.cloneNode(true) as HTMLDivElement
-
-      // Add QR code to the clone if available
-      if (qrCodeUrl) {
-        const qrContainer = document.createElement("div")
-        qrContainer.style.cssText =
-          "display: flex; justify-content: center; padding: 16px; margin-top: 16px; border-top: 1px solid rgba(115, 242, 255, 0.2);"
-
-        const qrWrapper = document.createElement("div")
-        qrWrapper.style.cssText = "text-align: center;"
-
-        const qrImg = document.createElement("img")
-        qrImg.src = qrCodeUrl
-        qrImg.style.cssText = "width: 100px; height: 100px; border-radius: 8px;"
-
-        const qrLabel = document.createElement("p")
-        qrLabel.textContent = shortLink
-        qrLabel.style.cssText = "color: #73F2FF; font-size: 10px; margin-top: 8px; font-family: monospace;"
-
-        qrWrapper.appendChild(qrImg)
-        qrWrapper.appendChild(qrLabel)
-        qrContainer.appendChild(qrWrapper)
-        clone.appendChild(qrContainer)
-      }
-
-      // Temporarily append clone to body for rendering
-      clone.style.position = "absolute"
-      clone.style.left = "-9999px"
-      document.body.appendChild(clone)
-
-      const dataUrl = await toPng(clone, {
-        quality: 1,
-        pixelRatio: 2,
-        backgroundColor: "#0a0a1a",
-      })
-
-      // Remove clone
-      document.body.removeChild(clone)
-
-      const link = document.createElement("a")
-      link.download = "love-tarot-reading.png"
-      link.href = dataUrl
-      link.click()
-    } catch (err) {
-      console.error("Failed to generate share card:", err)
-    } finally {
-      setIsDownloading(false)
-    }
-  }, [shareCardRef, isDownloading, playSound, qrCodeUrl, shortLink])
-
   return (
     <>
       <motion.section
@@ -484,7 +395,7 @@ export function ShareButtons({ cards, question, overallEnergy, shareCardRef }: S
             {t.readingResult.share.title}
           </h3>
 
-          <div className="grid grid-cols-2 md:flex md:flex-row gap-3 md:gap-4 justify-center">
+          <div className="flex flex-row gap-3 md:gap-4 justify-center">
             {/* WhatsApp */}
             <SocialShareButton
               icon={<WhatsAppIcon className="w-5 h-5" />}
@@ -510,16 +421,6 @@ export function ShareButtons({ cards, question, overallEnergy, shareCardRef }: S
               gradientFrom="#69C9D0"
               gradientTo="#EE1D52"
               onClick={handleTikTokShare}
-            />
-
-            {/* Download */}
-            <SocialShareButton
-              icon={<Download className="w-5 h-5" />}
-              label={t.readingResult.share.download}
-              gradientFrom="#FF4FD8"
-              gradientTo="#A855F7"
-              onClick={handleDownloadCard}
-              isLoading={isDownloading}
             />
           </div>
         </div>
