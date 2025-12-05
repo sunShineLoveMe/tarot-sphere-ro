@@ -1,8 +1,12 @@
-# AI Love Tarot Sphere
+# Love Tarot Sphere
 
-一个沉浸式、仪式感的 AI 爱情塔罗占卜 Web 应用，融合赛博魔法美学、3D 动效、神圣几何元素。
+融合AI洞察的现代塔罗体验。
 
-An immersive, ritual-style AI Love Tarot divination web application that combines cyber-magic aesthetics, 3D animations, and sacred geometry elements.
+A modern tarot experience enriched with AI insight.
+
+一个沉浸式、仪式感的爱情塔罗占卜 Web 应用，融合赛博魔法美学、3D 动效、神圣几何元素。
+
+An immersive, ritual-style Love Tarot divination web application that combines cyber-magic aesthetics, 3D animations, and sacred geometry elements.
 
 ---
 

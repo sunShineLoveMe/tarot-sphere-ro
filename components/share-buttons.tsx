@@ -1,12 +1,13 @@
 "use client"
 
 import type React from "react"
-import { useState, useCallback } from "react"
+import { useState, useCallback, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Download, X, Check } from "lucide-react"
+import { Download, X, Check, Copy } from "lucide-react"
 import { useI18n } from "@/lib/i18n/context"
 import { useSound } from "@/lib/sound/sound-manager"
 import { toPng } from "html-to-image"
+import QRCode from "qrcode"
 
 interface CardData {
   card: {
@@ -23,6 +24,36 @@ interface ShareButtonsProps {
   question: string
   overallEnergy: string
   shareCardRef: React.RefObject<HTMLDivElement | null>
+}
+
+async function shortenUrl(url: string): Promise<string> {
+  try {
+    const response = await fetch(`https://tinyurl.com/api-create.php?url=${encodeURIComponent(url)}`)
+    if (response.ok) {
+      const shortUrl = await response.text()
+      return shortUrl
+    }
+    return url
+  } catch (error) {
+    console.error("Failed to shorten URL:", error)
+    return url
+  }
+}
+
+async function generateQRCode(url: string): Promise<string> {
+  try {
+    return await QRCode.toDataURL(url, {
+      width: 120,
+      margin: 1,
+      color: {
+        dark: "#73F2FF",
+        light: "#0a0a1a",
+      },
+    })
+  } catch (error) {
+    console.error("Failed to generate QR code:", error)
+    return ""
+  }
 }
 
 // WhatsApp Icon
@@ -52,36 +83,61 @@ function TikTokIcon({ className }: { className?: string }) {
   )
 }
 
-// TikTok Modal
 function TikTokModal({
   isOpen,
   onClose,
-  summaryText,
+  cards,
+  summary,
+  shortLink,
   translations,
+  locale,
 }: {
   isOpen: boolean
   onClose: () => void
-  summaryText: string
+  cards: CardData[]
+  summary: string
+  shortLink: string
   translations: {
     title: string
-    description: string
+    past: string
+    present: string
+    future: string
     copyButton: string
     copied: string
   }
+  locale: string
 }) {
   const [copied, setCopied] = useState(false)
   const { playSound } = useSound()
 
+  const getCardName = (card: CardData["card"]) => {
+    return card.name[locale as keyof typeof card.name] || card.name.en
+  }
+
+  const pastCard = cards.find((c) => c.position === "past")
+  const presentCard = cards.find((c) => c.position === "present")
+  const futureCard = cards.find((c) => c.position === "future")
+
+  const tiktokText = `${translations.title}
+
+${translations.past}: ${pastCard ? getCardName(pastCard.card) : ""}${pastCard?.reversed ? " ↺" : ""}
+${translations.present}: ${presentCard ? getCardName(presentCard.card) : ""}${presentCard?.reversed ? " ↺" : ""}
+${translations.future}: ${futureCard ? getCardName(futureCard.card) : ""}${futureCard?.reversed ? " ↺" : ""}
+
+${summary}
+
+${shortLink}`
+
   const handleCopy = useCallback(async () => {
     try {
-      await navigator.clipboard.writeText(summaryText)
+      await navigator.clipboard.writeText(tiktokText)
       setCopied(true)
       playSound("flip")
       setTimeout(() => setCopied(false), 2000)
     } catch (err) {
       console.error("Failed to copy:", err)
     }
-  }, [summaryText, playSound])
+  }, [tiktokText, playSound])
 
   return (
     <AnimatePresence>
@@ -97,7 +153,7 @@ function TikTokModal({
 
           {/* Modal */}
           <motion.div
-            className="relative w-full max-w-md p-6 rounded-2xl"
+            className="relative w-full max-w-md p-6 rounded-2xl overflow-hidden"
             style={{
               background: "rgba(20, 10, 40, 0.95)",
               border: "1px solid rgba(115, 242, 255, 0.3)",
@@ -107,16 +163,40 @@ function TikTokModal({
             animate={{ scale: 1, y: 0 }}
             exit={{ scale: 0.9, y: 20 }}
           >
+            {/* Particle effect background */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              {[...Array(12)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-1 h-1 rounded-full"
+                  style={{
+                    background: i % 2 === 0 ? "#73F2FF" : "#FF4FD8",
+                    left: `${Math.random() * 100}%`,
+                    top: `${Math.random() * 100}%`,
+                  }}
+                  animate={{
+                    opacity: [0.2, 0.8, 0.2],
+                    scale: [1, 1.5, 1],
+                  }}
+                  transition={{
+                    duration: 2 + Math.random() * 2,
+                    repeat: Number.POSITIVE_INFINITY,
+                    delay: Math.random() * 2,
+                  }}
+                />
+              ))}
+            </div>
+
             {/* Close Button */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 p-1 rounded-full text-white/60 hover:text-white transition-colors"
+              className="absolute top-4 right-4 p-1 rounded-full text-white/60 hover:text-white transition-colors z-10"
             >
               <X className="w-5 h-5" />
             </button>
 
             {/* TikTok Icon */}
-            <div className="flex justify-center mb-4">
+            <div className="flex justify-center mb-4 relative z-10">
               <div
                 className="p-3 rounded-full"
                 style={{
@@ -128,15 +208,53 @@ function TikTokModal({
             </div>
 
             {/* Title */}
-            <h3 className="text-xl font-bold text-center text-white mb-3">{translations.title}</h3>
+            <h3 className="text-xl font-bold text-center text-white mb-4 relative z-10">{translations.title}</h3>
 
-            {/* Description */}
-            <p className="text-sm text-white/70 text-center mb-6 leading-relaxed">{translations.description}</p>
+            {/* Card Names */}
+            <div className="space-y-2 mb-4 relative z-10">
+              <div className="flex items-center gap-2 text-sm">
+                <span className="text-[#FF4FD8] font-medium w-16">{translations.past}:</span>
+                <span className="text-white/90">
+                  {pastCard ? getCardName(pastCard.card) : ""}
+                  {pastCard?.reversed ? " ↺" : ""}
+                </span>
+              </div>
+              <div className="flex items-center gap-2 text-sm">
+                <span className="text-[#73F2FF] font-medium w-16">{translations.present}:</span>
+                <span className="text-white/90">
+                  {presentCard ? getCardName(presentCard.card) : ""}
+                  {presentCard?.reversed ? " ↺" : ""}
+                </span>
+              </div>
+              <div className="flex items-center gap-2 text-sm">
+                <span className="text-[#A855F7] font-medium w-16">{translations.future}:</span>
+                <span className="text-white/90">
+                  {futureCard ? getCardName(futureCard.card) : ""}
+                  {futureCard?.reversed ? " ↺" : ""}
+                </span>
+              </div>
+            </div>
+
+            {/* Summary */}
+            <div
+              className="p-3 rounded-lg mb-4 relative z-10"
+              style={{
+                background: "rgba(115, 242, 255, 0.1)",
+                border: "1px solid rgba(115, 242, 255, 0.2)",
+              }}
+            >
+              <p className="text-white/80 text-sm leading-relaxed line-clamp-3">{summary}</p>
+            </div>
+
+            {/* Short Link */}
+            <div className="text-center mb-5 relative z-10">
+              <span className="text-[#73F2FF] text-sm font-mono">{shortLink}</span>
+            </div>
 
             {/* Copy Button */}
             <motion.button
               onClick={handleCopy}
-              className="w-full py-3 px-6 rounded-full font-semibold text-white flex items-center justify-center gap-2"
+              className="w-full py-3 px-6 rounded-full font-semibold text-white flex items-center justify-center gap-2 relative z-10"
               style={{
                 background: copied
                   ? "linear-gradient(135deg, #22C55E, #16A34A)"
@@ -151,7 +269,10 @@ function TikTokModal({
                   {translations.copied}
                 </>
               ) : (
-                translations.copyButton
+                <>
+                  <Copy className="w-5 h-5" />
+                  {translations.copyButton}
+                </>
               )}
             </motion.button>
           </motion.div>
@@ -161,24 +282,26 @@ function TikTokModal({
   )
 }
 
-// Social Share Button Component
 function SocialShareButton({
   icon,
   label,
   gradientFrom,
   gradientTo,
   onClick,
+  isLoading,
 }: {
   icon: React.ReactNode
   label: string
   gradientFrom: string
   gradientTo: string
   onClick: () => void
+  isLoading?: boolean
 }) {
   const { playSound } = useSound()
   const [ripple, setRipple] = useState(false)
 
   const handleClick = () => {
+    if (isLoading) return
     playSound("flip")
     setRipple(true)
     setTimeout(() => setRipple(false), 600)
@@ -187,7 +310,7 @@ function SocialShareButton({
 
   return (
     <motion.button
-      className="relative overflow-hidden flex items-center gap-2 md:gap-3 px-4 md:px-6 py-3 md:py-3.5 rounded-full text-sm md:text-base font-medium text-white"
+      className="relative overflow-hidden flex items-center justify-center gap-1.5 px-4 py-3 rounded-full text-sm font-medium text-white min-w-[72px]"
       onClick={handleClick}
       whileHover={{ scale: 1.05, boxShadow: `0 0 20px ${gradientFrom}40` }}
       whileTap={{ scale: 0.95 }}
@@ -214,7 +337,7 @@ function SocialShareButton({
 
       {/* Icon with glow */}
       <span
-        className="relative z-10"
+        className="relative z-10 flex-shrink-0"
         style={{
           filter: `drop-shadow(0 0 6px ${gradientFrom})`,
           color: gradientFrom,
@@ -223,7 +346,7 @@ function SocialShareButton({
         {icon}
       </span>
 
-      {/* Label */}
+      {/* Label - nowrap */}
       <span className="relative z-10 whitespace-nowrap">{label}</span>
     </motion.button>
   )
@@ -234,60 +357,54 @@ export function ShareButtons({ cards, question, overallEnergy, shareCardRef }: S
   const { playSound } = useSound()
   const [showTikTokModal, setShowTikTokModal] = useState(false)
   const [isDownloading, setIsDownloading] = useState(false)
+  const [shortLink, setShortLink] = useState("")
+  const [qrCodeUrl, setQrCodeUrl] = useState("")
 
   // Get card names based on locale
   const getCardName = (card: CardData["card"]) => {
     return card.name[locale as keyof typeof card.name] || card.name.en
   }
 
-  // Generate share text
-  const generateShareText = useCallback(() => {
-    const pastCard = cards.find((c) => c.position === "past")
-    const presentCard = cards.find((c) => c.position === "present")
-    const futureCard = cards.find((c) => c.position === "future")
+  useEffect(() => {
+    const generateShortLink = async () => {
+      if (typeof window !== "undefined") {
+        const originalUrl = window.location.href
+        const shortened = await shortenUrl(originalUrl)
+        setShortLink(shortened)
 
-    const readingUrl = typeof window !== "undefined" ? window.location.href : ""
-
-    return `✨ Your Love Tarot Reading ✨
-
-❤️ Question:
-${question || "General Love Reading"}
-
-🔮 Cards:
-Past: ${pastCard ? getCardName(pastCard.card) : ""}${pastCard?.reversed ? " (Reversed)" : ""}
-Present: ${presentCard ? getCardName(presentCard.card) : ""}${presentCard?.reversed ? " (Reversed)" : ""}
-Future: ${futureCard ? getCardName(futureCard.card) : ""}${futureCard?.reversed ? " (Reversed)" : ""}
-
-✨ Summary:
-${overallEnergy}
-
-Full Reading:
-${readingUrl}
-
-— Love Tarot | AI Guided Reading
-#LoveTarot #TarotReading #AIGuidance`
-  }, [cards, question, overallEnergy, locale])
-
-  // WhatsApp share
-  const handleWhatsAppShare = useCallback(() => {
-    const text = encodeURIComponent(generateShareText())
-    const url = `https://wa.me/?text=${text}`
-    window.open(url, "_blank")
-  }, [generateShareText])
-
-  // Facebook share
-  const handleFacebookShare = useCallback(() => {
-    const readingUrl = encodeURIComponent(typeof window !== "undefined" ? window.location.href : "")
-    const url = `https://www.facebook.com/sharer/sharer.php?u=${readingUrl}`
-    window.open(url, "_blank", "width=600,height=400")
+        // Generate QR code for the short link
+        const qr = await generateQRCode(shortened)
+        setQrCodeUrl(qr)
+      }
+    }
+    generateShortLink()
   }, [])
+
+  const getShareShortText = useCallback(() => {
+    const texts = {
+      en: "My Love Tarot Reading",
+      ro: "Lectura mea Love Tarot",
+      zh: "我的爱情塔罗占卜",
+    }
+    return texts[locale as keyof typeof texts] || texts.en
+  }, [locale])
+
+  const handleWhatsAppShare = useCallback(() => {
+    const shareText = `${t.readingResult.share.shareShort} ${shortLink || window.location.href}`
+    const url = `https://wa.me/?text=${encodeURIComponent(shareText)}`
+    window.open(url, "_blank")
+  }, [shortLink, t.readingResult.share.shareShort])
+
+  const handleFacebookShare = useCallback(() => {
+    const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shortLink || window.location.href)}`
+    window.open(url, "_blank", "width=600,height=400")
+  }, [shortLink])
 
   // TikTok share (open modal)
   const handleTikTokShare = useCallback(() => {
     setShowTikTokModal(true)
   }, [])
 
-  // Download share card
   const handleDownloadCard = useCallback(async () => {
     if (!shareCardRef.current || isDownloading) return
 
@@ -295,11 +412,46 @@ ${readingUrl}
     playSound("flip")
 
     try {
-      const dataUrl = await toPng(shareCardRef.current, {
+      // Clone the share card and add QR code
+      const originalCard = shareCardRef.current
+      const clone = originalCard.cloneNode(true) as HTMLDivElement
+
+      // Add QR code to the clone if available
+      if (qrCodeUrl) {
+        const qrContainer = document.createElement("div")
+        qrContainer.style.cssText =
+          "display: flex; justify-content: center; padding: 16px; margin-top: 16px; border-top: 1px solid rgba(115, 242, 255, 0.2);"
+
+        const qrWrapper = document.createElement("div")
+        qrWrapper.style.cssText = "text-align: center;"
+
+        const qrImg = document.createElement("img")
+        qrImg.src = qrCodeUrl
+        qrImg.style.cssText = "width: 100px; height: 100px; border-radius: 8px;"
+
+        const qrLabel = document.createElement("p")
+        qrLabel.textContent = shortLink
+        qrLabel.style.cssText = "color: #73F2FF; font-size: 10px; margin-top: 8px; font-family: monospace;"
+
+        qrWrapper.appendChild(qrImg)
+        qrWrapper.appendChild(qrLabel)
+        qrContainer.appendChild(qrWrapper)
+        clone.appendChild(qrContainer)
+      }
+
+      // Temporarily append clone to body for rendering
+      clone.style.position = "absolute"
+      clone.style.left = "-9999px"
+      document.body.appendChild(clone)
+
+      const dataUrl = await toPng(clone, {
         quality: 1,
         pixelRatio: 2,
         backgroundColor: "#0a0a1a",
       })
+
+      // Remove clone
+      document.body.removeChild(clone)
 
       const link = document.createElement("a")
       link.download = "love-tarot-reading.png"
@@ -310,7 +462,7 @@ ${readingUrl}
     } finally {
       setIsDownloading(false)
     }
-  }, [shareCardRef, isDownloading, playSound])
+  }, [shareCardRef, isDownloading, playSound, qrCodeUrl, shortLink])
 
   return (
     <>
@@ -332,7 +484,6 @@ ${readingUrl}
             {t.readingResult.share.title}
           </h3>
 
-          {/* Button Grid - 2x2 on mobile, 4 columns on desktop */}
           <div className="grid grid-cols-2 md:flex md:flex-row gap-3 md:gap-4 justify-center">
             {/* WhatsApp */}
             <SocialShareButton
@@ -364,22 +515,34 @@ ${readingUrl}
             {/* Download */}
             <SocialShareButton
               icon={<Download className="w-5 h-5" />}
-              label={t.readingResult.share.downloadCard}
+              label={t.readingResult.share.download}
               gradientFrom="#FF4FD8"
               gradientTo="#A855F7"
               onClick={handleDownloadCard}
+              isLoading={isDownloading}
             />
           </div>
         </div>
       </motion.section>
 
-      {/* TikTok Modal */}
       <TikTokModal
         isOpen={showTikTokModal}
         onClose={() => setShowTikTokModal(false)}
-        summaryText={generateShareText()}
-        translations={t.readingResult.share.tiktokModal}
+        cards={cards}
+        summary={overallEnergy}
+        shortLink={shortLink || (typeof window !== "undefined" ? window.location.href : "")}
+        translations={{
+          title: t.readingResult.share.tiktokModal.title,
+          past: t.threeCard.past,
+          present: t.threeCard.present,
+          future: t.threeCard.future,
+          copyButton: t.readingResult.share.tiktokModal.copyButton,
+          copied: t.readingResult.share.tiktokModal.copied,
+        }}
+        locale={locale}
       />
     </>
   )
 }
+
+export { ShareButtons as default }

@@ -168,7 +168,9 @@ export interface Translations {
       whatsapp: string
       facebook: string
       tiktok: string
+      download: string // Added download field
       downloadCard: string
+      shareShort: string // Added shareShort field
       tiktokModal: {
         title: string
         description: string
@@ -432,15 +434,17 @@ export const translations: Record<Locale, Translations> = {
       },
       share: {
         title: "Share Your Reading",
-        whatsapp: "Share to WhatsApp",
-        facebook: "Share to Facebook",
-        tiktok: "Share to TikTok",
+        whatsapp: "WhatsApp",
+        facebook: "Facebook",
+        tiktok: "TikTok",
+        download: "Download", // Updated from downloadCard
         downloadCard: "Download Share Card",
+        shareShort: "✨ My Love Tarot Reading →", // Added shareShort
         tiktokModal: {
-          title: "Share to TikTok",
+          title: "Love Tarot Reading", // Updated title
           description: "Copy your reading summary and paste it into TikTok along with your video or post.",
           copyButton: "Copy Summary",
-          copied: "Copied!",
+          copied: "Copied! Paste it in TikTok description.", // Updated copied message
         },
       },
       viewFullReading: "View Full Reading",
@@ -803,15 +807,17 @@ export const translations: Record<Locale, Translations> = {
       },
       share: {
         title: "Împărtășește Citirea Ta",
-        whatsapp: "Trimite pe WhatsApp",
-        facebook: "Distribuie pe Facebook",
-        tiktok: "Partajează pe TikTok",
+        whatsapp: "WhatsApp",
+        facebook: "Facebook",
+        tiktok: "TikTok",
+        download: "Descarcă", // Updated from downloadCard
         downloadCard: "Descarcă Cardul",
+        shareShort: "✨ Lectura mea Love Tarot →", // Added shareShort
         tiktokModal: {
-          title: "Partajează pe TikTok",
+          title: "Citire Love Tarot", // Updated title
           description: "Copiază rezumatul citirii și lipește-l în TikTok împreună cu videoclipul sau postarea ta.",
           copyButton: "Copiază Rezumatul",
-          copied: "Copiat!",
+          copied: "Copiat! Lipiți în descrierea TikTok.", // Updated copied message
         },
       },
       viewFullReading: "Vezi Citirea Completă",
@@ -1166,15 +1172,17 @@ export const translations: Record<Locale, Translations> = {
       },
       share: {
         title: "分享你的解读",
-        whatsapp: "分享到 WhatsApp",
-        facebook: "分享到 Facebook",
-        tiktok: "分享到 TikTok",
+        whatsapp: "WhatsApp",
+        facebook: "Facebook",
+        tiktok: "TikTok",
+        download: "下载", // Updated from downloadCard
         downloadCard: "下载分享卡片",
+        shareShort: "✨ 我的爱情塔罗占卜 →", // Added shareShort
         tiktokModal: {
-          title: "分享到 TikTok",
+          title: "爱情塔罗解读", // Updated title
           description: "复制你的解读摘要，粘贴到 TikTok 视频或帖子中。",
           copyButton: "复制摘要",
-          copied: "已复制！",
+          copied: "已复制！粘贴到 TikTok 描述中即可。", // Updated copied message
         },
       },
       viewFullReading: "查看完整解读",
