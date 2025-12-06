@@ -7,6 +7,7 @@ import { LogoIcon } from "./logo-icon"
 import Header from "./header"
 import { Sparkles, ArrowRight, Shield, Heart, Brain, Globe } from "lucide-react"
 import Link from "next/link"
+import { useRouter } from "next/router"
 
 interface LandingPageProps {
   onStartReading: () => void
@@ -14,6 +15,11 @@ interface LandingPageProps {
 
 export default function LandingPage({ onStartReading }: LandingPageProps) {
   const { t } = useI18n()
+  const router = useRouter()
+
+  const handleStartReading = () => {
+    router.push("/intake")
+  }
 
   const fadeInUp = {
     initial: { opacity: 0, y: 20 },
@@ -60,7 +66,7 @@ export default function LandingPage({ onStartReading }: LandingPageProps) {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.button
-                onClick={onStartReading}
+                onClick={handleStartReading}
                 className="group px-8 py-4 rounded-full font-medium text-lg flex items-center justify-center gap-2"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -252,7 +258,7 @@ export default function LandingPage({ onStartReading }: LandingPageProps) {
               {t.hero.title}
             </h2>
             <motion.button
-              onClick={onStartReading}
+              onClick={handleStartReading}
               className="group px-10 py-5 rounded-full font-medium text-xl flex items-center justify-center gap-3 mx-auto"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
