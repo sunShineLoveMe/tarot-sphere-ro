@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useCallback } from "react"
+import { useState, useCallback, useEffect } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import { useRouter } from "next/navigation"
 import { useI18n } from "@/lib/i18n/context"
@@ -25,24 +25,45 @@ export type Phase = "idle" | "shuffling" | "formation" | "selecting" | "loading"
 
 interface TarotSphereProps {
   onBack?: () => void
+  skipIdle?: boolean
 }
 
 const MAX_CARDS = 3
 const POSITION_ORDER: ("past" | "present" | "future")[] = ["past", "present", "future"]
 
-export default function TarotSphere({ onBack }: TarotSphereProps) {
+export default function TarotSphere({ onBack, skipIdle = false }: TarotSphereProps) {
   const { t } = useI18n()
   const router = useRouter()
   const dims = useResponsiveDimensions()
 
-  const [phase, setPhase] = useState<Phase>("idle")
+  const [phase, setPhase] = useState<Phase>(skipIdle ? "shuffling" : "idle")
   const [selectedCards, setSelectedCards] = useState<SelectedCardData[]>([])
   const [selectedCardIndices, setSelectedCardIndices] = useState<number[]>([])
   const [flippedCards, setFlippedCards] = useState<Set<number>>(new Set())
   const [userQuestion, setUserQuestion] = useState("")
 
-  const handleStartShuffle = useCallback(() => {
+  useEffect(() => {
+    if (skipIdle) {
+      try {
+        const stored = sessionStorage.getItem("loveTarotInput")
+        if (stored) {
+          const input = JSON.parse(stored)
+          if (input.userQuestion) {
+            setUserQuestion(input.userQuestion)
+          }
+        }
+      } catch (e) {
+        // Ignore parsing errors
+      }
 
+      const timer = setTimeout(() => {
+        setPhase("formation")
+      }, 4000)
+      return () => clearTimeout(timer)
+    }
+  }, [skipIdle])
+
+  const handleStartShuffle = useCallback(() => {
     setPhase("shuffling")
     setTimeout(() => {
       setPhase("formation")
@@ -54,8 +75,6 @@ export default function TarotSphere({ onBack }: TarotSphereProps) {
       if (phase !== "formation" && phase !== "selecting") return
       if (selectedCardIndices.includes(index)) return
       if (selectedCards.length >= MAX_CARDS) return
-
-
 
       const card = getCardByIndex(index)
       if (!card) return
@@ -77,10 +96,8 @@ export default function TarotSphere({ onBack }: TarotSphereProps) {
       setPhase("selecting")
 
       setTimeout(() => {
-
         setFlippedCards((prev) => new Set([...prev, index]))
 
-        // Check if all 3 cards are selected
         if (newSelectedCards.length >= MAX_CARDS) {
           setTimeout(() => {
             setPhase("loading")
@@ -145,11 +162,9 @@ export default function TarotSphere({ onBack }: TarotSphereProps) {
       )}
 
       <div className="absolute top-4 right-4 z-50 flex items-center gap-2">
-
         <LanguageSwitcher />
       </div>
 
-      {/* Phase: Idle - Card Stack + Question Input */}
       <AnimatePresence>
         {phase === "idle" && (
           <>
@@ -162,10 +177,8 @@ export default function TarotSphere({ onBack }: TarotSphereProps) {
         )}
       </AnimatePresence>
 
-      {/* Phase: Shuffling */}
       <AnimatePresence>{phase === "shuffling" && <ShufflePhase />}</AnimatePresence>
 
-      {/* Phase: Formation & Selecting - Ring positioned higher on mobile */}
       <AnimatePresence>
         {showRing && (
           <motion.div
@@ -192,7 +205,6 @@ export default function TarotSphere({ onBack }: TarotSphereProps) {
         {showSlots && <CardSlots selectedCards={selectedCards} flippedCards={flippedCards} />}
       </AnimatePresence>
 
-      {/* Title - positioned higher on mobile */}
       <div
         className="absolute left-1/2 -translate-x-1/2 z-40 text-center pointer-events-none"
         style={{

@@ -9,16 +9,23 @@ import TarotSphere from "@/components/tarot-sphere"
 
 export default function Home() {
   const [showReading, setShowReading] = useState(false)
+  const [skipIdle, setSkipIdle] = useState(false)
   const searchParams = useSearchParams()
 
   useEffect(() => {
     const shouldStartReading = searchParams.get("startReading") === "true"
     if (shouldStartReading) {
       setShowReading(true)
+      setSkipIdle(true)
       // Clean up the URL without triggering a page reload
       window.history.replaceState({}, "", "/")
     }
   }, [searchParams])
+
+  const handleBack = () => {
+    setShowReading(false)
+    setSkipIdle(false)
+  }
 
   return (
     <I18nProvider>
@@ -26,7 +33,7 @@ export default function Home() {
         {!showReading ? (
           <LandingPage onStartReading={() => setShowReading(true)} />
         ) : (
-          <TarotSphere onBack={() => setShowReading(false)} />
+          <TarotSphere onBack={handleBack} skipIdle={skipIdle} />
         )}
       </main>
     </I18nProvider>

@@ -35,7 +35,7 @@ export default function ProgressBar({ currentStep, totalSteps }: ProgressBarProp
                   border: isActive ? "none" : "2px solid rgba(102, 239, 255, 0.3)",
                   color: isActive ? "white" : "rgba(102, 239, 255, 0.5)",
                   boxShadow: isCurrent
-                    ? "0 0 15px rgba(255, 107, 213, 0.5), 0 0 30px rgba(102, 239, 255, 0.3)"
+                    ? "0 0 20px rgba(255, 107, 213, 0.6), 0 0 40px rgba(102, 239, 255, 0.4)"
                     : "none",
                 }}
               >
@@ -44,14 +44,17 @@ export default function ProgressBar({ currentStep, totalSteps }: ProgressBarProp
 
               {isCurrent && (
                 <motion.div
-                  className="absolute inset-[-4px] rounded-full pointer-events-none"
+                  className="absolute -inset-1 rounded-full pointer-events-none"
                   style={{
-                    background: "transparent",
-                    boxShadow: "0 0 12px 2px rgba(255, 107, 213, 0.6), 0 0 24px 4px rgba(102, 239, 255, 0.4)",
+                    border: "2px solid transparent",
+                    background: "linear-gradient(135deg, rgba(255,107,213,0.4), rgba(102,239,255,0.4)) border-box",
+                    WebkitMask: "linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)",
+                    WebkitMaskComposite: "xor",
+                    maskComposite: "exclude",
                   }}
                   animate={{
-                    opacity: [0.5, 1, 0.5],
-                    scale: [1, 1.1, 1],
+                    opacity: [0.4, 0.8, 0.4],
+                    scale: [1, 1.15, 1],
                   }}
                   transition={{
                     duration: 2,
