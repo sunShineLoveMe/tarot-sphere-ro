@@ -1,26 +1,22 @@
 "use client"
 
 import type React from "react"
-import { useState, useMemo, useCallback, useRef, useEffect } from "react"
+import { useState, useMemo, useCallback, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useRouter, useSearchParams } from "next/navigation"
 import { ArrowLeft, Sparkles, Heart, Star, Moon, Sun, RefreshCw } from "lucide-react"
 import { useI18n } from "@/lib/i18n/context"
 
 import { LanguageSwitcher } from "@/components/language-switcher"
-
 import { MagicBackground } from "@/components/magic-background"
 import { TypewriterText } from "@/components/typewriter-text"
 import { majorArcana, getCardReading } from "@/lib/tarot/cards"
 import { ShareButtons } from "@/components/share-buttons"
 import { LogoIcon } from "@/components/logo-icon"
+import { TarotSpread } from "@/components/tarot-spread"
+import { TarotCardModal } from "@/components/tarot-card-modal"
+import type { DrawnCard } from "@/lib/tarot/utils"
 import Link from "next/link"
-
-interface CardData {
-  card: (typeof majorArcana)[0]
-  reversed: boolean
-  position: "past" | "present" | "future"
-}
 
 interface ReadingData {
   name: string
@@ -38,6 +34,8 @@ function ReadingResultContent() {
   const shareCardRef = useRef<HTMLDivElement>(null)
 
   const [typewriterStep, setTypewriterStep] = useState(0)
+  const [selectedCard, setSelectedCard] = useState<DrawnCard | null>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const cards = useMemo(() => {
     try {
@@ -64,6 +62,14 @@ function ReadingResultContent() {
       { card: majorArcana[21], reversed: false, position: "future" as const },
     ]
   }, [searchParams])
+
+  const drawnCards: DrawnCard[] = useMemo(() => {
+    return cards.map((cardData) => ({
+      position: cardData.position,
+      card: cardData.card,
+      reversed: cardData.reversed,
+    }))
+  }, [cards])
 
   const question = searchParams.get("question") || ""
 
@@ -103,19 +109,20 @@ function ReadingResultContent() {
 
   const handleStep4Complete = useCallback(() => {
     setTypewriterStep((prev) => Math.max(prev, 4))
-    // Trigger step 5 after a delay to show share buttons
     setTimeout(() => {
       setTypewriterStep((prev) => Math.max(prev, 5))
     }, 1500)
   }, [])
 
-  const handleStep5Complete = useCallback(() => {
-    setTypewriterStep((prev) => Math.max(prev, 5))
+  const handleCardClick = useCallback((card: DrawnCard) => {
+    setSelectedCard(card)
+    setIsModalOpen(true)
   }, [])
 
-
-
-
+  const handleCloseModal = useCallback(() => {
+    setIsModalOpen(false)
+    setSelectedCard(null)
+  }, [])
 
   const getCardName = (card: (typeof majorArcana)[0]) => {
     return card.name[locale as keyof typeof card.name] || card.name.en
@@ -148,7 +155,6 @@ function ReadingResultContent() {
           </motion.button>
 
           <div className="flex items-center gap-3">
-
             <LanguageSwitcher />
           </div>
         </header>
@@ -178,7 +184,7 @@ function ReadingResultContent() {
           <p className="text-xs md:text-sm uppercase tracking-[0.3em] text-[#73F2FF]/60">{t.readingResult.pageTitle}</p>
         </motion.div>
 
-        {/* Main Content - wrap in ref for screenshot */}
+        {/* Main Content */}
         <div className="max-w-4xl mx-auto" ref={shareCardRef}>
           {/* Question Display */}
           {question && (
@@ -196,45 +202,9 @@ function ReadingResultContent() {
             </motion.div>
           )}
 
-          {/* Three Cards Display */}
-          <motion.div
-            className="flex justify-center gap-4 md:gap-8 mb-10"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            {cardReadings.map((cardData, index) => (
-              <div key={cardData.card.id} className="text-center">
-                <p className="text-xs uppercase tracking-wider text-[#73F2FF] mb-2">
-                  {cardData.position === "past"
-                    ? t.threeCardSpread.positions.past
-                    : cardData.position === "present"
-                      ? t.threeCardSpread.positions.present
-                      : t.threeCardSpread.positions.future}
-                </p>
-                <motion.div
-                  className="w-20 h-32 md:w-28 md:h-44 rounded-lg overflow-hidden relative"
-                  style={{
-                    background: "linear-gradient(145deg, #1a0a2e, #2d1b4e)",
-                    border: "2px solid",
-                    borderImage: "linear-gradient(135deg, #FF4FD8, #73F2FF) 1",
-                    boxShadow: "0 0 20px rgba(255, 79, 216, 0.3)",
-                    transform: cardData.reversed ? "rotate(180deg)" : "none",
-                  }}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-3xl md:text-4xl">{index === 0 ? "🌙" : index === 1 ? "☀️" : "⭐"}</span>
-                  </div>
-                </motion.div>
-                <p className="text-sm font-medium text-white mt-2">{getCardName(cardData.card)}</p>
-                <p className="text-xs text-white/50">
-                  {cardData.reversed
-                    ? `(${locale === "zh" ? "逆位" : locale === "ro" ? "Inversat" : "Reversed"})`
-                    : `(${locale === "zh" ? "正位" : locale === "ro" ? "Drept" : "Upright"})`}
-                </p>
-              </div>
-            ))}
-          </motion.div>
+          <div className="mb-10">
+            <TarotSpread cards={drawnCards} onCardClick={handleCardClick} size="md" />
+          </div>
 
           {/* Overall Energy */}
           <motion.section
@@ -413,6 +383,8 @@ function ReadingResultContent() {
           </AnimatePresence>
         </div>
       </div>
+
+      <TarotCardModal drawnCard={selectedCard} isOpen={isModalOpen} onClose={handleCloseModal} />
     </div>
   )
 }
