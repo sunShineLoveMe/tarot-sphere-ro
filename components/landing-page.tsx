@@ -7,7 +7,7 @@ import { LogoIcon } from "./logo-icon"
 import Header from "./header"
 import { Sparkles, ArrowRight, Shield, Heart, Brain, Globe } from "lucide-react"
 import Link from "next/link"
-import { useRouter } from "next/router"
+import { useRouter } from "next/navigation"
 
 interface LandingPageProps {
   onStartReading: () => void
