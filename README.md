@@ -46,13 +46,13 @@ An immersive, ritual-style Love Tarot divination web application that combines c
 
 ### 架构概览 | Architecture Overview
 
-```
+\`\`\`
 ┌──────────────────────────────────────────────────────────────┐
 │  前端 (用户问题 + 选牌) → POST /api/reading → Gemini Pro    │
 │                              ↓                               │
 │               AI 生成个性化塔罗解读 → 流式输出到页面         │
 └──────────────────────────────────────────────────────────────┘
-```
+\`\`\`
 
 ### To-Do List
 
@@ -85,7 +85,7 @@ An immersive, ritual-style Love Tarot divination web application that combines c
 
 ### API 接口设计 | API Interface
 
-```typescript
+\`\`\`typescript
 // POST /api/reading
 // Request
 interface ReadingRequest {
@@ -109,11 +109,11 @@ interface ReadingResponse {
     affirmation: string               // 每日肯定语
   }
 }
-```
+\`\`\`
 
 ### 新增文件结构 | New File Structure
 
-```
+\`\`\`
 app/api/reading/route.ts    # API 路由
 lib/gemini/
 ├── client.ts               # Gemini 客户端
@@ -123,7 +123,7 @@ hooks/use-reading.ts        # API Hook
 components/
 ├── ai-reading.tsx          # AI 解读组件
 └── reading-skeleton.tsx    # 加载骨架屏
-```
+\`\`\`
 
 ---
 
