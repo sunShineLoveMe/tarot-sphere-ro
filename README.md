@@ -40,6 +40,93 @@ An immersive, ritual-style Love Tarot divination web application that combines c
 
 ---
 
+## 🚀 Gemini Pro API 接入计划 | API Integration Roadmap
+
+> **Status**: ✅ Phase 1-3 Complete | Ready for API Key Configuration
+
+### 架构概览 | Architecture Overview
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│  前端 (用户问题 + 选牌) → POST /api/reading → Gemini Pro    │
+│                              ↓                               │
+│               AI 生成个性化塔罗解读 → 流式输出到页面         │
+└──────────────────────────────────────────────────────────────┘
+```
+
+### To-Do List
+
+#### Phase 1: 后端 API 搭建 | Backend Setup ✅
+- [x] 安装依赖 `@google/generative-ai`
+- [x] 配置环境变量模板 `.env.example`
+- [x] 创建 API 路由 `app/api/reading/route.ts`
+- [x] 设计 Prompt 模板 `lib/gemini/prompts.ts`
+- [x] 定义类型接口 `lib/gemini/types.ts`
+- [x] 创建 Gemini 客户端 `lib/gemini/client.ts`
+
+#### Phase 2: Prompt 工程 | Prompt Engineering ✅
+- [x] 基础角色设定 (专业爱情塔罗师)
+- [x] 牌面上下文注入 (牌名、关键词、正逆位)
+- [x] 用户问题整合与解读定制
+- [x] 多语言输出支持 (en/zh/ro)
+
+#### Phase 3: 前端集成 | Frontend Integration ✅
+- [x] 创建 API 调用 Hook `hooks/use-reading.ts`
+- [x] AI 解读展示组件 `components/ai-reading.tsx`
+- [x] 加载骨架屏动画 `components/reading-skeleton.tsx`
+- [ ] 集成到 reading-result 页面
+- [ ] 错误处理与降级方案
+
+#### Phase 4: 优化与测试 | Optimization & Testing
+- [ ] 响应缓存 (相同牌组合)
+- [ ] Rate Limiting 防滥用
+- [ ] API 失败降级到静态解读
+- [ ] 端到端测试
+
+### API 接口设计 | API Interface
+
+```typescript
+// POST /api/reading
+// Request
+interface ReadingRequest {
+  question: string                    // 用户问题
+  locale: "en" | "zh" | "ro"          // 语言
+  cards: {
+    id: number                        // 牌 ID (0-21)
+    position: "past" | "present" | "future"
+    reversed: boolean                 // 是否逆位
+  }[]
+}
+
+// Response
+interface ReadingResponse {
+  success: boolean
+  reading: {
+    overview: string                  // 整体能量概述
+    cards: { position: string; interpretation: string }[]
+    synthesis: string                 // 三牌综合解读
+    advice: string                    // 行动建议
+    affirmation: string               // 每日肯定语
+  }
+}
+```
+
+### 新增文件结构 | New File Structure
+
+```
+app/api/reading/route.ts    # API 路由
+lib/gemini/
+├── client.ts               # Gemini 客户端
+├── prompts.ts              # Prompt 模板
+└── types.ts                # 类型定义
+hooks/use-reading.ts        # API Hook
+components/
+├── ai-reading.tsx          # AI 解读组件
+└── reading-skeleton.tsx    # 加载骨架屏
+```
+
+---
+
 ## 核心特性 | Core Features
 
 ### 1. 国际化系统 | Internationalization (i18n)
