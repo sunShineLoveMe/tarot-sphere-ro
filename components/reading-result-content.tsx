@@ -38,7 +38,7 @@ function ReadingResultContent() {
   const [limitModalType, setLimitModalType] = useState<"daily-limit" | "share-page">("daily-limit")
 
   // Daily limit hook
-  const { canDraw, increaseDrawCount, isSharePage } = useDailyLimit()
+  const { canDraw, increaseDrawCount, isSharePage, isLoading } = useDailyLimit()
 
   // AI Reading hook with skeleton delay
   const { reading, phase, error, generateReading } = useReading({
@@ -89,6 +89,8 @@ function ReadingResultContent() {
 
   // Auto-trigger AI reading when cards are displayed
   useEffect(() => {
+    // Wait for daily limit hook to initialize
+    if (isLoading) return
     if (hasTriggeredAI || !question || cards.length !== 3) return
 
     // Check if this is a share page
@@ -125,7 +127,7 @@ function ReadingResultContent() {
     }, 800) // Wait 800ms for cards to animate in
 
     return () => clearTimeout(timer)
-  }, [hasTriggeredAI, question, cards, locale, generateReading, getCardName, canDraw, isSharePage, increaseDrawCount])
+  }, [hasTriggeredAI, question, cards, locale, generateReading, getCardName, canDraw, isSharePage, increaseDrawCount, isLoading])
 
   const handleCardClick = useCallback((card: DrawnCard) => {
     setSelectedCard(card)

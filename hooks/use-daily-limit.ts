@@ -92,6 +92,7 @@ export interface DailyLimitHook {
   maxDailyDraws: number
   increaseDrawCount: () => void
   isSharePage: boolean
+  isLoading: boolean  // True while initializing, must wait for this to be false before checking canDraw
 }
 
 export function useDailyLimit(): DailyLimitHook {
@@ -139,6 +140,7 @@ export function useDailyLimit(): DailyLimitHook {
 
   // Calculate remaining draws
   const remainingCount = Math.max(0, MAX_DAILY_DRAWS - limitData.dailyDrawCount)
+  // Only return true for canDraw if initialized AND has remaining draws AND not share page
   const canDraw = isInitialized && remainingCount > 0 && !isSharePage
 
   // Increase draw count
@@ -161,5 +163,6 @@ export function useDailyLimit(): DailyLimitHook {
     maxDailyDraws: MAX_DAILY_DRAWS,
     increaseDrawCount,
     isSharePage,
+    isLoading: !isInitialized,  // Return loading state
   }
 }
