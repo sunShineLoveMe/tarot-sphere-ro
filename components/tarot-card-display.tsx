@@ -66,7 +66,7 @@ export function TarotCardDisplay({
                 src={imagePath || "/placeholder.svg"}
                 alt={cardName}
                 fill
-                className="object-cover transition-transform duration-300"
+                className={`object-cover transition-transform duration-300 ${reversed ? "rotate-180" : ""}`}
                 sizes="(max-width: 768px) 120px, 180px"
                 priority
               />

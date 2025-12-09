@@ -91,7 +91,7 @@ export function TarotCardModal({ drawnCard, isOpen, onClose }: TarotCardModalPro
                         src={imagePath || "/placeholder.svg"}
                         alt={cardName}
                         fill
-                        className="object-cover"
+                        className={`object-cover ${reversed ? "rotate-180" : ""}`}
                         sizes="(max-width: 768px) 160px, 208px"
                         priority
                       />
