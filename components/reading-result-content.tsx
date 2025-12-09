@@ -18,6 +18,8 @@ import { AIReading } from "@/components/ai-reading"
 import { ReadingSkeleton } from "@/components/reading-skeleton"
 import { LoadingAnimation } from "@/components/loading-animation"
 import { useReading } from "@/hooks/use-reading"
+import { useDailyLimit } from "@/hooks/use-daily-limit"
+import LimitModal from "@/components/limit-modal"
 import type { DrawnCard } from "@/lib/tarot/utils"
 import type { Locale, CardInput } from "@/lib/gemini/types"
 import Link from "next/link"
@@ -32,6 +34,11 @@ function ReadingResultContent() {
   const [selectedCard, setSelectedCard] = useState<DrawnCard | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [hasTriggeredAI, setHasTriggeredAI] = useState(false)
+  const [showLimitModal, setShowLimitModal] = useState(false)
+  const [limitModalType, setLimitModalType] = useState<"daily-limit" | "share-page">("daily-limit")
+
+  // Daily limit hook
+  const { canDraw, increaseDrawCount, isSharePage } = useDailyLimit()
 
   // AI Reading hook with skeleton delay
   const { reading, phase, error, generateReading } = useReading({
@@ -84,9 +91,28 @@ function ReadingResultContent() {
   useEffect(() => {
     if (hasTriggeredAI || !question || cards.length !== 3) return
 
+    // Check if this is a share page
+    if (isSharePage) {
+      setLimitModalType("share-page")
+      setShowLimitModal(true)
+      setHasTriggeredAI(true) // Prevent re-triggering
+      return
+    }
+
+    // Check daily limit before calling API
+    if (!canDraw) {
+      setLimitModalType("daily-limit")
+      setShowLimitModal(true)
+      setHasTriggeredAI(true) // Prevent re-triggering
+      return
+    }
+
     // Small delay to let cards render first
     const timer = setTimeout(() => {
       setHasTriggeredAI(true)
+
+      // Increase draw count before API call
+      increaseDrawCount()
 
       // Build card inputs with names
       const cardInputs: CardInput[] = cards.map((c) => ({
@@ -99,7 +125,7 @@ function ReadingResultContent() {
     }, 800) // Wait 800ms for cards to animate in
 
     return () => clearTimeout(timer)
-  }, [hasTriggeredAI, question, cards, locale, generateReading, getCardName])
+  }, [hasTriggeredAI, question, cards, locale, generateReading, getCardName, canDraw, isSharePage, increaseDrawCount])
 
   const handleCardClick = useCallback((card: DrawnCard) => {
     setSelectedCard(card)
@@ -305,25 +331,28 @@ function ReadingResultContent() {
                   shareCardRef={shareCardRef}
                 />
 
-                <motion.div
-                  className="text-center mt-6"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                >
-                  <motion.button
-                    onClick={() => router.push("/")}
-                    className="inline-flex items-center gap-2 px-8 py-3 rounded-full font-semibold text-white"
-                    style={{
-                      background: "linear-gradient(135deg, #FF4FD8, #A855F7)",
-                      boxShadow: "0 0 30px rgba(255, 79, 216, 0.4)",
-                    }}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                {/* Hide New Reading button on share page */}
+                {!isSharePage && (
+                  <motion.div
+                    className="text-center mt-6"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
                   >
-                    <RefreshCw className="w-4 h-4" />
-                    {locale === "zh" ? "开始新解读" : locale === "ro" ? "Citire Nouă" : "New Reading"}
-                  </motion.button>
-                </motion.div>
+                    <motion.button
+                      onClick={() => router.push("/")}
+                      className="inline-flex items-center gap-2 px-8 py-3 rounded-full font-semibold text-white"
+                      style={{
+                        background: "linear-gradient(135deg, #FF4FD8, #A855F7)",
+                        boxShadow: "0 0 30px rgba(255, 79, 216, 0.4)",
+                      }}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <RefreshCw className="w-4 h-4" />
+                      {locale === "zh" ? "开始新解读" : locale === "ro" ? "Citire Nouă" : "New Reading"}
+                    </motion.button>
+                  </motion.div>
+                )}
               </>
             )}
           </AnimatePresence>
@@ -331,6 +360,13 @@ function ReadingResultContent() {
       </div>
 
       <TarotCardModal drawnCard={selectedCard} isOpen={isModalOpen} onClose={handleCloseModal} />
+      
+      {/* Limit Modal */}
+      <LimitModal
+        isOpen={showLimitModal}
+        onClose={() => setShowLimitModal(false)}
+        type={limitModalType}
+      />
     </div>
   )
 }
