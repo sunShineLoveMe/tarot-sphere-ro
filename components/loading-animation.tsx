@@ -91,11 +91,11 @@ export function LoadingAnimation({ locale = "en" }: LoadingAnimationProps) {
       </div>
 
       {/* Animated text */}
-      <motion.div className="text-center">
+      <div className="relative w-full text-center">
         {messages.map((message, i) => (
           <motion.p
             key={message}
-            className="text-sm text-[#73F2FF]/80"
+            className="text-sm text-[#73F2FF]/80 whitespace-nowrap"
             initial={{ opacity: 0 }}
             animate={{
               opacity: [0, 1, 1, 0],
@@ -108,13 +108,15 @@ export function LoadingAnimation({ locale = "en" }: LoadingAnimationProps) {
             }}
             style={{
               position: i === 0 ? "relative" : "absolute",
-              width: "100%",
+              left: i === 0 ? "auto" : "50%",
+              transform: i === 0 ? "none" : "translateX(-50%)",
+              top: i === 0 ? "auto" : 0,
             }}
           >
             {message}
           </motion.p>
         ))}
-      </motion.div>
+      </div>
 
       {/* Decorative particles */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
