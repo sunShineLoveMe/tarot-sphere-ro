@@ -1,15 +1,4 @@
-import type { Locale, CardInput } from "./types"
-import { loveDeck, type TarotCard } from "@/lib/tarot/cards"
-
-// Get card data by ID
-function getCardById(id: number): TarotCard | undefined {
-  return loveDeck.find((card) => card.id === id)
-}
-
-// Get card name in the specified locale
-function getCardName(card: TarotCard, locale: Locale): string {
-  return card.name[locale] || card.name.en
-}
+import type { Locale, CardInput, ReadingContent, PositionInsight } from "./types"
 
 // Build the system prompt for the AI
 export function buildSystemPrompt(locale: Locale): string {
@@ -30,8 +19,10 @@ Guidelines:
 - Respect user privacy and emotions
 - Never make absolute predictions about the future
 
-IMPORTANT: Respond ONLY in ${languageMap[locale]}.
-Keep your response concise but meaningful.`
+IMPORTANT: 
+1. Respond ONLY in ${languageMap[locale]}.
+2. Return your response as a valid JSON object (no markdown, no code blocks).
+3. Keep your response concise but meaningful.`
 }
 
 // Build the user prompt with card context
@@ -40,196 +31,174 @@ export function buildReadingPrompt(
   cards: CardInput[],
   locale: Locale
 ): string {
-  const cardDescriptions = cards
-    .map((c) => {
-      const card = getCardById(c.id)
-      if (!card) return null
+  const pastCard = cards.find(c => c.position === "Past")
+  const presentCard = cards.find(c => c.position === "Present")
+  const futureCard = cards.find(c => c.position === "Future")
 
-      const name = getCardName(card, locale)
-      const keywords = card.keywords[locale] || card.keywords.en
-      const positionLabels = {
-        en: { past: "Past", present: "Present", future: "Future" },
-        zh: { past: "过去", present: "现在", future: "未来" },
-        ro: { past: "Trecut", present: "Prezent", future: "Viitor" },
-      }
-      const orientationLabels = {
-        en: { upright: "Upright", reversed: "Reversed" },
-        zh: { upright: "正位", reversed: "逆位" },
-        ro: { upright: "Drept", reversed: "Inversat" },
-      }
-
-      const position = positionLabels[locale][c.position]
-      const orientation = c.reversed
-        ? orientationLabels[locale].reversed
-        : orientationLabels[locale].upright
-
-      return `- ${position}: ${name} (${orientation})
-  Keywords: ${keywords.join(", ")}`
-    })
-    .filter(Boolean)
-    .join("\n")
+  const formatCard = (card: CardInput | undefined) => {
+    if (!card) return "Unknown"
+    return `${card.name} (${card.reversed ? "Reversed" : "Upright"})`
+  }
 
   const promptTemplates = {
     en: `The user's love question: "${question}"
 
 The three cards drawn:
-${cardDescriptions}
+- Past: ${formatCard(pastCard)}
+- Present: ${formatCard(presentCard)}
+- Future: ${formatCard(futureCard)}
 
-Please provide a love tarot reading with the following structure:
+Provide a love tarot reading as a JSON object with this exact structure:
+{
+  "overallEnergy": "One paragraph summarizing the combined energy of all three cards and the overall message for this reading.",
+  "past": {
+    "insight": "A short, impactful sentence about past influences.",
+    "deepDive": "A detailed paragraph (2-3 sentences) explaining how ${pastCard?.name || 'this card'} reflects past influences on the current love situation.",
+    "tags": ["keyword1", "keyword2", "keyword3"]
+  },
+  "present": {
+    "insight": "A short, impactful sentence about the current situation.",
+    "deepDive": "A detailed paragraph (2-3 sentences) explaining what ${presentCard?.name || 'this card'} reveals about the current situation.",
+    "tags": ["keyword1", "keyword2", "keyword3"]
+  },
+  "future": {
+    "insight": "A short, impactful sentence about future potential.",
+    "deepDive": "A detailed paragraph (2-3 sentences) explaining the potential developments and opportunities ahead based on ${futureCard?.name || 'this card'}.",
+    "tags": ["keyword1", "keyword2", "keyword3"]
+  }
+}
 
-## Overall Energy
-[One sentence summarizing the combined energy of all three cards]
-
-## Past - [Card Name]
-[How this card reflects past influences on the current love situation, 2-3 sentences]
-
-## Present - [Card Name]
-[What this card reveals about the current situation and what needs attention, 2-3 sentences]
-
-## Future - [Card Name]
-[Potential developments and opportunities ahead, 2-3 sentences]
-
-## Synthesis
-[How all three cards work together to answer the user's question, 2-3 sentences]
-
-## Advice
-[Specific, actionable guidance based on the reading, 2-3 sentences]
-
-## Affirmation
-[A single powerful affirmation for the user to carry with them]`,
+Return ONLY the JSON object, no additional text.`,
 
     zh: `用户的爱情问题："${question}"
 
 抽到的三张牌：
-${cardDescriptions}
+- 过去：${formatCard(pastCard)}
+- 现在：${formatCard(presentCard)}
+- 未来：${formatCard(futureCard)}
 
-请提供以下结构的爱情塔罗解读：
+请以 JSON 对象格式提供爱情塔罗解读，使用以下精确结构:
+{
+  "overallEnergy": "一段话总结三张牌的整体能量和解读的核心信息。",
+  "past": {
+    "insight": "关于过去影响的简短有力的一句话。",
+    "deepDive": "详细段落（2-3句话），解释${pastCard?.name || '这张牌'}如何反映过去对当前爱情状况的影响。",
+    "tags": ["关键词1", "关键词2", "关键词3"]
+  },
+  "present": {
+    "insight": "关于当前状况的简短有力的一句话。",
+    "deepDive": "详细段落（2-3句话），解释${presentCard?.name || '这张牌'}揭示的当前状况。",
+    "tags": ["关键词1", "关键词2", "关键词3"]
+  },
+  "future": {
+    "insight": "关于未来潜力的简短有力的一句话。",
+    "deepDive": "详细段落（2-3句话），基于${futureCard?.name || '这张牌'}解释未来可能的发展和机遇。",
+    "tags": ["关键词1", "关键词2", "关键词3"]
+  }
+}
 
-## 整体能量
-[用一句话总结三张牌的整体能量]
-
-## 过去 - [牌名]
-[这张牌如何反映过去对当前爱情状况的影响，2-3句话]
-
-## 现在 - [牌名]
-[这张牌揭示了当前状况以及需要关注的重点，2-3句话]
-
-## 未来 - [牌名]
-[未来可能的发展趋势和机遇，2-3句话]
-
-## 综合解读
-[三张牌如何共同回答用户的问题，2-3句话]
-
-## 建议
-[基于解读的具体、可执行的指导建议，2-3句话]
-
-## 每日肯定语
-[一句有力量的肯定语，让用户带着它前行]`,
+只返回 JSON 对象，不要有其他文字。`,
 
     ro: `Întrebarea de dragoste a utilizatorului: "${question}"
 
 Cele trei cărți trase:
-${cardDescriptions}
+- Trecut: ${formatCard(pastCard)}
+- Prezent: ${formatCard(presentCard)}
+- Viitor: ${formatCard(futureCard)}
 
-Vă rugăm să oferiți o citire de tarot de dragoste cu următoarea structură:
+Oferă o citire de tarot pentru dragoste ca obiect JSON cu această structură exactă:
+{
+  "overallEnergy": "Un paragraf care rezumă energia combinată a celor trei cărți și mesajul general.",
+  "past": {
+    "insight": "O propoziție scurtă și de impact despre influențele trecute.",
+    "deepDive": "Un paragraf detaliat (2-3 propoziții) explicând cum ${pastCard?.name || 'această carte'} reflectă influențele trecute.",
+    "tags": ["cuvânt1", "cuvânt2", "cuvânt3"]
+  },
+  "present": {
+    "insight": "O propoziție scurtă și de impact despre situația actuală.",
+    "deepDive": "Un paragraf detaliat (2-3 propoziții) despre ce dezvăluie ${presentCard?.name || 'această carte'}.",
+    "tags": ["cuvânt1", "cuvânt2", "cuvânt3"]
+  },
+  "future": {
+    "insight": "O propoziție scurtă și de impact despre potențialul viitor.",
+    "deepDive": "Un paragraf detaliat (2-3 propoziții) despre dezvoltările potențiale bazate pe ${futureCard?.name || 'această carte'}.",
+    "tags": ["cuvânt1", "cuvânt2", "cuvânt3"]
+  }
+}
 
-## Energia Generală
-[O propoziție care rezumă energia combinată a celor trei cărți]
-
-## Trecut - [Numele Cărții]
-[Cum reflectă această carte influențele trecute asupra situației amoroase actuale, 2-3 propoziții]
-
-## Prezent - [Numele Cărții]
-[Ce dezvăluie această carte despre situația actuală și ce necesită atenție, 2-3 propoziții]
-
-## Viitor - [Numele Cărții]
-[Dezvoltări potențiale și oportunități viitoare, 2-3 propoziții]
-
-## Sinteză
-[Cum lucrează toate cele trei cărți împreună pentru a răspunde la întrebarea utilizatorului, 2-3 propoziții]
-
-## Sfat
-[Îndrumare specifică și acționabilă bazată pe citire, 2-3 propoziții]
-
-## Afirmație
-[O singură afirmație puternică pentru utilizator]`,
+Returnează DOAR obiectul JSON, fără text suplimentar.`,
   }
 
   return promptTemplates[locale]
 }
 
 // Parse the AI response into structured content
-export function parseReadingResponse(
-  response: string,
-  locale: Locale
-): {
-  overview: string
-  cards: { position: "past" | "present" | "future"; cardName: string; interpretation: string }[]
-  synthesis: string
-  advice: string
-  affirmation: string
-} {
-  const sectionPatterns = {
-    en: {
-      overview: /##\s*Overall Energy\s*\n([\s\S]*?)(?=\n##|$)/i,
-      past: /##\s*Past\s*-\s*(.+?)\s*\n([\s\S]*?)(?=\n##|$)/i,
-      present: /##\s*Present\s*-\s*(.+?)\s*\n([\s\S]*?)(?=\n##|$)/i,
-      future: /##\s*Future\s*-\s*(.+?)\s*\n([\s\S]*?)(?=\n##|$)/i,
-      synthesis: /##\s*Synthesis\s*\n([\s\S]*?)(?=\n##|$)/i,
-      advice: /##\s*Advice\s*\n([\s\S]*?)(?=\n##|$)/i,
-      affirmation: /##\s*Affirmation\s*\n([\s\S]*?)(?=\n##|$)/i,
-    },
-    zh: {
-      overview: /##\s*整体能量\s*\n([\s\S]*?)(?=\n##|$)/i,
-      past: /##\s*过去\s*-\s*(.+?)\s*\n([\s\S]*?)(?=\n##|$)/i,
-      present: /##\s*现在\s*-\s*(.+?)\s*\n([\s\S]*?)(?=\n##|$)/i,
-      future: /##\s*未来\s*-\s*(.+?)\s*\n([\s\S]*?)(?=\n##|$)/i,
-      synthesis: /##\s*综合解读\s*\n([\s\S]*?)(?=\n##|$)/i,
-      advice: /##\s*建议\s*\n([\s\S]*?)(?=\n##|$)/i,
-      affirmation: /##\s*每日肯定语\s*\n([\s\S]*?)(?=\n##|$)/i,
-    },
-    ro: {
-      overview: /##\s*Energia Generală\s*\n([\s\S]*?)(?=\n##|$)/i,
-      past: /##\s*Trecut\s*-\s*(.+?)\s*\n([\s\S]*?)(?=\n##|$)/i,
-      present: /##\s*Prezent\s*-\s*(.+?)\s*\n([\s\S]*?)(?=\n##|$)/i,
-      future: /##\s*Viitor\s*-\s*(.+?)\s*\n([\s\S]*?)(?=\n##|$)/i,
-      synthesis: /##\s*Sinteză\s*\n([\s\S]*?)(?=\n##|$)/i,
-      advice: /##\s*Sfat\s*\n([\s\S]*?)(?=\n##|$)/i,
-      affirmation: /##\s*Afirmație\s*\n([\s\S]*?)(?=\n##|$)/i,
-    },
-  }
+export function parseReadingResponse(response: string): ReadingContent {
+  // Try to parse as JSON directly
+  try {
+    // Remove potential markdown code blocks
+    let cleanResponse = response.trim()
+    if (cleanResponse.startsWith("```json")) {
+      cleanResponse = cleanResponse.slice(7)
+    }
+    if (cleanResponse.startsWith("```")) {
+      cleanResponse = cleanResponse.slice(3)
+    }
+    if (cleanResponse.endsWith("```")) {
+      cleanResponse = cleanResponse.slice(0, -3)
+    }
+    cleanResponse = cleanResponse.trim()
 
-  const patterns = sectionPatterns[locale]
-
-  const extractSection = (pattern: RegExp, text: string): string => {
-    const match = text.match(pattern)
-    return match ? match[1].trim() : ""
-  }
-
-  const extractCardSection = (
-    pattern: RegExp,
-    text: string
-  ): { cardName: string; interpretation: string } => {
-    const match = text.match(pattern)
+    const parsed = JSON.parse(cleanResponse)
+    
+    // Validate and return with defaults
     return {
-      cardName: match ? match[1].trim() : "",
-      interpretation: match ? match[2].trim() : "",
+      overallEnergy: parsed.overallEnergy || "The cards reveal a transformative journey in your love life.",
+      past: validatePositionInsight(parsed.past),
+      present: validatePositionInsight(parsed.present),
+      future: validatePositionInsight(parsed.future),
+    }
+  } catch {
+    // Return fallback if parsing fails
+    console.error("Failed to parse Gemini response as JSON:", response.substring(0, 200))
+    return getDefaultReading()
+  }
+}
+
+function validatePositionInsight(data: unknown): PositionInsight {
+  if (!data || typeof data !== "object") {
+    return {
+      insight: "A significant influence is present.",
+      deepDive: "The cards suggest important energies at play in this area of your journey.",
+      tags: ["transformation", "growth", "insight"],
     }
   }
 
-  const pastCard = extractCardSection(patterns.past, response)
-  const presentCard = extractCardSection(patterns.present, response)
-  const futureCard = extractCardSection(patterns.future, response)
-
+  const obj = data as Record<string, unknown>
   return {
-    overview: extractSection(patterns.overview, response),
-    cards: [
-      { position: "past", ...pastCard },
-      { position: "present", ...presentCard },
-      { position: "future", ...futureCard },
-    ],
-    synthesis: extractSection(patterns.synthesis, response),
-    advice: extractSection(patterns.advice, response),
-    affirmation: extractSection(patterns.affirmation, response),
+    insight: typeof obj.insight === "string" ? obj.insight : "A significant influence is present.",
+    deepDive: typeof obj.deepDive === "string" ? obj.deepDive : "The cards suggest important energies at play.",
+    tags: Array.isArray(obj.tags) ? obj.tags.filter((t): t is string => typeof t === "string") : ["insight", "growth"],
+  }
+}
+
+function getDefaultReading(): ReadingContent {
+  return {
+    overallEnergy: "The cards reveal a journey of transformation and growth in your love life.",
+    past: {
+      insight: "Past experiences have shaped your current path.",
+      deepDive: "The energies from your past continue to influence your present situation, offering lessons and wisdom.",
+      tags: ["reflection", "lessons", "growth"],
+    },
+    present: {
+      insight: "The present moment holds important opportunities.",
+      deepDive: "Right now, you are at a crossroads where your choices will shape your romantic future significantly.",
+      tags: ["choices", "awareness", "potential"],
+    },
+    future: {
+      insight: "New possibilities are emerging on the horizon.",
+      deepDive: "The future holds promise for positive developments, though the path forward requires intention and trust.",
+      tags: ["hope", "transformation", "trust"],
+    },
   }
 }

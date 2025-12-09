@@ -4,31 +4,23 @@ import type React from "react"
 import { useState, useMemo, useCallback, useRef, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useRouter, useSearchParams } from "next/navigation"
-import { ArrowLeft, Sparkles, Heart, Star, Moon, Sun, RefreshCw, Wand2 } from "lucide-react"
+import { ArrowLeft, RefreshCw } from "lucide-react"
 import { useI18n } from "@/lib/i18n/context"
 
 import { LanguageSwitcher } from "@/components/language-switcher"
 import { MagicBackground } from "@/components/magic-background"
-import { TypewriterText } from "@/components/typewriter-text"
-import { majorArcana, getCardReading } from "@/lib/tarot/cards"
+import { majorArcana } from "@/lib/tarot/cards"
 import { ShareButtons } from "@/components/share-buttons"
 import { LogoIcon } from "@/components/logo-icon"
 import { TarotSpread } from "@/components/tarot-spread"
 import { TarotCardModal } from "@/components/tarot-card-modal"
 import { AIReading } from "@/components/ai-reading"
 import { ReadingSkeleton } from "@/components/reading-skeleton"
+import { LoadingAnimation } from "@/components/loading-animation"
 import { useReading } from "@/hooks/use-reading"
 import type { DrawnCard } from "@/lib/tarot/utils"
-import type { Locale } from "@/lib/gemini/types"
+import type { Locale, CardInput } from "@/lib/gemini/types"
 import Link from "next/link"
-
-interface ReadingData {
-  name: string
-  keywords: string[]
-  situation: string
-  future: string
-  advice: string
-}
 
 function ReadingResultContent() {
   const router = useRouter()
@@ -37,14 +29,16 @@ function ReadingResultContent() {
 
   const shareCardRef = useRef<HTMLDivElement>(null)
 
-  const [typewriterStep, setTypewriterStep] = useState(0)
   const [selectedCard, setSelectedCard] = useState<DrawnCard | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [useAIReading, setUseAIReading] = useState(false)
-  
-  // AI Reading hook
-  const { reading: aiReading, isLoading: isAILoading, error: aiError, generateReading } = useReading()
+  const [hasTriggeredAI, setHasTriggeredAI] = useState(false)
 
+  // AI Reading hook with skeleton delay
+  const { reading, phase, error, generateReading } = useReading({
+    skeletonDelay: 500, // 0.5s skeleton display
+  })
+
+  // Parse cards from URL
   const cards = useMemo(() => {
     try {
       const cardsParam = searchParams.get("cards")
@@ -61,7 +55,7 @@ function ReadingResultContent() {
         }))
       }
     } catch {
-      // Fallback for old URL format or parse errors
+      // Fallback for parse errors
     }
     // Default fallback
     return [
@@ -81,46 +75,31 @@ function ReadingResultContent() {
 
   const question = searchParams.get("question") || ""
 
-  const cardReadings = useMemo(() => {
-    return cards.map((cardData) => ({
-      ...cardData,
-      reading: getCardReading(cardData.card, cardData.reversed, locale),
-    }))
-  }, [cards, locale])
+  // Get card name in current locale
+  const getCardName = (card: (typeof majorArcana)[0]) => {
+    return card.name[locale as keyof typeof card.name] || card.name.en
+  }
 
-  const [vibeIndex] = useState(() => Math.floor(Math.random() * 5))
+  // Auto-trigger AI reading when cards are displayed
+  useEffect(() => {
+    if (hasTriggeredAI || !question || cards.length !== 3) return
 
-  const vibes = useMemo(
-    () => [
-      "A journey of transformation and growth in love is unfolding.",
-      "The universe is aligning to bring clarity to your heart.",
-      "Deep emotional healing is paving the way for new connections.",
-      "Trust the timing of your love story — it's divinely guided.",
-      "Your heart is ready to receive the love it deserves.",
-    ],
-    [],
-  )
+    // Small delay to let cards render first
+    const timer = setTimeout(() => {
+      setHasTriggeredAI(true)
 
-  const overallVibes = vibes[vibeIndex]
+      // Build card inputs with names
+      const cardInputs: CardInput[] = cards.map((c) => ({
+        position: c.position === "past" ? "Past" : c.position === "present" ? "Present" : "Future",
+        name: getCardName(c.card),
+        reversed: c.reversed,
+      }))
 
-  const handleStep1Complete = useCallback(() => {
-    setTypewriterStep((prev) => Math.max(prev, 1))
-  }, [])
+      generateReading(question, cardInputs, locale as Locale)
+    }, 800) // Wait 800ms for cards to animate in
 
-  const handleStep2Complete = useCallback(() => {
-    setTypewriterStep((prev) => Math.max(prev, 2))
-  }, [])
-
-  const handleStep3Complete = useCallback(() => {
-    setTypewriterStep((prev) => Math.max(prev, 3))
-  }, [])
-
-  const handleStep4Complete = useCallback(() => {
-    setTypewriterStep((prev) => Math.max(prev, 4))
-    setTimeout(() => {
-      setTypewriterStep((prev) => Math.max(prev, 5))
-    }, 1500)
-  }, [])
+    return () => clearTimeout(timer)
+  }, [hasTriggeredAI, question, cards, locale, generateReading, getCardName])
 
   const handleCardClick = useCallback((card: DrawnCard) => {
     setSelectedCard(card)
@@ -132,36 +111,8 @@ function ReadingResultContent() {
     setSelectedCard(null)
   }, [])
 
-  const getCardName = (card: (typeof majorArcana)[0]) => {
-    return card.name[locale as keyof typeof card.name] || card.name.en
-  }
-
-  const getKeywords = (card: (typeof majorArcana)[0]) => {
-    return card.keywords[locale as keyof typeof card.keywords] || card.keywords.en
-  }
-
-  // Handle AI reading generation
-  const handleGenerateAIReading = useCallback(() => {
-    if (!question) return
-    
-    setUseAIReading(true)
-    
-    const cardInputs = cards.map((c) => ({
-      id: c.card.id,
-      position: c.position,
-      reversed: c.reversed,
-    }))
-    
-    generateReading(question, cardInputs, locale as Locale)
-  }, [question, cards, locale, generateReading])
-
-  // AI Reading labels
-  const aiButtonLabels = {
-    en: { generate: "✨ Get AI Insight", generating: "Generating...", error: "Try Again" },
-    zh: { generate: "✨ 获取 AI 解读", generating: "生成中...", error: "重试" },
-    ro: { generate: "✨ Obține Insight AI", generating: "Se generează...", error: "Încearcă din nou" },
-  }
-  const aiLabels = aiButtonLabels[locale as keyof typeof aiButtonLabels] || aiButtonLabels.en
+  // Check if reading is ready to show share buttons
+  const showShareButtons = phase === "complete" && reading
 
   return (
     <div className="min-h-screen relative overflow-hidden">
@@ -233,254 +184,147 @@ function ReadingResultContent() {
             </motion.div>
           )}
 
+          {/* Tarot Cards Spread */}
           <div className="mb-10">
             <TarotSpread cards={drawnCards} onCardClick={handleCardClick} size="md" />
           </div>
 
-          {/* AI Reading Button - only show if question exists */}
-          {question && (
-            <motion.div
-              className="text-center mb-8"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-            >
-              <motion.button
-                onClick={handleGenerateAIReading}
-                disabled={isAILoading}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-white"
-                style={{
-                  background: useAIReading && aiReading 
-                    ? "rgba(115, 242, 255, 0.2)"
-                    : "linear-gradient(135deg, #FF4FD8, #A855F7)",
-                  border: useAIReading && aiReading 
-                    ? "1px solid rgba(115, 242, 255, 0.5)"
-                    : "none",
-                  boxShadow: isAILoading ? "none" : "0 0 25px rgba(255, 79, 216, 0.4)",
-                  opacity: isAILoading ? 0.7 : 1,
-                }}
-                whileHover={{ scale: isAILoading ? 1 : 1.05 }}
-                whileTap={{ scale: isAILoading ? 1 : 0.95 }}
-              >
-                <Wand2 className={`w-5 h-5 ${isAILoading ? "animate-pulse" : ""}`} />
-                {isAILoading ? aiLabels.generating : aiError ? aiLabels.error : aiLabels.generate}
-              </motion.button>
-              
-              {aiError && (
-                <motion.p
-                  className="text-sm text-red-400 mt-2"
+          {/* AI Reading Section */}
+          <motion.section
+            className="mb-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+          >
+            <AnimatePresence mode="wait">
+              {/* Loading State */}
+              {phase === "loading" && (
+                <motion.div
+                  key="loading"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <LoadingAnimation locale={locale as "en" | "zh" | "ro"} />
+                </motion.div>
+              )}
+
+              {/* Skeleton State */}
+              {phase === "skeleton" && (
+                <motion.div
+                  key="skeleton"
+                  className="p-6 rounded-2xl"
+                  style={{
+                    background: "rgba(15, 10, 32, 0.9)",
+                    border: "1px solid rgba(115, 242, 255, 0.3)",
+                  }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <ReadingSkeleton locale={locale as "en" | "zh" | "ro"} />
+                </motion.div>
+              )}
+
+              {/* Complete State - AI Reading */}
+              {phase === "complete" && reading && (
+                <motion.div
+                  key="complete"
+                  className="p-6 rounded-2xl"
+                  style={{
+                    background: "rgba(15, 10, 32, 0.9)",
+                    border: "1px solid rgba(115, 242, 255, 0.3)",
+                    boxShadow: "0 0 40px rgba(115, 242, 255, 0.15)",
+                  }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                >
+                  <AIReading reading={reading} locale={locale as "en" | "zh" | "ro"} />
+                </motion.div>
+              )}
+
+              {/* Error State */}
+              {phase === "error" && (
+                <motion.div
+                  key="error"
+                  className="p-6 rounded-2xl text-center"
+                  style={{
+                    background: "rgba(255, 79, 216, 0.1)",
+                    border: "1px solid rgba(255, 79, 216, 0.3)",
+                  }}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                 >
-                  {aiError}
-                </motion.p>
+                  <p className="text-red-400 mb-4">{error}</p>
+                  <motion.button
+                    onClick={() => {
+                      setHasTriggeredAI(false)
+                    }}
+                    className="px-6 py-2 rounded-full text-white"
+                    style={{
+                      background: "linear-gradient(135deg, #FF4FD8, #A855F7)",
+                    }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {locale === "zh" ? "重试" : locale === "ro" ? "Încearcă din nou" : "Try Again"}
+                  </motion.button>
+                </motion.div>
               )}
-            </motion.div>
-          )}
 
-          {/* AI Reading Display */}
-          <AnimatePresence>
-            {useAIReading && (isAILoading || aiReading) && (
-              <motion.section
-                className="mb-8 p-6 rounded-2xl"
-                style={{
-                  background: "rgba(15, 10, 32, 0.9)",
-                  border: "1px solid rgba(115, 242, 255, 0.3)",
-                  boxShadow: "0 0 40px rgba(115, 242, 255, 0.15)",
-                }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0 }}
-              >
-                <div className="flex items-center gap-2 mb-4">
-                  <Wand2 className="w-5 h-5 text-[#FF4FD8]" />
-                  <h2 className="text-sm font-semibold text-[#FF4FD8] uppercase tracking-wider">
-                    {locale === "zh" ? "AI 解读" : locale === "ro" ? "Interpretare AI" : "AI Reading"}
-                  </h2>
-                </div>
-                
-                {isAILoading ? (
-                  <ReadingSkeleton locale={locale as "en" | "zh" | "ro"} />
-                ) : aiReading ? (
-                  <AIReading reading={aiReading} locale={locale as "en" | "zh" | "ro"} />
-                ) : null}
-              </motion.section>
-            )}
-          </AnimatePresence>
-
-          {/* Overall Energy - Static fallback */}
-          <motion.section
-            className="mb-8 p-6 rounded-2xl text-center"
-            style={{
-              background: "linear-gradient(135deg, rgba(255, 79, 216, 0.1), rgba(115, 242, 255, 0.1))",
-              border: "1px solid rgba(115, 242, 255, 0.2)",
-            }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-          >
-            <p className="text-xs uppercase tracking-wider text-[#73F2FF] mb-3">{t.readingResult.overallEnergy}</p>
-            <TypewriterText
-              text={overallVibes}
-              speed={30}
-              className="text-lg md:text-xl text-white/90 italic"
-              onComplete={handleStep1Complete}
-            />
-
-            {/* Keywords */}
-            <div className="flex flex-wrap gap-2 justify-center mt-4">
-              {cardReadings.slice(0, 3).map((cardData) =>
-                getKeywords(cardData.card)
-                  .slice(0, 2)
-                  .map((keyword, i) => (
-                    <span
-                      key={`${cardData.card.id}-${i}`}
-                      className="px-3 py-1 rounded-full text-xs"
-                      style={{
-                        background: "rgba(115, 242, 255, 0.15)",
-                        border: "1px solid rgba(115, 242, 255, 0.3)",
-                        color: "#73F2FF",
-                      }}
-                    >
-                      {keyword}
-                    </span>
-                  )),
+              {/* Idle State - Before AI triggers */}
+              {phase === "idle" && !hasTriggeredAI && (
+                <motion.div
+                  key="idle"
+                  className="p-6 rounded-2xl text-center"
+                  style={{
+                    background: "rgba(115, 242, 255, 0.05)",
+                    border: "1px solid rgba(115, 242, 255, 0.2)",
+                  }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                >
+                  <p className="text-[#73F2FF]/60">
+                    {locale === "zh" ? "准备中..." : locale === "ro" ? "Se pregătește..." : "Preparing..."}
+                  </p>
+                </motion.div>
               )}
-            </div>
+            </AnimatePresence>
           </motion.section>
-
-          {/* Insight Modules */}
-          <AnimatePresence>
-            {typewriterStep >= 1 && (
-              <InsightModule
-                position="past"
-                icon={<Moon className="w-5 h-5" />}
-                title={t.readingResult.pastInsight.title}
-                reading={cardReadings[0].reading}
-                cardName={getCardName(cardReadings[0].card)}
-                reversed={cardReadings[0].reversed}
-                onComplete={handleStep2Complete}
-                locale={locale}
-              />
-            )}
-          </AnimatePresence>
-
-          <AnimatePresence>
-            {typewriterStep >= 2 && (
-              <InsightModule
-                position="present"
-                icon={<Sun className="w-5 h-5" />}
-                title={t.readingResult.presentInsight.title}
-                reading={cardReadings[1].reading}
-                cardName={getCardName(cardReadings[1].card)}
-                reversed={cardReadings[1].reversed}
-                onComplete={handleStep3Complete}
-                locale={locale}
-              />
-            )}
-          </AnimatePresence>
-
-          <AnimatePresence>
-            {typewriterStep >= 3 && (
-              <InsightModule
-                position="future"
-                icon={<Star className="w-5 h-5" />}
-                title={t.readingResult.futureInsight.title}
-                reading={cardReadings[2].reading}
-                cardName={getCardName(cardReadings[2].card)}
-                reversed={cardReadings[2].reversed}
-                onComplete={handleStep4Complete}
-                locale={locale}
-              />
-            )}
-          </AnimatePresence>
-
-          {/* Actionable Advice */}
-          <AnimatePresence>
-            {typewriterStep >= 4 && (
-              <motion.section
-                className="mb-8"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0 }}
-              >
-                <h3 className="text-sm font-semibold text-[#FF4FD8] uppercase tracking-wider mb-4 flex items-center gap-2">
-                  <Heart className="w-4 h-4" />
-                  {t.readingResult.actionableAdvice.title}
-                </h3>
-                <div className="grid md:grid-cols-3 gap-4">
-                  <AdviceItem
-                    title={t.readingResult.actionableAdvice.today}
-                    text="Take a moment today to express gratitude for the love in your life."
-                    color="#73F2FF"
-                  />
-                  <AdviceItem
-                    title={t.readingResult.actionableAdvice.longTerm}
-                    text="Focus on building trust through consistent, honest communication."
-                    color="#FF4FD8"
-                  />
-                  <AdviceItem
-                    title={t.readingResult.actionableAdvice.healing}
-                    text="Practice self-compassion and release any past hurts that no longer serve you."
-                    color="#A855F7"
-                  />
-                </div>
-              </motion.section>
-            )}
-          </AnimatePresence>
-
-          {/* Affirmation */}
-          <AnimatePresence>
-            {typewriterStep >= 5 && (
-              <motion.section
-                className="mb-8 p-6 rounded-2xl text-center"
-                style={{
-                  background: "linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(255, 79, 216, 0.15))",
-                  border: "1px solid rgba(168, 85, 247, 0.3)",
-                }}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-              >
-                <Sparkles className="w-6 h-6 text-[#A855F7] mx-auto mb-3" />
-                <p className="text-xs uppercase tracking-wider text-[#A855F7] mb-2">
-                  {t.readingResult.affirmation.title}
-                </p>
-                <p className="text-lg md:text-xl text-white italic">"{t.readingResult.affirmation.message}"</p>
-              </motion.section>
-            )}
-          </AnimatePresence>
         </div>
 
-        {/* Share Buttons */}
+        {/* Share Buttons & New Reading */}
         <div className="max-w-4xl mx-auto">
           <AnimatePresence>
-            {typewriterStep >= 5 && (
-              <ShareButtons
-                cards={cards}
-                question={question}
-                overallEnergy={overallVibes}
-                shareCardRef={shareCardRef}
-              />
-            )}
-          </AnimatePresence>
+            {showShareButtons && (
+              <>
+                <ShareButtons
+                  cards={cards}
+                  question={question}
+                  overallEnergy={reading.overallEnergy}
+                  shareCardRef={shareCardRef}
+                />
 
-          {/* New Reading Button */}
-          <AnimatePresence>
-            {typewriterStep >= 5 && (
-              <motion.div className="text-center" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-                <motion.button
-                  onClick={() => router.push("/")}
-                  className="inline-flex items-center gap-2 px-8 py-3 rounded-full font-semibold text-white"
-                  style={{
-                    background: "linear-gradient(135deg, #FF4FD8, #A855F7)",
-                    boxShadow: "0 0 30px rgba(255, 79, 216, 0.4)",
-                  }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                <motion.div
+                  className="text-center mt-6"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
                 >
-                  <RefreshCw className="w-4 h-4" />
-                  {locale === "zh" ? "开始新解读" : locale === "ro" ? "Citire Nouă" : "New Reading"}
-                </motion.button>
-              </motion.div>
+                  <motion.button
+                    onClick={() => router.push("/")}
+                    className="inline-flex items-center gap-2 px-8 py-3 rounded-full font-semibold text-white"
+                    style={{
+                      background: "linear-gradient(135deg, #FF4FD8, #A855F7)",
+                      boxShadow: "0 0 30px rgba(255, 79, 216, 0.4)",
+                    }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <RefreshCw className="w-4 h-4" />
+                    {locale === "zh" ? "开始新解读" : locale === "ro" ? "Citire Nouă" : "New Reading"}
+                  </motion.button>
+                </motion.div>
+              </>
             )}
           </AnimatePresence>
         </div>
@@ -488,107 +332,6 @@ function ReadingResultContent() {
 
       <TarotCardModal drawnCard={selectedCard} isOpen={isModalOpen} onClose={handleCloseModal} />
     </div>
-  )
-}
-
-function InsightModule({
-  position,
-  icon,
-  title,
-  reading,
-  cardName,
-  reversed,
-  onComplete,
-  locale,
-}: {
-  position: "past" | "present" | "future"
-  icon: React.ReactNode
-  title: string
-  reading: ReadingData
-  cardName: string
-  reversed: boolean
-  onComplete: () => void
-  locale: string
-}) {
-  const deepDiveText = `${reading.future} ${reading.advice}`
-
-  return (
-    <motion.div
-      className="rounded-2xl overflow-hidden mb-8"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0 }}
-    >
-      <div className="p-4 sm:p-5">
-        <div className="flex items-center gap-2 mb-3" style={{ color: "#73F2FF" }}>
-          {icon}
-          <h3 className="text-sm font-semibold uppercase tracking-wider">{title}</h3>
-        </div>
-
-        <div className="space-y-3">
-          <div>
-            <span className="text-[10px] text-foreground/50 uppercase tracking-wider block mb-1">
-              {locale === "zh" ? "过去洞察" : locale === "ro" ? "Insightul din trecut" : "Past Insight"}
-            </span>
-            <p className="text-foreground/80 text-sm leading-relaxed">
-              <TypewriterText text={reading.situation} speed={20} delay={200} />
-            </p>
-          </div>
-
-          <div>
-            <span className="text-[10px] text-foreground/50 uppercase tracking-wider block mb-1">
-              {locale === "zh" ? "深入洞察" : locale === "ro" ? "Explorarea în profunzime" : "Deep Dive"}
-            </span>
-            <p className="text-foreground/70 text-sm leading-relaxed">
-              <TypewriterText text={deepDiveText} speed={15} delay={800} onComplete={onComplete} />
-            </p>
-          </div>
-
-          <div className="flex flex-wrap gap-1.5 pt-2">
-            {reading.keywords.map((keyword) => (
-              <span
-                key={keyword}
-                className="px-2 py-0.5 rounded-full text-[10px]"
-                style={{
-                  background: "#73F2FF15",
-                  color: "#73F2FF",
-                  border: "1px solid #73F2FF25",
-                }}
-              >
-                {keyword}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  )
-}
-
-function AdviceItem({
-  title,
-  text,
-  color,
-}: {
-  title: string
-  text: string
-  color: string
-}) {
-  return (
-    <motion.div
-      className="p-4 rounded-lg"
-      style={{
-        background: "rgba(15, 10, 32, 0.95)",
-        border: `1px solid ${color}`,
-      }}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-    >
-      <h4 className="text-sm font-semibold uppercase tracking-wider mb-2" style={{ color }}>
-        {title}
-      </h4>
-      <p className="text-white/90 text-sm leading-relaxed">{text}</p>
-    </motion.div>
   )
 }
 

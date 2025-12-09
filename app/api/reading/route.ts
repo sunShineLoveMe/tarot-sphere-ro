@@ -31,7 +31,23 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Get the Gemini model (gemini-2.5-flash is current stable model)
+    // Validate card positions
+    const hasAllPositions = 
+      cards.some(c => c.position === "Past") &&
+      cards.some(c => c.position === "Present") &&
+      cards.some(c => c.position === "Future")
+
+    if (!hasAllPositions) {
+      return NextResponse.json<ReadingResponse>(
+        {
+          success: false,
+          error: "Cards must include Past, Present, and Future positions.",
+        },
+        { status: 400 }
+      )
+    }
+
+    // Get the Gemini model
     const model = getModel(process.env.GEMINI_MODEL || "gemini-2.5-flash")
 
     // Build prompts
@@ -57,19 +73,12 @@ export async function POST(request: NextRequest) {
     const response = result.response
     const text = response.text()
 
-    // Parse the response
-    const parsedReading = parseReadingResponse(text, locale)
+    // Parse the response into structured content
+    const parsedReading = parseReadingResponse(text)
 
     return NextResponse.json<ReadingResponse>({
       success: true,
-      reading: {
-        ...parsedReading,
-        cards: parsedReading.cards.map((c) => ({
-          position: c.position,
-          cardName: c.cardName,
-          interpretation: c.interpretation,
-        })),
-      },
+      reading: parsedReading,
     })
   } catch (error) {
     console.error("Reading API error:", error)

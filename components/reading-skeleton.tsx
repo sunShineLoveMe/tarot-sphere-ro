@@ -8,90 +8,81 @@ interface ReadingSkeletonProps {
 
 export function ReadingSkeleton({ locale = "en" }: ReadingSkeletonProps) {
   const loadingTexts = {
-    en: "The cards are revealing their secrets...",
-    zh: "塔罗牌正在揭示它们的秘密...",
-    ro: "Cărțile își dezvăluie secretele...",
+    en: "Interpreting the cards...",
+    zh: "解读牌面中...",
+    ro: "Interpretare în curs...",
   }
 
   return (
     <motion.div
+      className="space-y-6"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="space-y-6 p-6 rounded-2xl"
-      style={{
-        background: "rgba(15, 10, 32, 0.8)",
-        border: "1px solid rgba(115, 242, 255, 0.2)",
-      }}
+      exit={{ opacity: 0 }}
     >
+      {/* Overall Energy Skeleton */}
+      <div className="space-y-3">
+        <div className="flex items-center gap-2">
+          <div className="h-4 w-4 rounded bg-[#73F2FF]/20 animate-pulse" />
+          <div className="h-4 w-32 rounded bg-[#73F2FF]/20 animate-pulse" />
+        </div>
+        <div className="space-y-2">
+          <div className="h-4 w-full rounded bg-white/10 animate-pulse" />
+          <div className="h-4 w-4/5 rounded bg-white/10 animate-pulse" />
+          <div className="h-4 w-3/5 rounded bg-white/10 animate-pulse" />
+        </div>
+      </div>
+
+      {/* Position Skeletons */}
+      {["Past", "Present", "Future"].map((position, index) => (
+        <motion.div
+          key={position}
+          className="p-4 rounded-xl space-y-3"
+          style={{
+            background: "rgba(115, 242, 255, 0.05)",
+            border: "1px solid rgba(115, 242, 255, 0.1)",
+          }}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: index * 0.1 }}
+        >
+          {/* Position Header */}
+          <div className="flex items-center gap-2">
+            <div className="h-5 w-5 rounded bg-[#FF4FD8]/20 animate-pulse" />
+            <div className="h-5 w-24 rounded bg-[#FF4FD8]/20 animate-pulse" />
+          </div>
+
+          {/* Insight */}
+          <div className="space-y-1">
+            <div className="h-3 w-20 rounded bg-[#73F2FF]/15 animate-pulse" />
+            <div className="h-4 w-4/5 rounded bg-white/10 animate-pulse" />
+          </div>
+
+          {/* Deep Dive */}
+          <div className="space-y-1.5">
+            <div className="h-3 w-24 rounded bg-[#73F2FF]/15 animate-pulse" />
+            <div className="h-4 w-full rounded bg-white/8 animate-pulse" />
+            <div className="h-4 w-5/6 rounded bg-white/8 animate-pulse" />
+            <div className="h-4 w-3/4 rounded bg-white/8 animate-pulse" />
+          </div>
+
+          {/* Tags */}
+          <div className="flex gap-2 pt-2">
+            <div className="h-6 w-16 rounded-full bg-[#73F2FF]/10 animate-pulse" />
+            <div className="h-6 w-20 rounded-full bg-[#73F2FF]/10 animate-pulse" />
+            <div className="h-6 w-14 rounded-full bg-[#73F2FF]/10 animate-pulse" />
+          </div>
+        </motion.div>
+      ))}
+
       {/* Loading text */}
       <motion.p
-        className="text-center text-[#73F2FF] text-sm italic"
+        className="text-center text-sm text-[#73F2FF]/60"
         animate={{ opacity: [0.5, 1, 0.5] }}
-        transition={{ repeat: Infinity, duration: 2 }}
+        transition={{ duration: 1.5, repeat: Infinity }}
       >
         {loadingTexts[locale]}
       </motion.p>
-
-      {/* Skeleton sections */}
-      <div className="space-y-4">
-        {/* Overview skeleton */}
-        <div className="space-y-2">
-          <div
-            className="h-4 w-32 rounded animate-pulse"
-            style={{ background: "rgba(255, 79, 216, 0.3)" }}
-          />
-          <div
-            className="h-16 w-full rounded animate-pulse"
-            style={{ background: "rgba(115, 242, 255, 0.1)" }}
-          />
-        </div>
-
-        {/* Card interpretations skeleton */}
-        {[1, 2, 3].map((i) => (
-          <div key={i} className="space-y-2">
-            <div
-              className="h-4 w-24 rounded animate-pulse"
-              style={{ background: "rgba(255, 79, 216, 0.3)" }}
-            />
-            <div
-              className="h-20 w-full rounded animate-pulse"
-              style={{ background: "rgba(115, 242, 255, 0.1)" }}
-            />
-          </div>
-        ))}
-
-        {/* Advice skeleton */}
-        <div className="space-y-2">
-          <div
-            className="h-4 w-28 rounded animate-pulse"
-            style={{ background: "rgba(255, 79, 216, 0.3)" }}
-          />
-          <div
-            className="h-24 w-full rounded animate-pulse"
-            style={{ background: "rgba(115, 242, 255, 0.1)" }}
-          />
-        </div>
-      </div>
-
-      {/* Mystical loading indicator */}
-      <div className="flex justify-center pt-4">
-        <motion.div
-          className="flex gap-2"
-          animate={{ scale: [1, 1.1, 1] }}
-          transition={{ repeat: Infinity, duration: 1.5 }}
-        >
-          {[0, 1, 2].map((i) => (
-            <motion.span
-              key={i}
-              className="text-2xl"
-              animate={{ opacity: [0.3, 1, 0.3] }}
-              transition={{ repeat: Infinity, duration: 1.5, delay: i * 0.2 }}
-            >
-              ✦
-            </motion.span>
-          ))}
-        </motion.div>
-      </div>
     </motion.div>
   )
 }

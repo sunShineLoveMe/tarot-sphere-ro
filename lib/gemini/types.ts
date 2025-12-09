@@ -1,13 +1,13 @@
 // Gemini API Types for Tarot Reading
 
 export type Locale = "en" | "zh" | "ro"
-export type Position = "past" | "present" | "future"
+export type Position = "Past" | "Present" | "Future"
 
 // Card data for API request
 export interface CardInput {
-  id: number // Card ID (0-21 for Major Arcana)
   position: Position
-  reversed: boolean
+  name: string      // Card name (e.g., "The Fool", "The Magician")
+  reversed: boolean // Whether the card is reversed
 }
 
 // API Request
@@ -17,20 +17,19 @@ export interface ReadingRequest {
   cards: CardInput[]
 }
 
-// Individual card interpretation
-export interface CardInterpretation {
-  position: Position
-  cardName: string
-  interpretation: string
+// Individual position insight
+export interface PositionInsight {
+  insight: string    // Short insight sentence
+  deepDive: string   // Detailed paragraph
+  tags: string[]     // Array of keywords/tags
 }
 
 // Complete AI reading response
 export interface ReadingContent {
-  overview: string // Overall energy summary
-  cards: CardInterpretation[] // Per-card interpretations
-  synthesis: string // Combined three-card reading
-  advice: string // Actionable advice
-  affirmation: string // Daily affirmation
+  overallEnergy: string   // Overall energy summary paragraph
+  past: PositionInsight
+  present: PositionInsight
+  future: PositionInsight
 }
 
 // API Response
@@ -40,10 +39,5 @@ export interface ReadingResponse {
   error?: string
 }
 
-// Streaming chunk for real-time display
-export interface StreamChunk {
-  type: "overview" | "card" | "synthesis" | "advice" | "affirmation" | "error" | "done"
-  content?: string
-  position?: Position
-  cardName?: string
-}
+// Reading phase state
+export type ReadingPhase = "idle" | "loading" | "skeleton" | "complete" | "error"
