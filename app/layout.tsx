@@ -1,6 +1,7 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
 import { Cinzel, Geist } from "next/font/google"
+import Script from "next/script"
 import "./globals.css"
 
 const _geist = Geist({ subsets: ["latin"] })
@@ -117,6 +118,13 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
+        {/* Google AdSense */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7394339745662137"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
         <link rel="alternate" hrefLang="en" href={`${siteUrl}/en`} />
         <link rel="alternate" hrefLang="ro" href={`${siteUrl}/ro`} />
         <link rel="alternate" hrefLang="zh" href={`${siteUrl}/zh`} />
