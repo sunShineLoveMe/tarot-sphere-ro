@@ -37,33 +37,35 @@ export default function CardSlots({ selectedCards, flippedCards }: CardSlotsProp
 
   const positionOrder: ("past" | "present" | "future")[] = ["past", "present", "future"]
 
-  const cardStyles: Record<number, { symbol: string; gradient: string }> = {
-    0: { symbol: "✧", gradient: "from-sky-400 via-cyan-300 to-sky-500" }, // Fool
-    1: { symbol: "☆", gradient: "from-violet-400 via-purple-300 to-violet-500" }, // Magician
-    2: { symbol: "☽", gradient: "from-indigo-400 via-blue-300 to-indigo-500" }, // High Priestess
-    3: { symbol: "♛", gradient: "from-emerald-400 via-teal-300 to-emerald-500" }, // Empress
-    4: { symbol: "♔", gradient: "from-amber-400 via-yellow-300 to-amber-500" }, // Emperor
-    5: { symbol: "✝", gradient: "from-blue-400 via-indigo-300 to-blue-500" }, // Hierophant
-    6: { symbol: "♡", gradient: "from-rose-400 via-pink-300 to-rose-500" }, // Lovers
-    7: { symbol: "♦", gradient: "from-blue-400 via-sky-300 to-blue-500" }, // Chariot
-    8: { symbol: "♌", gradient: "from-orange-400 via-amber-300 to-orange-500" }, // Strength
-    9: { symbol: "✡", gradient: "from-amber-500 via-yellow-400 to-amber-600" }, // Hermit
-    10: { symbol: "☸", gradient: "from-cyan-400 via-teal-300 to-cyan-500" }, // Wheel of Fortune
-    11: { symbol: "⚖", gradient: "from-blue-400 via-indigo-300 to-blue-500" }, // Justice
-    12: { symbol: "⊙", gradient: "from-indigo-400 via-violet-300 to-indigo-500" }, // Hanged Man
-    13: { symbol: "♰", gradient: "from-gray-400 via-slate-300 to-gray-500" }, // Death
-    14: { symbol: "△", gradient: "from-pink-400 via-rose-300 to-pink-500" }, // Temperance
-    15: { symbol: "⛧", gradient: "from-red-500 via-rose-400 to-red-600" }, // Devil
-    16: { symbol: "⚡", gradient: "from-red-400 via-orange-300 to-red-500" }, // Tower
-    17: { symbol: "★", gradient: "from-yellow-400 via-amber-200 to-yellow-500" }, // Star
-    18: { symbol: "☾", gradient: "from-slate-400 via-blue-200 to-slate-500" }, // Moon
-    19: { symbol: "☀", gradient: "from-yellow-400 via-orange-300 to-yellow-500" }, // Sun
-    20: { symbol: "♆", gradient: "from-purple-400 via-violet-300 to-purple-500" }, // Judgement
-    21: { symbol: "⊕", gradient: "from-teal-400 via-emerald-300 to-teal-500" }, // World
+  // Map card IDs to their image filenames
+  const cardImageMap: Record<number, string> = {
+    0: "00-the-fool.webp",
+    1: "01-the-magician.webp",
+    2: "02-the-high-priestess.webp",
+    3: "03-the-empress.webp",
+    4: "04-the-emperor.webp",
+    5: "05-the-hierophant.webp",
+    6: "06-the-lovers.webp",
+    7: "07-the-chariot.webp",
+    8: "08-the-strength.webp",
+    9: "09-the-hermit.webp",
+    10: "10-the-wheel-of-fortune.webp",
+    11: "11-the-justice.webp",
+    12: "12-the-hanged-man.webp",
+    13: "13-the-death.webp",
+    14: "14-the-temperance.webp",
+    15: "15-the-devil.webp",
+    16: "16-the-tower.webp",
+    17: "17-the-star.webp",
+    18: "18-the-moon.webp",
+    19: "19-the-sun.webp",
+    20: "20-the-judgement.webp",
+    21: "21-the-world.webp",
   }
 
-  const getCardStyle = (cardId: number) => {
-    return cardStyles[cardId] || { symbol: "✦", gradient: "from-purple-400 via-pink-300 to-purple-500" }
+  const getCardImagePath = (cardId: number) => {
+    const filename = cardImageMap[cardId]
+    return filename ? `/cards/major/${filename}` : null
   }
 
   return (
@@ -87,7 +89,7 @@ export default function CardSlots({ selectedCards, flippedCards }: CardSlotsProp
         {positionOrder.map((position, slotIndex) => {
           const cardData = selectedCards.find((c) => c.position === position)
           const isFlipped = cardData ? flippedCards.has(cardData.cardIndex) : false
-          const cardStyle = cardData ? getCardStyle(cardData.card.id) : null
+          const cardImagePath = cardData ? getCardImagePath(cardData.card.id) : null
 
           return (
             <motion.div
@@ -218,7 +220,7 @@ export default function CardSlots({ selectedCards, flippedCards }: CardSlotsProp
                       </div>
                     </motion.div>
 
-                    {/* Card Front - Romanian Tarot Style */}
+                    {/* Card Front - Real Tarot Card Image */}
                     <motion.div
                       className="absolute inset-0 rounded-xl overflow-hidden"
                       style={{
@@ -235,83 +237,63 @@ export default function CardSlots({ selectedCards, flippedCards }: CardSlotsProp
                         }}
                       >
                         <div
-                          className="w-full h-full rounded-lg overflow-hidden"
+                          className="w-full h-full rounded-lg overflow-hidden relative"
                           style={{
                             background: "linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%)",
                           }}
                         >
+                          {/* Card Image */}
+                          {cardImagePath && (
+                            <motion.img
+                              src={cardImagePath}
+                              alt={cardData.card.name[locale as "en" | "zh" | "ro"] || cardData.card.name.en}
+                              className="absolute inset-0 w-full h-full object-cover"
+                              style={{
+                                transform: cardData.reversed ? "rotate(180deg)" : "none",
+                              }}
+                              animate={{
+                                filter: [
+                                  "brightness(1) contrast(1)",
+                                  "brightness(1.05) contrast(1.02)",
+                                  "brightness(1) contrast(1)",
+                                ],
+                              }}
+                              transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+                            />
+                          )}
+                          
+                          {/* Golden border overlay */}
                           <div
-                            className="absolute inset-[6px] rounded-md pointer-events-none"
+                            className="absolute inset-[3px] rounded-md pointer-events-none"
                             style={{
-                              border: "1px solid rgba(212,175,55,0.4)",
+                              border: "1px solid rgba(212,175,55,0.5)",
                             }}
                           />
 
-                          <div className="relative w-full h-full flex flex-col items-center justify-between p-2 sm:p-3">
-                            <div className="flex items-center justify-center w-full">
-                              <div
-                                className="h-[1px] flex-1 opacity-50"
-                                style={{ background: "linear-gradient(90deg, transparent, #d4af37, transparent)" }}
-                              />
-                              <span className="px-1 text-[8px] text-amber-400/60">✦</span>
-                              <div
-                                className="h-[1px] flex-1 opacity-50"
-                                style={{ background: "linear-gradient(90deg, transparent, #d4af37, transparent)" }}
-                              />
-                            </div>
-
-                            <div
-                              className="flex-1 w-full flex items-center justify-center my-1"
+                          {/* Card Name Label Overlay */}
+                          <div
+                            className="absolute bottom-0 left-0 right-0 p-1.5 sm:p-2"
+                            style={{
+                              background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 60%, transparent 100%)",
+                            }}
+                          >
+                            <p
+                              className="text-[9px] sm:text-[11px] font-semibold tracking-wider truncate text-center"
                               style={{
-                                background: `radial-gradient(ellipse at center, rgba(115,242,255,0.1) 0%, rgba(255,79,216,0.05) 50%, transparent 80%)`,
+                                color: "#d4af37",
+                                textShadow: "0 0 10px rgba(212,175,55,0.5)",
                               }}
                             >
-                              <motion.span
-                                className={`text-4xl sm:text-5xl md:text-6xl bg-gradient-to-br ${cardStyle?.gradient || "from-purple-400 to-pink-500"} bg-clip-text text-transparent drop-shadow-lg`}
-                                animate={{
-                                  filter: [
-                                    "drop-shadow(0 0 8px rgba(212,175,55,0.5))",
-                                    "drop-shadow(0 0 15px rgba(212,175,55,0.8))",
-                                    "drop-shadow(0 0 8px rgba(212,175,55,0.5))",
-                                  ],
-                                }}
-                                transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-                              >
-                                {cardStyle?.symbol || "✦"}
-                              </motion.span>
-                            </div>
-
-                            <div className="text-center w-full">
-                              <p
-                                className="text-[9px] sm:text-[11px] font-semibold tracking-wider truncate px-1"
-                                style={{
-                                  color: "#d4af37",
-                                  textShadow: "0 0 10px rgba(212,175,55,0.5)",
-                                }}
-                              >
-                                {cardData.card.name[locale as "en" | "zh" | "ro"] || cardData.card.name.en}
-                              </p>
-                              <p
-                                className="text-[7px] sm:text-[9px] mt-0.5"
-                                style={{
-                                  color: cardData.reversed ? "#FF4FD8" : "#73F2FF",
-                                }}
-                              >
-                                {cardData.reversed ? t.tarot.reversed : t.tarot.upright}
-                              </p>
-                            </div>
-
-                            <div className="flex items-center justify-center w-full">
-                              <div
-                                className="h-[1px] flex-1 opacity-50"
-                                style={{ background: "linear-gradient(90deg, transparent, #d4af37, transparent)" }}
-                              />
-                              <span className="px-1 text-[8px] text-amber-400/60">✦</span>
-                              <div
-                                className="h-[1px] flex-1 opacity-50"
-                                style={{ background: "linear-gradient(90deg, transparent, #d4af37, transparent)" }}
-                              />
-                            </div>
+                              {cardData.card.name[locale as "en" | "zh" | "ro"] || cardData.card.name.en}
+                            </p>
+                            <p
+                              className="text-[7px] sm:text-[9px] text-center"
+                              style={{
+                                color: cardData.reversed ? "#FF4FD8" : "#73F2FF",
+                              }}
+                            >
+                              {cardData.reversed ? t.tarot.reversed : t.tarot.upright}
+                            </p>
                           </div>
                         </div>
                       </div>
