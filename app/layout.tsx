@@ -97,6 +97,7 @@ export const metadata: Metadata = {
   // Other
   manifest: "/manifest.json",
   category: "entertainment",
+    generator: 'v0.app'
 }
 
 export const viewport: Viewport = {
