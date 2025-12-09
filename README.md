@@ -74,8 +74,8 @@ An immersive, ritual-style Love Tarot divination web application that combines c
 - [x] 创建 API 调用 Hook `hooks/use-reading.ts`
 - [x] AI 解读展示组件 `components/ai-reading.tsx`
 - [x] 加载骨架屏动画 `components/reading-skeleton.tsx`
-- [ ] 集成到 reading-result 页面
-- [ ] 错误处理与降级方案
+- [x] 集成到 reading-result 页面
+- [x] 错误处理与降级方案
 
 #### Phase 4: 优化与测试 | Optimization & Testing
 - [ ] 响应缓存 (相同牌组合)

@@ -10,7 +10,8 @@ if (!apiKey) {
 const genAI = apiKey ? new GoogleGenerativeAI(apiKey) : null
 
 // Get the generative model instance
-export function getModel(modelName: string = "gemini-1.5-flash") {
+// Using gemini-2.5-flash as default (current stable model for free tier)
+export function getModel(modelName: string = "gemini-2.5-flash") {
   if (!genAI) {
     throw new Error("Gemini API key not configured")
   }

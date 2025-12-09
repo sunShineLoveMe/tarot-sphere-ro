@@ -31,8 +31,8 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Get the Gemini model
-    const model = getModel(process.env.GEMINI_MODEL || "gemini-1.5-flash")
+    // Get the Gemini model (gemini-2.5-flash is current stable model)
+    const model = getModel(process.env.GEMINI_MODEL || "gemini-2.5-flash")
 
     // Build prompts
     const systemPrompt = buildSystemPrompt(locale)

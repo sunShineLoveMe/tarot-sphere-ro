@@ -1,10 +1,10 @@
 "use client"
 
 import type React from "react"
-import { useState, useMemo, useCallback, useRef } from "react"
+import { useState, useMemo, useCallback, useRef, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useRouter, useSearchParams } from "next/navigation"
-import { ArrowLeft, Sparkles, Heart, Star, Moon, Sun, RefreshCw } from "lucide-react"
+import { ArrowLeft, Sparkles, Heart, Star, Moon, Sun, RefreshCw, Wand2 } from "lucide-react"
 import { useI18n } from "@/lib/i18n/context"
 
 import { LanguageSwitcher } from "@/components/language-switcher"
@@ -15,7 +15,11 @@ import { ShareButtons } from "@/components/share-buttons"
 import { LogoIcon } from "@/components/logo-icon"
 import { TarotSpread } from "@/components/tarot-spread"
 import { TarotCardModal } from "@/components/tarot-card-modal"
+import { AIReading } from "@/components/ai-reading"
+import { ReadingSkeleton } from "@/components/reading-skeleton"
+import { useReading } from "@/hooks/use-reading"
 import type { DrawnCard } from "@/lib/tarot/utils"
+import type { Locale } from "@/lib/gemini/types"
 import Link from "next/link"
 
 interface ReadingData {
@@ -36,6 +40,10 @@ function ReadingResultContent() {
   const [typewriterStep, setTypewriterStep] = useState(0)
   const [selectedCard, setSelectedCard] = useState<DrawnCard | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [useAIReading, setUseAIReading] = useState(false)
+  
+  // AI Reading hook
+  const { reading: aiReading, isLoading: isAILoading, error: aiError, generateReading } = useReading()
 
   const cards = useMemo(() => {
     try {
@@ -132,6 +140,29 @@ function ReadingResultContent() {
     return card.keywords[locale as keyof typeof card.keywords] || card.keywords.en
   }
 
+  // Handle AI reading generation
+  const handleGenerateAIReading = useCallback(() => {
+    if (!question) return
+    
+    setUseAIReading(true)
+    
+    const cardInputs = cards.map((c) => ({
+      id: c.card.id,
+      position: c.position,
+      reversed: c.reversed,
+    }))
+    
+    generateReading(question, cardInputs, locale as Locale)
+  }, [question, cards, locale, generateReading])
+
+  // AI Reading labels
+  const aiButtonLabels = {
+    en: { generate: "✨ Get AI Insight", generating: "Generating...", error: "Try Again" },
+    zh: { generate: "✨ 获取 AI 解读", generating: "生成中...", error: "重试" },
+    ro: { generate: "✨ Obține Insight AI", generating: "Se generează...", error: "Încearcă din nou" },
+  }
+  const aiLabels = aiButtonLabels[locale as keyof typeof aiButtonLabels] || aiButtonLabels.en
+
   return (
     <div className="min-h-screen relative overflow-hidden">
       <MagicBackground />
@@ -206,7 +237,78 @@ function ReadingResultContent() {
             <TarotSpread cards={drawnCards} onCardClick={handleCardClick} size="md" />
           </div>
 
-          {/* Overall Energy */}
+          {/* AI Reading Button - only show if question exists */}
+          {question && (
+            <motion.div
+              className="text-center mb-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            >
+              <motion.button
+                onClick={handleGenerateAIReading}
+                disabled={isAILoading}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-white"
+                style={{
+                  background: useAIReading && aiReading 
+                    ? "rgba(115, 242, 255, 0.2)"
+                    : "linear-gradient(135deg, #FF4FD8, #A855F7)",
+                  border: useAIReading && aiReading 
+                    ? "1px solid rgba(115, 242, 255, 0.5)"
+                    : "none",
+                  boxShadow: isAILoading ? "none" : "0 0 25px rgba(255, 79, 216, 0.4)",
+                  opacity: isAILoading ? 0.7 : 1,
+                }}
+                whileHover={{ scale: isAILoading ? 1 : 1.05 }}
+                whileTap={{ scale: isAILoading ? 1 : 0.95 }}
+              >
+                <Wand2 className={`w-5 h-5 ${isAILoading ? "animate-pulse" : ""}`} />
+                {isAILoading ? aiLabels.generating : aiError ? aiLabels.error : aiLabels.generate}
+              </motion.button>
+              
+              {aiError && (
+                <motion.p
+                  className="text-sm text-red-400 mt-2"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                >
+                  {aiError}
+                </motion.p>
+              )}
+            </motion.div>
+          )}
+
+          {/* AI Reading Display */}
+          <AnimatePresence>
+            {useAIReading && (isAILoading || aiReading) && (
+              <motion.section
+                className="mb-8 p-6 rounded-2xl"
+                style={{
+                  background: "rgba(15, 10, 32, 0.9)",
+                  border: "1px solid rgba(115, 242, 255, 0.3)",
+                  boxShadow: "0 0 40px rgba(115, 242, 255, 0.15)",
+                }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+              >
+                <div className="flex items-center gap-2 mb-4">
+                  <Wand2 className="w-5 h-5 text-[#FF4FD8]" />
+                  <h2 className="text-sm font-semibold text-[#FF4FD8] uppercase tracking-wider">
+                    {locale === "zh" ? "AI 解读" : locale === "ro" ? "Interpretare AI" : "AI Reading"}
+                  </h2>
+                </div>
+                
+                {isAILoading ? (
+                  <ReadingSkeleton locale={locale as "en" | "zh" | "ro"} />
+                ) : aiReading ? (
+                  <AIReading reading={aiReading} locale={locale as "en" | "zh" | "ro"} />
+                ) : null}
+              </motion.section>
+            )}
+          </AnimatePresence>
+
+          {/* Overall Energy - Static fallback */}
           <motion.section
             className="mb-8 p-6 rounded-2xl text-center"
             style={{
