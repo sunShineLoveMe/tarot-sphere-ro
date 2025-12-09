@@ -16,15 +16,42 @@ function ContactContent() {
   const { t } = useI18n()
   const [formData, setFormData] = useState({ name: "", email: "", message: "" })
   const [submitted, setSubmitted] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Simulate form submission
-    setSubmitted(true)
-    setTimeout(() => {
+    setIsLoading(true)
+    setError(null)
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.error || "Failed to send message")
+      }
+
+      setSubmitted(true)
       setFormData({ name: "", email: "", message: "" })
-      setSubmitted(false)
-    }, 3000)
+      
+      // Reset after 5 seconds
+      setTimeout(() => {
+        setSubmitted(false)
+      }, 5000)
+    } catch (err) {
+      console.error("Contact form error:", err)
+      setError(err instanceof Error ? err.message : "Failed to send message. Please try again.")
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -168,19 +195,48 @@ function ContactContent() {
                   />
                 </div>
 
+                {/* Error Message */}
+                {error && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="p-3 rounded-lg text-sm text-red-400"
+                    style={{
+                      background: "rgba(239, 68, 68, 0.1)",
+                      border: "1px solid rgba(239, 68, 68, 0.3)",
+                    }}
+                  >
+                    {error}
+                  </motion.div>
+                )}
+
                 {/* Submit Button */}
                 <motion.button
                   type="submit"
-                  className="w-full flex items-center justify-center gap-2 px-6 py-4 rounded-xl font-medium text-white"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  disabled={isLoading}
+                  className="w-full flex items-center justify-center gap-2 px-6 py-4 rounded-xl font-medium text-white disabled:opacity-70 disabled:cursor-not-allowed"
+                  whileHover={isLoading ? {} : { scale: 1.02 }}
+                  whileTap={isLoading ? {} : { scale: 0.98 }}
                   style={{
                     background: "linear-gradient(135deg, #FF4FD8 0%, #73F2FF 100%)",
                     boxShadow: "0 0 20px rgba(255,79,216,0.3), 0 0 40px rgba(115,242,255,0.2)",
                   }}
                 >
-                  <Send className="w-5 h-5" />
-                  <span>{t.legal.contact.form.submit}</span>
+                  {isLoading ? (
+                    <>
+                      <motion.div
+                        className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                      />
+                      <span>Sending...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-5 h-5" />
+                      <span>{t.legal.contact.form.submit}</span>
+                    </>
+                  )}
                 </motion.button>
               </form>
             )}
