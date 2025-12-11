@@ -32,24 +32,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.8,
     },
-    // Blog articles - EN
+    // Blog articles - Article 1
     {
-      url: `${baseUrl}/blog/love-tarot-2025/en`,
+      url: `${baseUrl}/blog/love-tarot-2025`,
       lastModified: "2025-01-10",
       changeFrequency: "monthly",
       priority: 0.7,
     },
-    // Blog articles - RO
     {
-      url: `${baseUrl}/blog/love-tarot-2025/ro`,
-      lastModified: "2025-01-10",
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    // Blog articles - ZH
-    {
-      url: `${baseUrl}/blog/love-tarot-2025/zh`,
-      lastModified: "2025-01-10",
+      url: `${baseUrl}/blog/will-he-come-back-tarot`,
+      lastModified: "2025-01-15",
       changeFrequency: "monthly",
       priority: 0.7,
     },
