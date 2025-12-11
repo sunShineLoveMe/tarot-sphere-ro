@@ -41,6 +41,14 @@ export function useReading(options: UseReadingOptions = {}): UseReadingReturn {
       const controller = new AbortController()
       abortControllerRef.current = controller
 
+      // Set up 60-second timeout
+      const TIMEOUT_MS = 60000
+      const timeoutId = setTimeout(() => {
+        controller.abort()
+        setError(locale === "zh" ? "请求超时，请重试。" : locale === "ro" ? "Solicitarea a expirat. Vă rugăm să încercați din nou." : "Request timed out. Please try again.")
+        setPhase("error")
+      }, TIMEOUT_MS)
+
       try {
         const response = await fetch("/api/reading", {
           method: "POST",
@@ -54,6 +62,9 @@ export function useReading(options: UseReadingOptions = {}): UseReadingReturn {
           }),
           signal: controller.signal,
         })
+
+        // Clear timeout on response
+        clearTimeout(timeoutId)
 
         const data = await response.json()
 
@@ -72,12 +83,16 @@ export function useReading(options: UseReadingOptions = {}): UseReadingReturn {
         setPhase("complete")
         onSuccess?.(data.reading)
       } catch (err) {
-        // Ignore abort errors
+        // Clear timeout on error
+        clearTimeout(timeoutId)
+
+        // Ignore abort errors (from timeout or cancellation)
         if (err instanceof Error && err.name === "AbortError") {
           return
         }
 
         const errorMessage = err instanceof Error ? err.message : "An unexpected error occurred"
+        console.error("[useReading] API Error:", { question, cards, locale, error: errorMessage })
         setError(errorMessage)
         setPhase("error")
         onError?.(errorMessage)

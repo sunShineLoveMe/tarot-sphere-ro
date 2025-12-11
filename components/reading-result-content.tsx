@@ -300,8 +300,8 @@ function ReadingResultContent() {
                 </motion.div>
               )}
 
-              {/* Idle State - Before AI triggers */}
-              {phase === "idle" && !hasTriggeredAI && (
+              {/* Idle State - Only show when actually preparing to call API */}
+              {phase === "idle" && !hasTriggeredAI && !showLimitModal && !isLoading && canDraw && !isSharePage && (
                 <motion.div
                   key="idle"
                   className="p-6 rounded-2xl text-center"
