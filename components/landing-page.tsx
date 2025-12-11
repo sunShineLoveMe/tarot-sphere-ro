@@ -219,6 +219,46 @@ export default function LandingPage({ onStartReading }: LandingPageProps) {
         </div>
       </section>
 
+      {/* Blog Preview Section */}
+      <section className="relative py-20 px-4">
+        <div className="max-w-4xl mx-auto">
+          <motion.div {...fadeInUp} className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#FF4FD8] to-[#73F2FF] mb-4">
+              Love Tarot Insights
+            </h2>
+            <p className="text-foreground/60 text-lg">
+              Explore our articles on emotional wisdom and relationship guidance
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="p-6 sm:p-8 rounded-2xl text-center"
+            style={{
+              background: "linear-gradient(135deg, rgba(26,10,46,0.9) 0%, rgba(15,10,32,0.95) 100%)",
+              border: "1px solid rgba(255,79,216,0.3)",
+            }}
+          >
+            <h3 className="text-xl font-semibold text-[#73F2FF] mb-3">
+              Love Tarot Reading: What Your Heart Needs in 2025
+            </h3>
+            <p className="text-foreground/70 mb-6 max-w-xl mx-auto">
+              Discover how tarot readings offer honest guidance for your relationships—without making predictions about
+              the future.
+            </p>
+            <Link
+              href="/blog"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium border border-[#73F2FF]/30 text-[#73F2FF] hover:bg-[#73F2FF]/10 transition-colors"
+            >
+              Read Our Blog
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
       {/* FAQ Section */}
       <section id="faq" className="relative py-20 px-4">
         <div className="max-w-3xl mx-auto">
@@ -299,6 +339,10 @@ export default function LandingPage({ onStartReading }: LandingPageProps) {
               </Link>
               <Link href="/contact" className="hover:text-[#73F2FF] transition-colors">
                 {t.footer.links.contact}
+              </Link>
+              {/* Blog link added to footer */}
+              <Link href="/blog" className="hover:text-[#73F2FF] transition-colors">
+                Blog
               </Link>
             </div>
           </div>
