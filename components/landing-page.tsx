@@ -285,7 +285,7 @@ export default function LandingPage({ onStartReading }: LandingPageProps) {
                   Love Tarot
                 </h3>
               </Link>
-              {/* AI subtitle in footer */}
+              {/* Tarot wisdom subtitle */}
               <p className="text-xs text-[#73F2FF]/50 mt-0.5">{t.hero.aiSubtitle}</p>
               <p className="text-sm text-foreground/50 mt-1">{t.footer.tagline}</p>
             </div>

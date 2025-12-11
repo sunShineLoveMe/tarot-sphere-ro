@@ -252,7 +252,7 @@ export const translations: Record<Locale, Translations> = {
     hero: {
       title: "Love Tarot",
       subtitle: "Honest Guidance for Your Heart",
-      aiSubtitle: "Powered by AI Guidance",
+      aiSubtitle: "🔮 Guided by Ancient Tarot Wisdom",
       ctaStart: "Start Love Reading",
       ctaHowItWorks: "How It Works",
       deckNote: "22 Major Arcana Cards",
@@ -333,7 +333,7 @@ export const translations: Record<Locale, Translations> = {
     },
     footer: {
       title: "Love Tarot",
-      tagline: "A modern tarot experience enriched with AI insight",
+      tagline: "Insightful tarot readings to help you reflect and move forward.",
       disclaimer: "For entertainment and self-reflection purposes only. Not a substitute for professional advice.",
       links: {
         privacy: "Privacy Policy",
@@ -625,7 +625,7 @@ export const translations: Record<Locale, Translations> = {
     hero: {
       title: "Love Tarot",
       subtitle: "Ghidare Sinceră pentru Inima Ta",
-      aiSubtitle: "Ghidare oferită de inteligență artificială",
+      aiSubtitle: "🔮 Călăuzit de înțelepciunea veche a tarotului",
       ctaStart: "Începe Citirea de Dragoste",
       ctaHowItWorks: "Cum Funcționează",
       deckNote: "22 de Cărți Arcana Mare",
@@ -706,7 +706,7 @@ export const translations: Record<Locale, Translations> = {
     },
     footer: {
       title: "Love Tarot",
-      tagline: "O experiență modernă de tarot îmbogățită cu intuiție AI",
+      tagline: "Citiri de tarot care te ajută să reflectezi și să mergi înainte.",
       disclaimer: "Doar pentru divertisment și auto-reflecție. Nu înlocuiește sfatul profesional.",
       links: {
         privacy: "Politica de Confidențialitate",
@@ -997,7 +997,7 @@ export const translations: Record<Locale, Translations> = {
     hero: {
       title: "Love Tarot",
       subtitle: "真诚的心灵指引",
-      aiSubtitle: "由 AI 洞察驱动",
+      aiSubtitle: "🔮 受古老塔罗智慧引导",
       ctaStart: "开始爱情占卜",
       ctaHowItWorks: "了解流程",
       deckNote: "22张大阿尔卡纳牌",
@@ -1071,7 +1071,7 @@ export const translations: Record<Locale, Translations> = {
     },
     footer: {
       title: "Love Tarot",
-      tagline: "融合AI洞察的现代塔罗体验",
+      tagline: "洞见式塔罗解读，帮助你思考并迈向未来。",
       disclaimer: "仅供娱乐和自我反思。不能替代专业建议。",
       links: {
         privacy: "隐私政策",
