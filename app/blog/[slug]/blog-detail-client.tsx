@@ -93,14 +93,12 @@ export default function BlogDetailClient({ slug }: { slug: string }) {
 
           {/* Content */}
           <div 
-            className="prose prose-invert prose-lg max-w-none text-center
-            prose-headings:text-[#73F2FF] prose-headings:font-semibold prose-headings:text-center
-            prose-p:text-foreground/80 prose-p:leading-relaxed prose-p:mx-auto
+            className="prose prose-invert prose-lg max-w-none 
+            prose-headings:text-[#73F2FF] prose-headings:font-semibold 
+            prose-p:text-foreground/80 prose-p:leading-relaxed
             prose-strong:text-[#FF4FD8] prose-a:text-[#73F2FF] prose-a:no-underline hover:prose-a:underline
-            prose-li:text-foreground/80 prose-li:text-left
-            prose-ul:inline-block prose-ul:text-left prose-ul:mx-auto
-            prose-ol:inline-block prose-ol:text-left prose-ol:mx-auto
-            prose-blockquote:border-none prose-blockquote:bg-[#FF4FD8]/5 prose-blockquote:p-6 prose-blockquote:rounded-xl prose-blockquote:text-center prose-blockquote:mx-auto prose-blockquote:italic"
+            prose-li:text-foreground/80
+            prose-blockquote:border-l-4 prose-blockquote:border-[#FF4FD8] prose-blockquote:bg-[#FF4FD8]/5 prose-blockquote:p-6 prose-blockquote:rounded-r-xl"
           >
             {translation.content}
           </div>
