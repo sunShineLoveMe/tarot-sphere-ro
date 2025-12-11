@@ -37,8 +37,8 @@ export default function IntakeFlow() {
   const [direction, setDirection] = useState<"forward" | "backward">("forward")
 
   const intakeT = useMemo(() => {
-    return t.intake || getDefaultIntakeTranslations(locale)
-  }, [t, locale])
+    return getDefaultIntakeTranslations(locale)
+  }, [locale])
 
   const handleNext = useCallback(() => {
     if (currentStep < 3) {
