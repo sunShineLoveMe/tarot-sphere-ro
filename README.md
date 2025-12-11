@@ -1,6 +1,6 @@
 # Love Tarot Sphere
 
-融合AI洞察的现代塔罗体验。
+融合AI的现代塔罗体验。
 
 A modern tarot experience enriched with AI insight.
 
