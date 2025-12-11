@@ -35,13 +35,14 @@ function ReadingResultContent() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [hasTriggeredAI, setHasTriggeredAI] = useState(false)
   const [showLimitModal, setShowLimitModal] = useState(false)
-  const [limitModalType, setLimitModalType] = useState<"daily-limit" | "share-page">("daily-limit")
+  const [limitModalType, setLimitModalType] = useState<"daily-limit" | "share-page" | "error">("daily-limit")
+  const [limitChecked, setLimitChecked] = useState(false) // Track if limit check is complete
 
   // Daily limit hook
-  const { canDraw, increaseDrawCount, isSharePage, isLoading } = useDailyLimit()
+  const { canDraw, increaseDrawCount, isSharePage, isLoading: isLimitLoading } = useDailyLimit()
 
   // AI Reading hook with skeleton delay
-  const { reading, phase, error, generateReading } = useReading({
+  const { reading, phase, error, generateReading, reset } = useReading({
     skeletonDelay: 500, // 0.5s skeleton display
   })
 
@@ -87,47 +88,54 @@ function ReadingResultContent() {
     return card.name[locale as keyof typeof card.name] || card.name.en
   }
 
-  // Auto-trigger AI reading when cards are displayed
+  // CRITICAL: Check daily limit FIRST before ANY loading begins
   useEffect(() => {
-    // Wait for daily limit hook to initialize
-    if (isLoading) return
-    if (hasTriggeredAI || !question || cards.length !== 3) return
+    // Wait for daily limit hook to fully initialize
+    if (isLimitLoading) return
+    
+    // Only run this check once
+    if (limitChecked) return
+    
+    // Mark limit as checked immediately
+    setLimitChecked(true)
 
-    // Check if this is a share page
+    // Check if this is a share page - show modal immediately
     if (isSharePage) {
       setLimitModalType("share-page")
       setShowLimitModal(true)
-      setHasTriggeredAI(true) // Prevent re-triggering
+      setHasTriggeredAI(true) // Prevent any API triggering
       return
     }
 
-    // Check daily limit before calling API
+    // Check daily limit - if exceeded, show modal immediately
     if (!canDraw) {
       setLimitModalType("daily-limit")
       setShowLimitModal(true)
-      setHasTriggeredAI(true) // Prevent re-triggering
+      setHasTriggeredAI(true) // Prevent any API triggering
       return
     }
 
-    // Small delay to let cards render first
-    const timer = setTimeout(() => {
-      setHasTriggeredAI(true)
+    // User is allowed to proceed - trigger AI reading
+    if (!hasTriggeredAI && question && cards.length === 3) {
+      // Small delay to let cards render first
+      const timer = setTimeout(() => {
+        setHasTriggeredAI(true)
+        // Increase draw count before API call
+        increaseDrawCount()
 
-      // Increase draw count before API call
-      increaseDrawCount()
+        // Build card inputs with names
+        const cardInputs: CardInput[] = cards.map((c) => ({
+          position: c.position === "past" ? "Past" : c.position === "present" ? "Present" : "Future",
+          name: getCardName(c.card),
+          reversed: c.reversed,
+        }))
 
-      // Build card inputs with names
-      const cardInputs: CardInput[] = cards.map((c) => ({
-        position: c.position === "past" ? "Past" : c.position === "present" ? "Present" : "Future",
-        name: getCardName(c.card),
-        reversed: c.reversed,
-      }))
+        generateReading(question, cardInputs, locale as Locale)
+      }, 500) // Reduced delay for faster response
 
-      generateReading(question, cardInputs, locale as Locale)
-    }, 800) // Wait 800ms for cards to animate in
-
-    return () => clearTimeout(timer)
-  }, [hasTriggeredAI, question, cards, locale, generateReading, getCardName, canDraw, isSharePage, increaseDrawCount, isLoading])
+      return () => clearTimeout(timer)
+    }
+  }, [isLimitLoading, limitChecked, hasTriggeredAI, question, cards, locale, generateReading, getCardName, canDraw, isSharePage, increaseDrawCount])
 
   const handleCardClick = useCallback((card: DrawnCard) => {
     setSelectedCard(card)
@@ -141,6 +149,9 @@ function ReadingResultContent() {
 
   // Check if reading is ready to show share buttons
   const showShareButtons = phase === "complete" && reading
+
+  // Show nothing while limit is being checked (prevents flash of "Preparing...")
+  const isInitializing = isLimitLoading || !limitChecked
 
   return (
     <div className="min-h-screen relative overflow-hidden">
@@ -300,8 +311,8 @@ function ReadingResultContent() {
                 </motion.div>
               )}
 
-              {/* Idle State - Only show when actually preparing to call API */}
-              {phase === "idle" && !hasTriggeredAI && !showLimitModal && !isLoading && canDraw && !isSharePage && (
+              {/* Idle State - Only show when limit is checked AND user can proceed */}
+              {phase === "idle" && !hasTriggeredAI && limitChecked && !showLimitModal && canDraw && !isSharePage && (
                 <motion.div
                   key="idle"
                   className="p-6 rounded-2xl text-center"
@@ -315,6 +326,26 @@ function ReadingResultContent() {
                   <p className="text-[#73F2FF]/60">
                     {locale === "zh" ? "准备中..." : locale === "ro" ? "Se pregătește..." : "Preparing..."}
                   </p>
+                </motion.div>
+              )}
+
+              {/* Initializing State - Show only while checking limit */}
+              {isInitializing && (
+                <motion.div
+                  key="initializing"
+                  className="p-6 rounded-2xl text-center"
+                  style={{
+                    background: "rgba(115, 242, 255, 0.05)",
+                    border: "1px solid rgba(115, 242, 255, 0.2)",
+                  }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                >
+                  <div className="flex items-center justify-center gap-2">
+                    <div className="w-2 h-2 rounded-full bg-[#73F2FF]/60 animate-pulse" />
+                    <div className="w-2 h-2 rounded-full bg-[#73F2FF]/60 animate-pulse" style={{ animationDelay: "0.2s" }} />
+                    <div className="w-2 h-2 rounded-full bg-[#73F2FF]/60 animate-pulse" style={{ animationDelay: "0.4s" }} />
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>

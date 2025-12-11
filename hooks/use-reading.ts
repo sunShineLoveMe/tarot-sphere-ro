@@ -41,11 +41,11 @@ export function useReading(options: UseReadingOptions = {}): UseReadingReturn {
       const controller = new AbortController()
       abortControllerRef.current = controller
 
-      // Set up 60-second timeout
-      const TIMEOUT_MS = 60000
+      // Set up 8-second timeout (user-requested max)
+      const TIMEOUT_MS = 8000
       const timeoutId = setTimeout(() => {
         controller.abort()
-        setError(locale === "zh" ? "请求超时，请重试。" : locale === "ro" ? "Solicitarea a expirat. Vă rugăm să încercați din nou." : "Request timed out. Please try again.")
+        setError(locale === "zh" ? "网络延迟，请重试。" : locale === "ro" ? "Întârziere de rețea. Vă rugăm să încercați din nou." : "Network delay. Please try again.")
         setPhase("error")
       }, TIMEOUT_MS)
 

@@ -8,7 +8,7 @@ import Link from "next/link"
 interface LimitModalProps {
   isOpen: boolean
   onClose: () => void
-  type: "daily-limit" | "share-page"
+  type: "daily-limit" | "share-page" | "error"
 }
 
 export default function LimitModal({ isOpen, onClose, type }: LimitModalProps) {
@@ -41,6 +41,19 @@ export default function LimitModal({ isOpen, onClose, type }: LimitModalProps) {
         ro: "Pentru a începe o nouă citire, reveniți la pagina principală ✨",
       },
       icon: Sparkles,
+    },
+    "error": {
+      title: {
+        en: "Something Went Wrong",
+        zh: "出了点问题",
+        ro: "Ceva nu a mers bine",
+      },
+      message: {
+        en: "We couldn't complete your reading right now. Please try again in a few moments.",
+        zh: "我们无法完成你的占卜。请稍后重试。",
+        ro: "Nu am putut finaliza citirea ta acum. Vă rugăm să încercați din nou.",
+      },
+      icon: Moon,
     },
   }
 
@@ -167,6 +180,19 @@ export default function LimitModal({ isOpen, onClose, type }: LimitModalProps) {
                       <span>{locale === "zh" ? "返回首页" : locale === "ro" ? "Înapoi Acasă" : "Return Home"}</span>
                     </motion.button>
                   </Link>
+                ) : type === "error" ? (
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={onClose}
+                    className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-medium text-white"
+                    style={{
+                      background: "linear-gradient(135deg, #FF4FD8 0%, #73F2FF 100%)",
+                      boxShadow: "0 0 20px rgba(255,79,216,0.3)",
+                    }}
+                  >
+                    <span>{locale === "zh" ? "重试" : locale === "ro" ? "Încearcă din nou" : "Try Again"}</span>
+                  </motion.button>
                 ) : (
                   <motion.button
                     whileHover={{ scale: 1.02 }}
