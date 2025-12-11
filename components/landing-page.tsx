@@ -220,37 +220,45 @@ export default function LandingPage({ onStartReading }: LandingPageProps) {
       </section>
 
       {/* Blog Preview Section */}
-      <section className="relative py-20 px-4">
-        <div className="max-w-4xl mx-auto">
+      <section 
+        id="blog-preview" 
+        aria-label="Love Tarot Insights"
+        className="relative py-24 sm:py-28 px-4"
+      >
+        <div className="max-w-[900px] mx-auto">
+          {/* Section Header */}
           <motion.div {...fadeInUp} className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#FF4FD8] to-[#73F2FF] mb-4">
               Love Tarot Insights
             </h2>
-            <p className="text-foreground/60 text-lg">
-              Explore our articles on emotional wisdom and relationship guidance
+            <p className="text-foreground/60 text-base sm:text-lg max-w-[680px] mx-auto">
+              Explore our articles on emotional wisdom and relationship guidance.
             </p>
           </motion.div>
 
+          {/* Featured Article Card */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="p-6 sm:p-8 rounded-2xl text-center"
+            whileHover={{ scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            className="p-8 sm:p-10 rounded-2xl text-center max-w-[760px] mx-auto"
             style={{
               background: "linear-gradient(135deg, rgba(26,10,46,0.9) 0%, rgba(15,10,32,0.95) 100%)",
               border: "1px solid rgba(255,79,216,0.3)",
+              boxShadow: "0 0 40px rgba(255,79,216,0.1), 0 0 80px rgba(115,242,255,0.05)",
             }}
           >
-            <h3 className="text-xl font-semibold text-[#73F2FF] mb-3">
+            <h3 className="text-xl sm:text-2xl font-semibold text-[#73F2FF] mb-4">
               Love Tarot Reading: What Your Heart Needs in 2025
             </h3>
-            <p className="text-foreground/70 mb-6 max-w-xl mx-auto">
-              Discover how tarot readings offer honest guidance for your relationships—without making predictions about
-              the future.
+            <p className="text-foreground/70 text-sm sm:text-base mb-8 max-w-xl mx-auto leading-relaxed">
+              Discover how tarot readings offer honest guidance for your relationships—without making predictions about the future.
             </p>
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium border border-[#73F2FF]/30 text-[#73F2FF] hover:bg-[#73F2FF]/10 transition-colors"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full font-medium border border-[#73F2FF]/40 text-[#73F2FF] hover:bg-[#73F2FF]/10 hover:border-[#73F2FF]/60 transition-all duration-300 w-full sm:w-auto"
             >
               Read Our Blog
               <ArrowRight className="w-4 h-4" />

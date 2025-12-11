@@ -3,11 +3,11 @@
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { Calendar, Clock, ArrowRight } from "lucide-react"
-import TagLang from "./tag-lang"
+import { useI18n } from "@/lib/i18n/context"
+// TagLang is removed as requested by user ("No local language buttons")
 
 export interface ArticleMeta {
   slug: string
-  lang: "en" | "ro" | "zh"
   title: string
   description: string
   publishedAt: string
@@ -22,8 +22,11 @@ interface ArticleCardProps {
 }
 
 export default function ArticleCard({ article, index = 0 }: ArticleCardProps) {
+  const { locale } = useI18n()
+  const lang = (locale || "en") as "en" | "ro" | "zh"
+
   const formattedDate = new Date(article.publishedAt).toLocaleDateString(
-    article.lang === "ro" ? "ro-RO" : article.lang === "zh" ? "zh-CN" : "en-US",
+    lang === "ro" ? "ro-RO" : lang === "zh" ? "zh-CN" : "en-US",
     { year: "numeric", month: "long", day: "numeric" },
   )
 
@@ -35,7 +38,7 @@ export default function ArticleCard({ article, index = 0 }: ArticleCardProps) {
       viewport={{ once: true }}
       className="group relative"
     >
-      <Link href={`/blog/${article.slug}/${article.lang}`}>
+      <Link href={`/blog/${article.slug}`}>
         <div
           className="relative p-6 rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.02]"
           style={{
@@ -53,9 +56,8 @@ export default function ArticleCard({ article, index = 0 }: ArticleCardProps) {
 
           {/* Content */}
           <div className="relative z-10">
-            {/* Language tag */}
+            {/* Language tag removed as per requirements */}
             <div className="flex items-center justify-between mb-4">
-              <TagLang lang={article.lang} />
               <div className="flex items-center gap-4 text-xs text-foreground/50">
                 <span className="flex items-center gap-1">
                   <Calendar className="w-3 h-3" />

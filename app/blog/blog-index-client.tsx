@@ -1,52 +1,67 @@
 "use client"
 
-import { useState } from "react"
+import { useMemo } from "react"
 import { motion } from "framer-motion"
 import MagicBackground from "@/components/magic-background"
 import Header from "@/components/header"
-import ArticleCard, { type ArticleMeta } from "@/components/blog/article-card"
 import { LogoIcon } from "@/components/logo-icon"
 import Link from "next/link"
+import { useI18n } from "@/lib/i18n/context"
+import { Calendar, Clock, ArrowRight } from "lucide-react"
+import { articles } from "@/lib/blog/articles"
 
-// Article database
-const articles: ArticleMeta[] = [
-  {
-    slug: "love-tarot-2025",
-    lang: "en",
-    title: "Love Tarot Reading: What Your Heart Needs to Hear in 2025",
-    description:
-      "Discover how love tarot readings can offer honest guidance for your relationships in 2025. Learn to ask the right questions and embrace emotional clarity.",
-    publishedAt: "2025-01-10",
-    readingTime: 8,
-    keywords: ["love tarot reading", "relationship guidance", "tarot reading 2025"],
+// i18n labels for the blog page
+const blogLabels = {
+  en: {
+    title: "Love Tarot Blog",
+    subtitle: "Explore insightful articles about love tarot readings, relationship guidance, and emotional wisdom.",
+    readMore: "Read more",
+    minRead: "min read",
+    noArticles: "No articles available yet.",
   },
-  {
-    slug: "love-tarot-2025",
-    lang: "ro",
-    title: "Citirea Tarotului Iubirii: Ce Trebuie Să Audă Inima Ta în 2025",
-    description:
-      "Descoperă cum citirile de tarot pentru iubire pot oferi îndrumări sincere pentru relațiile tale în 2025. Învață să pui întrebările potrivite.",
-    publishedAt: "2025-01-10",
-    readingTime: 8,
-    keywords: ["tarot iubire", "ghid relații", "tarot 2025 Romania"],
+  ro: {
+    title: "Blog Tarot Iubire",
+    subtitle: "Explorează articole despre citirile de tarot pentru iubire, ghiduri pentru relații și înțelepciune emoțională.",
+    readMore: "Citește mai mult",
+    minRead: "min citire",
+    noArticles: "Nu există încă articole disponibile.",
   },
-  {
-    slug: "love-tarot-2025",
-    lang: "zh",
-    title: "爱情塔罗牌解读：2025年你的内心需要听到什么",
-    description: "探索爱情塔罗牌如何为你的感情生活提供真诚的指引。学会提出正确的问题，拥抱情感的清晰。",
-    publishedAt: "2025-01-10",
-    readingTime: 8,
-    keywords: ["爱情塔罗", "感情指导", "2025塔罗牌"],
+  zh: {
+    title: "爱情塔罗博客",
+    subtitle: "探索关于爱情塔罗牌解读、情感指导和情感智慧的深度文章。",
+    readMore: "阅读更多",
+    minRead: "分钟阅读",
+    noArticles: "暂无文章。",
   },
-]
-
-type LangFilter = "all" | "en" | "ro" | "zh"
+}
 
 export default function BlogIndexClient() {
-  const [filter, setFilter] = useState<LangFilter>("all")
+  const { locale } = useI18n()
+  const lang = (locale || "en") as "en" | "ro" | "zh"
+  const labels = blogLabels[lang] || blogLabels.en
 
-  const filteredArticles = filter === "all" ? articles : articles.filter((a) => a.lang === filter)
+  // Get articles with current language translations
+  const localizedArticles = useMemo(() => {
+    return articles.map((article) => {
+      const translation = article.translations[lang] || article.translations.en
+      return {
+        slug: article.slug,
+        title: translation.title,
+        description: translation.description,
+        keywords: translation.keywords,
+        publishedAt: article.publishedAt,
+        readingTime: article.readingTime,
+      }
+    }).sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+  }, [lang])
+
+  // Format date based on locale
+  const formatDate = (dateStr: string) => {
+    return new Date(dateStr).toLocaleDateString(
+      lang === "ro" ? "ro-RO" : lang === "zh" ? "zh-CN" : "en-US",
+      { year: "numeric", month: "long", day: "numeric" }
+    )
+  }
 
   return (
     <div className="relative min-h-screen">
@@ -55,47 +70,91 @@ export default function BlogIndexClient() {
 
       <main className="relative pt-24 pb-20 px-4">
         <div className="max-w-5xl mx-auto">
-          {/* Header */}
+          {/* Header - NO local language buttons */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
             <h1 className="text-4xl sm:text-5xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#FF4FD8] to-[#73F2FF] mb-4">
-              Love Tarot Blog
+              {labels.title}
             </h1>
             <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
-              Explore insightful articles about love tarot readings, relationship guidance, and emotional wisdom.
+              {labels.subtitle}
             </p>
           </motion.div>
 
-          {/* Language filter */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="flex flex-wrap justify-center gap-3 mb-10"
-          >
-            {(["all", "en", "ro", "zh"] as const).map((lang) => (
-              <button
-                key={lang}
-                onClick={() => setFilter(lang)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                  filter === lang
-                    ? "bg-gradient-to-r from-[#FF4FD8] to-[#73F2FF] text-white"
-                    : "bg-[#1a0a2e]/50 text-foreground/70 border border-[#FF4FD8]/20 hover:border-[#73F2FF]/40"
-                }`}
-              >
-                {lang === "all" ? "All Languages" : lang === "zh" ? "中文" : lang.toUpperCase()}
-              </button>
-            ))}
-          </motion.div>
-
-          {/* Articles grid */}
+          {/* Articles grid - displays based on current i18n language */}
           <div className="grid md:grid-cols-2 gap-6">
-            {filteredArticles.map((article, index) => (
-              <ArticleCard key={`${article.slug}-${article.lang}`} article={article} index={index} />
+            {localizedArticles.map((article, index) => (
+              <motion.article
+                key={article.slug}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+                viewport={{ once: true }}
+                className="group relative"
+              >
+                <Link href={`/blog/${article.slug}`}>
+                  <div
+                    className="relative p-6 rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.02]"
+                    style={{
+                      background: "linear-gradient(135deg, rgba(26,10,46,0.9) 0%, rgba(15,10,32,0.95) 100%)",
+                      border: "1px solid rgba(255,79,216,0.2)",
+                    }}
+                  >
+                    {/* Hover glow effect */}
+                    <div
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style={{
+                        background: "radial-gradient(circle at center, rgba(115,242,255,0.1) 0%, transparent 70%)",
+                      }}
+                    />
+
+                    {/* Content */}
+                    <div className="relative z-10">
+                      {/* Meta info */}
+                      <div className="flex items-center gap-4 text-xs text-foreground/50 mb-4">
+                        <span className="flex items-center gap-1">
+                          <Calendar className="w-3 h-3" />
+                          {formatDate(article.publishedAt)}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <Clock className="w-3 h-3" />
+                          {article.readingTime} {labels.minRead}
+                        </span>
+                      </div>
+
+                      {/* Title */}
+                      <h3 className="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#FF4FD8] to-[#73F2FF] mb-3 line-clamp-2">
+                        {article.title}
+                      </h3>
+
+                      {/* Description */}
+                      <p className="text-foreground/70 text-sm mb-4 line-clamp-3">{article.description}</p>
+
+                      {/* Keywords */}
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {article.keywords.slice(0, 3).map((keyword) => (
+                          <span
+                            key={keyword}
+                            className="px-2 py-1 rounded-full text-xs bg-[#73F2FF]/10 border border-[#73F2FF]/20 text-[#73F2FF]/80"
+                          >
+                            {keyword}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* Read more */}
+                      <div className="flex items-center gap-2 text-[#FF4FD8] text-sm font-medium group-hover:gap-3 transition-all">
+                        <span>{labels.readMore}</span>
+                        <ArrowRight className="w-4 h-4" />
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              </motion.article>
             ))}
           </div>
 
-          {filteredArticles.length === 0 && (
-            <div className="text-center py-12 text-foreground/50">No articles found for this language.</div>
+          {localizedArticles.length === 0 && (
+            <div className="text-center py-12 text-foreground/50">{labels.noArticles}</div>
           )}
         </div>
       </main>

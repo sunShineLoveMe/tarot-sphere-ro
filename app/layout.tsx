@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata, Viewport } from "next"
 import { Cinzel, Geist } from "next/font/google"
 import Script from "next/script"
+import { I18nProvider } from "@/lib/i18n/context"
 import "./globals.css"
 
 const _geist = Geist({ subsets: ["latin"] })
@@ -142,7 +143,9 @@ export default function RootLayout({
         <link rel="alternate" hrefLang="x-default" href={siteUrl} />
         <link rel="canonical" href={siteUrl} />
       </head>
-      <body className="font-sans antialiased">{children}</body>
+      <body className="font-sans antialiased">
+        <I18nProvider>{children}</I18nProvider>
+      </body>
     </html>
   )
 }
