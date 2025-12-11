@@ -17,15 +17,15 @@ export const metadata: Metadata = {
     template: "%s | Love Tarot",
   },
   description:
-    "A modern tarot experience enriched with AI insight for love and relationships. Reflective, empowering, and designed with psychological insight.",
+    "Insightful tarot readings to help you reflect on love and relationships. Rooted in timeless wisdom, designed for thoughtful self-reflection.",
   keywords: [
     "tarot",
     "love tarot",
-    "AI tarot",
+    "tarot reading",
     "relationship guidance",
     "self-reflection",
     "tarot romania",
-    "tarot reading",
+    "tarot online",
     "塔罗牌",
     "爱情塔罗",
   ],
@@ -41,13 +41,13 @@ export const metadata: Metadata = {
     url: siteUrl,
     siteName: "Love Tarot Romania",
     title: "Love Tarot – Honest Guidance for Your Heart",
-    description: "A modern tarot experience enriched with AI insight. Discover honest guidance for your heart through the ancient wisdom of tarot.",
+    description: "Insightful tarot readings to discover honest guidance for your heart. Rooted in ancient tarot wisdom for love and relationship reflection.",
     images: [
       {
         url: "/og-default.png",
         width: 1200,
         height: 630,
-        alt: "Love Tarot - AI-Powered Tarot Reading",
+        alt: "Love Tarot - Guided by Ancient Tarot Wisdom",
         type: "image/png",
       },
     ],
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     site: "@lovetarot",
     creator: "@lovetarot",
     title: "Love Tarot – Honest Guidance for Your Heart",
-    description: "A modern tarot experience enriched with AI insight for self-reflection and relationship insights.",
+    description: "Insightful tarot readings for self-reflection and relationship guidance. Rooted in timeless tarot wisdom.",
     images: ["/og-default.png"],
   },
   

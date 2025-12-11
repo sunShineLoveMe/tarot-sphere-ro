@@ -52,7 +52,7 @@ export default function LandingPage({ onStartReading }: LandingPageProps) {
               </span>
             </h1>
 
-            {/* AI subtitle below title */}
+            {/* Tarot wisdom subtitle below title */}
             <p
               className="text-sm sm:text-base text-[#73F2FF]/60 mb-4 tracking-wide"
               style={{ textShadow: "0 0 10px rgba(115,242,255,0.3)" }}

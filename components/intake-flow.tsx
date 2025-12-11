@@ -288,7 +288,7 @@ function getDefaultIntakeTranslations(locale: string) {
           new_love: "新恋情的到来",
           guidance: "一般爱情指引",
         },
-        maxWarning: "最多选择 2 项，以便 AI 给出更清晰的解读。",
+        maxWarning: "最多选择 2 项，以便给出更清晰的解读。",
       },
       step3: {
         title: "你心里想问的问题是？",

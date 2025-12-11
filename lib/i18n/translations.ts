@@ -20,7 +20,7 @@ export interface Translations {
   hero: {
     title: string
     subtitle: string
-    aiSubtitle: string // Add AI subtitle field
+    aiSubtitle: string // Wisdom subtitle field (legacy key name)
     ctaStart: string
     ctaHowItWorks: string
     deckNote: string
@@ -237,10 +237,10 @@ export const translations: Record<Locale, Translations> = {
     meta: {
       title: "Love Tarot – Honest Guidance for Your Heart",
       description:
-        "A modern tarot experience enriched with AI insight for love and relationships. Reflective, empowering, and designed for European users.",
+        "Insightful tarot readings to help you reflect on love and relationships. Rooted in timeless wisdom, designed for European users.",
       ogTitle: "Love Tarot Reading Online",
       ogDescription:
-        "Discover honest guidance for your heart with our modern love tarot. A tarot experience enriched with AI insight for relationship insights.",
+        "Discover honest guidance for your heart through ancient tarot wisdom. Insightful readings for love and relationship reflection.",
     },
     nav: {
       home: "Home",
@@ -270,8 +270,8 @@ export const translations: Record<Locale, Translations> = {
           description: "Trust your intuition. Select the card that calls to you from the cosmic ring.",
         },
         {
-          title: "Receive AI Insight",
-          description: "Get a personalized, psychologically-grounded interpretation of your card.",
+          title: "Receive Your Interpretation",
+          description: "Gain a personalized, meaningful interpretation of your chosen card, rooted in timeless tarot symbolism.",
         },
         {
           title: "Reflect & Act",
@@ -310,9 +310,9 @@ export const translations: Record<Locale, Translations> = {
             "No. We use tarot as a tool for self-reflection and psychological insight, not as a way to predict the future. Think of it as a mirror for your thoughts and feelings about love.",
         },
         {
-          question: "How does the AI interpretation work?",
+          question: "How does the interpretation work?",
           answer:
-            "Our AI analyzes the traditional meanings of tarot cards through a modern, psychological lens, providing insights that encourage self-reflection rather than making deterministic predictions.",
+            "Our interpretations draw from traditional tarot symbolism through a modern, psychological lens, providing insights that encourage self-reflection rather than making predictions.",
         },
         {
           question: "Why 22 Major Arcana cards?",
@@ -474,7 +474,7 @@ export const translations: Record<Locale, Translations> = {
             content: "Your data is used exclusively for the following purposes:",
             items: [
               "Generating personalized tarot readings based on your card selections",
-              "Improving our AI interpretation models and user experience",
+              "Improving our interpretation quality and user experience",
               "Analyzing usage patterns to enhance service quality",
               "We do NOT use your data for advertising profiling or sell your information to third parties",
             ],
@@ -490,7 +490,7 @@ export const translations: Record<Locale, Translations> = {
           dataSharing: {
             title: "Data Sharing",
             content:
-              "We do not sell your personal information. We may share data only with essential third-party service providers (such as AI model providers like OpenAI/Gemini) who are contractually obligated to protect your data and use it solely for providing the service.",
+              "We do not sell your personal information. We may share data only with essential third-party service providers who are contractually obligated to protect your data and use it solely for providing the service.",
           },
           dataRetention: {
             title: "Data Retention",
@@ -510,7 +510,7 @@ export const translations: Record<Locale, Translations> = {
           internationalTransfers: {
             title: "International Data Transfers",
             content:
-              "Our service may use AI providers (such as OpenAI or Google Gemini) whose servers may be located outside the EU. We ensure appropriate safeguards are in place, including Standard Contractual Clauses, to protect your data during any international transfers.",
+              "Our service may use third-party providers whose servers may be located outside the EU. We ensure appropriate safeguards are in place, including Standard Contractual Clauses, to protect your data during any international transfers.",
           },
           childrenPrivacy: {
             title: "Children's Privacy",
@@ -536,7 +536,7 @@ export const translations: Record<Locale, Translations> = {
           description: {
             title: "Description of Services",
             content:
-              "Love Tarot is a tarot reading service enriched with AI insight, designed for entertainment and personal reflection purposes. Our service provides love-themed tarot readings using artificial intelligence to interpret card meanings. The readings are meant to inspire self-reflection and are not intended to predict the future.",
+              "Love Tarot is a tarot reading service designed for entertainment and personal reflection purposes. Our service provides love-themed tarot readings with meaningful interpretations rooted in traditional tarot symbolism. The readings are meant to inspire self-reflection and are not intended to predict the future.",
           },
           noAdvice: {
             title: "No Professional Advice Disclaimer",
@@ -559,9 +559,9 @@ export const translations: Record<Locale, Translations> = {
             ],
           },
           aiDisclaimer: {
-            title: "AI Content Disclaimer",
+            title: "Content Disclaimer",
             content:
-              "Our readings are generated by artificial intelligence. AI-generated content may be inaccurate, incomplete, or not applicable to your situation. Users should exercise their own judgment and not treat AI interpretations as absolute truth or professional guidance.",
+              "Our readings are for entertainment and reflection purposes only. Interpretations may not be applicable to every situation. Users should exercise their own judgment and not treat readings as absolute truth or professional guidance.",
           },
           limitation: {
             title: "Limitation of Liability",
@@ -610,10 +610,10 @@ export const translations: Record<Locale, Translations> = {
     meta: {
       title: "Love Tarot – Ghidare Sinceră pentru Inima Ta",
       description:
-        "O experiență modernă de tarot îmbogățită cu intuiție AI pentru dragoste și relații. Reflectivă, împuternicitoare și concepută pentru utilizatorii europeni.",
+        "Citiri de tarot pline de înțelepciune pentru a te ajuta să reflectezi asupra dragostei și relațiilor. Înrădăcinată în înțelepciune atemporala, concepută pentru utilizatorii europeni.",
       ogTitle: "Citire Love Tarot Online",
       ogDescription:
-        "Descoperă ghidare sinceră pentru inima ta cu tarotul nostru modern de dragoste. O experiență de tarot îmbogățită cu intuiție AI.",
+        "Descoperă ghidare sinceră pentru inima ta prin înțelepciunea străveche a tarotului. Citiri pline de sens pentru reflecție asupra dragostei.",
     },
     nav: {
       home: "Acasă",
@@ -644,8 +644,8 @@ export const translations: Record<Locale, Translations> = {
           description: "Ai încredere în intuiția ta. Selectează cartea care te cheamă din inelul cosmic.",
         },
         {
-          title: "Primește Interpretarea AI",
-          description: "Obține o interpretare personalizată, fundamentată psihologic, a cărții tale.",
+          title: "Primește Interpretarea Ta",
+          description: "Obține o interpretare personalizată și semnificativă a cărții tale, înrădăcinată în simbolismul atemporar al tarotului.",
         },
         {
           title: "Reflectează și Acționează",
@@ -684,9 +684,9 @@ export const translations: Record<Locale, Translations> = {
             "Nu. Folosim tarotul ca un instrument pentru auto-reflecție și insight psihologic, nu ca o modalitate de a prezice viitorul.",
         },
         {
-          question: "Cum funcționează interpretarea AI?",
+          question: "Cum funcționează interpretarea?",
           answer:
-            "AI-ul nostru analizează semnificațiile tradiționale ale cărților de tarot printr-o lentilă modernă, psihologică.",
+            "Interpretările noastre se bazează pe semnificațiile tradiționale ale cărților de tarot printr-o lentilă modernă, psihologică, oferind perspective care încurajează auto-reflecția.",
         },
         {
           question: "De ce 22 cărți Major Arcana?",
@@ -847,7 +847,7 @@ export const translations: Record<Locale, Translations> = {
             content: "Datele dvs. sunt folosite exclusiv în următoarele scopuri:",
             items: [
               "Generarea de citiri tarot personalizate bazate pe selecțiile dvs. de cărți",
-              "Îmbunătățirea modelelor noastre de interpretare AI și a experienței utilizatorului",
+              "Îmbunătățirea calității interpretărilor noastre și a experienței utilizatorului",
               "Analiza tiparelor de utilizare pentru îmbunătățirea calității serviciului",
               "NU folosim datele dvs. pentru profilare publicitară și nu vindem informațiile dvs. terților",
             ],
@@ -863,7 +863,7 @@ export const translations: Record<Locale, Translations> = {
           dataSharing: {
             title: "Partajarea datelor",
             content:
-              "Nu vindem informațiile dvs. personale. Putem partaja date doar cu furnizori terți esențiali (precum furnizorii de modele AI ca OpenAI/Gemini) care sunt obligați contractual să vă protejeze datele și să le folosească exclusiv pentru furnizarea serviciului.",
+              "Nu vindem informațiile dvs. personale. Putem partaja date doar cu furnizori terți esențiali care sunt obligați contractual să vă protejeze datele și să le folosească exclusiv pentru furnizarea serviciului.",
           },
           dataRetention: {
             title: "Păstrarea datelor",
@@ -883,7 +883,7 @@ export const translations: Record<Locale, Translations> = {
           internationalTransfers: {
             title: "Transferuri internaționale de date",
             content:
-              "Serviciul nostru poate folosi furnizori AI (precum OpenAI sau Google Gemini) ale căror servere pot fi situate în afara UE. Asigurăm măsuri de protecție adecvate, inclusiv Clauze Contractuale Standard, pentru a vă proteja datele în timpul transferurilor internaționale.",
+              "Serviciul nostru poate folosi furnizori terți ale căror servere pot fi situate în afara UE. Asigurăm măsuri de protecție adecvate, inclusiv Clauze Contractuale Standard, pentru a vă proteja datele în timpul transferurilor internaționale.",
           },
           childrenPrivacy: {
             title: "Confidențialitatea copiilor",
@@ -909,7 +909,7 @@ export const translations: Record<Locale, Translations> = {
           description: {
             title: "Descrierea serviciilor",
             content:
-              "Love Tarot este un serviciu de citire tarot îmbogățit cu intuiție AI, conceput pentru divertisment și reflecție personală. Serviciul nostru oferă citiri tarot cu tematică de dragoste folosind inteligența artificială pentru a interpreta semnificațiile cărților. Citirile sunt menite să inspire auto-reflecția și nu sunt destinate să prezică viitorul.",
+              "Love Tarot este un serviciu de citire tarot conceput pentru divertisment și reflecție personală. Serviciul nostru oferă citiri tarot cu tematică de dragoste cu interpretări semnificative înrădăcinate în simbolismul tradițional al tarotului. Citirile sunt menite să inspire auto-reflecția și nu sunt destinate să prezică viitorul.",
           },
           noAdvice: {
             title: "Disclaimer - Fără sfaturi profesionale",
@@ -932,9 +932,9 @@ export const translations: Record<Locale, Translations> = {
             ],
           },
           aiDisclaimer: {
-            title: "Disclaimer conținut AI",
+            title: "Disclaimer conținut",
             content:
-              "Citirile noastre sunt generate de inteligența artificială. Conținutul generat de AI poate fi inexact, incomplet sau inaplicabil situației dvs. Utilizatorii trebuie să își exercite propria judecată și să nu trateze interpretările AI ca adevăr absolut sau îndrumare profesională.",
+              "Citirile noastre sunt exclusiv pentru divertisment și reflecție. Interpretările pot să nu fie aplicabile fiecărei situații. Utilizatorii trebuie să își exercite propria judecată și să nu trateze citirile ca adevăr absolut sau îndrumare profesională.",
           },
           limitation: {
             title: "Limitarea răspunderii",
@@ -983,9 +983,9 @@ export const translations: Record<Locale, Translations> = {
   zh: {
     meta: {
       title: "Love Tarot – 真诚的心灵指引",
-      description: "融合AI洞察的现代塔罗体验，专为爱情与关系设计。反思性、赋能性，专为欧洲用户打造。",
+      description: "洞见式塔罗解读，帮助你反思爱情与关系。植根于永恒智慧，专为欧洲用户设计。",
       ogTitle: "Love Tarot 在线占卜",
-      ogDescription: "通过我们融合AI洞察的现代爱情塔罗，发现真诚的心灵指引。",
+      ogDescription: "通过古老塔罗智慧，发现真诚的心灵指引。充满洞见的爱情反思解读。",
     },
     nav: {
       home: "首页",
@@ -1015,8 +1015,8 @@ export const translations: Record<Locale, Translations> = {
           description: "相信你的直觉。从宇宙之环中选择呼唤你的那张牌。",
         },
         {
-          title: "接收AI解读",
-          description: "获得个性化的、基于心理学的牌面解读。",
+          title: "接收你的解读",
+          description: "获得个性化、富有意义的牌面解读，植根于永恒的塔罗象征。",
         },
         {
           title: "反思与行动",
@@ -1052,8 +1052,8 @@ export const translations: Record<Locale, Translations> = {
           answer: "不是。我们将塔罗作为自我反思和心理洞察的工具，而不是预测未来的方式。",
         },
         {
-          question: "AI解读如何运作？",
-          answer: "我们的AI通过现代心理学视角分析塔罗牌的传统含义，提供鼓励自我反思的洞见。",
+          question: "解读是如何运作的？",
+          answer: "我们的解读基于塔罗牌的传统含义，通过现代心理学视角提供鼓励自我反思的洞见。",
         },
         {
           question: "为什么是22张大阿卡纳？",
@@ -1212,7 +1212,7 @@ export const translations: Record<Locale, Translations> = {
             content: "您的数据仅用于以下目的：",
             items: [
               "根据您的卡牌选择生成个性化塔罗解读",
-              "改进我们的AI解读模型和用户体验",
+              "改进我们的解读质量和用户体验",
               "分析使用模式以提升服务质量",
               "我们不会将您的数据用于广告画像，也不会将您的信息出售给第三方",
             ],
@@ -1228,7 +1228,7 @@ export const translations: Record<Locale, Translations> = {
           dataSharing: {
             title: "数据分享",
             content:
-              "我们不会出售您的个人信息。我们仅可能与必要的第三方服务提供商（如AI模型提供商OpenAI/Gemini）分享数据，这些提供商有合同义务保护您的数据，并仅将其用于提供服务。",
+              "我们不会出售您的个人信息。我们仅可能与必要的第三方服务提供商分享数据，这些提供商有合同义务保护您的数据，并仅将其用于提供服务。",
           },
           dataRetention: {
             title: "数据保留",
@@ -1248,7 +1248,7 @@ export const translations: Record<Locale, Translations> = {
           internationalTransfers: {
             title: "国际数据传输",
             content:
-              "我们的服务可能使用AI提供商（如OpenAI或Google Gemini），其服务器可能位于欧盟以外。我们确保采取适当的保护措施，包括标准合同条款，以在任何国际传输期间保护您的数据。",
+              "我们的服务可能使用第三方提供商，其服务器可能位于欧盟以外。我们确保采取适当的保护措施，包括标准合同条款，以在任何国际传输期间保护您的数据。",
           },
           childrenPrivacy: {
             title: "儿童隐私",
@@ -1271,7 +1271,7 @@ export const translations: Record<Locale, Translations> = {
           description: {
             title: "服务描述",
             content:
-              "Love Tarot是一款融合AI洞察的塔罗占卜服务，专为娱乐和个人反思而设计。我们的服务使用人工智能解读卡牌含义，提供爱情主题的塔罗占卜。占卜旨在激发自我反思，而非预测未来。",
+              "Love Tarot是一款塔罗占卜服务，专为娱乐和个人反思而设计。我们的服务提供爱情主题的塔罗占卜，解读植根于传统塔罗象征。占卜旨在激发自我反思，而非预测未来。",
           },
           noAdvice: {
             title: "非专业建议免责声明",
@@ -1293,9 +1293,9 @@ export const translations: Record<Locale, Translations> = {
             ],
           },
           aiDisclaimer: {
-            title: "AI内容免责声明",
+            title: "内容免责声明",
             content:
-              "我们的占卜由人工智能生成。AI生成的内容可能不准确、不完整或不适用于您的情况。用户应自行判断，不应将AI解读视为绝对真理或专业指导。",
+              "我们的占卜仅供娱乐和反思之用。解读可能不适用于每种情况。用户应自行判断，不应将解读视为绝对真理或专业指导。",
           },
           limitation: {
             title: "责任限制",

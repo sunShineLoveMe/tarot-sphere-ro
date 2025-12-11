@@ -213,7 +213,7 @@ export async function GET(request: NextRequest) {
               textTransform: "uppercase",
             }}
           >
-            AI-Powered Tarot Reading
+            Guided by Ancient Tarot Wisdom
           </div>
 
           {/* URL */}
@@ -254,7 +254,7 @@ export async function GET(request: NextRequest) {
         >
           <span style={{ fontSize: 48, fontWeight: 700 }}>Love Tarot</span>
           <span style={{ fontSize: 24, opacity: 0.7, marginTop: 16 }}>
-            AI-Powered Tarot Reading
+            Guided by Ancient Tarot Wisdom
           </span>
         </div>
       ),

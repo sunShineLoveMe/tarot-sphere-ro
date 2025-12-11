@@ -186,10 +186,10 @@ function ReadingResultContent() {
           </h1>
           <p className="text-xs text-[#73F2FF]/50 mb-1" style={{ textShadow: "0 0 8px rgba(115,242,255,0.2)" }}>
             {locale === "zh"
-              ? "由 AI 洞察驱动"
+              ? "🔮 受古老塔罗智慧引导"
               : locale === "ro"
-                ? "Ghidare oferită de inteligență artificială"
-                : "Powered by AI Guidance"}
+                ? "🔮 Călăuzit de înțelepciunea veche a tarotului"
+                : "🔮 Guided by Ancient Tarot Wisdom"}
           </p>
           <p className="text-xs md:text-sm uppercase tracking-[0.3em] text-[#73F2FF]/60">{t.readingResult.pageTitle}</p>
         </motion.div>
