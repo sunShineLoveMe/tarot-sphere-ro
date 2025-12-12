@@ -100,15 +100,21 @@ export function useDailyLimit(): DailyLimitHook {
   const [isSharePage, setIsSharePage] = useState(false)
   const [isInitialized, setIsInitialized] = useState(false)
 
+  console.log("[useDailyLimit] Render:", { isInitialized, limitData })
+
   // Initialize on mount
   useEffect(() => {
+    console.log("[useDailyLimit] useEffect running - START")
     const data = readLimitData()
     const today = getTodayDate()
     const currentFingerprint = generateFingerprint()
     
+    console.log("[useDailyLimit] Read data:", { data, today, currentFingerprint })
+    
     // Check if we need to reset (new day or different fingerprint tampering)
     if (data.lastDrawDate !== today) {
       // New day - reset count
+      console.log("[useDailyLimit] New day detected, resetting count")
       const newData: LimitData = {
         dailyDrawCount: 0,
         lastDrawDate: today,
@@ -118,6 +124,7 @@ export function useDailyLimit(): DailyLimitHook {
       writeLimitData(newData)
     } else if (data.fingerprint !== currentFingerprint) {
       // Fingerprint mismatch - possible tampering, keep the higher count
+      console.log("[useDailyLimit] Fingerprint mismatch, adjusting count")
       const newData: LimitData = {
         ...data,
         fingerprint: currentFingerprint,
@@ -126,15 +133,19 @@ export function useDailyLimit(): DailyLimitHook {
       setLimitData(newData)
       writeLimitData(newData)
     } else {
+      console.log("[useDailyLimit] Using existing data")
       setLimitData(data)
     }
     
     // Check if this is a share page
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search)
-      setIsSharePage(params.has("share") || params.get("share") === "1")
+      const isShare = params.has("share") || params.get("share") === "1"
+      console.log("[useDailyLimit] Share page check:", isShare)
+      setIsSharePage(isShare)
     }
     
+    console.log("[useDailyLimit] Setting isInitialized to true")
     setIsInitialized(true)
   }, [])
 
@@ -143,18 +154,20 @@ export function useDailyLimit(): DailyLimitHook {
   // Only return true for canDraw if initialized AND has remaining draws AND not share page
   const canDraw = isInitialized && remainingCount > 0 && !isSharePage
 
-  // Increase draw count
+  // Increase draw count - use functional update to avoid dependency on limitData
   const increaseDrawCount = useCallback(() => {
     if (!canDraw) return
     
-    const newData: LimitData = {
-      ...limitData,
-      dailyDrawCount: limitData.dailyDrawCount + 1,
-      lastDrawDate: getTodayDate(),
-    }
-    setLimitData(newData)
-    writeLimitData(newData)
-  }, [canDraw, limitData])
+    setLimitData((prevData) => {
+      const newData: LimitData = {
+        ...prevData,
+        dailyDrawCount: prevData.dailyDrawCount + 1,
+        lastDrawDate: getTodayDate(),
+      }
+      writeLimitData(newData)
+      return newData
+    })
+  }, [canDraw])
 
   return {
     canDraw,

@@ -100,12 +100,19 @@ function ReadingResultContent() {
   // Use ref to track if AI has been triggered (avoids re-render clearing timer)
   const hasTriggeredAIRef = useRef(false)
 
+  // Reset the ref on component mount to ensure fresh state
+  useEffect(() => {
+    console.log("[v0] Component mounted, resetting hasTriggeredAIRef")
+    hasTriggeredAIRef.current = false
+  }, [])
+
   // CRITICAL: Check daily limit and trigger AI reading
   useEffect(() => {
     console.log("[v0] Limit check effect running:", {
       isLimitLoading,
       limitChecked,
       hasTriggeredAI,
+      hasTriggeredAIRef: hasTriggeredAIRef.current,
       isSharePage,
       canDraw,
     })
@@ -144,14 +151,18 @@ function ReadingResultContent() {
       return
     }
 
-    // User is allowed to proceed - trigger AI reading IMMEDIATELY
+    // User is allowed to proceed
+    // ALWAYS mark limit as checked so initialization loading state ends
+    console.log("[v0] User allowed to proceed, marking limit as checked")
+    setLimitChecked(true)
+
+    // Trigger AI reading IMMEDIATELY if we have necessary data
     if (question && cards.length === 3) {
       console.log("[v0] User can proceed, triggering AI reading NOW")
       
       // Mark as triggered via ref FIRST (prevents race condition)
       hasTriggeredAIRef.current = true
       setHasTriggeredAI(true)
-      setLimitChecked(true)
       
       // Increase draw count before API call
       increaseDrawCount()
@@ -177,6 +188,9 @@ function ReadingResultContent() {
         question,
         cardsLength: cards.length,
       })
+      // Even if we can't trigger AI, mark as complete to stop showing "Preparing..."
+      hasTriggeredAIRef.current = true
+      setHasTriggeredAI(true)
     }
   }, [
     isLimitLoading,

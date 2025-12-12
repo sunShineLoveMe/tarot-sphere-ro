@@ -35,6 +35,7 @@ export default function IntakeFlow() {
   const [focusTopics, setFocusTopics] = useState<FocusTopic[]>([])
   const [userQuestion, setUserQuestion] = useState("")
   const [direction, setDirection] = useState<"forward" | "backward">("forward")
+  const [showQuestionWarning, setShowQuestionWarning] = useState(false)
 
   const intakeT = useMemo(() => {
     return getDefaultIntakeTranslations(locale)
@@ -54,7 +55,7 @@ export default function IntakeFlow() {
     }
   }, [currentStep])
 
-  const handleComplete = useCallback(() => {
+  const proceedToReading = useCallback(() => {
     if (!relationshipStatus) return
 
     const input: LoveTarotInput = {
@@ -68,6 +69,18 @@ export default function IntakeFlow() {
     sessionStorage.setItem("loveTarotInput", JSON.stringify(input))
     router.push("/?startReading=true")
   }, [locale, relationshipStatus, focusTopics, userQuestion, router])
+
+  const handleComplete = useCallback(() => {
+    if (!relationshipStatus) return
+
+    // If no question provided, show warning first
+    if (!userQuestion.trim()) {
+      setShowQuestionWarning(true)
+      return
+    }
+
+    proceedToReading()
+  }, [relationshipStatus, userQuestion, proceedToReading])
 
   const canProceedStep1 = relationshipStatus !== null
   const canProceedStep2 = focusTopics.length >= 1 && focusTopics.length <= 2
@@ -190,6 +203,63 @@ export default function IntakeFlow() {
           </GlowButton>
         )}
       </div>
+
+      {/* Question Warning Modal */}
+      <AnimatePresence>
+        {showQuestionWarning && (
+          <motion.div
+            className="fixed inset-0 z-[100] flex items-center justify-center px-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            {/* Backdrop */}
+            <motion.div
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+              onClick={() => setShowQuestionWarning(false)}
+            />
+
+            {/* Modal */}
+            <motion.div
+              className="relative w-full max-w-md p-6 rounded-2xl text-center space-y-4"
+              style={{
+                background: "linear-gradient(135deg, rgba(20,10,40,0.95), rgba(30,15,50,0.95))",
+                border: "1px solid rgba(255, 79, 216, 0.4)",
+                boxShadow: "0 0 30px rgba(255, 79, 216, 0.2)",
+              }}
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+            >
+              <h3 className="text-xl font-semibold text-[#FF4FD8]">
+                {locale === "zh" 
+                  ? "💜 温馨提示" 
+                  : locale === "ro" 
+                    ? "💜 Notificare" 
+                    : "💜 Friendly Reminder"}
+              </h3>
+              <p className="text-white/80">
+                {locale === "zh" 
+                  ? "请输入您的问题以获取塔罗解读。" 
+                  : locale === "ro" 
+                    ? "Te rugăm să introduci o întrebare pentru a primi citirea tarot." 
+                    : "Please enter your question to receive your tarot reading."}
+              </p>
+              <motion.button
+                onClick={() => setShowQuestionWarning(false)}
+                className="w-full px-4 py-2 rounded-full text-white mt-2"
+                style={{
+                  background: "linear-gradient(135deg, #FF4FD8, #A855F7)",
+                }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {locale === "zh" ? "返回输入" : locale === "ro" ? "Înapoi" : "Go Back"}
+              </motion.button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
@@ -222,7 +292,7 @@ function getDefaultIntakeTranslations(locale: string) {
       },
       step3: {
         title: "What's on your heart?",
-        subtitle: "Optional",
+        subtitle: "Required",
         placeholder: "Example: We haven't talked in 2 weeks…",
         charLimit: "Try to keep it under 140 characters.",
       },
@@ -257,7 +327,7 @@ function getDefaultIntakeTranslations(locale: string) {
       },
       step3: {
         title: "Ce ai pe suflet?",
-        subtitle: "Opțional",
+        subtitle: "Obligatoriu",
         placeholder: "Exemplu: Nu am vorbit de 2 săptămâni…",
         charLimit: "Păstrează textul sub 140 de caractere.",
       },
@@ -292,7 +362,7 @@ function getDefaultIntakeTranslations(locale: string) {
       },
       step3: {
         title: "你心里想问的问题是？",
-        subtitle: "可选",
+        subtitle: "必填",
         placeholder: "例如：我们已经两周没有联系了…",
         charLimit: "请保持在 140 字以内。",
       },
