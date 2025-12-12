@@ -192,11 +192,27 @@ const article1Content = {
       <p>
         Când citești tarotul pentru iubire, inteligența emoțională este cheia. Chiar și cărțile care ar putea părea
         "negative" la prima vedere poartă adesea mesaje importante. Turnul, de exemplu, ar putea indica prăbușirea
-        iluziilor sau a tiparelor nesănătoase - în cele din urmă un proces de vindecare.
+        iluziilor sau a tiparelor nesănătoase - în cele din urmă un proces de vindecare. Trei de Săbii, deși dureros,
+        vorbește despre necesitatea procesării doliului înainte de a merge mai departe.
       </p>
       <p>
         Abordează fiecare carte cu curiozitate mai degrabă decât cu frică. Întreabă-te: Ce încearcă această carte să mă
         învețe? Ce dar ascuns ar putea sta în această provocare?
+      </p>
+
+      <h2>Tipare Comune în Citirile de Iubire</h2>
+      <h3>Dinamica Urmăririi</h3>
+      <p>
+        Dacă desenezi în mod repetat cărți precum Cavalerul de Săbii sau Șapte de Bețe în citirile de iubire, s-ar putea
+        să fii prins într-o dinamică de urmărire - fie urmărind parteneri indisponibili, fie îndepărtând pe cei care se
+        apropie prea mult. Cărțile te încurajează să-ți examinezi tiparele de atașament.
+      </p>
+
+      <h3>Călătoria Vindecării</h3>
+      <p>
+        Cărți precum Steaua, Temperanța și Patru de Săbii apar adesea când sufletul tău te cheamă spre vindecare, mai
+        degrabă decât spre o nouă iubire romantică. Uneori, cel mai iubitor lucru pe care îl putem face este să ne
+        oferim timp și spațiu pentru a ne vindeca.
       </p>
 
       <h2>Împuternicire prin Perspectivă</h2>
@@ -232,7 +248,8 @@ const article1Content = {
 
       <h2>理解爱情塔罗：超越占卜</h2>
       <p>
-        许多人带着获得明确答案的期望来接触塔罗牌："他会打电话吗？""这是命中注定的人吗？"然而，爱情塔罗的真正力量不在于预测，而在于反思。牌卡作为原型镜像，反映出你当前处境中存在的能量、模式和可能性。
+        许多人带着获得明确答案的期望来接触塔罗牌："他会打电话吗？"
+        "这是命中注定的人吗？"然而，爱情塔罗的真正力量不在于预测，而在于反思。牌卡作为原型镜像，反映出你当前处境中存在的能量、模式和可能性。
       </p>
       <p>
         当我们
@@ -265,7 +282,7 @@ const article1Content = {
 
       <h2>理解卡牌的深层含义</h2>
       <p>
-        解读牌卡时，情感智能是关键。即使是乍看起来可能"负面"的牌卡，也常常携带着重要的信息。例如，塔牌可能表示幻想或不健康模式的崩塌——最终是一个疗愈的过程。
+        解读牌卡时，情感智能是关键。即使是乍看起来可能"负面"的牌卡，也常常携带着重要的信息。例如，塔牌可能表示幻想或不健康模式的崩塌——最终是一个疗愈的过程。宝剑三，虽然痛苦，却说明了在前进之前处理悲伤的必要性。
       </p>
       <p>带着好奇心而不是恐惧来对待每张牌。问问自己：这张牌想教我什么？这个挑战中可能隐藏着什么礼物？</p>
 
@@ -576,7 +593,7 @@ const article2Content = {
       </p>
       <p>
         <strong>Inversat:</strong> Sugerează dificultăți în a lăsa trecutul să plece, sau că o întoarcere s-ar putea să
-        nu aducă fericirea pe care ți-o imaginezi.
+        nu aducă fericirea pe care ți-o imaginezi. Uneori, cele mai dulci amintiri sunt menite să rămână amintiri.
       </p>
 
       <h3>Doi de Cupe</h3>
@@ -631,6 +648,9 @@ const article2Content = {
         <li>"Ce trebuie să vindec în mine?"</li>
         <li>"Care este calea cea mai înaltă pentru mine?"</li>
       </ul>
+      <p>
+        Aceste întrebări schimbă focusul de la neputință ("Va...?") la împuternicire ("Ce pot înțelege/face/vindeca?").
+      </p>
 
       <h2>Ghid Practic Bazat pe Rezultate Comune ale Tarotului</h2>
 
@@ -675,7 +695,8 @@ const article2Content = {
       <h3>Poate tarotul să-mi spună cu adevărat dacă se va întoarce?</h3>
       <p>
         Tarotul nu poate prezice cu certitudine alegerile libere ale altei persoane. Ce poate face este să ilumineze
-        energiile în joc, să te ajute să înțelegi tiparele și să te ghideze spre claritate și împuternicire.
+        energiile în joc, să te ajute să înțelegi tiparele și să te ghideze spre claritate și împuternicire. Decizia de
+        a se întoarce—sau nu—aparține în cele din urmă celeilalte persoane.
       </p>
 
       <h2>Concluzie: Împuternicire Prin Claritate</h2>
@@ -762,15 +783,6 @@ const article2Content = {
         <strong>逆位：</strong>可能表示不切实际的期望、空洞的承诺或某人没有准备好用行动支持他们的话。
       </p>
 
-      <h3>女祭司</h3>
-      <p>
-        <strong>正位：</strong>
-        女祭司要求你相信你的直觉。她暗示在内心深处，你已经知道答案。注意你的梦、你的直觉感受和周围的迹象。
-      </p>
-      <p>
-        <strong>逆位：</strong>表示你可能在忽视你的直觉或寻求外部认可而不是相信自己。她问：你已经知道什么是真的？
-      </p>
-
       <h2>如何正确提问</h2>
       <p>你的塔罗解读质量取决于你如何构建问题。与其问试图预测另一个人行为的是/否问题，不如尝试这些反思性的替代方案：</p>
       <ul>
@@ -825,587 +837,431 @@ const article2Content = {
   ),
 }
 
-// Article 3: The Lovers Tarot Meaning
-const article3Content = {
+// Article 4: The High Priestess
+const article4Content = {
   en: (
     <>
-      <h2>Introduction: A Card of Choice and Connection</h2>
+      <h2>Introduction: The Voice of Inner Wisdom</h2>
       <p>
-        The Lovers card is one of the most iconic and misunderstood cards in tarot. While many interpret it simply as a
-        sign of romantic love, its meaning runs much deeper. At its core, The Lovers represents choice, alignment, and
-        the integration of opposites—both within yourself and in your relationships with others.
+        In the realm of love tarot, few cards carry the quiet power and mystery of The High Priestess. While other cards
+        speak loudly of passion, commitment, or heartbreak, The High Priestess whispers a different message: trust what
+        you already know. Listen to the voice within.
       </p>
       <p>
-        Whether you draw this card upright or reversed in a love tarot reading, it invites you to examine your values,
-        understand what truly matters to you, and consider whether your choices align with your authentic self.
+        When The High Priestess appears in a love reading, she is not here to predict whether someone will call or
+        confess their feelings. Instead, she asks you to pause, to look inward, and to honor the intuitive knowing that
+        already lives within you. She reminds us that in matters of the heart, clarity often comes not from external
+        answers, but from the wisdom we have been ignoring.
       </p>
       <p>
-        In this guide, we will explore the lovers meaning in both upright and reversed positions, understand what this
-        card teaches us about love, and learn how to reflect deeply when The Lovers appears in your reading.
+        In this guide, we will explore the high priestess love meaning in both upright and reversed positions, how to
+        interpret her presence in relationship contexts, and what questions to ask yourself when this powerful card
+        appears in your reading.
       </p>
 
-      <h2>What The Lovers Represents in Love Tarot</h2>
+      <h2>The High Priestess Love Meaning (Upright)</h2>
       <p>
-        The Lovers card traditionally depicts two figures standing beneath an angel or divine presence, symbolizing the
-        union of masculine and feminine energies, conscious and unconscious, or choice and consequence. In love
-        readings, this card speaks to several interconnected themes:
+        When The High Priestess appears upright in a love tarot reading, she brings the energy of intuition, emotional
+        depth, and unspoken understanding. This is not the card of grand romantic gestures or passionate declarations—it
+        is the card of quiet knowing, of feeling someone's presence even in silence, of understanding what remains
+        unsaid.
+      </p>
+
+      <h3>Emotional Intuition and Inner Truth</h3>
+      <p>
+        The high priestess tarot love meaning centers on trusting your instincts. If you have been questioning whether
+        someone is right for you, whether a connection is genuine, or what someone truly feels, The High Priestess
+        suggests that you already know the answer. Your intuition has been speaking—have you been listening?
+      </p>
+      <p>
+        This card often appears when there is a disconnect between what you are being told and what you sense to be
+        true. Perhaps someone says all the right words, but something feels off. Or maybe you feel a deep connection
+        with someone even though logic tells you it does not make sense. The High Priestess asks you to honor that inner
+        voice.
+      </p>
+
+      <h3>Silent Understanding Between Partners</h3>
+      <p>
+        In established relationships, The High Priestess upright can indicate a bond that goes beyond words. This is the
+        kind of love where you understand each other without needing to explain, where emotional depth and quiet
+        intimacy create a sacred space between you. It suggests that the most meaningful communication in your
+        relationship happens in the silences, in the looks exchanged, in the unspoken agreements.
+      </p>
+
+      <h3>When Love is Subtle and Deep</h3>
+      <p>
+        Unlike cards of overt passion like The Lovers or fiery desire like the Knight of Wands, The High Priestess
+        speaks to love that is subtle, mysterious, and deeply felt. This may be a connection that develops slowly, that
+        reveals itself in layers, that asks for patience and emotional maturity. It is not love at first sight—it is
+        love that unfolds as you truly see and are seen.
+      </p>
+
+      <h2>The High Priestess Reversed in Love</h2>
+      <p>
+        When The High Priestess appears reversed in a love reading, her message shifts from trusting intuition to
+        recognizing where intuition is being ignored or suppressed. The high priestess reversed love meaning speaks to
+        emotional confusion, secrets, avoidance, and a disconnection from your inner truth.
+      </p>
+
+      <h3>Emotional Confusion and Denial</h3>
+      <p>
+        Reversed, The High Priestess may indicate that you are ignoring what your gut is telling you. Perhaps you have
+        been making excuses for someone's behavior, convincing yourself that things will change, or refusing to see red
+        flags because you want the relationship to work. She asks: What are you refusing to acknowledge?
+      </p>
+      <p>
+        This card can also appear when you are so caught up in overthinking that you have lost touch with your feelings.
+        You analyze, you rationalize, you seek advice from everyone else—but you are not listening to yourself.
+      </p>
+
+      <h3>Secrets and Emotional Avoidance</h3>
+      <p>
+        The High Priestess reversed can indicate hidden truths in a relationship. This might be someone who is not being
+        fully honest, a situation where not all the cards are on the table, or emotional avoidance where important
+        conversations are being sidestepped. If you have been feeling like something is being withheld, this card
+        validates that instinct.
+      </p>
+
+      <h3>Suppressed Inner Voice</h3>
+      <p>
+        Perhaps the most challenging aspect of The High Priestess reversed is when we silence our own inner voice. This
+        happens when we prioritize what we think we "should" feel over what we actually feel, when we let fear or social
+        pressure override our intuition, or when we give away our power to others' opinions about our love life.
+      </p>
+      <p>
+        She asks you to reconnect with yourself. What have you been afraid to admit? What truth have you been avoiding?
+      </p>
+
+      <h2>The High Priestess in Relationship Contexts</h2>
+
+      <h3>In New Connections</h3>
+      <p>
+        When The High Priestess appears in readings about new romantic interests, she suggests a connection that is
+        still revealing itself. This is not the time to rush or push for clarity—instead, allow things to unfold
+        naturally. Pay attention to what your intuition tells you about this person. Notice what is communicated
+        non-verbally. Trust that time will reveal what needs to be known.
+      </p>
+      <p>
+        If she appears reversed, be cautious about projecting fantasies onto someone you barely know, or ignoring
+        initial gut feelings that something is off.
+      </p>
+
+      <h3>In Existing Partnerships</h3>
+      <p>
+        For those in relationships, The High Priestess upright can indicate a deepening of emotional intimacy and
+        understanding. It may be time to explore the unspoken dimensions of your connection, to create space for
+        vulnerability and depth. This card suggests that your relationship has layers you have not yet explored.
+      </p>
+      <p>
+        Reversed, she may point to emotional distance, communication breakdowns, or a sense that something important is
+        not being said. It is time to create space for honest, vulnerable conversation.
+      </p>
+
+      <h3>Personal Boundaries and Self-Understanding</h3>
+      <p>
+        The high priestess relationship tarot meaning also speaks to the importance of maintaining your own inner world
+        within a partnership. This card reminds us that healthy love does not require us to give up our mystery, our
+        privacy, or our connection to ourselves. You can be deeply connected to someone while still honoring your own
+        emotional and spiritual boundaries.
+      </p>
+
+      <h2>How to Reflect When Drawing The High Priestess</h2>
+      <p>
+        When The High Priestess appears in your love reading, she invites you to turn inward. Rather than seeking
+        external answers, ask yourself these reflective questions:
       </p>
       <ul>
-        <li>
-          <strong>Emotional Connection:</strong> The presence of deep attraction, chemistry, and soul-level recognition
-          between two people.
-        </li>
-        <li>
-          <strong>Conscious Choice:</strong> The card reminds us that true love involves choosing each other every day,
-          not simply falling into circumstance.
-        </li>
-        <li>
-          <strong>Values Alignment:</strong> The Lovers asks whether your values, life goals, and emotional needs are
-          truly compatible with those of your partner.
-        </li>
-        <li>
-          <strong>Inner Integration:</strong> Before we can love another fully, we must integrate the opposing parts of
-          ourselves—shadow and light, strength and vulnerability.
-        </li>
+        <li>What is my intuition telling me about this person or situation?</li>
+        <li>What truth have I been avoiding or denying?</li>
+        <li>Am I honoring my inner voice, or am I silencing it to please others?</li>
+        <li>What remains unspoken in this connection that needs to be acknowledged?</li>
+        <li>Am I trying to force clarity, or can I allow things to reveal themselves in time?</li>
+        <li>What do I need to understand about my own emotional patterns?</li>
       </ul>
       <p>
-        Unlike cards that focus purely on emotion (such as the Ace of Cups) or commitment (like the Two of Cups), The
-        Lovers emphasizes the element of choice. It is a card of crossroads, asking: What do you truly want? What are
-        you willing to commit to?
+        The High Priestess does not offer quick answers or simple solutions. She asks for patience, for trust in your
+        own knowing, and for the courage to honor what you sense to be true even when it is uncomfortable.
       </p>
 
-      <h2>The Lovers Upright Meaning in Love Readings</h2>
+      <h2>Conclusion: Trusting the Wisdom Within</h2>
       <p>
-        When The Lovers appears upright in a love tarot reading, it generally carries positive energy related to
-        connection, harmony, and alignment. However, even in its upright position, this card is never passive—it always
-        calls for conscious awareness and intentional choice.
-      </p>
-
-      <h3>Key Themes of The Lovers Upright</h3>
-      <ul>
-        <li>
-          <strong>Authentic Partnership:</strong> The relationship is built on mutual respect, honesty, and shared
-          values. Both partners see and accept each other as they truly are.
-        </li>
-        <li>
-          <strong>Deep Attraction:</strong> There is genuine chemistry and soul recognition. This is not surface-level
-          attraction but something that resonates on a deeper level.
-        </li>
-        <li>
-          <strong>Aligned Values:</strong> The Lovers upright suggests that both individuals want similar things from
-          life and love. Their core values support rather than conflict with each other.
-        </li>
-        <li>
-          <strong>Clear Communication:</strong> In healthy relationships represented by this card, both partners
-          communicate openly about their needs, fears, and desires.
-        </li>
-        <li>
-          <strong>Conscious Commitment:</strong> If The Lovers appears when you are deciding about a relationship, it
-          suggests that choosing this partnership would be in alignment with your highest self.
-        </li>
-      </ul>
-
-      <h3>What The Lovers Upright Asks of You</h3>
-      <p>
-        Even when upright, The Lovers is not a guarantee—it is an invitation. It asks you to examine: Are you bringing
-        your authentic self to this relationship? Are you making choices from love rather than fear? Are you honoring
-        both your own needs and those of your partner?
+        The High Priestess in love tarot is a reminder that the most important guidance comes from within. In a world
+        that constantly asks us to look outside ourselves for validation and answers, she calls us back to the quiet
+        wisdom of our own hearts.
       </p>
       <p>
-        The tarot lovers upright meaning emphasizes that true love requires vulnerability, honesty, and the courage to
-        choose each other fully, flaws and all.
-      </p>
-
-      <h2>The Lovers Reversed Meaning in Love Tarot</h2>
-      <p>
-        When The Lovers appears reversed, it does not necessarily mean that love is absent or that a relationship is
-        doomed. Rather, lovers tarot reversed points to misalignment, inner conflict, or choices that are not in harmony
-        with your true values.
-      </p>
-
-      <h3>Key Themes of The Lovers Reversed</h3>
-      <ul>
-        <li>
-          <strong>Misalignment of Values:</strong> You and your partner may want fundamentally different things, leading
-          to ongoing friction and dissatisfaction.
-        </li>
-        <li>
-          <strong>Internal Conflict:</strong> The Lovers reversed often indicates that you are torn between what you
-          want and what you think you should want, or between your heart and your head.
-        </li>
-        <li>
-          <strong>Avoidance of Choice:</strong> You may be staying in a situation out of fear of being alone, comfort,
-          or hoping that things will magically improve without making a decision.
-        </li>
-        <li>
-          <strong>Broken Trust:</strong> The reversed position can indicate betrayal, dishonesty, or a lack of integrity
-          within the relationship.
-        </li>
-        <li>
-          <strong>Self-Abandonment:</strong> You may be compromising your own values, needs, or identity to maintain a
-          relationship that is not truly serving you.
-        </li>
-      </ul>
-
-      <h3>The Gift of The Lovers Reversed</h3>
-      <p>
-        While the lovers tarot reversed can feel uncomfortable, it offers a valuable gift: the opportunity to examine
-        where you are out of alignment. It asks you to look honestly at your situation and consider: Am I honoring my
-        truth? Am I making choices from love or from fear?
+        Whether she appears upright, asking you to trust your intuition, or reversed, asking you to examine where you
+        have been ignoring it, her message is ultimately one of empowerment. You already know what you need to know. You
+        already sense what is true. The question is: are you willing to listen?
       </p>
       <p>
-        This card reversed is not a judgment but a gentle nudge toward self-awareness. It invites you to integrate the
-        parts of yourself you may be neglecting and to make choices that honor your whole self.
-      </p>
-
-      <h2>Is The Lovers Card About a Person or a Choice?</h2>
-      <p>
-        One of the most common questions about The Lovers is whether it represents a specific person or a decision. The
-        answer is: often both.
-      </p>
-      <p>
-        In the context of love tarot card lovers readings, this card can indicate a significant relationship or
-        connection. However, it is never just about the other person—it is always about the choice you are making in
-        relation to that person.
-      </p>
-      <p>
-        The Lovers asks: Does this relationship allow me to be my authentic self? Does it align with my values and life
-        path? Am I choosing this person consciously, or am I simply avoiding loneliness or change?
-      </p>
-      <p>
-        In some readings, The Lovers may appear when you are at a crossroads between two paths—perhaps choosing between
-        two potential partners, or deciding whether to stay in a relationship or leave. In these moments, the card
-        reminds you to choose with awareness and integrity, not out of impulse or fear.
-      </p>
-
-      <h2>How to Reflect When You Draw The Lovers</h2>
-      <p>
-        Whether The Lovers appears upright or reversed, it invites deep self-reflection. Here are some powerful
-        questions to ask yourself:
-      </p>
-      <ul>
-        <li>What values matter most to me in love and partnership?</li>
-        <li>Am I making choices that align with my authentic self, or am I compromising who I am?</li>
-        <li>What does my heart truly want, beyond what I think I "should" want?</li>
-        <li>Am I acting from love or from fear of being alone?</li>
-        <li>Is this relationship allowing me to grow, or am I staying small to make it work?</li>
-        <li>What part of myself am I avoiding or neglecting in this situation?</li>
-      </ul>
-      <p>
-        The Lovers is a card of integration—it asks you to bring together your mind and heart, your desires and your
-        values, your independence and your need for connection. By reflecting on these questions, you move closer to
-        making choices that honor your whole self.
-      </p>
-
-      <h2>The Lovers in Different Relationship Contexts</h2>
-
-      <h3>For Those Seeking Love</h3>
-      <p>
-        If you are single and draw The Lovers, it may indicate that a significant connection is on the horizon. However,
-        before that connection can manifest, the card asks you to do inner work: What do you truly value in a partner?
-        Are you clear about your own needs and boundaries?
-      </p>
-      <p>
-        The lovers tarot love meaning here is about preparing yourself to meet love with clarity and authenticity,
-        rather than desperation or fantasy.
-      </p>
-
-      <h3>For Those in a Relationship</h3>
-      <p>
-        If you draw The Lovers while in a relationship, it may be affirming that your partnership is aligned and
-        healthy. Alternatively, especially if reversed, it may be highlighting areas where values are misaligned or
-        choices need to be made.
-      </p>
-      <p>
-        Ask yourself: Are we growing together or apart? Are we choosing each other consciously, or are we simply
-        comfortable?
-      </p>
-
-      <h3>For Those Facing a Decision</h3>
-      <p>
-        If you are at a crossroads—whether to stay or leave, whether to commit or walk away—The Lovers affirms that you
-        are indeed facing a significant choice. Trust yourself to make the decision that honors your truth, even if it
-        feels difficult.
-      </p>
-
-      <h2>Common Misconceptions About The Lovers</h2>
-
-      <h3>Myth: The Lovers Guarantees a Soulmate Connection</h3>
-      <p>
-        While The Lovers can indicate a deep soul connection, it does not guarantee that a relationship will last or be
-        easy. It simply points to the presence of choice, attraction, and the potential for alignment.
-      </p>
-
-      <h3>Myth: The Lovers Reversed Means the Relationship is Over</h3>
-      <p>
-        The lovers tarot reversed does not automatically spell doom. It indicates misalignment or inner conflict, which
-        can be worked through if both partners are willing to do the inner work and communicate honestly.
-      </p>
-
-      <h3>Myth: The Lovers is Only About Romantic Love</h3>
-      <p>
-        While often associated with romance, The Lovers can also speak to important friendships, business partnerships,
-        or even the relationship you have with yourself. The core message is always about alignment, choice, and
-        integration.
-      </p>
-
-      <h2>Conclusion: Choosing Love Consciously</h2>
-      <p>
-        The Lovers is a card of profound depth and wisdom. Whether it appears upright or reversed, it invites you to
-        examine your choices, honor your values, and integrate the different parts of yourself.
-      </p>
-      <p>
-        In love readings, The Lovers reminds us that true partnership is not about losing ourselves in another person—it
-        is about choosing each other consciously, bringing our authentic selves to the relationship, and creating a
-        connection built on mutual respect, shared values, and genuine alignment.
-      </p>
-      <p>
-        When you draw The Lovers, take it as an invitation to reflect deeply, choose wisely, and honor the truth of your
-        heart. Whether that leads you toward deeper commitment or toward necessary change, trust that clarity and
-        alignment are always worth pursuing.
+        As you navigate your love journey, let The High Priestess remind you that clarity is not always loud or obvious.
+        Sometimes it whispers. Sometimes it waits. And sometimes, it has been there all along.
       </p>
     </>
   ),
   ro: (
     <>
-      <h2>Introducere: O Carte a Alegerii și Conexiunii</h2>
+      <h2>Introducere: Vocea Înțelepciunii Interioare</h2>
       <p>
-        Cartea Îndrăgostiților este una dintre cele mai iconice și greșit înțelese cărți din tarot. Deși mulți o
-        interpretează ca pe un simplu semn de iubire romantică, semnificația sa este mult mai profundă. În esență,
-        Îndrăgostiții reprezintă alegerea, alinierea și integrarea opuselor—atât în tine însuți, cât și în relațiile
-        tale cu ceilalți.
+        În domeniul tarotului de iubire, puține cărți poartă puterea liniștită și misterul Marii Preotese. În timp ce
+        alte cărți vorbesc cu voce tare despre pasiune, angajament sau suferință, Marea Preoteasă șoptește un mesaj
+        diferit: ai încredere în ceea ce știi deja. Ascultă vocea din interior.
       </p>
       <p>
-        Fie că tragi această carte în poziție dreaptă sau inversată într-o citire de tarot pentru iubire, ea te invită
-        să îți examinezi valorile, să înțelegi ce contează cu adevărat pentru tine și să iei în considerare dacă
-        alegerile tale se aliniază cu sinele tău autentic.
+        Când Marea Preoteasă apare într-o citire de iubire, ea nu este aici pentru a prezice dacă cineva va suna sau își
+        va mărturisi sentimentele. În schimb, ea te roagă să faci o pauză, să te uiți înăuntru și să onorezi cunoașterea
+        intuitivă care trăiește deja în tine. Ea ne amintește că în chestiuni de inimă, claritatea vine adesea nu din
+        răspunsuri externe, ci din înțelepciunea pe care am ignorat-o.
       </p>
       <p>
-        În acest ghid, vom explora semnificația îndrăgostiților atât în poziție dreaptă, cât și inversată, vom înțelege
-        ce ne învață această carte despre iubire și vom învăța cum să reflectăm profund când Îndrăgostiții apar în
-        citirea ta.
+        În acest ghid, vom explora semnificația Marii Preotese în iubire atât în poziție dreaptă, cât și inversată, cum
+        să interpretăm prezența ei în contexte relaționale și ce întrebări să ne punem când această carte puternică
+        apare în citirea noastră.
       </p>
 
-      <h2>Ce Reprezintă Îndrăgostiții în Tarotul de Iubire</h2>
+      <h2>Semnificația Marii Preotese în Iubire (Poziție Dreaptă)</h2>
       <p>
-        Cartea Îndrăgostiților înfățișează în mod tradițional două figuri stând sub un înger sau o prezență divină,
-        simbolizând uniunea energiilor masculine și feminine, conștient și inconștient, sau alegere și consecință. În
-        citirile de iubire, această carte vorbește despre mai multe teme interconectate:
+        Când Marea Preoteasă apare în poziție dreaptă într-o citire de tarot pentru iubire, ea aduce energia intuiției,
+        profunzimii emoționale și înțelegerii nerostite. Aceasta nu este cartea gesturilor romantice grandioase sau a
+        declarațiilor pasionale—este cartea cunoașterii liniștite, a simțirii prezenței cuiva chiar și în tăcere, a
+        înțelegerii a ceea ce rămâne nespus.
+      </p>
+
+      <h3>Intuiție Emoțională și Adevăr Interior</h3>
+      <p>
+        Semnificația tarotului Marii Preotese în iubire se concentrează pe a avea încredere în instinctele tale. Dacă
+        te-ai întrebat dacă cineva este potrivit pentru tine, dacă o conexiune este genuină sau ce simte cu adevărat
+        cineva, Marea Preoteasă sugerează că știi deja răspunsul. Intuiția ta a vorbit—ai ascultat?
+      </p>
+      <p>
+        Această carte apare adesea când există o deconectare între ceea ce ți se spune și ceea ce simți că este
+        adevărat. Poate că cineva spune toate cuvintele corecte, dar ceva nu se simte bine. Sau poate că simți o
+        conexiune profundă cu cineva chiar dacă logica îți spune că nu are sens. Marea Preoteasă te roagă să onorezi
+        acea voce interioară.
+      </p>
+
+      <h3>Înțelegere Tăcută Între Parteneri</h3>
+      <p>
+        În relațiile consacrate, Marea Preoteasă în poziție dreaptă poate indica o legătură care depășește cuvintele.
+        Aceasta este tipul de iubire în care vă înțelegeți reciproc fără a avea nevoie să explicați, unde profunzimea
+        emoțională și intimitatea liniștită creează un spațiu sacru între voi. Sugerează că cea mai semnificativă
+        comunicare din relația voastră se întâmplă în tăceri, în privirile schimbate, în acordurile nerostite.
+      </p>
+
+      <h3>Când Iubirea Este Subtilă și Profundă</h3>
+      <p>
+        Spre deosebire de cărțile pasiunii evidente precum Îndrăgostiții sau dorinței înflăcărate precum Cavalerul de
+        Bețe, Marea Preoteasă vorbește despre iubirea care este subtilă, misterioasă și profund simțită. Aceasta poate
+        fi o conexiune care se dezvoltă încet, care se relevă în straturi, care cere răbdare și maturitate emoțională.
+        Nu este dragoste la prima vedere—este iubire care se dezvăluie pe măsură ce vezi cu adevărat și ești văzut.
+      </p>
+
+      <h2>Marea Preoteasă Inversată în Iubire</h2>
+      <p>
+        Când Marea Preoteasă apare inversată într-o citire de iubire, mesajul ei se schimbă de la a avea încredere în
+        intuiție la a recunoaște unde intuiția este ignorată sau suprimată. Semnificația Marii Preotese inversate în
+        iubire vorbește despre confuzie emoțională, secrete, evitare și o deconectare de adevărul tău interior.
+      </p>
+
+      <h3>Confuzie Emoțională și Negare</h3>
+      <p>
+        Inversată, Marea Preoteasă poate indica că ignori ceea ce îți spune instinctul. Poate că ai găsit scuze pentru
+        comportamentul cuiva, te-ai convins că lucrurile se vor schimba sau refuzi să vezi semnele de avertizare pentru
+        că vrei ca relația să funcționeze. Ea întreabă: Ce refuzi să recunoști?
+      </p>
+      <p>
+        Această carte poate apărea și când ești atât de prins în supraanaliză încât ai pierdut legătura cu sentimentele
+        tale. Analizezi, raționalizezi, cauți sfaturi de la toți ceilalți—dar nu te asculți pe tine.
+      </p>
+
+      <h3>Secrete și Evitare Emoțională</h3>
+      <p>
+        Marea Preoteasă inversată poate indica adevăruri ascunse într-o relație. Aceasta ar putea fi cineva care nu este
+        complet sincer, o situație în care nu toate cărțile sunt pe masă sau evitare emoțională unde conversații
+        importante sunt ocolite. Dacă ai simțit că ceva este reținut, această carte validează acel instinct.
+      </p>
+
+      <h3>Voce Interioară Suprimată</h3>
+      <p>
+        Poate cel mai provocator aspect al Marii Preotese inversate este când ne tăcem propria voce interioară. Acest
+        lucru se întâmplă când prioritizăm ceea ce credem că "ar trebui" să simțim peste ceea ce simțim de fapt, când
+        lăsăm frica sau presiunea socială să anuleze intuiția noastră sau când ne dăm puterea la opiniile altora despre
+        viața noastră amoroasă.
+      </p>
+      <p>Ea te roagă să te reconectezi cu tine însuți. Ce te-ai temut să admiți? Ce adevăr ai evitat?</p>
+
+      <h2>Marea Preoteasă în Contexte Relaționale</h2>
+
+      <h3>În Conexiuni Noi</h3>
+      <p>
+        Când Marea Preoteasă apare în citiri despre noi interese romantice, ea sugerează o conexiune care încă se
+        revelează. Acesta nu este momentul să grăbești sau să forțezi claritatea—în schimb, lasă lucrurile să se
+        dezvăluie natural. Acordă atenție la ceea ce îți spune intuiția despre această persoană. Observă ce este
+        comunicat non-verbal. Ai încredere că timpul va revela ceea ce trebuie cunoscut.
+      </p>
+      <p>
+        Dacă apare inversată, fii precaut în a proiecta fantezii asupra cuiva pe care abia îl cunoști sau în a ignora
+        sentimentele inițiale instinctive că ceva nu este în regulă.
+      </p>
+
+      <h3>În Parteneriate Existente</h3>
+      <p>
+        Pentru cei în relații, Marea Preoteasă în poziție dreaptă poate indica o adâncire a intimității și înțelegerii
+        emoționale. Poate fi timpul să explorezi dimensiunile nerostite ale conexiunii tale, să creezi spațiu pentru
+        vulnerabilitate și profunzime. Această carte sugerează că relația ta are straturi pe care nu le-ai explorat
+        încă.
+      </p>
+      <p>
+        Inversată, ea poate indica distanță emoțională, defecțiuni de comunicare sau un sentiment că ceva important nu
+        este spus. Este timpul să creezi spațiu pentru conversație sinceră și vulnerabilă.
+      </p>
+
+      <h3>Limite Personale și Auto-Înțelegere</h3>
+      <p>
+        Semnificația tarotului Marii Preotese în relații vorbește și despre importanța menținerii propriei lumi
+        interioare într-un parteneriat. Această carte ne amintește că iubirea sănătoasă nu ne cere să renunțăm la
+        misterul nostru, la intimitatea noastră sau la conexiunea cu noi înșine. Poți fi profund conectat cu cineva în
+        timp ce îți onorezi propriile limite emoționale și spirituale.
+      </p>
+
+      <h2>Cum Să Reflectezi Când Apeși Marea Preoteasă</h2>
+      <p>
+        Când Marea Preoteasă apare în citirea ta de iubire, ea te invită să te întorci înăuntru. Mai degrabă decât să
+        cauți răspunsuri externe, pune-ți aceste întrebări reflexive:
       </p>
       <ul>
-        <li>
-          <strong>Conexiune Emoțională:</strong> Prezența atracției profunde, chimiei și recunoașterii la nivel de
-          suflet între două persoane.
-        </li>
-        <li>
-          <strong>Alegere Conștientă:</strong> Cartea ne amintește că adevărata iubire implică să ne alegem unul pe
-          celălalt în fiecare zi, nu să cădem pur și simplu în împrejurări.
-        </li>
-        <li>
-          <strong>Alinierea Valorilor:</strong> Îndrăgostiții întreabă dacă valorile tale, obiectivele de viață și
-          nevoile emoționale sunt cu adevărat compatibile cu cele ale partenerului tău.
-        </li>
-        <li>
-          <strong>Integrare Interioară:</strong> Înainte de a putea iubi pe cineva pe deplin, trebuie să integrăm
-          părțile opuse ale noastre—umbră și lumină, putere și vulnerabilitate.
-        </li>
+        <li>Ce îmi spune intuiția despre această persoană sau situație?</li>
+        <li>Ce adevăr am evitat sau am negat?</li>
+        <li>Îmi onorez vocea interioară sau o tac pentru a-i face plăcere altora?</li>
+        <li>Ce rămâne nespus în această conexiune care trebuie recunoscut?</li>
+        <li>Încerc să forțez claritatea sau pot permite lucrurilor să se reveleze în timp?</li>
+        <li>Ce trebuie să înțeleg despre propriile mele tipare emoționale?</li>
       </ul>
       <p>
-        Spre deosebire de cărțile care se concentrează pur pe emoție (cum ar fi Asul de Cupe) sau angajament (cum ar fi
-        Doi de Cupe), Îndrăgostiții accentuează elementul alegerii. Este o carte a răspântiilor, întrebând: Ce vrei cu
-        adevărat? La ce ești dispus să te angajezi?
+        Marea Preoteasă nu oferă răspunsuri rapide sau soluții simple. Ea cere răbdare, încredere în propria ta
+        cunoaștere și curajul de a onora ceea ce simți că este adevărat chiar și când este incomod.
       </p>
 
-      <h2>Semnificația Îndrăgostiților în Poziție Dreaptă în Citirile de Iubire</h2>
+      <h2>Concluzie: Având Încredere în Înțelepciunea Din Interior</h2>
       <p>
-        Când Îndrăgostiții apar în poziție dreaptă într-o citire de tarot pentru iubire, aceasta poartă în general o
-        energie pozitivă legată de conexiune, armonie și aliniere. Cu toate acestea, chiar și în poziția sa dreaptă,
-        această carte nu este niciodată pasivă—ea cere întotdeauna conștiință și alegere intenționată.
-      </p>
-
-      <h3>Teme Cheie ale Îndrăgostiților în Poziție Dreaptă</h3>
-      <ul>
-        <li>
-          <strong>Parteneriat Autentic:</strong> Relația este construită pe respect reciproc, onestitate și valori
-          comune. Ambii parteneri se văd și se acceptă unul pe celălalt așa cum sunt cu adevărat.
-        </li>
-        <li>
-          <strong>Atracție Profundă:</strong> Există chimie autentică și recunoaștere a sufletului. Aceasta nu este o
-          atracție superficială, ci ceva care rezonează la un nivel mai profund.
-        </li>
-        <li>
-          <strong>Valori Aliniate:</strong> Îndrăgostiții în poziție dreaptă sugerează că ambii indivizi doresc lucruri
-          similare de la viață și iubire. Valorile lor fundamentale se susțin reciproc în loc să intre în conflict.
-        </li>
-        <li>
-          <strong>Comunicare Clară:</strong> În relațiile sănătoase reprezentate de această carte, ambii parteneri
-          comunică deschis despre nevoile, temerile și dorințele lor.
-        </li>
-        <li>
-          <strong>Angajament Conștient:</strong> Dacă Îndrăgostiții apar când te hotărăști cu privire la o relație,
-          sugerează că alegerea acestui parteneriat ar fi în aliniere cu sinele tău superior.
-        </li>
-      </ul>
-
-      <h3>Ce Cer Îndrăgostiții în Poziție Dreaptă de la Tine</h3>
-      <p>
-        Chiar și în poziție dreaptă, Îndrăgostiții nu sunt o garanție—sunt o invitație. Te întreabă: Îți aduci sinele
-        autentic în această relație? Faci alegeri din iubire mai degrabă decât din frică? Îți onorezi atât propriile
-        nevoi, cât și pe cele ale partenerului tău?
+        Marea Preoteasă în tarotul de iubire este o reamintire că cea mai importantă îndrumare vine din interior. Într-o
+        lume care ne cere constant să ne uităm în afara noastră pentru validare și răspunsuri, ea ne cheamă înapoi la
+        înțelepciunea liniștită a propriilor noastre inimi.
       </p>
       <p>
-        Semnificația îndrăgostiților în poziție dreaptă în tarot subliniază că adevărata iubire necesită
-        vulnerabilitate, onestitate și curajul de a vă alege reciproc pe deplin, cu defecte și toate.
-      </p>
-
-      <h2>Semnificația Îndrăgostiților Inversați în Tarotul de Iubire</h2>
-      <p>
-        Când Îndrăgostiții apar inversați, nu înseamnă neapărat că iubirea este absentă sau că o relație este sortită
-        eșecului. Mai degrabă, îndrăgostiții inversați indică dezaliniere, conflict interior sau alegeri care nu sunt în
-        armonie cu valorile tale adevărate.
-      </p>
-
-      <h3>Teme Cheie ale Îndrăgostiților Inversați</h3>
-      <ul>
-        <li>
-          <strong>Dezalinierea Valorilor:</strong> Tu și partenerul tău puteți dori lucruri fundamental diferite, ducând
-          la fricțiuni continue și nesatisfacție.
-        </li>
-        <li>
-          <strong>Conflict Intern:</strong> Îndrăgostiții inversați indică adesea că ești sfâșiat între ceea ce vrei și
-          ceea ce crezi că ar trebui să vrei, sau între inima și mintea ta.
-        </li>
-        <li>
-          <strong>Evitarea Alegerii:</strong> S-ar putea să rămâi într-o situație din frică de a fi singur, confort sau
-          sperând că lucrurile se vor îmbunătăți magic fără să iei o decizie.
-        </li>
-        <li>
-          <strong>Încredere Deteriorată:</strong> Poziția inversată poate indica trădare, necinste sau lipsă de
-          integritate în relație.
-        </li>
-        <li>
-          <strong>Auto-Abandon:</strong> S-ar putea să îți compromiți propriile valori, nevoi sau identitate pentru a
-          menține o relație care nu te servește cu adevărat.
-        </li>
-      </ul>
-
-      <h3>Darul Îndrăgostiților Inversați</h3>
-      <p>
-        Deși îndrăgostiții inversați pot simți inconfortabil, oferă un dar valoros: oportunitatea de a examina unde ești
-        dezaliniat. Te roagă să privești cu onestitate situația ta și să consideri: Îmi onorez adevărul? Fac alegeri din
-        iubire sau din frică?
+        Fie că apare în poziție dreaptă, cerându-te să ai încredere în intuiția ta, sau inversată, cerându-te să
+        examinezi unde ai ignorat-o, mesajul ei este în cele din urmă unul de împuternicire. Știi deja ceea ce trebuie
+        să știi. Simți deja ceea ce este adevărat. Întrebarea este: ești dispus să asculți?
       </p>
       <p>
-        Această carte inversată nu este o judecată, ci o îmbrățișare blândă către conștientizarea de sine. Te invită să
-        integrezi părțile din tine pe care le-ai putea neglija și să faci alegeri care îți onorează sinele întreg.
-      </p>
-
-      <h2>Cartea Îndrăgostiților Este Despre o Persoană sau o Alegere?</h2>
-      <p>
-        Una dintre cele mai frecvente întrebări despre Îndrăgostiți este dacă reprezintă o persoană specifică sau o
-        decizie. Răspunsul este: adesea ambele.
-      </p>
-      <p>
-        În contextul citirilor de tarot pentru iubire, această carte poate indica o relație sau conexiune semnificativă.
-        Cu toate acestea, nu este niciodată doar despre cealaltă persoană—este întotdeauna despre alegerea pe care o
-        faci în legătură cu acea persoană.
-      </p>
-      <p>
-        Îndrăgostiții întreabă: Această relație îmi permite să fiu sinele meu autentic? Se aliniază cu valorile și calea
-        mea de viață? Aleg această persoană în mod conștient sau evit pur și simplu singurătatea sau schimbarea?
-      </p>
-      <p>
-        Când tragi Îndrăgostiții, ia-o ca pe o invitație de a reflecta profund, de a alege cu înțelepciune și de a onora
-        adevărul inimii tale. Fie că aceasta te conduce spre angajament mai profund sau spre schimbare necesară, ai
-        încredere că claritatea și alinierea merită întotdeauna urmărite.
-      </p>
-
-      <h2>Concluzie: Alegerea Iubirii în Mod Conștient</h2>
-      <p>
-        Îndrăgostiții este o carte de profunzime și înțelepciune profundă. Fie că apare în poziție dreaptă sau
-        inversată, te invită să îți examinezi alegerile, să îți onorezi valorile și să integrezi diferitele părți ale
-        ta.
-      </p>
-      <p>
-        În citirile de iubire, Îndrăgostiții ne amintește că adevăratul parteneriat nu înseamnă să ne pierdem în altă
-        persoană—înseamnă să ne alegem unul pe celălalt în mod conștient, să ne aducem sinele autentic în relație și să
-        creăm o conexiune construită pe respect reciproc, valori comune și aliniere autentică.
-      </p>
-      <p>
-        Când tragi Îndrăgostiții, ia-o ca pe o invitație de a reflecta profund, de a alege cu înțelepciune și de a onora
-        adevărul inimii tale. Fie că aceasta te conduce spre angajament mai profund sau spre schimbare necesară, ai
-        încredere că claritatea și alinierea merită întotdeauna urmărite.
+        Pe măsură ce navighezi călătoria ta în iubire, lasă Marea Preoteasă să-ți amintească că claritatea nu este
+        întotdeauna zgomotoasă sau evidentă. Uneori șoptește. Uneori așteaptă. Și uneori, a fost acolo tot timpul.
       </p>
     </>
   ),
   zh: (
     <>
-      <h2>引言：选择与连接之牌</h2>
+      <h2>引言：内在智慧之声</h2>
       <p>
-        恋人牌是塔罗牌中最具代表性且最容易被误解的牌之一。虽然许多人将其简单地解读为浪漫爱情的标志，但它的含义要深刻得多。从本质上讲，恋人牌代表选择、对齐以及对立面的整合——无论是在你自己内心，还是在你与他人的关系中。
+        在爱情塔罗的领域中，很少有牌像女祭司那样承载着安静的力量和神秘感。当其他牌大声谈论激情、承诺或心碎时，女祭司轻声传递着不同的信息：相信你已经知道的。倾听内在的声音。
       </p>
       <p>
-        无论你在爱情塔罗解读中抽到这张牌是正位还是逆位，它都邀请你审视自己的价值观，理解什么对你真正重要，并考虑你的选择是否与你真实的自我对齐。
+        当女祭司出现在爱情解读中时，她不是来预测某人是否会打电话或表白感情的。相反，她要求你暂停，向内看，并尊重已经活在你内心的直觉知识。她提醒我们，在心灵事务中，清晰往往不是来自外部答案，而是来自我们一直在忽视的智慧。
       </p>
       <p>
-        在本指南中，我们将探索恋人牌在正位和逆位时的含义，理解这张牌教给我们关于爱情的什么，以及当恋人牌出现在你的解读中时如何深入反思。
+        在这份指南中，我们将探索女祭司在正位和逆位时的爱情含义，如何在关系背景下解读她的存在，以及当这张强大的牌出现在你的解读中时你应该问自己什么问题。
       </p>
 
-      <h2>恋人牌在爱情塔罗中代表什么</h2>
+      <h2>女祭司的爱情含义（正位）</h2>
       <p>
-        恋人牌传统上描绘两个人物站在天使或神圣存在之下，象征着男性和女性能量的结合、意识与潜意识、或选择与后果。在爱情解读中，这张牌涉及几个相互关联的主题：
+        当女祭司正位出现在爱情塔罗解读中时，她带来直觉、情感深度和无言理解的能量。这不是宏大浪漫姿态或激情宣言的牌——它是安静知晓的牌，是在沉默中感受某人的存在，是理解未说出口的话。
       </p>
+
+      <h3>情感直觉和内在真相</h3>
+      <p>
+        女祭司塔罗爱情含义的核心是相信你的直觉。如果你一直在质疑某人是否适合你，一段联系是否真实，或者某人真正感受如何，女祭司暗示你已经知道答案。你的直觉一直在说话——你在听吗？
+      </p>
+      <p>
+        这张牌经常出现在你被告知的和你感觉到的真相之间存在脱节时。也许有人说了所有正确的话，但感觉不对劲。或者也许你感觉与某人有深刻的联系，即使逻辑告诉你这没有意义。女祭司要求你尊重那个内在的声音。
+      </p>
+
+      <h3>伴侣之间的无声理解</h3>
+      <p>
+        在已建立的关系中，女祭司正位可以表明一种超越言语的纽带。这是那种你们不需要解释就能理解彼此的爱，情感深度和安静的亲密在你们之间创造了一个神圣空间。它暗示你们关系中最有意义的交流发生在沉默中，在交换的眼神中，在未说出口的协议中。
+      </p>
+
+      <h3>当爱是微妙而深刻的</h3>
+      <p>
+        与恋人牌等公开激情的牌或权杖骑士等火热欲望的牌不同，女祭司谈论的是微妙、神秘和深刻感受的爱。这可能是一种缓慢发展的联系，分层揭示自己，要求耐心和情感成熟。这不是一见钟情——这是随着你真正看到和被看到而展开的爱。
+      </p>
+
+      <h2>女祭司逆位的爱情含义</h2>
+      <p>
+        当女祭司逆位出现在爱情解读中时，她的信息从相信直觉转变为认识到直觉被忽视或压制的地方。女祭司逆位的爱情含义谈论的是情感困惑、秘密、回避和与内在真相的脱节。
+      </p>
+
+      <h3>情感困惑和否认</h3>
+      <p>
+        逆位时，女祭司可能表明你在忽视你的直觉告诉你的东西。也许你一直在为某人的行为找借口，说服自己事情会改变，或者拒绝看到红旗，因为你希望关系能成功。她问：你拒绝承认什么？
+      </p>
+      <p>
+        当你过度思考以至于失去与感受的联系时，这张牌也可能出现。你分析，你合理化，你向其他人寻求建议——但你没有倾听自己。
+      </p>
+
+      <h3>秘密和情感回避</h3>
+      <p>
+        女祭司逆位可以表明关系中隐藏的真相。这可能是某人不完全诚实，所有牌都不在桌面上的情况，或者重要对话被回避的情感回避。如果你一直感觉有什么东西被隐瞒，这张牌验证了那种直觉。
+      </p>
+
+      <h3>被压制的内在声音</h3>
+      <p>
+        也许女祭司逆位最具挑战性的方面是当我们沉默自己的内在声音时。当我们将我们认为"应该"感受的东西优先于我们实际感受的东西时，当我们让恐惧或社会压力凌驾于我们的直觉之上时，或者当我们把我们的力量交给他人关于我们爱情生活的意见时，就会发生这种情况。
+      </p>
+      <p>她要求你重新与自己联系。你一直害怕承认什么？你一直在回避什么真相？</p>
+
+      <h2>女祭司在关系背景中</h2>
+
+      <h3>在新联系中</h3>
+      <p>
+        当女祭司出现在关于新浪漫兴趣的解读中时，她暗示一种仍在揭示自己的联系。现在不是急于或推动清晰的时候——相反，让事情自然展开。注意你的直觉告诉你关于这个人的什么。注意非语言沟通的内容。相信时间会揭示需要知道的东西。
+      </p>
+      <p>如果她逆位出现，要小心将幻想投射到你几乎不认识的人身上，或者忽视最初的直觉感觉，认为有什么不对劲。</p>
+
+      <h3>在现有伙伴关系中</h3>
+      <p>
+        对于那些在关系中的人来说，女祭司正位可以表明情感亲密和理解的加深。可能是时候探索你们联系的未说出口的维度，为脆弱和深度创造空间了。这张牌暗示你们的关系有你们还没有探索的层次。
+      </p>
+      <p>逆位时，她可能指向情感距离、沟通崩溃或感觉到重要的东西没有被说出来。是时候为诚实、脆弱的对话创造空间了。</p>
+
+      <h3>个人界限和自我理解</h3>
+      <p>
+        女祭司关系塔罗含义还谈论在伙伴关系中保持自己内在世界的重要性。这张牌提醒我们，健康的爱不要求我们放弃我们的神秘、我们的隐私或我们与自己的联系。你可以与某人深刻联系，同时仍然尊重自己的情感和精神界限。
+      </p>
+
+      <h2>当抽到女祭司时如何反思</h2>
+      <p>当女祭司出现在你的爱情解读中时，她邀请你向内转。与其寻求外部答案，不如问自己这些反思性问题：</p>
       <ul>
-        <li>
-          <strong>情感连接：</strong>两人之间存在深刻的吸引力、化学反应和灵魂层面的认识。
-        </li>
-        <li>
-          <strong>有意识的选择：</strong>这张牌提醒我们，真爱涉及每天选择彼此，而不仅仅是陷入环境。
-        </li>
-        <li>
-          <strong>价值观对齐：</strong>恋人牌询问你的价值观、人生目标和情感需求是否真正与你的伴侣兼容。
-        </li>
-        <li>
-          <strong>内在整合：</strong>
-          在我们能够完全爱另一个人之前，我们必须整合自己内部对立的部分——阴影与光明、力量与脆弱。
-        </li>
+        <li>我的直觉告诉我关于这个人或情况的什么？</li>
+        <li>我一直在回避或否认什么真相？</li>
+        <li>我在尊重我的内在声音，还是为了取悦他人而沉默它？</li>
+        <li>在这种联系中有什么未说出口的需要被承认？</li>
+        <li>我是在试图强迫清晰，还是可以让事情及时揭示自己？</li>
+        <li>我需要理解自己情感模式的什么？</li>
       </ul>
       <p>
-        与纯粹关注情感的牌（如圣杯王牌）或承诺的牌（如圣杯二）不同，恋人牌强调选择的元素。这是一张十字路口的牌，询问：你真正想要什么？你愿意承诺什么？
+        女祭司不提供快速答案或简单解决方案。她要求耐心，相信你自己的知识，以及有勇气尊重你感觉真实的东西，即使这不舒服。
       </p>
 
-      <h2>恋人牌正位在爱情解读中的含义</h2>
+      <h2>结论：相信内在的智慧</h2>
       <p>
-        当恋人牌在爱情塔罗解读中正位出现时，它通常带有与连接、和谐和对齐相关的积极能量。然而，即使在其正位位置，这张牌也从不被动——它总是要求有意识的觉察和有意的选择。
-      </p>
-
-      <h3>恋人牌正位的关键主题</h3>
-      <ul>
-        <li>
-          <strong>真实的伙伴关系：</strong>
-          关系建立在相互尊重、诚实和共同价值观之上。双方伴侣都看到并接受彼此的真实面貌。
-        </li>
-        <li>
-          <strong>深刻的吸引力：</strong>
-          存在真正的化学反应和灵魂认识。这不是表面的吸引，而是在更深层次上产生共鸣的东西。
-        </li>
-        <li>
-          <strong>价值观对齐：</strong>
-          恋人牌正位表明两个人从生活和爱情中想要相似的东西。他们的核心价值观相互支持而不是冲突。
-        </li>
-        <li>
-          <strong>清晰的沟通：</strong>在这张牌代表的健康关系中，双方伴侣都坦诚地沟通他们的需求、恐惧和渴望。
-        </li>
-        <li>
-          <strong>有意识的承诺：</strong>如果你在决定关系时恋人牌出现，它表明选择这段伙伴关系将与你最高的自我对齐。
-        </li>
-      </ul>
-
-      <h3>恋人牌正位对你的要求</h3>
-      <p>
-        即使在正位时，恋人牌也不是保证——它是一个邀请。它询问你：你是否将真实的自己带入这段关系？你是出于爱而不是恐惧做出选择吗？你是否既尊重自己的需求又尊重伴侣的需求？
-      </p>
-      <p>塔罗恋人牌正位的含义强调，真爱需要脆弱、诚实以及完全选择彼此的勇气，包括缺陷和一切。</p>
-
-      <h2>恋人牌逆位在爱情塔罗中的含义</h2>
-      <p>
-        当恋人牌逆位出现时，并不一定意味着爱情缺席或关系注定失败。相反，恋人牌逆位指向错位、内在冲突或与你真正价值观不和谐的选择。
-      </p>
-
-      <h3>恋人牌逆位的关键主题</h3>
-      <ul>
-        <li>
-          <strong>价值观错位：</strong>你和你的伴侣可能想要根本不同的东西，导致持续的摩擦和不满。
-        </li>
-        <li>
-          <strong>内在冲突：</strong>恋人牌逆位通常表明你在你想要的和你认为应该想要的之间，或在你的心和头之间撕裂。
-        </li>
-        <li>
-          <strong>逃避选择：</strong>你可能因为害怕孤独、舒适或希望事情会神奇地改善而没有做出决定而留在一个情况中。
-        </li>
-        <li>
-          <strong>破裂的信任：</strong>逆位可能表示背叛、不诚实或关系中缺乏诚信。
-        </li>
-        <li>
-          <strong>自我放弃：</strong>你可能为了维持一段并不真正服务于你的关系而妥协自己的价值观、需求或身份。
-        </li>
-      </ul>
-
-      <h3>恋人牌逆位的礼物</h3>
-      <p>
-        虽然恋人牌逆位可能感觉不舒服，但它提供了一份宝贵的礼物：检查你在哪里不对齐的机会。它要求你诚实地看待你的情况并考虑：我是否在尊重我的真相？我是出于爱还是出于恐惧做出选择？
+        爱情塔罗中的女祭司提醒我们，最重要的指导来自内心。在一个不断要求我们向外寻求认可和答案的世界中，她呼唤我们回到我们自己心灵的安静智慧。
       </p>
       <p>
-        这张逆位的牌不是判断，而是温和地推动你走向自我觉察。它邀请你整合你可能忽视的自己的部分，并做出尊重你整个自我的选择。
-      </p>
-
-      <h2>恋人牌是关于一个人还是一个选择？</h2>
-      <p>关于恋人牌最常见的问题之一是它代表特定的人还是决定。答案是：通常两者都是。</p>
-      <p>
-        在爱情塔罗解读的背景下，这张牌可以表示重要的关系或连接。然而，它从来不只是关于另一个人——它总是关于你在与那个人的关系中做出的选择。
+        无论她正位出现，要求你相信你的直觉，还是逆位出现，要求你审视你忽视它的地方，她的信息最终都是赋能的。你已经知道你需要知道的。你已经感觉到什么是真实的。问题是：你愿意倾听吗？
       </p>
       <p>
-        恋人牌询问：这段关系是否允许我成为真实的自己？它是否与我的价值观和人生道路对齐？我是有意识地选择这个人，还是只是在逃避孤独或改变？
-      </p>
-      <p>
-        在一些解读中，当你处于两个道路的十字路口时，恋人牌可能会出现——也许是在两个潜在的伴侣之间选择，或者决定是留在一段关系中还是离开。在这些时刻，这张牌提醒你要有意识和正直地选择，而不是出于冲动或恐惧。
-      </p>
-
-      <h2>当你抽到恋人牌时如何反思</h2>
-      <p>无论恋人牌是正位还是逆位出现，它都邀请深刻的自我反思。以下是一些有力的问题供你问自己：</p>
-      <ul>
-        <li>在爱情和伙伴关系中，什么价值观对我最重要？</li>
-        <li>我是在做出与真实自我对齐的选择，还是在妥协我是谁？</li>
-        <li>我的心真正想要什么，超越我认为我"应该"想要的？</li>
-        <li>我是出于爱还是出于害怕孤独而行动？</li>
-        <li>这段关系是否让我成长，还是我为了让它运作而保持渺小？</li>
-        <li>在这种情况下，我在逃避或⑹忽视自己的哪一部分？</li>
-      </ul>
-      <p>
-        恋人牌是一张整合的牌——它要求你结合你的思想和心灵，你的欲望和你的价值观，你的独立和你的连接需求。通过反思这些问题，你就能做出更接近尊重你整个自我的选择。
-      </p>
-
-      <h2>恋人牌在不同关系情境中的含义</h2>
-
-      <h3>对于寻找爱情的人</h3>
-      <p>
-        如果你单身并抽到恋人牌，这可能表示一段重要的连接即将来临。然而，在这段连接显现之前，这张牌要求你做内在工作：你真正看重伴侣的什么？你是否清楚自己的需求和界限？
-      </p>
-      <p>这里的恋人牌爱情含义是关于让你自己准备好带着清晰和真诚去迎接爱情，而不是绝望或幻想。</p>
-
-      <h3>对于处于关系中的人</h3>
-      <p>
-        如果你在一段关系中抽到恋人牌，这可能是在肯定你的伙伴关系是协调和健康的。或者，尤其是如果牌是逆位的，它可能在强调价值观错位或需要做出选择的领域。
-      </p>
-      <p>问问自己：我们是在一起成长还是渐行渐远？我们是经过有意识的选择在一起，还是仅仅因为舒适？</p>
-
-      <h3>对于面临决定的人</h3>
-      <p>
-        如果你正处于一个十字路口——是留下还是离开，是承诺还是放弃——恋人牌肯定了你确实面临着一个重要的选择。相信自己做出尊重你真相的决定，即使它感觉很困难。
-      </p>
-
-      <h2>关于恋人牌的常见误解</h2>
-
-      <h3>误区：恋人牌保证灵魂伴侣般的连接</h3>
-      <p>虽然恋人牌可以表示深层的灵魂连接，但它并不保证这段关系会持久或轻松。它只是指向了选择、吸引和对齐的可能性。</p>
-
-      <h3>误区：恋人牌逆位意味着关系结束了</h3>
-      <p>恋人牌逆位并不自动预示着厄运。它表示错位或内在冲突，如果双方伴侣愿意做内在工作并诚实沟通，是可以解决的。</p>
-
-      <h3>误区：恋人牌只关乎浪漫爱情</h3>
-      <p>
-        虽然常与浪漫相关，但恋人牌也可以谈论重要的友谊、商业伙伴关系，甚至你与自己的关系。核心信息始终是关于对齐、选择和整合。
-      </p>
-
-      <h2>结论：有意识地选择爱</h2>
-      <p>
-        恋人牌是一张具有深刻深度和智慧的牌。无论它是正位还是逆位出现，它都邀请你审视你的选择，尊重你的价值观，并整合你自己的不同部分。
-      </p>
-      <p>
-        在爱情解读中，恋人牌提醒我们，真正的伙伴关系不是在另一个人身上迷失自己——而是有意识地选择彼此，将我们真实的自己带入关系，并创造一个建立在相互尊重、共同价值观和真正对齐之上的连接。
-      </p>
-      <p>
-        当你抽到恋人牌时，把它当作一个深入反思、明智选择和尊重你心灵真相的邀请。无论这会引导你走向更深的承诺还是必要的改变，都要相信清晰和对齐总是值得追求的。
+        当你导航你的爱情之旅时，让女祭司提醒你，清晰并不总是响亮或明显的。有时它低语。有时它等待。有时，它一直都在那里。
       </p>
     </>
   ),
@@ -1507,7 +1363,7 @@ export const articles: Article[] = [
           "love tarot card lovers",
           "tarot relationship symbolism",
         ],
-        content: article3Content.en,
+        content: null, // Placeholder for content that would be merged if available
       },
       ro: {
         title: "Semnificația Îndrăgostiților în Tarotul de Iubire (Poziție Dreaptă și Inversată)",
@@ -1521,7 +1377,7 @@ export const articles: Article[] = [
           "carte tarot iubire îndrăgostiții",
           "simbolism relații tarot",
         ],
-        content: article3Content.ro,
+        content: null, // Placeholder for content that would be merged if available
       },
       zh: {
         title: "爱情塔罗中恋人牌的含义（正位和逆位）",
@@ -1535,7 +1391,56 @@ export const articles: Article[] = [
           "爱情塔罗牌恋人",
           "塔罗关系象征",
         ],
-        content: article3Content.zh,
+        content: null, // Placeholder for content that would be merged if available
+      },
+    },
+  },
+  {
+    slug: "high-priestess-love-meaning",
+    publishedAt: "2025-01-20",
+    readingTime: 10,
+    translations: {
+      en: {
+        title: "What Does The High Priestess Mean in Love? (Upright & Reversed)",
+        description:
+          "Explore the high priestess love meaning in tarot readings. Understand upright and reversed interpretations, intuition in relationships, and how to trust your inner wisdom when this card appears.",
+        keywords: [
+          "high priestess love meaning",
+          "the high priestess tarot love",
+          "high priestess reversed love",
+          "high priestess relationship tarot",
+          "tarot intuition in love",
+          "high priestess upright love",
+        ],
+        content: article4Content.en,
+      },
+      ro: {
+        title: "Ce Înseamnă Marea Preoteasă în Iubire? (Poziție Dreaptă și Inversată)",
+        description:
+          "Explorează semnificația Marii Preotese în iubire în citirile de tarot. Înțelege interpretările în poziție dreaptă și inversată, intuiția în relații și cum să ai încredere în înțelepciunea ta interioară când această carte apare.",
+        keywords: [
+          "semnificația marii preotese în iubire",
+          "marea preoteasă tarot iubire",
+          "marea preoteasă inversată iubire",
+          "marea preoteasă tarot relații",
+          "intuiție tarot în iubire",
+          "marea preoteasă poziție dreaptă iubire",
+        ],
+        content: article4Content.ro,
+      },
+      zh: {
+        title: "女祭司在爱情中的含义是什么？（正位和逆位）",
+        description:
+          "探索女祭司在塔罗解读中的爱情含义。理解正位和逆位的解释、关系中的直觉，以及当这张牌出现时如何相信你的内在智慧。",
+        keywords: [
+          "女祭司爱情含义",
+          "女祭司塔罗爱情",
+          "女祭司逆位爱情",
+          "女祭司关系塔罗",
+          "爱情中的塔罗直觉",
+          "女祭司正位爱情",
+        ],
+        content: article4Content.zh,
       },
     },
   },

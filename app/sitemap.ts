@@ -51,6 +51,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
+    {
+      url: `${baseUrl}/blog/high-priestess-love-meaning`,
+      lastModified: "2025-01-20",
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
     // Legal/info pages
     {
       url: `${baseUrl}/privacy`,
