@@ -45,6 +45,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
+    {
+      url: `${baseUrl}/blog/the-lovers-tarot-meaning`,
+      lastModified: "2025-01-18",
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
     // Legal/info pages
     {
       url: `${baseUrl}/privacy`,
