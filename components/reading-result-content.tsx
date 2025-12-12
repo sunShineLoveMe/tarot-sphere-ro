@@ -97,7 +97,10 @@ function ReadingResultContent() {
     questionExists: !!question,
   })
 
-  // CRITICAL: Check daily limit FIRST before ANY loading begins
+  // Use ref to track if AI has been triggered (avoids re-render clearing timer)
+  const hasTriggeredAIRef = useRef(false)
+
+  // CRITICAL: Check daily limit and trigger AI reading
   useEffect(() => {
     console.log("[v0] Limit check effect running:", {
       isLimitLoading,
@@ -113,61 +116,59 @@ function ReadingResultContent() {
       return
     }
 
-    // Only run this check once
-    if (limitChecked) {
-      console.log("[v0] Limit already checked, skipping...")
+    // Only run trigger logic once (use ref to avoid race condition)
+    if (hasTriggeredAIRef.current) {
+      console.log("[v0] AI already triggered via ref, skipping...")
       return
     }
-
-    // Mark limit as checked immediately
-    console.log("[v0] Marking limit as checked")
-    setLimitChecked(true)
 
     // Check if this is a share page - show modal immediately
     if (isSharePage) {
       console.log("[v0] This is a share page, showing modal")
+      hasTriggeredAIRef.current = true
+      setHasTriggeredAI(true)
       setLimitModalType("share-page")
       setShowLimitModal(true)
-      setHasTriggeredAI(true) // Prevent any API triggering
       return
     }
 
     // Check daily limit - if exceeded, show modal immediately
     if (!canDraw) {
       console.log("[v0] Daily limit exceeded, showing modal")
+      hasTriggeredAIRef.current = true
+      setHasTriggeredAI(true)
       setLimitModalType("daily-limit")
       setShowLimitModal(true)
-      setHasTriggeredAI(true) // Prevent any API triggering
       return
     }
 
-    // User is allowed to proceed - trigger AI reading
-    if (!hasTriggeredAI && question && cards.length === 3) {
-      console.log("[v0] User can proceed, triggering AI reading")
-      // Small delay to let cards render first
-      const timer = setTimeout(() => {
-        console.log("[v0] Starting AI reading generation...")
-        setHasTriggeredAI(true)
-        // Increase draw count before API call
-        increaseDrawCount()
+    // User is allowed to proceed - trigger AI reading IMMEDIATELY
+    if (question && cards.length === 3) {
+      console.log("[v0] User can proceed, triggering AI reading NOW")
+      
+      // Mark as triggered via ref FIRST (prevents race condition)
+      hasTriggeredAIRef.current = true
+      setHasTriggeredAI(true)
+      setLimitChecked(true)
+      
+      // Increase draw count before API call
+      increaseDrawCount()
 
-        // Build card inputs with names
-        const cardInputs: CardInput[] = cards.map((c) => ({
-          position: c.position === "past" ? "Past" : c.position === "present" ? "Present" : "Future",
-          name: getCardName(c.card),
-          reversed: c.reversed,
-        }))
+      // Build card inputs with names
+      const cardInputs: CardInput[] = cards.map((c) => ({
+        position: c.position === "past" ? "Past" : c.position === "present" ? "Present" : "Future",
+        name: getCardName(c.card),
+        reversed: c.reversed,
+      }))
 
-        console.log("[v0] Calling generateReading with:", {
-          question,
-          cards: cardInputs,
-          locale,
-        })
+      console.log("[v0] Calling generateReading with:", {
+        question,
+        cards: cardInputs,
+        locale,
+      })
 
-        generateReading(question, cardInputs, locale as Locale)
-      }, 500) // Reduced delay for faster response
-
-      return () => clearTimeout(timer)
+      // Call immediately - no setTimeout needed
+      generateReading(question, cardInputs, locale as Locale)
     } else {
       console.log("[v0] Conditions not met for AI reading:", {
         hasTriggeredAI,
@@ -177,7 +178,6 @@ function ReadingResultContent() {
     }
   }, [
     isLimitLoading,
-    limitChecked,
     hasTriggeredAI,
     question,
     cards,
