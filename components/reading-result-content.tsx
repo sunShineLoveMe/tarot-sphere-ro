@@ -1,6 +1,4 @@
 "use client"
-
-import type React from "react"
 import { useState, useMemo, useCallback, useRef, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useRouter, useSearchParams } from "next/navigation"
@@ -88,19 +86,46 @@ function ReadingResultContent() {
     return card.name[locale as keyof typeof card.name] || card.name.en
   }
 
+  console.log("[v0] ReadingResultContent render:", {
+    isLimitLoading,
+    limitChecked,
+    hasTriggeredAI,
+    phase,
+    isSharePage,
+    canDraw,
+    cardsLength: cards.length,
+    questionExists: !!question,
+  })
+
   // CRITICAL: Check daily limit FIRST before ANY loading begins
   useEffect(() => {
+    console.log("[v0] Limit check effect running:", {
+      isLimitLoading,
+      limitChecked,
+      hasTriggeredAI,
+      isSharePage,
+      canDraw,
+    })
+
     // Wait for daily limit hook to fully initialize
-    if (isLimitLoading) return
-    
+    if (isLimitLoading) {
+      console.log("[v0] Still loading limit data...")
+      return
+    }
+
     // Only run this check once
-    if (limitChecked) return
-    
+    if (limitChecked) {
+      console.log("[v0] Limit already checked, skipping...")
+      return
+    }
+
     // Mark limit as checked immediately
+    console.log("[v0] Marking limit as checked")
     setLimitChecked(true)
 
     // Check if this is a share page - show modal immediately
     if (isSharePage) {
+      console.log("[v0] This is a share page, showing modal")
       setLimitModalType("share-page")
       setShowLimitModal(true)
       setHasTriggeredAI(true) // Prevent any API triggering
@@ -109,6 +134,7 @@ function ReadingResultContent() {
 
     // Check daily limit - if exceeded, show modal immediately
     if (!canDraw) {
+      console.log("[v0] Daily limit exceeded, showing modal")
       setLimitModalType("daily-limit")
       setShowLimitModal(true)
       setHasTriggeredAI(true) // Prevent any API triggering
@@ -117,8 +143,10 @@ function ReadingResultContent() {
 
     // User is allowed to proceed - trigger AI reading
     if (!hasTriggeredAI && question && cards.length === 3) {
+      console.log("[v0] User can proceed, triggering AI reading")
       // Small delay to let cards render first
       const timer = setTimeout(() => {
+        console.log("[v0] Starting AI reading generation...")
         setHasTriggeredAI(true)
         // Increase draw count before API call
         increaseDrawCount()
@@ -130,12 +158,35 @@ function ReadingResultContent() {
           reversed: c.reversed,
         }))
 
+        console.log("[v0] Calling generateReading with:", {
+          question,
+          cards: cardInputs,
+          locale,
+        })
+
         generateReading(question, cardInputs, locale as Locale)
       }, 500) // Reduced delay for faster response
 
       return () => clearTimeout(timer)
+    } else {
+      console.log("[v0] Conditions not met for AI reading:", {
+        hasTriggeredAI,
+        question,
+        cardsLength: cards.length,
+      })
     }
-  }, [isLimitLoading, limitChecked, hasTriggeredAI, question, cards, locale, generateReading, getCardName, canDraw, isSharePage, increaseDrawCount])
+  }, [
+    isLimitLoading,
+    limitChecked,
+    hasTriggeredAI,
+    question,
+    cards,
+    locale,
+    generateReading,
+    canDraw,
+    isSharePage,
+    increaseDrawCount,
+  ])
 
   const handleCardClick = useCallback((card: DrawnCard) => {
     setSelectedCard(card)
@@ -238,12 +289,7 @@ function ReadingResultContent() {
             <AnimatePresence mode="wait">
               {/* Loading State */}
               {phase === "loading" && (
-                <motion.div
-                  key="loading"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                >
+                <motion.div key="loading" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
                   <LoadingAnimation locale={locale as "en" | "zh" | "ro"} />
                 </motion.div>
               )}
@@ -343,8 +389,14 @@ function ReadingResultContent() {
                 >
                   <div className="flex items-center justify-center gap-2">
                     <div className="w-2 h-2 rounded-full bg-[#73F2FF]/60 animate-pulse" />
-                    <div className="w-2 h-2 rounded-full bg-[#73F2FF]/60 animate-pulse" style={{ animationDelay: "0.2s" }} />
-                    <div className="w-2 h-2 rounded-full bg-[#73F2FF]/60 animate-pulse" style={{ animationDelay: "0.4s" }} />
+                    <div
+                      className="w-2 h-2 rounded-full bg-[#73F2FF]/60 animate-pulse"
+                      style={{ animationDelay: "0.2s" }}
+                    />
+                    <div
+                      className="w-2 h-2 rounded-full bg-[#73F2FF]/60 animate-pulse"
+                      style={{ animationDelay: "0.4s" }}
+                    />
                   </div>
                 </motion.div>
               )}
@@ -393,13 +445,9 @@ function ReadingResultContent() {
       </div>
 
       <TarotCardModal drawnCard={selectedCard} isOpen={isModalOpen} onClose={handleCloseModal} />
-      
+
       {/* Limit Modal */}
-      <LimitModal
-        isOpen={showLimitModal}
-        onClose={() => setShowLimitModal(false)}
-        type={limitModalType}
-      />
+      <LimitModal isOpen={showLimitModal} onClose={() => setShowLimitModal(false)} type={limitModalType} />
     </div>
   )
 }
