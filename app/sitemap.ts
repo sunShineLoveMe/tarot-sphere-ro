@@ -1,10 +1,12 @@
 import type { MetadataRoute } from "next"
+import { articles } from "@/lib/blog/articles"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.tarotromania.com"
   const currentDate = new Date().toISOString()
 
-  return [
+  // Static routes with their metadata
+  const staticRoutes: MetadataRoute.Sitemap = [
     // Homepage - highest priority
     {
       url: baseUrl,
@@ -32,31 +34,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.8,
     },
-    // Blog articles - Article 1
-    {
-      url: `${baseUrl}/blog/love-tarot-2025`,
-      lastModified: "2025-01-10",
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/blog/will-he-come-back-tarot`,
-      lastModified: "2025-01-15",
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/blog/the-lovers-tarot-meaning`,
-      lastModified: "2025-01-18",
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/blog/high-priestess-love-meaning`,
-      lastModified: "2025-01-20",
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
     // Legal/info pages
     {
       url: `${baseUrl}/privacy`,
@@ -77,4 +54,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     },
   ]
+
+  // Each article slug maps to /blog/{slug}
+  // Uses publishedAt for lastModified since updatedAt doesn't exist in the Article interface
+  const blogRoutes: MetadataRoute.Sitemap = articles.map((article) => ({
+    url: `${baseUrl}/blog/${article.slug}`,
+    lastModified: article.publishedAt, // ISO date string from article metadata
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }))
+
+  // Combine static and dynamic routes
+  return [...staticRoutes, ...blogRoutes]
 }
