@@ -41,12 +41,14 @@ export function useReading(options: UseReadingOptions = {}): UseReadingReturn {
       const controller = new AbortController()
       abortControllerRef.current = controller
 
-      // Set up 8-second timeout (user-requested max)
-      const TIMEOUT_MS = 8000
+      // Flag to track if abort was caused by our timeout (not manual cancellation)
+      let timedOut = false
+
+      // Set up 45-second timeout - Gemini API can take 10-30s for complex readings
+      const TIMEOUT_MS = 45000
       const timeoutId = setTimeout(() => {
+        timedOut = true  // Mark as timed out BEFORE aborting
         controller.abort()
-        setError(locale === "zh" ? "网络延迟，请重试。" : locale === "ro" ? "Întârziere de rețea. Vă rugăm să încercați din nou." : "Network delay. Please try again.")
-        setPhase("error")
       }, TIMEOUT_MS)
 
       try {
@@ -86,8 +88,21 @@ export function useReading(options: UseReadingOptions = {}): UseReadingReturn {
         // Clear timeout on error
         clearTimeout(timeoutId)
 
-        // Ignore abort errors (from timeout or cancellation)
+        // Handle AbortError
         if (err instanceof Error && err.name === "AbortError") {
+          // If timed out, show error to user
+          if (timedOut) {
+            const timeoutMessage = locale === "zh" 
+              ? "请求超时，请重试。" 
+              : locale === "ro" 
+                ? "Cererea a expirat. Vă rugăm să încercați din nou." 
+                : "Request timed out. Please try again."
+            console.error("[useReading] Request timed out after 45s")
+            setError(timeoutMessage)
+            setPhase("error")
+            onError?.(timeoutMessage)
+          }
+          // If manually cancelled (not timeout), just return silently
           return
         }
 
