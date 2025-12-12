@@ -127,6 +127,7 @@ function ReadingResultContent() {
       console.log("[v0] This is a share page, showing modal")
       hasTriggeredAIRef.current = true
       setHasTriggeredAI(true)
+      setLimitChecked(true)  // Must set this so isInitializing becomes false
       setLimitModalType("share-page")
       setShowLimitModal(true)
       return
@@ -137,6 +138,7 @@ function ReadingResultContent() {
       console.log("[v0] Daily limit exceeded, showing modal")
       hasTriggeredAIRef.current = true
       setHasTriggeredAI(true)
+      setLimitChecked(true)  // Must set this so isInitializing becomes false
       setLimitModalType("daily-limit")
       setShowLimitModal(true)
       return
