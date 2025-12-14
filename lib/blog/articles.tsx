@@ -837,6 +837,346 @@ const article2Content = {
   ),
 }
 
+// Article 3: The Lovers Tarot Meaning
+const article3Content = {
+  en: (
+    <>
+      <h2>Introduction: The Power of Choice and Connection</h2>
+      <p>
+        The Lovers card is one of the most recognized and powerful cards in the tarot deck. When this card appears in a
+        love reading, it speaks directly to the heart of relationships, choices, and the deep bonds we form with others.
+        But The Lovers is about much more than romantic love—it represents the fundamental choices that shape our lives
+        and the alignment of our values with our actions.
+      </p>
+      <p>
+        In this comprehensive guide, we will explore the rich symbolism of The Lovers, understand its meanings in both
+        upright and reversed positions, and discover how to apply its wisdom when it appears in your readings.
+      </p>
+
+      <h2>The Symbolism of The Lovers Card</h2>
+      <p>
+        In the traditional Rider-Waite imagery, The Lovers depicts a naked man and woman standing beneath the angel
+        Raphael, who blesses their union. The sun shines brightly above, and behind the figures stand two trees—the Tree
+        of Knowledge (with the serpent) behind the woman, and the Tree of Life (with flames) behind the man.
+      </p>
+      <p>
+        This imagery is rich with meaning:
+      </p>
+      <ul>
+        <li><strong>The Angel Raphael:</strong> Represents divine blessing, healing, and guidance in matters of the heart</li>
+        <li><strong>The Naked Figures:</strong> Symbolize vulnerability, authenticity, and openness in relationships</li>
+        <li><strong>The Two Trees:</strong> Represent the duality of knowledge and life, conscious choice and spiritual growth</li>
+        <li><strong>The Sun:</strong> Illuminates truth and brings warmth to the connection</li>
+        <li><strong>The Mountain:</strong> Suggests the challenges that must be overcome for true union</li>
+      </ul>
+
+      <h2>The Lovers Upright: Meaning in Love Readings</h2>
+      <p>
+        When The Lovers appears upright in a love reading, it carries profoundly positive messages about relationships
+        and personal choices.
+      </p>
+
+      <h3>Deep Soul Connection</h3>
+      <p>
+        The Lovers upright often signals a relationship that goes beyond surface attraction. This is a connection where
+        two people truly see and understand each other at a soul level. If you are in a relationship, this card affirms
+        the depth and authenticity of your bond.
+      </p>
+
+      <h3>Important Choices</h3>
+      <p>
+        At its core, The Lovers is about choice. In love readings, this might mean:
+      </p>
+      <ul>
+        <li>Choosing to commit to a relationship</li>
+        <li>Deciding between two potential partners</li>
+        <li>Making choices that align your relationship with your values</li>
+        <li>Choosing love over fear</li>
+      </ul>
+
+      <h3>Harmony and Balance</h3>
+      <p>
+        The Lovers represents the beautiful dance of giving and receiving in healthy relationships. It speaks to
+        partnerships where both individuals maintain their identity while creating something greater together.
+      </p>
+
+      <h3>Alignment of Values</h3>
+      <p>
+        This card asks: Do your values align with your partner's? The Lovers suggests that lasting love is built on
+        shared principles and mutual respect, not just attraction.
+      </p>
+
+      <h2>The Lovers Reversed: Challenges and Reflections</h2>
+      <p>
+        When The Lovers appears reversed, it does not necessarily predict doom for a relationship. Instead, it calls
+        attention to areas that need honest examination.
+      </p>
+
+      <h3>Misalignment of Values</h3>
+      <p>
+        Reversed, The Lovers may indicate that you and your partner have fundamental differences in values or life goals
+        that are creating friction. This is an invitation to have honest conversations about what matters most to each
+        of you.
+      </p>
+
+      <h3>Fear of Commitment</h3>
+      <p>
+        Sometimes this card reversed suggests difficulty making important relationship decisions. Are you avoiding
+        commitment out of fear? Are you keeping one foot out the door?
+      </p>
+
+      <h3>Imbalance in the Relationship</h3>
+      <p>
+        The reversed Lovers can indicate a relationship where the give-and-take is unequal. One partner may be investing
+        more emotionally, or there may be issues of codependency versus healthy interdependence.
+      </p>
+
+      <h3>Self-Love Deficits</h3>
+      <p>
+        Remember that The Lovers is also about the relationship you have with yourself. Reversed, it may ask: Are you
+        loving yourself enough? Are you making choices that honor your own worth?
+      </p>
+
+      <h2>The Lovers in Different Reading Positions</h2>
+
+      <h3>Past Position</h3>
+      <p>
+        In the past position, The Lovers suggests that a significant choice or relationship has shaped your current
+        situation. This may be a past love that taught you important lessons, or a decision that set you on your
+        current path.
+      </p>
+
+      <h3>Present Position</h3>
+      <p>
+        In the present, The Lovers indicates that you are at a crossroads in your love life. Pay attention to the
+        choices before you—they have the power to significantly impact your romantic future.
+      </p>
+
+      <h3>Future Position</h3>
+      <p>
+        As a future card, The Lovers promises the potential for deep connection and important romantic decisions ahead.
+        It encourages you to prepare your heart for meaningful love.
+      </p>
+
+      <h2>Questions to Ask When The Lovers Appears</h2>
+      <p>
+        When this powerful card shows up in your reading, consider reflecting on these questions:
+      </p>
+      <ul>
+        <li>What important choice am I facing in my love life?</li>
+        <li>Are my values aligned with my partner's?</li>
+        <li>Am I choosing love from a place of wholeness or from fear of being alone?</li>
+        <li>How can I bring more harmony and balance to my relationships?</li>
+        <li>Am I being authentic and vulnerable in love?</li>
+      </ul>
+
+      <h2>Conclusion: Embracing The Lovers' Wisdom</h2>
+      <p>
+        The Lovers card reminds us that love is, ultimately, about choice. We choose whom we love, how we love, and
+        whether we stay open to love's transformative power. Whether upright or reversed, this card invites us to
+        examine our relationships with honesty and courage.
+      </p>
+      <p>
+        When The Lovers appears in your reading, take it as an opportunity to reflect deeply on your heart's true
+        desires and the choices that will lead you toward authentic, lasting love.
+      </p>
+    </>
+  ),
+  ro: (
+    <>
+      <h2>Introducere: Puterea Alegerii și Conexiunii</h2>
+      <p>
+        Carta Îndrăgostiților este una dintre cele mai recunoscute și puternice cărți din pachetul de tarot. Când această
+        carte apare într-o citire de iubire, vorbește direct la inima relațiilor, alegerilor și legăturilor profunde pe
+        care le formăm cu ceilalți. Dar Îndrăgostiții nu se referă doar la iubirea romantică—reprezintă alegerile
+        fundamentale care ne modelează viața și alinierea valorilor noastre cu acțiunile noastre.
+      </p>
+      <p>
+        În acest ghid cuprinzător, vom explora simbolismul bogat al Îndrăgostiților, vom înțelege semnificațiile în
+        pozițiile dreaptă și inversată și vom descoperi cum să aplicăm înțelepciunea acestei cărți când apare în citirile
+        tale.
+      </p>
+
+      <h2>Simbolismul Cărții Îndrăgostiților</h2>
+      <p>
+        În imaginea tradițională Rider-Waite, Îndrăgostiții înfățișează un bărbat și o femeie goi stând sub îngerul
+        Rafael, care le binecuvântează uniunea. Soarele strălucește puternic deasupra, iar în spatele figurilor se află
+        doi copaci—Pomul Cunoașterii (cu șarpele) în spatele femeii și Pomul Vieții (cu flăcări) în spatele bărbatului.
+      </p>
+      <p>
+        Această imagine este bogată în semnificații:
+      </p>
+      <ul>
+        <li><strong>Îngerul Rafael:</strong> Reprezintă binecuvântarea divină, vindecarea și ghidarea în chestiuni de inimă</li>
+        <li><strong>Figurile Goale:</strong> Simbolizează vulnerabilitatea, autenticitatea și deschiderea în relații</li>
+        <li><strong>Cei Doi Copaci:</strong> Reprezintă dualitatea cunoașterii și vieții, alegerea conștientă și creșterea spirituală</li>
+        <li><strong>Soarele:</strong> Iluminează adevărul și aduce căldură conexiunii</li>
+        <li><strong>Muntele:</strong> Sugerează provocările care trebuie depășite pentru o uniune adevărată</li>
+      </ul>
+
+      <h2>Îndrăgostiții în Poziție Dreaptă: Semnificație în Citirile de Iubire</h2>
+      <p>
+        Când Îndrăgostiții apar în poziție dreaptă într-o citire de iubire, poartă mesaje profund pozitive despre relații
+        și alegeri personale.
+      </p>
+
+      <h3>Conexiune Profundă a Sufletului</h3>
+      <p>
+        Îndrăgostiții în poziție dreaptă semnalează adesea o relație care depășește atracția superficială. Aceasta este
+        o conexiune în care două persoane se văd și se înțeleg cu adevărat la nivel de suflet.
+      </p>
+
+      <h3>Alegeri Importante</h3>
+      <p>
+        În esența sa, Îndrăgostiții reprezintă alegerea. În citirile de iubire, aceasta ar putea însemna:
+      </p>
+      <ul>
+        <li>Alegerea de a te angaja într-o relație</li>
+        <li>Decizia între doi potențiali parteneri</li>
+        <li>Luarea unor decizii care aliniază relația cu valorile tale</li>
+        <li>Alegerea iubirii în locul fricii</li>
+      </ul>
+
+      <h3>Armonie și Echilibru</h3>
+      <p>
+        Îndrăgostiții reprezintă dansul frumos al dăruirii și primirii în relațiile sănătoase. Vorbește despre
+        parteneriate în care ambii indivizi își mențin identitatea în timp ce creează împreună ceva mai mare.
+      </p>
+
+      <h2>Îndrăgostiții Inversați: Provocări și Reflecții</h2>
+      <p>
+        Când Îndrăgostiții apar inversați, nu prezic neapărat sfârșitul unei relații. În schimb, atrag atenția asupra
+        zonelor care necesită examinare onestă.
+      </p>
+
+      <h3>Dezaliniere a Valorilor</h3>
+      <p>
+        Inversați, Îndrăgostiții pot indica faptul că tu și partenerul tău aveți diferențe fundamentale în valori sau
+        obiective de viață care creează fricțiuni.
+      </p>
+
+      <h3>Teama de Angajament</h3>
+      <p>
+        Uneori această carte inversată sugerează dificultatea de a lua decizii importante în relații. Eviți angajamentul
+        din cauza fricii?
+      </p>
+
+      <h3>Dezechilibru în Relație</h3>
+      <p>
+        Îndrăgostiții inversați pot indica o relație în care dăruirea și primirea sunt inegale. Un partener poate
+        investi mai mult emoțional.
+      </p>
+
+      <h2>Concluzie: Îmbrățișarea Înțelepciunii Îndrăgostiților</h2>
+      <p>
+        Carta Îndrăgostiților ne amintește că iubirea este, în cele din urmă, despre alegere. Alegem pe cine iubim, cum
+        iubim și dacă rămânem deschiși puterii transformatoare a iubirii.
+      </p>
+      <p>
+        Când Îndrăgostiții apar în citirea ta, ia-o ca o oportunitate de a reflecta profund asupra dorințelor adevărate
+        ale inimii tale și alegerilor care te vor conduce spre o iubire autentică și durabilă.
+      </p>
+    </>
+  ),
+  zh: (
+    <>
+      <h2>引言：选择与连接的力量</h2>
+      <p>
+        恋人牌是塔罗牌中最具辨识度和影响力的牌之一。当这张牌出现在爱情解读中时，它直接触及关系、选择以及我们与他人建立的深层联系的核心。
+        但恋人牌不仅仅关于浪漫爱情——它代表着塑造我们生活的根本选择，以及我们的价值观与行动的一致性。
+      </p>
+      <p>
+        在这份全面指南中，我们将探索恋人牌丰富的象征意义，理解其正位和逆位的含义，并发现当它出现在你的解读中时如何应用其智慧。
+      </p>
+
+      <h2>恋人牌的象征意义</h2>
+      <p>
+        在传统的韦特塔罗图像中，恋人牌描绘了一对赤裸的男女站在天使拉斐尔下方，天使祝福他们的结合。太阳在上方明亮地照耀，
+        在人物身后有两棵树——女人身后是知识之树（有蛇），男人身后是生命之树（有火焰）。
+      </p>
+      <p>
+        这幅图像蕴含丰富的含义：
+      </p>
+      <ul>
+        <li><strong>天使拉斐尔：</strong>代表神圣的祝福、疗愈和感情事务的指引</li>
+        <li><strong>赤裸的人物：</strong>象征关系中的脆弱性、真实性和开放性</li>
+        <li><strong>两棵树：</strong>代表知识与生命的二元性、有意识的选择和灵性成长</li>
+        <li><strong>太阳：</strong>照亮真相并为连接带来温暖</li>
+        <li><strong>山脉：</strong>暗示为真正的结合必须克服的挑战</li>
+      </ul>
+
+      <h2>恋人正位：爱情解读中的含义</h2>
+      <p>
+        当恋人牌正位出现在爱情解读中时，它传达着关于关系和个人选择的深刻积极信息。
+      </p>
+
+      <h3>深层灵魂连接</h3>
+      <p>
+        恋人正位通常表示一段超越表面吸引力的关系。这是一种两个人在灵魂层面真正看见和理解彼此的连接。如果你正处于一段关系中，
+        这张牌肯定了你们纽带的深度和真实性。
+      </p>
+
+      <h3>重要选择</h3>
+      <p>
+        恋人牌的核心是关于选择。在爱情解读中，这可能意味着：
+      </p>
+      <ul>
+        <li>选择承诺于一段关系</li>
+        <li>在两个潜在伴侣之间做出决定</li>
+        <li>做出让你的关系与价值观一致的选择</li>
+        <li>选择爱而非恐惧</li>
+      </ul>
+
+      <h3>和谐与平衡</h3>
+      <p>
+        恋人牌代表健康关系中给予和接受的美好舞蹈。它说的是双方都保持自己的身份，同时共同创造更伟大事物的伴侣关系。
+      </p>
+
+      <h2>恋人逆位：挑战与反思</h2>
+      <p>
+        当恋人牌逆位出现时，并不一定预示着关系的末日。相反，它呼吁注意需要诚实审视的领域。
+      </p>
+
+      <h3>价值观不一致</h3>
+      <p>
+        逆位时，恋人牌可能表示你和伴侣在价值观或人生目标上存在根本性差异，这正在造成摩擦。这是一个邀请，
+        让你们坦诚对话关于什么对各自最重要。
+      </p>
+
+      <h3>对承诺的恐惧</h3>
+      <p>
+        有时这张牌逆位暗示在做重要的关系决定时存在困难。你是否因为恐惧而回避承诺？你是否总是留一条退路？
+      </p>
+
+      <h3>关系中的失衡</h3>
+      <p>
+        逆位的恋人牌可能表示一段给予和索取不平等的关系。一方可能在情感上投入更多，或者可能存在依赖与健康相互依存的问题。
+      </p>
+
+      <h2>恋人牌出现时要问的问题</h2>
+      <p>
+        当这张强大的牌出现在你的解读中时，考虑反思以下问题：
+      </p>
+      <ul>
+        <li>我在爱情生活中面临什么重要的选择？</li>
+        <li>我的价值观与伴侣的一致吗？</li>
+        <li>我是从完整的自我出发选择爱，还是出于害怕孤独？</li>
+        <li>我如何能为我的关系带来更多的和谐与平衡？</li>
+        <li>我在爱情中是否真实和脆弱？</li>
+      </ul>
+
+      <h2>结论：拥抱恋人牌的智慧</h2>
+      <p>
+        恋人牌提醒我们，爱情归根结底是关于选择。我们选择爱谁，如何去爱，以及是否对爱的转化力量保持开放。
+        无论正位还是逆位，这张牌都邀请我们以诚实和勇气审视我们的关系。
+      </p>
+      <p>
+        当恋人牌出现在你的解读中时，把它当作一个机会，深入反思你内心真正的渴望，以及将引导你走向真实、持久爱情的选择。
+      </p>
+    </>
+  ),
+}
+
 // Article 4: The High Priestess
 const article4Content = {
   en: (
@@ -1363,7 +1703,7 @@ export const articles: Article[] = [
           "love tarot card lovers",
           "tarot relationship symbolism",
         ],
-        content: null, // Placeholder for content that would be merged if available
+        content: article3Content.en,
       },
       ro: {
         title: "Semnificația Îndrăgostiților în Tarotul de Iubire (Poziție Dreaptă și Inversată)",
@@ -1377,7 +1717,7 @@ export const articles: Article[] = [
           "carte tarot iubire îndrăgostiții",
           "simbolism relații tarot",
         ],
-        content: null, // Placeholder for content that would be merged if available
+        content: article3Content.ro,
       },
       zh: {
         title: "爱情塔罗中恋人牌的含义（正位和逆位）",
@@ -1391,7 +1731,7 @@ export const articles: Article[] = [
           "爱情塔罗牌恋人",
           "塔罗关系象征",
         ],
-        content: null, // Placeholder for content that would be merged if available
+        content: article3Content.zh,
       },
     },
   },
