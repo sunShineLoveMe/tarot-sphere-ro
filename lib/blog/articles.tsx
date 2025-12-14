@@ -1663,7 +1663,7 @@ const article5Content = {
       <p>
         <strong>Upright:</strong> The Lovers speaks to deep soul connections and the power of conscious choice. If this card appears when you are contemplating reaching out, it suggests that genuine love—whether romantic or simply human—exists in this connection. However, it also asks: Are you reaching out from wholeness, or from fear of being alone during the holidays?
       </p>
-      <img src="/cards/major/06-the-lovers.webp" alt="The Lovers tarot card" className="tarot-card-image" />
+      <img src="/blog/06-the-lovers.webp" alt="The Lovers tarot card" className="tarot-card-image" />
       <p>
         <strong>Reversed:</strong> May indicate that values are misaligned, or that the connection has run its course. It gently asks whether you are romanticizing what was rather than seeing clearly what is.
       </p>
@@ -1672,7 +1672,7 @@ const article5Content = {
       <p>
         <strong>Upright:</strong> Trust your intuition. The High Priestess suggests that you already know, deep down, whether this message would serve you. She invites you to sit in stillness before acting—not from paralysis, but from wisdom.
       </p>
-      <img src="/cards/major/02-the-high-priestess.webp" alt="The High Priestess tarot card" className="tarot-card-image" />
+      <img src="/blog/02-the-high-priestess.webp" alt="The High Priestess tarot card" className="tarot-card-image" />
       <p>
         <strong>Reversed:</strong> You may be ignoring important inner knowing, perhaps because what your intuition tells you is not what you want to hear. Are you seeking external validation for a decision you have already made internally?
       </p>
@@ -1681,7 +1681,7 @@ const article5Content = {
       <p>
         <strong>Upright:</strong> Indicates confusion, hidden fears, or illusions. If The Moon appears, it suggests that not everything is as it seems—either about his feelings or about your own motivations for reaching out. Take time to examine what fears are driving this desire.
       </p>
-      <img src="/cards/major/18-the-moon.webp" alt="The Moon tarot card" className="tarot-card-image" />
+      <img src="/blog/18-the-moon.webp" alt="The Moon tarot card" className="tarot-card-image" />
       <p>
         <strong>Reversed:</strong> Clarity is emerging. You may finally be seeing a situation for what it truly is, which can guide a wiser decision about whether to make contact.
       </p>
@@ -1714,7 +1714,7 @@ const article5Content = {
       <p>
         <strong>Upright:</strong> A calling toward higher understanding and major life transitions. Judgement asks: What is the highest version of yourself calling you to do? Not the scared version, not the lonely version—but the self who has done the inner work.
       </p>
-      <img src="/cards/major/20-the-judgement.webp" alt="Judgement tarot card" className="tarot-card-image" />
+      <img src="/blog/20-the-judgement.webp" alt="Judgement tarot card" className="tarot-card-image" />
       <p>
         <strong>Reversed:</strong> Self-doubt or avoiding an important inner reckoning. Are you considering texting him to avoid a deeper conversation with yourself?
       </p>

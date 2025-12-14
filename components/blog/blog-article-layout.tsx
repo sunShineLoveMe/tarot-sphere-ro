@@ -150,25 +150,24 @@ export function BlogArticleLayout({ children }: BlogArticleLayoutProps) {
         /* Images - Tarot Card Images */
         .blog-article-content .tarot-card-image {
           display: block;
-          max-width: 200px;
-          margin: 24px auto;
-          border-radius: 12px;
-          box-shadow: 0 8px 32px rgba(255, 79, 216, 0.2), 0 0 60px rgba(115, 242, 255, 0.1);
+          width: 100%;
+          max-width: 100%;
+          margin: 32px 0;
+          border-radius: 16px;
+          box-shadow: 0 12px 40px rgba(255, 79, 216, 0.25), 0 0 80px rgba(115, 242, 255, 0.15);
           border: 2px solid rgba(115, 242, 255, 0.3);
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
         .blog-article-content .tarot-card-image:hover {
-          transform: scale(1.02);
-          box-shadow: 0 12px 40px rgba(255, 79, 216, 0.3), 0 0 80px rgba(115, 242, 255, 0.15);
-        }
-        
-        .blog-article-content .tarot-card-image {
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          transform: translateY(-4px);
+          box-shadow: 0 16px 48px rgba(255, 79, 216, 0.3), 0 0 100px rgba(115, 242, 255, 0.2);
         }
         
         @media (max-width: 640px) {
           .blog-article-content .tarot-card-image {
-            max-width: 160px;
+            margin: 24px 0;
+            border-radius: 12px;
           }
         }
       `}</style>
