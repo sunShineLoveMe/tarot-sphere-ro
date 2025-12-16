@@ -1813,6 +1813,211 @@ const article5Content = {
   ),
 }
 
+// Article 6: What Does He Feel for You? The Lovers Tarot Love Meaning (2026 Guide)
+const article6Content = {
+  en: (
+    <>
+      <h2>Introduction: When You Feel the Connection but Need the Truth</h2>
+      <p>
+        You wouldn't be here if things were simple.
+      </p>
+      <p>
+        Something about him feels significant.
+        There's attraction, chemistry, maybe even moments that feel deeply aligned — but also confusion, mixed signals, or silence that leaves you wondering:
+      </p>
+      <p>
+        <em>"What does he really feel for me?"</em>
+      </p>
+      <p>
+        The Lovers tarot card appears when emotions are real — but not always straightforward.
+        In this 2026 love tarot guide, we'll explore what The Lovers truly reveals about his feelings, your connection, and the choice that lies beneath the surface.
+      </p>
+
+      <h2>The Lovers Tarot Card: Core Love Energy</h2>
+      <img src="/blog/06-the-lovers.webp" alt="The Lovers tarot card" className="tarot-card-image" />
+      <p>
+        The Lovers is not just about romance.
+        At its heart, this card represents:
+      </p>
+      <ul>
+        <li>Emotional connection</li>
+        <li>Mutual attraction</li>
+        <li>Alignment of values</li>
+        <li>A meaningful choice in love</li>
+      </ul>
+      <p>
+        When you ask <em>what does he feel</em>, The Lovers suggests he feels the pull — but the way that energy expresses itself depends entirely on whether the card appears upright or reversed.
+      </p>
+
+      <h2>The Lovers Upright — What He Truly Feels</h2>
+      <img src="/blog/02-the-high-priestess.webp" alt="The High Priestess tarot card representing intuition" className="tarot-card-image" />
+      <p>
+        When The Lovers appears upright, his feelings are genuine.
+      </p>
+      <p>
+        This card indicates:
+      </p>
+      <ul>
+        <li>Strong emotional and physical attraction</li>
+        <li>A sense of "rightness" when he's with you</li>
+        <li>Awareness that this connection matters</li>
+      </ul>
+      <p>
+        He doesn't see this as casual.
+      </p>
+      <p>
+        Even if he hasn't said it out loud, part of him recognizes that you are a meaningful choice, not just an option.
+      </p>
+      <p>
+        However — and this matters — The Lovers is still a choice card.
+        It means his feelings are real, but he may be standing at a crossroads:
+      </p>
+      <ul>
+        <li>Commitment vs freedom</li>
+        <li>Acting on love vs staying comfortable</li>
+        <li>Following his heart vs avoiding risk</li>
+      </ul>
+      <p>
+        If his actions feel hesitant, it's not because he feels nothing — it's because he feels enough to be afraid of choosing wrong.
+      </p>
+
+      <h2>The Lovers Reversed — Hidden Feelings or Inner Conflict?</h2>
+      <img src="/blog/18-the-moon.webp" alt="The Moon tarot card representing confusion and hidden emotions" className="tarot-card-image" />
+      <p>
+        When The Lovers appears reversed, the feelings are more complicated.
+      </p>
+      <p>
+        This doesn't automatically mean rejection. Instead, it often points to:
+      </p>
+      <ul>
+        <li>Emotional confusion</li>
+        <li>Mixed signals or inner conflict</li>
+        <li>Fear of commitment</li>
+        <li>Desire without emotional readiness</li>
+      </ul>
+      <p>
+        He may feel attracted to you, but not aligned with himself.
+      </p>
+      <p>
+        In some cases, The Lovers reversed suggests:
+      </p>
+      <ul>
+        <li>He feels pulled toward you but doesn't trust himself</li>
+        <li>He avoids making a decision to avoid hurting anyone</li>
+        <li>He is torn between two paths (or two people)</li>
+      </ul>
+      <p>
+        This is the card of emotional avoidance, not emotional absence.
+      </p>
+
+      <h2>Why The Lovers Keeps Appearing in Love Readings</h2>
+      <p>
+        Many people pull The Lovers repeatedly when asking about the same person.
+      </p>
+      <p>
+        That's not coincidence.
+      </p>
+      <p>
+        This card returns when:
+      </p>
+      <ul>
+        <li>The connection has unfinished lessons</li>
+        <li>A decision is being delayed</li>
+        <li>Both people feel the bond, but no one wants to be the first to choose</li>
+      </ul>
+      <p>
+        Tarot doesn't rush this energy.
+        It asks you to look honestly at what kind of love you are willing to accept.
+      </p>
+
+      <h2>The Deeper Message: Love Is a Choice, Not a Promise</h2>
+      <img src="/blog/20-the-judgement.webp" alt="The Judgement tarot card symbolizing major decisions" className="tarot-card-image" />
+      <p>
+        The most misunderstood part of The Lovers card is this:
+      </p>
+      <p>
+        <strong>Love energy does not guarantee action.</strong>
+      </p>
+      <p>
+        The Lovers asks:
+      </p>
+      <ul>
+        <li>Is this connection aligned with truth?</li>
+        <li>Are both people choosing consciously — or drifting emotionally?</li>
+        <li>Are values, timing, and intentions in harmony?</li>
+      </ul>
+      <p>
+        In 2026, this card often appears for people who must decide:
+      </p>
+      <ul>
+        <li>To wait — or to move on</li>
+        <li>To ask the hard question — or release the outcome</li>
+      </ul>
+
+      <h2>Should You Wait or Move On?</h2>
+      <p>
+        If you pulled The Lovers asking <em>what does he feel</em>, the card reflects mutual energy — but the future depends on choice.
+      </p>
+      <p>
+        Ask yourself:
+      </p>
+      <ul>
+        <li>Is he meeting you with clarity?</li>
+        <li>Are his actions matching the emotional connection?</li>
+        <li>Are you choosing him — or choosing potential?</li>
+      </ul>
+      <p>
+        Sometimes, The Lovers appears not to explain his feelings, but to illuminate your power to choose yourself.
+      </p>
+
+      <h2>Want a Clear Answer for Your Situation?</h2>
+      <p>
+        Tarot works best when the question is specific.
+      </p>
+      <p>
+        If you want clarity on:
+      </p>
+      <ul>
+        <li>Whether he will choose you</li>
+        <li>What blocks his action</li>
+        <li>Where this connection is going in 2026</li>
+      </ul>
+      <p>
+        You can try a focused love tarot spread designed for decision moments.
+      </p>
+      <p>
+        👉 A simple three-card spread can reveal whether this connection is meant to deepen — or teach you something before letting go.
+      </p>
+
+      <h2>Final Thoughts</h2>
+      <p>
+        The Lovers doesn't lie.
+      </p>
+      <p>
+        It reveals connection, attraction, and truth — but it also demands honesty about choice.
+      </p>
+      <p>
+        If you're feeling the pull, it's real.
+        What matters now is whether love is being chosen — or avoided.
+      </p>
+      <p>
+        Sometimes, the answer isn't in his feelings.
+        It's in what you're ready to accept.
+      </p>
+    </>
+  ),
+  ro: (
+    <>
+      <p>Romanian translation placeholder - will be added if needed</p>
+    </>
+  ),
+  zh: (
+    <>
+      <p>Chinese translation placeholder - will be added if needed</p>
+    </>
+  ),
+}
+
 export const articles: Article[] = [
   {
     slug: "love-tarot-2025",
@@ -2034,6 +2239,54 @@ export const articles: Article[] = [
           "圣诞节塔罗解读",
         ],
         content: article5Content.zh,
+      },
+    },
+  },
+  {
+    slug: "what-does-he-feel-lovers-tarot",
+    publishedAt: "2025-12-16",
+    readingTime: 9,
+    translations: {
+      en: {
+        title: "What Does He Feel for You? The Lovers Tarot Love Meaning (2026 Guide)",
+        description:
+          "Discover what The Lovers tarot card reveals about his true feelings. Learn upright and reversed meanings, emotional connections, and whether love is being chosen or avoided in 2026.",
+        keywords: [
+          "what does he feel tarot",
+          "the lovers tarot love meaning",
+          "lovers tarot feelings",
+          "tarot what does he feel for me",
+          "lovers card upright reversed",
+          "love tarot 2026",
+        ],
+        content: article6Content.en,
+      },
+      ro: {
+        title: "Ce simte el pentru tine? Semnificația Îndrăgostiților în Tarot (Ghid 2026)",
+        description:
+          "Descoperă ce dezvăluie carta Îndrăgostiții despre sentimentele lui adevărate. Învață semnificațiile în poziție dreaptă și inversată, conexiuni emoționale și dacă iubirea este aleasă sau evitată în 2026.",
+        keywords: [
+          "ce simte el tarot",
+          "îndrăgostiții tarot iubire",
+          "sentimente îndrăgostiți tarot",
+          "tarot ce simte pentru mine",
+          "carte îndrăgostiți dreaptă inversată",
+        ],
+        content: article6Content.ro,
+      },
+      zh: {
+        title: "他对你有什么感觉？恋人塔罗牌爱情含义（2026指南）",
+        description:
+          "探索恋人塔罗牌如何揭示他的真实感受。了解正位和逆位含义、情感连接，以及2026年爱情是被选择还是被回避。",
+        keywords: [
+          "他的感受塔罗",
+          "恋人塔罗爱情含义",
+          "恋人牌感情",
+          "塔罗他对我的感觉",
+          "恋人牌正位逆位",
+          "2026爱情塔罗",
+        ],
+        content: article6Content.zh,
       },
     },
   },
