@@ -63,7 +63,7 @@ export default function BlogDetailClient({ slug }: { slug: string }) {
       <MagicBackground />
       <Header />
 
-      <main className="relative pt-24 pb-20 px-4">
+      <main className="relative pt-24 pb-4 px-4">
         {/* Article Container */}
         <article className="max-w-3xl mx-auto relative">
           {/* Back Link */}
@@ -103,7 +103,7 @@ export default function BlogDetailClient({ slug }: { slug: string }) {
           <BlogArticleLayout>{translation.content}</BlogArticleLayout>
 
           {/* Footer / CTA */}
-          <div className="mt-16 pt-8 border-t border-[#FF4FD8]/20 text-center max-w-2xl mx-auto">
+          <div className="mt-12 pt-8 border-t border-[#FF4FD8]/20 text-center max-w-2xl mx-auto">
             <p className="text-foreground/60 mb-6">{labels.enjoyed}</p>
             <Link
               href="/intake"
@@ -120,7 +120,7 @@ export default function BlogDetailClient({ slug }: { slug: string }) {
       </main>
 
       {/* Footer */}
-      <footer className="relative py-12 px-4 border-t border-[#FF4FD8]/10 mt-12">
+      <footer className="relative py-8 px-4 border-t border-[#FF4FD8]/10 mt-6">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
             <Link href="/" className="inline-flex items-center gap-2">
