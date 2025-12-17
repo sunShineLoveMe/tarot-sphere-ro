@@ -348,6 +348,12 @@ export default function LandingPage({ onStartReading }: LandingPageProps) {
               <Link href="/contact" className="hover:text-[#73F2FF] transition-colors">
                 {t.footer.links.contact}
               </Link>
+              <Link href="/cookies" className="hover:text-[#73F2FF] transition-colors">
+                {t.footer.links.cookies}
+              </Link>
+              <Link href="/advertising" className="hover:text-[#73F2FF] transition-colors">
+                {t.footer.links.advertising}
+              </Link>
               {/* Blog link added to footer */}
               <Link href="/blog" className="hover:text-[#73F2FF] transition-colors">
                 Blog

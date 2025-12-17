@@ -68,6 +68,8 @@ export interface Translations {
       privacy: string
       terms: string
       contact: string
+      cookies: string
+      advertising: string
     }
   }
   // Tarot Reading UI
@@ -195,6 +197,7 @@ export interface Translations {
         internationalTransfers: { title: string; content: string }
         childrenPrivacy: { title: string; content: string }
         contact: { title: string; content: string }
+        thirdPartyAds: { title: string; content: string; items: string[] }
       }
     }
     terms: {
@@ -339,6 +342,8 @@ export const translations: Record<Locale, Translations> = {
         privacy: "Privacy Policy",
         terms: "Terms of Service",
         contact: "Contact",
+        cookies: "Cookies Policy",
+        advertising: "About Our Ads",
       },
     },
     tarot: {
@@ -521,6 +526,19 @@ export const translations: Record<Locale, Translations> = {
             title: "Contact Information",
             content:
               "For any privacy-related inquiries or to exercise your rights, please contact us at: chris@zhiyunllm.com",
+          },
+          thirdPartyAds: {
+            title: "Third-Party Advertising & Cookies",
+            content:
+              "We use Google AdSense to display advertisements on our website. Google and its advertising partners use cookies to serve ads based on your prior visits to our website and/or other sites on the Internet.",
+            items: [
+              "Third-party vendors, including Google, use cookies to serve ads on our site",
+              "Google uses the DoubleClick DART cookie to enable personalized advertising",
+              "Users may visit Google's Ads Settings at www.google.com/settings/ads to customize or opt out of personalized advertising",
+              "Alternatively, you can opt out of third-party vendor use of cookies for personalized advertising by visiting www.aboutads.info/choices",
+              "We have no control over third-party cookies, which are governed by the respective third parties' privacy policies",
+              "These advertising cookies help us keep our tarot reading service free for all users",
+            ],
           },
         },
       },
@@ -712,6 +730,8 @@ export const translations: Record<Locale, Translations> = {
         privacy: "Politica de Confidențialitate",
         terms: "Termeni și Condiții",
         contact: "Contact",
+        cookies: "Politica de Cookie-uri",
+        advertising: "Despre Reclamele Noastre",
       },
     },
     tarot: {
@@ -895,6 +915,19 @@ export const translations: Record<Locale, Translations> = {
             content:
               "Pentru orice întrebări legate de confidențialitate sau pentru a vă exercita drepturile, vă rugăm să ne contactați la: chris@zhiyunllm.com",
           },
+          thirdPartyAds: {
+            title: "Publicitate terță \u0026 Cookie-uri",
+            content:
+              "Folosim Google AdSense pentru afișarea reclamelor pe site-ul nostru. Google și partenerii săi de publicitate folosesc cookie-uri pentru a afișa reclame bazate pe vizitele dvs. anterioare pe site-ul nostru și/sau pe alte site-uri de pe Internet.",
+            items: [
+              "Furnizori terți, inclusiv Google, folosesc cookie-uri pentru a afișa reclame pe site-ul nostru",
+              "Google folosește cookie-ul DoubleClick DART pentru a activa publicitatea personalizată",
+              "Utilizatorii pot vizita Setările de reclame Google la www.google.com/settings/ads pentru a personaliza sau a renunța la publicitatea personalizată",
+              "Alternativ, puteți renunța la utilizarea cookie-urilor de către furnizori terți pentru publicitate personalizată vizitând www.aboutads.info/choices",
+              "Nu avem control asupra cookie-urilor terțe, care sunt guvernate de politicile de confidențialitate ale terților respectivi",
+              "Aceste cookie-uri publicitare ne ajută să menținem serviciul nostru de citire tarot gratuit pentru toți utilizatorii",
+            ],
+          },
         },
       },
       terms: {
@@ -1077,6 +1110,8 @@ export const translations: Record<Locale, Translations> = {
         privacy: "隐私政策",
         terms: "服务条款",
         contact: "联系我们",
+        cookies: "Cookie政策",
+        advertising: "关于我们的广告",
       },
     },
     tarot: {
@@ -1257,6 +1292,19 @@ export const translations: Record<Locale, Translations> = {
           contact: {
             title: "联系方式",
             content: "如有任何隐私相关问题或需要行使您的权利，请通过以下邮箱联系我们：chris@zhiyunllm.com",
+          },
+          thirdPartyAds: {
+            title: "第三方广告与Cookies",
+            content:
+              "我们使用 Google AdSense 在网站上展示广告。Google 及其广告合作伙伴使用 cookies 根据您之前访问我们网站和/或互联网上其他网站的情况投放广告。",
+            items: [
+              "包括 Google 在内的第三方供应商使用 cookies 在我们的网站上投放广告",
+              "Google 使用 DoubleClick DART cookie 来启用个性化广告",
+              "用户可以访问 Google 的广告设置页面 www.google.com/settings/ads 来自定义或选择退出个性化广告",
+              "或者，您可以访问 www.aboutads.info/choices 选择退出第三方供应商使用 cookies 进行个性化广告",
+              "我们无法控制第三方 cookies，它们受各自第三方的隐私政策约束",
+              "这些广告 cookies 帮助我们为所有用户免费提供塔罗牌解读服务",
+            ],
           },
         },
       },

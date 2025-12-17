@@ -165,6 +165,15 @@ function PrivacyContent() {
             <AccordionItem title={t.legal.privacy.sections.contact.title}>
               <p>{t.legal.privacy.sections.contact.content}</p>
             </AccordionItem>
+
+            <AccordionItem title={t.legal.privacy.sections.thirdPartyAds.title}>
+              <p className="mb-3">{t.legal.privacy.sections.thirdPartyAds.content}</p>
+              <ul className="list-disc list-inside space-y-2">
+                {t.legal.privacy.sections.thirdPartyAds.items.map((item, i) => (
+                  <li key={i}>{item}</li>
+                ))}
+              </ul>
+            </AccordionItem>
           </motion.div>
         </div>
       </main>

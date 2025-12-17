@@ -274,6 +274,28 @@ function ReadingResultContent() {
 
         {/* Main Content */}
         <div className="max-w-4xl mx-auto" ref={shareCardRef}>
+          {/* Entertainment Disclaimer Banner */}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-6 p-4 rounded-xl"
+            style={{
+              background: "linear-gradient(135deg, rgba(255, 193, 7, 0.15) 0%, rgba(255, 152, 0, 0.1) 100%)",
+              border: "2px solid rgba(255, 193, 7, 0.4)",
+              boxShadow: "0 4px 20px rgba(255, 193, 7, 0.15)",
+            }}
+          >
+            <p className="text-center text-sm leading-relaxed" style={{ color: "#FFD54F" }}>
+              <span className="font-semibold">⚠️ {locale === "zh" ? "仅供娱乐目的" : locale === "ro" ? "Doar pentru divertisment" : "For Entertainment Purposes Only"}</span>
+              {" · "}
+              {locale === "zh"
+                ? "此塔罗牌解读仅供娱乐和自我反思。不构成专业的医疗、法律、财务或关系建议。"
+                : locale === "ro"
+                  ? "Această lectură de tarot este doar pentru divertisment și auto-reflecție. Nu constituie sfaturi profesionale medicale, juridice, financiare sau de relații."
+                  : "This tarot reading is for entertainment and self-reflection purposes only. It does not constitute professional medical, legal, financial, or relationship advice."}
+            </p>
+          </motion.div>
+
           {/* Question Display */}
           {question && (
             <motion.div
