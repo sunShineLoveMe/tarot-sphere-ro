@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { motion } from "framer-motion"
 import { useI18n } from "@/lib/i18n/context"
 import MagicBackground from "./magic-background"
@@ -16,6 +17,7 @@ interface LandingPageProps {
 export default function LandingPage({ onStartReading }: LandingPageProps) {
   const { t, locale } = useI18n()
   const router = useRouter()
+  const [isLegalDropdownOpen, setIsLegalDropdownOpen] = useState(false)
 
   const handleStartReading = () => {
     router.push("/intake")
@@ -340,36 +342,46 @@ export default function LandingPage({ onStartReading }: LandingPageProps) {
 
             <div className="flex gap-6 text-sm text-foreground/50 items-center flex-wrap justify-center">
               {/* Legal Dropdown */}
-              <div className="relative group">
-                <button className="hover:text-[#73F2FF] transition-colors flex items-center gap-1">
+              <div className="relative">
+                <button 
+                  onClick={() => setIsLegalDropdownOpen(!isLegalDropdownOpen)}
+                  onMouseEnter={() => setIsLegalDropdownOpen(true)}
+                  onMouseLeave={() => setIsLegalDropdownOpen(false)}
+                  className="hover:text-[#73F2FF] transition-colors flex items-center gap-1"
+                >
                   {locale === "zh" ? "法律信息" : locale === "ro" ? "Informații Legale" : "Legal"}
-                  <svg className="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className={`w-3 h-3 transition-transform ${isLegalDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
-                <div className="absolute bottom-full left-0 mb-2 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
-                  style={{
-                    background: "linear-gradient(135deg, rgba(26,10,46,0.95) 0%, rgba(15,10,32,0.98) 100%)",
-                    border: "1px solid rgba(115, 242, 255, 0.3)",
-                    borderRadius: "12px",
-                    boxShadow: "0 8px 32px rgba(115, 242, 255, 0.2)",
-                  }}
-                >
-                  <div className="p-2 space-y-1">
-                    <Link href="/privacy" className="block px-3 py-2 hover:bg-[#73F2FF]/10 rounded-lg transition-colors text-foreground/70 hover:text-[#73F2FF]">
-                      {t.footer.links.privacy}
-                    </Link>
-                    <Link href="/terms" className="block px-3 py-2 hover:bg-[#73F2FF]/10 rounded-lg transition-colors text-foreground/70 hover:text-[#73F2FF]">
-                      {t.footer.links.terms}
-                    </Link>
-                    <Link href="/cookies" className="block px-3 py-2 hover:bg-[#73F2FF]/10 rounded-lg transition-colors text-foreground/70 hover:text-[#73F2FF]">
-                      {t.footer.links.cookies}
-                    </Link>
-                    <Link href="/advertising" className="block px-3 py-2 hover:bg-[#73F2FF]/10 rounded-lg transition-colors text-foreground/70 hover:text-[#73F2FF]">
-                      {t.footer.links.advertising}
-                    </Link>
+                {isLegalDropdownOpen && (
+                  <div 
+                    className="absolute bottom-full left-0 mb-2 w-48 transition-all duration-200 z-50"
+                    onMouseEnter={() => setIsLegalDropdownOpen(true)}
+                    onMouseLeave={() => setIsLegalDropdownOpen(false)}
+                    style={{
+                      background: "linear-gradient(135deg, rgba(26,10,46,0.95) 0%, rgba(15,10,32,0.98) 100%)",
+                      border: "1px solid rgba(115, 242, 255, 0.3)",
+                      borderRadius: "12px",
+                      boxShadow: "0 8px 32px rgba(115, 242, 255, 0.2)",
+                    }}
+                  >
+                    <div className="p-2 space-y-1">
+                      <Link href="/privacy" className="block px-3 py-2 hover:bg-[#73F2FF]/10 rounded-lg transition-colors text-foreground/70 hover:text-[#73F2FF]">
+                        {t.footer.links.privacy}
+                      </Link>
+                      <Link href="/terms" className="block px-3 py-2 hover:bg-[#73F2FF]/10 rounded-lg transition-colors text-foreground/70 hover:text-[#73F2FF]">
+                        {t.footer.links.terms}
+                      </Link>
+                      <Link href="/cookies" className="block px-3 py-2 hover:bg-[#73F2FF]/10 rounded-lg transition-colors text-foreground/70 hover:text-[#73F2FF]">
+                        {t.footer.links.cookies}
+                      </Link>
+                      <Link href="/advertising" className="block px-3 py-2 hover:bg-[#73F2FF]/10 rounded-lg transition-colors text-foreground/70 hover:text-[#73F2FF]">
+                        {t.footer.links.advertising}
+                      </Link>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
 
               {/* Contact */}
