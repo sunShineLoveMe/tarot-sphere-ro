@@ -11,8 +11,9 @@ export async function generateStaticParams() {
   }))
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const article = articles.find((a) => a.slug === params.slug)
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params
+  const article = articles.find((a) => a.slug === slug)
 
   if (!article) {
     return {}
@@ -46,12 +47,13 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 }
 
-export default function BlogDetailPage({ params }: { params: { slug: string } }) {
-  const article = articles.find((a) => a.slug === params.slug)
+export default async function BlogDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const article = articles.find((a) => a.slug === slug)
 
   if (!article) {
     notFound()
   }
 
-  return <BlogDetailClient slug={params.slug} />
+  return <BlogDetailClient slug={slug} />
 }
