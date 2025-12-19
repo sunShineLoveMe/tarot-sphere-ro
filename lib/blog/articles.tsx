@@ -2087,10 +2087,10 @@ const article7Content = {
       <h2>The Path to Emotional Maturity</h2>
       <p><em>Integrating ancient wisdom to build the emotional intelligence required for modern relationships.</em></p>
       <p>
-        These questions complement the themes of 2026 by shifting the focus from external validation to internal growth. If you find yourself caught in the specific tension of holiday nostalgia, continuing your journey by exploring [should you text him tarot guidance](file:///blog/should-i-text-him-christmas) can clarify whether you are reaching out for connection or simply seeking comfort in the familiar.
+        These questions complement the themes of 2026 by shifting the focus from external validation to internal growth. If you find yourself caught in the specific tension of holiday nostalgia, continuing your journey by exploring <a href="/blog/should-i-text-him-christmas">should you text him tarot guidance</a> can clarify whether you are reaching out for connection or simply seeking comfort in the familiar.
       </p>
       <p>
-        Similarly, for those seeking to deepen their intuition within a relationship, understanding the [high priestess love meaning](file:///blog/high-priestess-love-meaning) can provide profound insights into the unspoken dynamics between two people. These resources help build the emotional intelligence that 2026 demands of us.
+        Similarly, for those seeking to deepen their intuition within a relationship, understanding the <a href="/blog/high-priestess-love-meaning">high priestess love meaning</a> can provide profound insights into the unspoken dynamics between two people. These resources help build the emotional intelligence that 2026 demands of us.
       </p>
 
       <h2>A Simple 3-Card Love Tarot Spread for 2026</h2>
