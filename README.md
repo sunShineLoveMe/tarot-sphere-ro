@@ -46,13 +46,13 @@ An immersive, ritual-style Love Tarot divination web application that combines c
 
 ### 架构概览 | Architecture Overview
 
-```
+\`\`\`
 ┌──────────────────────────────────────────────────────────────┐
 │  前端 (用户问题 + 选牌) → POST /api/reading → Gemini Pro    │
 │                              ↓                               │
 │               AI 生成个性化塔罗解读 → 流式输出到页面         │
 └──────────────────────────────────────────────────────────────┘
-```
+\`\`\`
 
 ### To-Do List
 
@@ -85,7 +85,7 @@ An immersive, ritual-style Love Tarot divination web application that combines c
 
 ### API 接口设计 | API Interface
 
-```typescript
+\`\`\`typescript
 // POST /api/reading
 // Request
 interface ReadingRequest {
@@ -109,11 +109,11 @@ interface ReadingResponse {
     affirmation: string               // 每日肯定语
   }
 }
-```
+\`\`\`
 
 ### 新增文件结构 | New File Structure
 
-```
+\`\`\`
 app/api/reading/route.ts    # API 路由
 lib/gemini/
 ├── client.ts               # Gemini 客户端
@@ -123,7 +123,7 @@ hooks/use-reading.ts        # API Hook
 components/
 ├── ai-reading.tsx          # AI 解读组件
 └── reading-skeleton.tsx    # 加载骨架屏
-```
+\`\`\`
 
 ---
 
@@ -137,7 +137,7 @@ components/
 
 #### 实现架构 | Implementation Architecture
 
-```tsx
+\`\`\`tsx
 // lib/i18n/locales.ts - 语言类型定义
 export const locales = ["en", "zh"] as const
 export type Locale = (typeof locales)[number]
@@ -162,11 +162,11 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
 const { t, locale, setLocale } = useI18n()
 <h1>{t('hero.title')}</h1>
 <button onClick={() => setLocale('zh')}>中文</button>
-```
+\`\`\`
 
 #### 翻译结构 | Translation Structure
 
-```tsx
+\`\`\`tsx
 interface Translations {
   meta: { title, description, ogTitle, ogDescription }
   nav: { home, startReading, howItWorks, about, faq }
@@ -181,7 +181,7 @@ interface Translations {
   formation: { hoverHint, touchHint, wheelOfFate }
   language: { select }
 }
-```
+\`\`\`
 
 ---
 
@@ -189,7 +189,7 @@ interface Translations {
 
 #### 页面结构 | Page Structure
 
-```
+\`\`\`
 ┌─────────────────────────────────────┐
 │  Navigation Bar (Logo + Language)   │
 ├─────────────────────────────────────┤
@@ -221,11 +221,11 @@ interface Translations {
 │            Footer                   │
 │   Disclaimer + Links + Copyright    │
 └─────────────────────────────────────┘
-```
+\`\`\`
 
 #### Hero Section 动效 | Hero Animations
 
-```tsx
+\`\`\`tsx
 // 标题淡入上浮
 <motion.h1
   initial={{ opacity: 0, y: 30 }}
@@ -245,7 +245,7 @@ interface Translations {
 >
   {t('hero.ctaStart')}
 </motion.button>
-```
+\`\`\`
 
 ---
 
@@ -267,7 +267,7 @@ interface Translations {
 
 ### 4. 五阶段占卜动画流程 | Five-Phase Divination Flow
 
-```
+\`\`\`
 用户进入 Landing Page
     ↓
 点击 "Start Love Reading"
@@ -287,7 +287,7 @@ interface Translations {
 3D翻牌揭示
     ↓
 显示解读面板 (Reading Phase)
-```
+\`\`\`
 
 #### Phase A: 待机阶段 (Idle Phase)
 - 3D 层叠卡牌堆
@@ -323,7 +323,7 @@ interface Translations {
 
 #### 卡牌数据结构 | Card Data Structure
 
-```tsx
+\`\`\`tsx
 // lib/tarot/cards.ts
 export interface TarotCard {
   id: number
@@ -358,11 +358,11 @@ export const tarotCards: TarotCard[] = [
   },
   // 共20张精选爱情牌
 ]
-```
+\`\`\`
 
 #### 抽卡流程 | Drawing Flow
 
-```tsx
+\`\`\`tsx
 // TarotSphere 主组件
 const handleCardSelect = (index: number) => {
   // 1. 记录选中的卡牌索引
@@ -383,11 +383,11 @@ const handleCardSelect = (index: number) => {
 
 // 卡牌映射
 const selectedCard = tarotCards[selectedCardIndex % tarotCards.length]
-```
+\`\`\`
 
 #### 解读面板内容 | Reading Panel Content
 
-```tsx
+\`\`\`tsx
 // ReadingPanel 组件
 const { t, locale } = useI18n()
 const card = tarotCards[cardIndex]
@@ -415,7 +415,7 @@ return (
     <p>{card.advice[locale]}</p>
   </div>
 )
-```
+\`\`\`
 
 ---
 
@@ -423,7 +423,7 @@ return (
 
 #### 响应式尺寸 Hook | Responsive Dimensions Hook
 
-```tsx
+\`\`\`tsx
 // hooks/use-responsive-dimensions.ts
 export function useResponsiveDimensions() {
   const [dims, setDims] = useState({
@@ -460,7 +460,7 @@ export function useResponsiveDimensions() {
   
   return dims
 }
-```
+\`\`\`
 
 #### 断点设计 | Breakpoints
 
@@ -491,7 +491,7 @@ export function useResponsiveDimensions() {
 
 ## 项目结构 | Project Structure
 
-```
+\`\`\`
 tarot-sphere-prototype/
 ├── app/
 │   ├── layout.tsx          # 根布局 + SEO 元数据
@@ -522,7 +522,7 @@ tarot-sphere-prototype/
 │   └── use-responsive-dimensions.ts
 └── public/
     └── *.jpg               # 背景图片
-```
+\`\`\`
 
 ---
 
