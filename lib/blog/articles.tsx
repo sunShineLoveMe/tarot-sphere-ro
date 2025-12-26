@@ -2553,6 +2553,264 @@ const article8Content = {
   ),
 }
 
+// Article 9: Does He Miss Me? Love Tarot Signs You Shouldn’t Ignore
+const article9Content = {
+  en: (
+    <>
+      <h2>Introduction: Why This Question Feels So Personal</h2>
+      <p>
+        Few questions carry as much emotional weight as “Does he miss me?”
+        It’s a quiet question, often asked late at night, when distractions fade and memories surface uninvited.
+      </p>
+      <p>
+        You may not be looking for dramatic declarations or guaranteed outcomes.
+        More often, you’re searching for reassurance — a sense that the connection you shared wasn’t imagined, forgotten, or meaningless.
+      </p>
+      <p>
+        This is where love tarot becomes powerful — not as a tool to spy on someone’s feelings, but as a way to understand why this question matters to you right now.
+      </p>
+      <p>
+        A <strong>does he miss me tarot reading</strong> doesn’t focus on chasing certainty.
+        It focuses on emotional truth, resonance, and the signals that arise when a bond still has energetic presence.
+      </p>
+
+      <h2>What “Missing You” Really Means in Tarot</h2>
+      <img src="/blog/blog-05.png" alt="Does he miss me tarot reading" className="tarot-card-image" />
+      <p>
+        In tarot, missing someone is rarely shown as obsession or regret alone.
+        Instead, it appears through themes of emotional processing, unfinished connections, and internal reflection.
+      </p>
+      <p>Tarot doesn’t say:</p>
+      <p>“Yes, he misses you at 9:42 PM.”</p>
+      <p>It asks deeper questions:</p>
+      <ul>
+        <li>Is the emotional bond still active?</li>
+        <li>Has the connection been integrated or avoided?</li>
+        <li>Is there emotional space where you still exist in his inner world?</li>
+      </ul>
+      <p>When tarot indicates longing, it often reflects emotional awareness, not action.</p>
+
+      <h2>Key Love Tarot Cards That Suggest He Misses You</h2>
+      <img src="/blog/blog-06.png" alt="Key tarot cards for longing" className="tarot-card-image" />
+      <p>
+        Certain cards frequently appear when emotional remembrance is present. Their meaning depends on context — especially whether the feeling is acknowledged or suppressed.
+      </p>
+      <h3>Six of Cups</h3>
+      <p>
+        A strong indicator of nostalgia and emotional memory.
+        This card suggests he reflects on shared moments, often idealizing the past rather than engaging with the present.
+      </p>
+      <h3>The Lovers</h3>
+      <p>
+        When this appears, the bond wasn’t casual.
+        It suggests a meaningful emotional choice that still carries weight — even if he hasn’t acted on it.
+      </p>
+      <h3>The Moon</h3>
+      <p>
+        Feelings are present but unclear.
+        He may miss you without fully understanding why, or he may avoid confronting emotions that feel overwhelming.
+      </p>
+      <h3>Four of Cups</h3>
+      <p>
+        Emotional withdrawal does not equal emotional absence.
+        This card often shows someone sitting with feelings they don’t know how to process yet.
+      </p>
+      <h3>Judgement</h3>
+      <p>
+        Reflection, awakening, and emotional reckoning.
+        If this card appears, missing you may be part of a larger internal realization — not just sentimentality.
+      </p>
+
+      <h2>Signs He May Miss You — Without Reaching Out</h2>
+      <img src="/blog/blog-07.png" alt="Signs he misses you" className="tarot-card-image" />
+      <p>Tarot often reveals emotional truth before behavior changes. Common patterns include:</p>
+      <ul>
+        <li>Thinking about you during emotionally quiet moments</li>
+        <li>Comparing current situations to what you shared</li>
+        <li>Feeling unsettled rather than relieved after separation</li>
+        <li>Avoiding emotional topics that remind him of you</li>
+      </ul>
+      <p>This doesn’t mean reconciliation is guaranteed. It means emotional processing is still happening.</p>
+
+      <h2>Why Missing You Doesn’t Always Lead to Action</h2>
+      <p>One of the hardest truths tarot teaches is this: Someone can miss you deeply and still not be ready to reconnect.</p>
+      <p>
+        Reasons tarot frequently highlights: emotional immaturity, fear of vulnerability, unresolved guilt or regret, a need to grow independently first.
+        This is why tarot focuses on emotional states, not promises.
+      </p>
+      <p>
+        If you’re also wondering whether emotional longing leads to return, this question naturally connects with themes explored in <a href="/blog/will-he-come-back-tarot">Will He Come Back? Tarot Reading Interpretation for Emotional Clarity</a>, where missing someone and acting on it are shown as two very different energies.
+      </p>
+
+      <h2>A Simple 3-Card Tarot Spread: Does He Miss Me?</h2>
+      <img src="/blog/blog-08.png" alt="3-card tarot spread for longing" className="tarot-card-image" />
+      <p>Use this spread when you want clarity without emotional spiraling.</p>
+      <ul>
+        <li><strong>Card 1: His emotional state toward you</strong> — What feelings are present beneath the surface?</li>
+        <li><strong>Card 2: How he processes these feelings</strong> — Does he face them, suppress them, or avoid them?</li>
+        <li><strong>Card 3: What this connection means for you now</strong> — What role does this emotional bond play in your growth?</li>
+      </ul>
+      <p>This spread shifts the focus from waiting to understanding.</p>
+
+      <h2>When This Question Is Really About You</h2>
+      <p>Often, “Does he miss me?” is a doorway question. Behind it may be a desire for validation, unfinished emotional closure, fear that the connection didn’t matter, or a need to feel remembered.</p>
+      <p>Tarot gently redirects attention back to your emotional needs — the one area you can respond to.</p>
+      <p>
+        If you’re navigating moments where emotional longing feels strongest during meaningful times of year, you may also resonate with the reflections explored in <a href="/blog/should-i-text-him-christmas">Should You Text Him This Christmas? Tarot’s Honest Answer</a>, where timing and emotional motivation are examined with honesty.
+      </p>
+
+      <h2>Tarot’s Honest Perspective</h2>
+      <p>
+        Tarot doesn’t exist to soothe uncertainty with fantasy.
+        It exists to help you see emotional truth clearly — even when that truth is uncomfortable.
+      </p>
+      <p>
+        If the cards show he misses you: It doesn’t mean you should wait. It doesn’t mean you should reach out. It means the connection had real emotional depth. And that alone is meaningful — regardless of outcome.
+      </p>
+
+      <h2>Final Reflection: Missing Is Not the Same as Returning</h2>
+      <p>Love tarot reminds us of something essential: Being remembered does not define your worth. Being chosen — by yourself first — does.</p>
+      <p>
+        Whether he misses you or not, tarot’s real guidance is always directed inward. Toward emotional clarity. Toward self-trust. Toward understanding what you need next. And that understanding is never wasted.
+      </p>
+    </>
+  ),
+  ro: (
+    <>
+      <h2>Introducere: De ce această întrebare se simte atât de personală</h2>
+      <p>Puține întrebări poartă o greutate emoțională atât de mare ca „Îi e dor de mine?”. Este o întrebare tăcută, pusă adesea târziu în noapte, când distragerile dispar și amintirile ies la suprafață neinvitate.</p>
+      <p>S-ar putea să nu cauți declarații dramatice sau rezultate garantate. Mai degrabă, cauți reasigurare – sentimentul că legătura pe care ați împărtășit-o nu a fost imaginată, uitată sau lipsită de sens.</p>
+      <p>Aici devine puternic tarotul de iubire – nu ca un instrument de spionaj asupra sentimentelor cuiva, ci ca o modalitate de a înțelege de ce această întrebare contează pentru tine chiar acum.</p>
+      <p>O <strong>citire de tarot „îi e dor de mine”</strong> nu se concentrează pe urmărirea certitudinii. Se concentrează pe adevărul emoțional, rezonanță și semnalele care apar atunci când o legătură are încă prezență energetică.</p>
+
+      <h2>Ce înseamnă cu adevărat „Dorul” în Tarot</h2>
+      <img src="/blog/blog-05.png" alt="Citire tarot îi e dor de mine" className="tarot-card-image" />
+      <p>În tarot, faptul că îi e dor de cineva este rar prezentat doar ca obsesie sau regret. În schimb, apare prin teme de procesare emoțională, conexiuni neterminate și reflecție internă.</p>
+      <p>Tarotul nu spune: „Da, îi e dor de tine la ora 21:42”. El pune întrebări mai profunde: Legătura emoțională este încă activă? Conexiunea a fost integrată sau evitată? Mai există un spațiu emoțional în care tu exiști în lumea lui interioară?</p>
+      <p>Când tarotul indică dor, acesta reflectă adesea conștientizarea emoțională, nu acțiunea.</p>
+
+      <h2>Cărți Cheie în Tarot care sugerează că îi e dor de tine</h2>
+      <img src="/blog/blog-06.png" alt="Cărți de tarot pentru dor" className="tarot-card-image" />
+      <p>Anumite cărți apar frecvent atunci când amintirea emoțională este prezentă. Semnificația lor depinde de context – în special dacă sentimentul este recunoscut sau suprimat.</p>
+      <h3>Șase de Cupe</h3>
+      <p>Un indicator puternic de nostalgie și memorie emoțională. Această carte sugerează că el reflectă asupra momentelor împărtășite, idealizând adesea trecutul în loc să se angajeze în prezent.</p>
+      <h3>Îndrăgostiții</h3>
+      <p>Când apare această carte, legătura nu a fost una ocazională. Sugerează o alegere emoțională semnificativă care încă are greutate – chiar dacă el nu a acționat în consecință.</p>
+      <h3>Luna</h3>
+      <p>Sentimentele sunt prezente, dar neclare. S-ar putea să îi fie dor de tine fără să înțeleagă pe deplin de ce, sau ar putea evita să confrunte emoții care se simt copleșitoare.</p>
+      <h3>Patru de Cupe</h3>
+      <p>Retragerea emoțională nu este egală cu absența emoțională. Această carte arată adesea pe cineva stând cu sentimente pe care încă nu știe cum să le proceseze.</p>
+      <h3>Judecata</h3>
+      <p>Reflecție, trezire și socoteală emoțională. Dacă apare această carte, dorul de tine ar putea face parte dintr-o realizare internă mai mare – nu doar sentimentalism.</p>
+
+      <h2>Semne că i-ar putea fi dor de tine — fără să te contacteze</h2>
+      <img src="/blog/blog-07.png" alt="Semne că îi e dor de tine" className="tarot-card-image" />
+      <p>Tarotul dezvăluie adesea adevărul emoțional înainte ca comportamentul să se schimbe. Tiparele comune includ:</p>
+      <ul>
+        <li>Se gândește la tine în momentele de liniște emoțională</li>
+        <li>Compară situațiile actuale cu ceea ce ați împărtășit</li>
+        <li>Se simte neliniștit mai degrabă decât ușurat după separare</li>
+        <li>Evită subiectele emoționale care îi amintesc de tine</li>
+      </ul>
+      <p>Asta nu înseamnă că reconcilierea este garantată. Înseamnă că procesarea emoțională are încă loc.</p>
+
+      <h2>De ce dorul nu duce întotdeauna la acțiune</h2>
+      <p>Unul dintre cele mai grele adevăruri pe care le învață tarotul este acesta: Cineva poate să îți simtă lipsa profund și totuși să nu fie gata să se reconecteze.</p>
+      <p>Motive pe care tarotul le evidențiază frecvent: Imaturitate emoțională, frica de vulnerabilitate, vinovăție sau regret nerezolvat, nevoia de a crește independent mai întâi. De aceea tarotul se concentrează pe stări emoționale, nu pe promisiuni.</p>
+      <p>Dacă te întrebi dacă dorul emoțional duce la întoarcere, această întrebare se conectează natural cu temele explorate în <a href="/blog/will-he-come-back-tarot">Se Va Întoarce? Interpretarea Citirii de Tarot pentru Claritate Emoțională</a>, unde dorul de cineva și acționarea în acest sens sunt prezentate ca două energii foarte diferite.</p>
+
+      <h2>O Etalare Simplă cu 3 Cărți: Îi e dor de mine?</h2>
+      <img src="/blog/blog-08.png" alt="Etalare tarot dor" className="tarot-card-image" />
+      <p>Folosește această etalare când vrei claritate fără a intra într-o spirală emoțională.</p>
+      <ul>
+        <li><strong>Cartea 1: Starea lui emoțională față de tine</strong> — Ce sentimente sunt prezente sub suprafață?</li>
+        <li><strong>Cartea 2: Cum procesează aceste sentimente</strong> — Le confruntă, le suprimă sau le evită?</li>
+        <li><strong>Cartea 3: Ce înseamnă această conexiune pentru tine acum</strong> — Ce rol joacă această legătură emoțională în creșterea ta?</li>
+      </ul>
+      <p>Această etalare mută focusul de la așteptare la înțelegere.</p>
+
+      <h2>Când această întrebare este de fapt despre tine</h2>
+      <p>Adesea, „Îi e dor de mine?” este o întrebare de „intrare”. În spatele ei s-ar putea afla o dorință de validare, o închidere emoțională neterminată, frica de a nu fi contat sau nevoia de a fi ținut minte. Tarotul redirecționează cu blândețe atenția către nevoile tale emoționale – singura zonă în care poți răspunde.</p>
+      <p>Dacă navighezi prin momente în care dorul emoțional se simte mai puternic în perioadele semnificative ale anului, s-ar putea să rezonezi și cu reflecțiile explorate în <a href="/blog/should-i-text-him-christmas">Ar trebui să-i trimiți mesaj de Crăciun? Răspunsul sincer al tarotului</a>, unde calendarul și motivația emoțională sunt examinate cu onestitate.</p>
+
+      <h2>Perspectiva sinceră a Tarotului</h2>
+      <p>Tarotul nu există pentru a calma incertitudinea cu fantezii. El există pentru a te ajuta să vezi clar adevărul emoțional – chiar și atunci când acel adevăr este inconfortabil.</p>
+      <p>Dacă cărțile arată că îi e dor de el: Nu înseamnă că ar trebui să aștepți. Nu înseamnă că ar trebui să îl contactezi. Înseamnă că legătura a avut o profunzime emoțională reală. Și asta singur este semnificativ – indiferent de rezultat.</p>
+
+      <h2>Reflecție Finală: Dorul nu este același lucru cu Întoarcerea</h2>
+      <p>Tarotul de iubire ne amintește de ceva esențial: Faptul că ești ținut minte nu îți definește valoarea. Faptul că ești ales – de tine însuți mai întâi – contează.</p>
+      <p>Indiferent dacă îi e dor de tine sau nu, adevărata îndrumare a tarotului este întotdeauna direcționată spre interior. Spre claritate emoțională. Spre încredere în sine. Spre înțelegerea a ceea ce ai nevoie mai departe. Iar acea înțelegere nu este niciodată irosită.</p>
+    </>
+  ),
+  zh: (
+    <>
+      <h2>引言：为什么这个问题如此牵动人心</h2>
+      <p>很少有哪个问题像“他想我吗？”这样承载着如此巨大的情感分量。这是一个安静的问题，通常在深夜，当琐事消退、记忆不请自来时浮上心头。</p>
+      <p>你可能并不是在寻求戏剧性的表白或百分之百的结果。更多时候，你是在寻找一种心理安慰——让自己确信曾经分享的那段连接并非虚幻、没有被遗忘，也并非毫无意义。</p>
+      <p>这正是爱情塔罗发挥力量的地方——它不是窥视他人情感的工具，而是一种帮助你理解为什么这个问题在此时此刻对你如此重要的途径。</p>
+      <p>“<strong>他想我吗”塔罗牌占卜</strong>并不侧重于追逐确定性。它专注于情感真相、共鸣，以及当一段羁绊仍具有能量感时所显现信号。</p>
+
+      <h2>“想念”在塔罗中究竟意味着什么</h2>
+      <img src="/blog/blog-05.png" alt="他想我吗塔罗牌占卜" className="tarot-card-image" />
+      <p>在塔罗牌中，想念某人很少仅仅表现为痴迷或遗憾。相反，它通过情感处理、未完成的连接以及内在反思等主题呈现。</p>
+      <p>塔罗牌不会告诉你：“是的，他在晚上 9:42 想你。”它会提出更深层次的问题：情感纽带是否依然活跃？这段连接是被整合了，还是被刻意回避了？在他的内心世界里，是否还留有你存在的空间？</p>
+      <p>当塔罗牌显示出渴望时，它通常反映的是情感觉知，而非具体行动。</p>
+
+      <h2>提示他正在想念你的关键爱情塔罗牌</h2>
+      <img src="/blog/blog-06.png" alt="象征渴望的关键塔罗牌" className="tarot-card-image" />
+      <p>当情感回忆存在时，某些牌卡会频繁出现。它们的含义取决于背景——尤其是这种感觉是被承认了还是被压抑了。</p>
+      <h3>圣杯六</h3>
+      <p>怀旧和情感记忆的强力指标。这张牌表明他在反思共同度过的时刻，通常是在美化过去，而不是正视当下。</p>
+      <h3>恋人</h3>
+      <p>当这张牌出现时，这段羁绊绝非泛泛之交。它暗示了一个依然具有分量的重大情感选择——即使他尚未采取行动。</p>
+      <h3>月亮</h3>
+      <p>感觉存在但模糊不清。他可能会想念你却不完全理解原因，或者他可能在回避面对那些让他感到不知所措的情绪。</p>
+      <h3>圣杯四</h3>
+      <p>情感退缩并不等同于情感缺失。这张牌通常显示某人正沉浸在他们还不知道如何处理的情感中。</p>
+      <h3>审判</h3>
+      <p>反思、觉醒和情感结算。如果这张牌出现，想念你可能是更大内在觉醒的一部分——而不仅仅是感伤。</p>
+
+      <h2>他可能想念你的迹象——即使没有联系</h2>
+      <img src="/blog/blog-07.png" alt="他想你的迹象" className="tarot-card-image" />
+      <p>塔罗牌往往在行为改变之前揭示情感真相。常见的模式包括：</p>
+      <ul>
+        <li>在情感平静的时刻想起你</li>
+        <li>将现状与你们共同经历的过去进行比较</li>
+        <li>分开后感到不安而非解脱</li>
+        <li>回避会让他想起你的情感话题</li>
+      </ul>
+      <p>这并不意味着和解是必然的。这意味着情感处理仍在进行中。</p>
+
+      <h2>为什么想念并不总是导致行动</h2>
+      <p>塔罗牌教给我们的最艰难的真相之一是：某人可以深深地思念你，但仍然没有准备好重新建立联系。</p>
+      <p>塔罗牌经常强调的原因包括：情感不成熟、恐惧脆弱、未解决的愧疚或遗憾、需要先独立成长。这就是为什么塔罗牌专注于情感状态，而非承诺。</p>
+      <p>如果你也在思考情感上的渴望是否会导致回归，这个问题自然地与《<a href="/blog/will-he-come-back-tarot">他会回来吗？塔罗牌解读带来情感清晰</a>》中探讨的主题相连接。在那篇文章中，思念某人和为此采取行动被展示为两种完全不同的能量。</p>
+
+      <h2>简单的三牌阵：他想我吗？</h2>
+      <img src="/blog/blog-08.png" alt="关于思念的三张牌阵" className="tarot-card-image" />
+      <p>当你想要获得清晰度而不想陷入情感漩涡时，请使用这个牌阵。</p>
+      <ul>
+        <li><strong>第一张牌：他对你的情感状态</strong> —— 潜意识里存在着什么样的感觉？</li>
+        <li><strong>第二张牌：他如何处理这些感觉</strong> —— 他是正视、压抑还是回避它们？</li>
+        <li><strong>第三张牌：这段连接现在对你意味着什么</strong> —— 这段情感纽带在你的成长中扮演了什么角色？</li>
+      </ul>
+      <p>这个牌阵将焦点从等待转向了理解。</p>
+
+      <h2>当这个问题其实是关乎你自己时</h2>
+      <p>通常，“他想我吗？”是一个入口式的问题。其背后可能潜藏着：对认可的渴望、未完成的情感了结、害怕这段连接并不重要，或是需要被记住。塔罗牌温柔地将注意力重新引回你的情感需求上——这是你唯一可以掌控的领域。</p>
+      <p>如果你正在经历那些在一年中具有特殊意义的时刻（此时情感渴望往往最强烈），你可能也会对《<a href="/blog/should-i-text-him-christmas">圣诞节该给他发消息吗？塔罗牌的真诚答案</a>》中的反思产生共鸣，那里以诚实的态度探讨了时机和情感动机。</p>
+
+      <h2>塔罗牌的诚实视角</h2>
+      <p>塔罗牌的存在不是为了用幻想来抚慰不确定性。它的存在是为了帮助你清晰地看到情感真相——即使那个真相令人不安。</p>
+      <p>如果牌面显示他想念你：这并不意味着你应该等待。这并不意味着你应该去联系。它意味着这段连接具有真实的情感深度。而这本身就是有意义的——无论结果如何。</p>
+
+      <h2>最后反思：思念不等于回归</h2>
+      <p>爱情塔罗提醒我们一些本质的东西：被记住并不能定义你的价值。被选择——首先被你自己选择——才能定义你的价值。</p>
+      <p>无论他是否想你，塔罗牌真正的指引总是指向内在。指向情感的清晰，指向自我的信任，以及指向理解你接下来的需求。而这种理解永远不会被浪费。</p>
+    </>
+  ),
+}
+
 export const articles: Article[] = [
   {
     slug: "love-tarot-2025",
@@ -2912,6 +3170,45 @@ export const articles: Article[] = [
           "爱情塔罗引导",
         ],
         content: article8Content.zh,
+      },
+    },
+  },
+  {
+    slug: "does-he-miss-me-tarot",
+    publishedAt: "2026-01-10",
+    readingTime: 10,
+    translations: {
+      en: {
+        title: "Does He Miss Me? Love Tarot Signs You Shouldn’t Ignore",
+        description:
+          "Exploring emotional signals, intuitive clarity, and what love tarot truly reveals about longing and connection.",
+        keywords: [
+          "does he miss me tarot",
+          "love tarot signs",
+          "longing tarot reading",
+          "is he thinking of me tarot",
+          "tarot for emotional clarity",
+        ],
+        content: article9Content.en,
+      },
+      ro: {
+        title: "Îi e dor de mine? Semne în Tarotul de Iubire pe care nu ar trebui să le ignori",
+        description:
+          "Explorarea semnalelor emoționale, claritatea intuitivă și ceea ce dezvăluie cu adevărat tarotul iubirii despre dor și conexiune.",
+        keywords: [
+          "îi e dor de mine tarot",
+          "semne tarot iubire",
+          "dor citire tarot",
+          "se gândește la mine tarot",
+          "claritate emoțională tarot",
+        ],
+        content: article9Content.ro,
+      },
+      zh: {
+        title: "他想我吗？不容忽视的爱情塔罗信号",
+        description: "探讨情感信号、直觉清晰度，以及爱情塔罗真正揭示的思念与连接。",
+        keywords: ["他想我吗塔罗", "爱情塔罗信号", "思念塔罗占卜", "他想我吗塔罗牌", "情感清晰塔罗"],
+        content: article9Content.zh,
       },
     },
   },
