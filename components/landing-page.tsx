@@ -389,6 +389,11 @@ export default function LandingPage({ onStartReading }: LandingPageProps) {
                 {t.footer.links.contact}
               </Link>
 
+              {/* Hub Page */}
+              <Link href="/love-tarot-reading" className="hover:text-[#73F2FF] transition-colors">
+                {t.nav.hub}
+              </Link>
+          
               {/* Blog */}
               <Link href="/blog" className="hover:text-[#73F2FF] transition-colors">
                 Blog

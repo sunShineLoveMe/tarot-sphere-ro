@@ -5,6 +5,7 @@ import Link from "next/link"
 import { useI18n } from "@/lib/i18n/context"
 import { LogoIcon } from "./logo-icon"
 import LanguageSwitcher from "./language-switcher"
+import { Sparkles } from "lucide-react"
 
 interface HeaderProps {
   className?: string
@@ -36,8 +37,27 @@ export function Header({ className = "" }: HeaderProps) {
           </div>
         </Link>
 
-        {/* Right: Language Switcher + Future Menu Items */}
-        <div className="flex items-center gap-3">
+        {/* Right: Hub Page Link + Language Switcher */}
+        <div className="flex items-center gap-3 md:gap-4">
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="hidden md:block"
+          >
+            <Link 
+              href="/love-tarot-reading" 
+              className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all"
+              style={{
+                background: "rgba(115,242,255,0.08)",
+                border: "1px solid rgba(115,242,255,0.3)",
+                color: "#73F2FF",
+                textShadow: "0 0 10px rgba(115,242,255,0.5)",
+              }}
+            >
+              <Sparkles className="w-3.5 h-3.5" />
+              {t.nav.hub}
+            </Link>
+          </motion.div>
           <LanguageSwitcher />
         </div>
       </div>

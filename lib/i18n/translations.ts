@@ -15,6 +15,7 @@ export interface Translations {
     howItWorks: string
     about: string
     faq: string
+    hub: string
   }
   // Hero Section
   hero: {
@@ -251,6 +252,7 @@ export const translations: Record<Locale, Translations> = {
       howItWorks: "How It Works",
       about: "About",
       faq: "FAQ",
+      hub: "Love Tarot Reading",
     },
     hero: {
       title: "Love Tarot",
@@ -639,6 +641,7 @@ export const translations: Record<Locale, Translations> = {
       howItWorks: "Cum Funcționează",
       about: "Despre",
       faq: "Întrebări Frecvente",
+      hub: "Citire Love Tarot",
     },
     hero: {
       title: "Love Tarot",
@@ -1026,6 +1029,7 @@ export const translations: Record<Locale, Translations> = {
       howItWorks: "如何使用",
       about: "关于",
       faq: "常见问题",
+      hub: "爱情塔罗占卜",
     },
     hero: {
       title: "Love Tarot",

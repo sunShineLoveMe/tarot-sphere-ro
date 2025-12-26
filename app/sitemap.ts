@@ -34,6 +34,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.8,
     },
+    // Hub Page - high priority evergreen content
+    {
+      url: `${baseUrl}/love-tarot-reading`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
     // Legal/info pages
     {
       url: `${baseUrl}/privacy`,
