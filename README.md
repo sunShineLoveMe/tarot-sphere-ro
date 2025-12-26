@@ -12,6 +12,12 @@ An immersive, ritual-style Love Tarot divination web application that combines c
 
 ## 版本更新记录 | Version History
 
+### v1.6.0 - 2025-12-26
+- **爱情塔罗 Hub 页面**: 新增 `/love-tarot-reading` 路由，作为常青 SEO 核心页面
+- **内容深度优化**: 约 2,000 字的多语言（中、英、罗）专家级塔罗导引内容
+- **内部链接体系**: 整合全站 9 篇博客文章，构建强大的主题集群 (Topical Cluster)
+- **UI/UX 升级**: 采用 `BlogArticleLayout` 高级排版，新增导航栏“星光胶囊”链接
+
 ### v1.5.0 - 2025-12-05
 - **音效移除**: 移除了所有背景音效和交互音效，提供更纯净的视觉体验
 - **UI 简化**: 移除了声音切换按钮
@@ -249,7 +255,21 @@ interface Translations {
 
 ---
 
-### 3. 视觉设计系统 | Visual Design System
+### 3. Evergreen Hub Page (长青 SEO 核心页)
+
+#### 核心目标 | Core Objectives
+- **建立权威性 (E-E-A-T)**: 提供深度、专业的塔罗导引，提升站点在“爱情塔罗”领域的权重。
+- **内部链接集群**: 通过 Hub Page 链接所有相关博客文章，优化权重传递和搜索引擎抓取。
+- **用户留存**: 为完成占卜或阅读博客的用户提供一个全面的知识中心。
+
+#### 页面特性 | Page Features
+- **Premium 排版**: 使用 `BlogArticleLayout` 确保与博客详情页一致的高级视觉体验。
+- **多语言支持**: 完整覆盖中 (zh)、英 (en)、罗 (ro) 三种语言。
+- **响应式 CTA**: 底部设有“开始占卜”与“探索博客”双路径导引。
+
+---
+
+### 4. 视觉设计系统 | Visual Design System
 
 #### 主题 | Theme
 - **赛博魔法** - Cyber Magic aesthetic with neon energy
@@ -492,8 +512,11 @@ export function useResponsiveDimensions() {
 ## 项目结构 | Project Structure
 
 \`\`\`
-tarot-sphere-prototype/
+tarot-sphere-ro/
 ├── app/
+│   ├── love-tarot-reading/ # 爱情塔罗 Hub 页面
+│   │   ├── page.tsx        # SEO 服务端组件
+│   │   └── love-tarot-client.tsx # 动画与 i18n 客户端组件
 │   ├── layout.tsx          # 根布局 + SEO 元数据
 │   ├── page.tsx            # 主页面 (Landing + Tarot)
 │   └── globals.css         # 全局样式 + Tailwind
@@ -515,6 +538,8 @@ tarot-sphere-prototype/
 │   │   ├── locales.ts      # 语言类型定义
 │   │   ├── translations.ts # 翻译内容
 │   │   └── context.tsx     # i18n React Context
+│   ├── hub/
+│   │   └── love-tarot-content.tsx # Hub 页面内容定义
 │   ├── tarot/
 │   │   └── cards.ts        # 塔罗牌数据
 │   └── utils.ts            # 工具函数
