@@ -3570,4 +3570,3 @@ export const articles: Article[] = [
     },
   },
 ]
-
