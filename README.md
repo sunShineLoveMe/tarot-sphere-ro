@@ -12,6 +12,11 @@ An immersive, ritual-style Love Tarot divination web application that combines c
 
 ## 版本更新记录 | Version History
 
+### v1.7.0 - 2025-12-30
+- **SEO & SSR 深度优化**: 将首页重构为 Server Component，并使用 `SearchParamsHandler` 隔离客户端逻辑，显著提升搜索引擎与 AdSense 爬虫的内容可见性。
+- **第十篇博客文章**: 新增《沉默代表什么吗？爱情塔罗与情感距离》，完善站内链接集群。
+- **技术架构演进**: 引入 `HomeClientWrapper` 和 `SearchParamsHandler` 优化状态管理，解决 SEO 审计中的“内容稀薄”与“H1 缺失”假性错误。
+
 ### v1.6.0 - 2025-12-26
 - **爱情塔罗 Hub 页面**: 新增 `/love-tarot-reading` 路由，作为常青 SEO 核心页面
 - **内容深度优化**: 约 2,000 字的多语言（中、英、罗）专家级塔罗导引内容
@@ -518,7 +523,9 @@ tarot-sphere-ro/
 │   │   ├── page.tsx        # SEO 服务端组件
 │   │   └── love-tarot-client.tsx # 动画与 i18n 客户端组件
 │   ├── layout.tsx          # 根布局 + SEO 元数据
-│   ├── page.tsx            # 主页面 (Landing + Tarot)
+│   ├── page.tsx            # 主页面 (Server Component)
+│   ├── home-client-wrapper.tsx # 首页状态管理容器 (Client)
+│   ├── search-params-handler.tsx # URL 参数监听逻辑 (Client)
 │   └── globals.css         # 全局样式 + Tailwind
 ├── components/
 │   ├── landing-page.tsx    # SEO 首页
