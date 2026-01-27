@@ -113,6 +113,17 @@ export default function LandingPage({ onStartReading }: LandingPageProps) {
               {t.howItWorks.title}
             </h2>
             <p className="text-foreground/60 text-lg">{t.howItWorks.subtitle}</p>
+            <p className="mt-4 text-sm text-foreground/40">
+              <span className="opacity-70">Curious about the origins? </span>
+              <a 
+                href="https://en.wikipedia.org/wiki/Tarot" 
+                target="_blank" 
+                rel="nofollow noopener noreferrer"
+                className="text-[#73F2FF] hover:underline decoration-[#73F2FF]/50 underline-offset-4 transition-all"
+              >
+                Learn about Tarot History
+              </a>
+            </p>
           </motion.div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -305,7 +316,7 @@ export default function LandingPage({ onStartReading }: LandingPageProps) {
         <div className="max-w-2xl mx-auto text-center">
           <motion.div {...fadeInUp}>
             <h2 className="text-3xl sm:text-4xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#FF4FD8] to-[#73F2FF] mb-6">
-              {t.hero.title}
+              The Wisdom of Love Tarot
             </h2>
             <motion.button
               onClick={handleStartReading}

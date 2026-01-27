@@ -129,6 +129,35 @@ export default function RootLayout({
         <link rel="alternate" hrefLang="zh" href={`${siteUrl}/zh`} />
         <link rel="alternate" hrefLang="x-default" href={siteUrl} />
         <link rel="canonical" href={siteUrl} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "WebSite",
+                  "name": "Love Tarot Romania",
+                  "url": siteUrl,
+                  "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": `${siteUrl}/search?q={search_term_string}`,
+                    "query-input": "required name=search_term_string",
+                  },
+                },
+                {
+                  "@type": "Organization",
+                  "name": "Love Tarot Romania",
+                  "url": siteUrl,
+                  "logo": {
+                    "@type": "ImageObject",
+                    "url": `${siteUrl}/logo-icon.png`,
+                  },
+                },
+              ],
+            }),
+          }}
+        />
       </head>
       <body className="font-sans antialiased">
         <I18nProvider>{children}</I18nProvider>
