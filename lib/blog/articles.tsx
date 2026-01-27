@@ -47,8 +47,9 @@ const article1Content = {
 
       <h2>Key Cards for Love Readings in 2025</h2>
       <h3>The Lovers</h3>
+
       <p>
-        This iconic card represents not just romantic love, but the power of choice. In 2025, The Lovers asks you to
+        This iconic card represents not just romantic love, but the power of choice. In 2025, <a href="https://en.wikipedia.org/wiki/The_Lovers" target="_blank" rel="nofollow noopener noreferrer" className="text-[#73F2FF] hover:underline">The Lovers</a> asks you to
         examine your values and make conscious decisions about who and how you love. It speaks to alignment, harmony,
         and the integration of opposites within yourself.
       </p>
@@ -95,7 +96,7 @@ const article1Content = {
       <p>
         If you repeatedly draw cards like the Knight of Swords or the Seven of Wands in love readings, you might be
         caught in a chase dynamic - either pursuing unavailable partners or pushing away those who come too close. The
-        cards encourage you to examine your attachment patterns.
+        cards encourage you to examine your <a href="https://www.psychologytoday.com/us/basics/attachment" target="_blank" rel="nofollow noopener noreferrer" className="text-[#73F2FF] hover:underline">attachment patterns</a>.
       </p>
 
       <h3>The Healing Journey</h3>
