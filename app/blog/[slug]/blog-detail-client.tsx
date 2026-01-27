@@ -9,6 +9,7 @@ import { Calendar, Clock, ArrowLeft } from "lucide-react"
 import { articles } from "@/lib/blog/articles"
 import { notFound } from "next/navigation"
 import { BlogArticleLayout } from "@/components/blog/blog-article-layout"
+import { AuthorBio } from "@/components/author-bio"
 
 // i18n labels for the blog detail page
 const blogLabels = {
@@ -62,6 +63,35 @@ export default function BlogDetailClient({ slug }: { slug: string }) {
     <div className="relative min-h-screen">
       <MagicBackground />
       <Header />
+      
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "author": {
+              "@type": "Person",
+              "name": "Aria Nightwood",
+              "jobTitle": "Global Tarot Expert",
+              "url": "https://www.tarotromania.com/about"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "Love Tarot Romania",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.tarotromania.com/logo-icon.png"
+              }
+            },
+            "datePublished": article.publishedAt,
+            "headline": translation.title,
+            "description": translation.description,
+            "image": article.coverImage ? `https://www.tarotromania.com${article.coverImage}` : "https://www.tarotromania.com/og-default.png"
+          })
+        }}
+      />
 
       <main className="relative pt-24 pb-4 px-4">
         {/* Article Container */}
@@ -101,6 +131,8 @@ export default function BlogDetailClient({ slug }: { slug: string }) {
 
           {/* Content - Using BlogArticleLayout for consistent styling */}
           <BlogArticleLayout>{translation.content}</BlogArticleLayout>
+
+          <AuthorBio />
 
           {/* Footer / CTA */}
           <div className="mt-12 pt-8 border-t border-[#FF4FD8]/20 text-center max-w-2xl mx-auto">

@@ -14,6 +14,7 @@ export interface ArticleMeta {
   readingTime: number
   coverImage?: string
   keywords: string[]
+  lang: "en" | "ro" | "zh"
 }
 
 interface ArticleCardProps {

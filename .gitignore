@@ -33,3 +33,22 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# AI Agents & IDEs
+.claude/
+.codebuddy/
+.codex/
+.cursor/
+.gemini/
+.kiro/
+.opencode/
+.qoder/
+.qwen/
+.trae/
+.windsurf/
+.agent/
+.agents/
+/skills
+seo_audit_report_zh.md
+live_site_seo_audit_report_zh.md
+seo-audit-www.tarotromania.com.md

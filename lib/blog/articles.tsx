@@ -11,6 +11,7 @@ export interface Article {
   slug: string
   publishedAt: string
   readingTime: number
+  coverImage?: string
   translations: {
     en: ArticleTranslation
     ro: ArticleTranslation

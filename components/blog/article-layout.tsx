@@ -10,6 +10,7 @@ import Header from "@/components/header"
 import { LogoIcon } from "@/components/logo-icon"
 import TOCGenerator from "./toc-generator"
 import TagLang from "./tag-lang"
+import { AuthorBio } from "@/components/author-bio"
 import type { ArticleMeta } from "./article-card"
 
 interface ArticleLayoutProps {
@@ -29,8 +30,9 @@ export default function ArticleLayout({
   children,
   jsonLd,
 }: ArticleLayoutProps) {
+  const lang = article.lang || "en"
   const formattedDate = new Date(article.publishedAt).toLocaleDateString(
-    article.lang === "ro" ? "ro-RO" : article.lang === "zh" ? "zh-CN" : "en-US",
+    lang === "ro" ? "ro-RO" : lang === "zh" ? "zh-CN" : "en-US",
     { year: "numeric", month: "long", day: "numeric" },
   )
 
@@ -40,7 +42,33 @@ export default function ArticleLayout({
       <Header />
 
       {/* JSON-LD Structured Data */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            ...jsonLd,
+            "@type": "Article",
+            "author": {
+              "@type": "Person",
+              "name": "Aria Nightwood",
+              "jobTitle": "Global Tarot Expert",
+              "url": "https://www.tarotromania.com/about"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "Love Tarot Romania",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.tarotromania.com/logo-icon.png"
+              }
+            },
+            "datePublished": article.publishedAt,
+            "headline": article.title,
+            "description": article.description,
+            "image": article.coverImage ? `https://www.tarotromania.com${article.coverImage}` : undefined
+          })
+        }}
+      />
 
       <main className="relative pt-24 pb-20 px-4">
         <div className="max-w-6xl mx-auto">
@@ -109,6 +137,8 @@ export default function ArticleLayout({
               >
                 {children}
               </motion.div>
+              
+              <AuthorBio />
 
               {/* Navigation */}
               <motion.nav
@@ -120,7 +150,7 @@ export default function ArticleLayout({
                 <div className="grid sm:grid-cols-2 gap-4">
                   {prevArticle && (
                     <Link
-                      href={`/blog/${prevArticle.slug}/${prevArticle.lang}`}
+                      href={`/blog/${prevArticle.slug}`}
                       className="group p-4 rounded-xl bg-[#1a0a2e]/50 border border-[#73F2FF]/20 hover:border-[#73F2FF]/40 transition-colors"
                     >
                       <span className="text-xs text-foreground/50 flex items-center gap-1">
@@ -134,7 +164,7 @@ export default function ArticleLayout({
                   )}
                   {nextArticle && (
                     <Link
-                      href={`/blog/${nextArticle.slug}/${nextArticle.lang}`}
+                      href={`/blog/${nextArticle.slug}`}
                       className="group p-4 rounded-xl bg-[#1a0a2e]/50 border border-[#73F2FF]/20 hover:border-[#73F2FF]/40 transition-colors sm:text-right sm:ml-auto"
                     >
                       <span className="text-xs text-foreground/50 flex items-center gap-1 sm:justify-end">
